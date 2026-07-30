@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="성경 노트">
+  <rect width="512" height="512" rx="96" fill="#2f4a3f"/>
+  <path d="M118 122h124c22 0 40 18 40 40v228c0-14-11-25-25-25H118z" fill="#f6efe3"/>
+  <path d="M394 122H270c-22 0-40 18-40 40v228c0-14 11-25 25-25h139z" fill="#e8dcc6"/>
+  <path d="M256 150v212" stroke="#c3b193" stroke-width="10" stroke-linecap="round"/>
+  <path d="M256 196v96M222 232h68" stroke="#a5623f" stroke-width="18" stroke-linecap="round"/>
+</svg>
