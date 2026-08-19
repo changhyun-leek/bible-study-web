@@ -1,0 +1,45 @@
+{
+  "chars_per_page": 700,
+  "works": [
+    {
+      "id": "de_ente_et_essentia",
+      "title": "존재자와 본질",
+      "title_la": "De ente et essentia",
+      "korean_chars": 27538,
+      "total_pages": 40,
+      "paragraphs": 76
+    },
+    {
+      "id": "de_principiis_naturae",
+      "title": "자연의 원리",
+      "title_la": "De principiis naturae",
+      "korean_chars": 16933,
+      "total_pages": 25,
+      "paragraphs": 40
+    },
+    {
+      "id": "de_unitate_intellectus",
+      "title": "지성의 단일성",
+      "title_la": "De unitate intellectus contra Averroistas",
+      "korean_chars": 46585,
+      "total_pages": 67,
+      "paragraphs": 104
+    },
+    {
+      "id": "de_aeternitate_mundi",
+      "title": "세계의 영원성에 관하여",
+      "title_la": "De aeternitate mundi",
+      "korean_chars": 7405,
+      "total_pages": 11,
+      "paragraphs": 21
+    },
+    {
+      "id": "de_mixtione_elementorum",
+      "title": "원소의 혼합에 관하여",
+      "title_la": "De mixtione elementorum",
+      "korean_chars": 4058,
+      "total_pages": 6,
+      "paragraphs": 7
+    }
+  ]
+}

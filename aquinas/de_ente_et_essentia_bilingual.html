@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#7c3f2b"/><link rel="icon" type="image/png" href="aquinas-app-icon.png"/><title>존재자와 본질 — 라틴어 원문 병기판</title><style>
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+body {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+  line-height: 1.9; margin: 0 auto; padding: 3rem 1.5rem 6rem;
+  max-width: 42rem; word-break: keep-all; overflow-wrap: break-word;
+  background: #fbfaf7; color: #23201c;
+}
+.library-home {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .55rem .9rem;
+  margin: 0 0 2rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: rgba(255,255,255,.58); color: inherit; text-decoration: none;
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: .86rem;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.library-home:hover { background: #fff; border-color: rgba(96,73,46,.48); }
+.library-home:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+@media (prefers-color-scheme: dark) {
+  body { background: #16151a; color: #e2ded6; }
+  .library-home { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+  .library-home:hover { background: rgba(255,255,255,.11); }
+}
+@media (prefers-reduced-motion: reduce) { .library-home { transition: none; } }
+.titlepage { text-align: center; margin: 2rem 0 5rem; }
+.titlepage h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+.titlepage .la { font-style: italic; opacity: .55; margin: 0 0 2.5rem; }
+.titlepage .author { font-size: 1.05rem; margin: 0; }
+.titlepage .la, .titlepage .author, .titlepage .meta { text-align: center; }
+.titlepage .meta { font-size: .8rem; opacity: .5; margin-top: 3rem; line-height: 1.8; }
+nav.toc {
+  margin: 0 0 4rem; padding: 1.4rem 1.6rem; border-radius: .5rem;
+  background: rgba(128,128,128,.08); font-size: .95rem;
+}
+nav.toc h2 { font-size: .8rem; letter-spacing: .16em; opacity: .5;
+             font-weight: normal; margin: 0 0 .9rem; }
+nav.toc ol { margin: 0; padding-left: 1.2rem; }
+nav.toc li { margin: .35rem 0; }
+nav.toc a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+nav.toc a:hover { border-bottom-color: currentColor; }
+h1.chapter { font-size: 1.5rem; margin: 4.5rem 0 2rem; scroll-margin-top: 2rem; }
+h1.chapter .num { display: block; font-size: .62em; font-weight: normal;
+                  letter-spacing: .22em; opacity: .5; margin-bottom: .5em; }
+h1.chapter .subtitle { display: block; font-size: .72em; font-weight: normal;
+                       line-height: 1.55; margin-top: .55em; opacity: .78; }
+p { margin: 0 0 1.2em; text-align: justify; }
+sup { font-size: .72em; vertical-align: super; line-height: 0; }
+/* 각주 앵커는 <a><sup>1</sup></a> 구조다. sup 안의 a가 아니라 a 안의 sup. */
+a sup { padding: 0 .15em; color: #8a6d3b; }
+@media (prefers-color-scheme: dark) { a sup { color: #c9a86a; } }
+a:has(> sup) { text-decoration: none; }
+a[id$="-ref"] { border-radius: .35rem; }
+a[id$="-ref"]:hover sup { background: rgba(165,92,54,.14); }
+a[id$="-ref"]:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+a { color: inherit; }
+.latin-toggle { margin: -.5em 0 1.6em; font-size: .87em; }
+.latin-toggle summary {
+  cursor: pointer; opacity: .45; list-style: none;
+  letter-spacing: .04em; padding: .2em 0; user-select: none;
+}
+.latin-toggle summary::-webkit-details-marker { display: none; }
+.latin-toggle summary::before { content: "▸ "; }
+.latin-toggle[open] summary::before { content: "▾ "; }
+.latin-toggle summary:hover { opacity: .75; }
+.latin-toggle p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-style: italic; opacity: .8; margin: .6em 0 0;
+  padding-left: 1em; border-left: 2px solid rgba(128,128,128,.3);
+}
+.notes { margin-top: 3.5rem; padding-top: 1.4rem;
+         border-top: 1px solid rgba(128,128,128,.3); font-size: .87rem; }
+.notes h2 { font-size: .78rem; letter-spacing: .14em; opacity: .5;
+            font-weight: normal; margin: 0 0 1.1rem; }
+.notes aside { margin: 0 0 .75em; opacity: .85; scroll-margin-top: 40vh; }
+.notes aside:target { background: rgba(255,214,0,.22); border-radius: .2rem; }
+.notes p { margin: 0; }
+.parallel-pair {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem; padding: 1.4rem 0 1.7rem; border-bottom: 1px solid rgba(128,128,128,.22);
+}
+.parallel-pair:first-of-type { border-top: 1px solid rgba(128,128,128,.22); }
+.parallel-column { min-width: 0; }
+.parallel-column::before {
+  display: block; margin-bottom: .65rem; font: 700 .68rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: .13em; opacity: .5;
+}
+.parallel-korean::before { content: "한국어"; }
+.parallel-latin { padding-left: 1.7rem; border-left: 1px solid rgba(128,128,128,.25); }
+.parallel-latin::before { content: "LATINA"; }
+.parallel-pair p { margin: 0; }
+.parallel-latin p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-size: .93rem; font-style: normal; line-height: 1.8; text-align: left; opacity: .86;
+}
+.footnote-dialog {
+  width: min(32rem, calc(100% - 2rem)); max-height: min(70vh, 34rem); padding: 1.35rem 1.45rem 1.45rem;
+  border: 1px solid rgba(96,73,46,.28); border-radius: 16px; background: #fffdf8; color: #23201c;
+  box-shadow: 0 24px 80px rgba(24,18,13,.28); font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+}
+.footnote-dialog::backdrop { background: rgba(20,16,12,.48); backdrop-filter: blur(2px); }
+.footnote-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }
+.footnote-dialog-title { margin: 0; font: 700 .8rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif; letter-spacing: .12em; color: #7c3f2b; }
+.footnote-dialog-content { overflow: auto; font-size: .94rem; line-height: 1.75; }
+.footnote-close {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(96,73,46,.22); border-radius: 999px; background: transparent; color: inherit; cursor: pointer;
+}
+.footnote-close:hover { background: rgba(124,63,43,.08); }
+.footnote-close:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.footnote-close svg { width: 20px; height: 20px; }
+@media (max-width: 760px) {
+  .parallel-pair { grid-template-columns: 1fr; gap: 1rem; }
+  .parallel-latin { padding: 1rem 0 0; border-left: 0; border-top: 1px dashed rgba(128,128,128,.28); }
+}
+@media (prefers-color-scheme: dark) {
+  .footnote-dialog { background: #242126; color: #eee7dc; border-color: rgba(255,255,255,.18); }
+  .footnote-dialog-title { color: #dca07e; }
+  .footnote-close { border-color: rgba(255,255,255,.18); }
+}
+@media (prefers-reduced-motion: reduce) { .footnote-dialog::backdrop { backdrop-filter: none; } }
+
+/* 실제 책처럼 세로 스크롤 없이 좌우로 넘기는 독서 화면 */
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body.reader-document {
+  max-width: none; margin: 0; padding: 0; display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto; background: #e8e0d3;
+}
+body.embedded-reader { background: #faf7f2; }
+.reader-toolbar {
+  z-index: 20; min-height: 62px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .55rem clamp(.7rem, 2vw, 1.5rem);
+  border-bottom: 1px solid rgba(96,73,46,.20); background: rgba(251,248,242,.96);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.reader-toolbar .library-home { justify-self: start; min-height: 44px; margin: 0; padding: .45rem .75rem; background: #fff; }
+.reader-toolbar .library-home svg { width: 18px; height: 18px; margin-right: .35rem; }
+.reader-toggles { display: flex; align-items: center; justify-content: center; gap: .45rem; }
+.reader-toggle {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .42rem;
+  padding: .52rem .8rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: transparent; color: #51483e; cursor: pointer; font: 700 .78rem/1.2 inherit;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.reader-toggle svg { width: 18px; height: 18px; }
+.reader-toggle:hover { border-color: rgba(124,63,43,.55); background: rgba(124,63,43,.06); }
+.reader-toggle[aria-pressed="true"] { border-color: #7c3f2b; background: #7c3f2b; color: #fff; }
+.reader-toggle:focus-visible, .page-button:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.reader-layout-label { justify-self: end; color: #766b5e; font-size: .72rem; white-space: nowrap; }
+.reader-stage {
+  position: relative; min-width: 0; min-height: 0; width: min(96rem, calc(100% - 1.4rem));
+  margin: .7rem auto; padding: clamp(1.1rem, 2.7vw, 2.7rem) clamp(1.15rem, 4vw, 4.5rem);
+  overflow: hidden; border: 1px solid rgba(96,73,46,.20); border-radius: 18px;
+  background: #fbfaf7; box-shadow: 0 18px 48px rgba(45,31,20,.12);
+}
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf7f2; }
+.embedded-reader .reader-stage {
+  width: 100%; margin: 0; border-width: 0; border-radius: 0; box-shadow: none;
+}
+.reader-stage.double::after {
+  content: ""; position: absolute; z-index: 1; top: 1rem; bottom: 1rem; left: 50%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(96,73,46,.18) 12%, rgba(96,73,46,.18) 88%, transparent);
+  box-shadow: 8px 0 20px rgba(70,49,31,.06), -8px 0 20px rgba(70,49,31,.06); pointer-events: none;
+}
+.reader-pages {
+  height: 100%; min-width: 0; column-width: var(--reader-page-width, 38rem); column-gap: var(--reader-page-gap, 3rem);
+  column-fill: auto; transform: translate3d(0,0,0); transition: transform .28s ease;
+  will-change: transform; overflow: visible;
+}
+.reader-pages.manual-pages {
+  width: max-content; display: flex; align-items: stretch; gap: var(--reader-page-gap, 2rem);
+  column-width: auto; column-fill: balance;
+}
+.book-page {
+  width: var(--reader-page-width, 38rem); height: 100%; flex: 0 0 var(--reader-page-width, 38rem);
+  overflow: hidden;
+}
+.book-page > .titlepage { height: 100%; }
+.chapter-opening { display: flex; align-items: center; }
+.chapter-opening h1.chapter { width: 100%; margin: 0; text-align: center; }
+.paired-page .parallel-pair {
+  height: 100%; display: grid; margin: 0; padding: .35rem 0; overflow: hidden; break-inside: auto;
+}
+.paired-page .parallel-column { height: 100%; overflow: hidden; }
+.paired-page .column-viewport { height: calc(100% - 1.8rem); overflow: hidden; }
+.paired-page .column-flow { width: 100%; }
+.pair-measure { position: fixed; left: -100000px; top: 0; visibility: hidden; pointer-events: none; }
+.pair-measure .parallel-pair,
+.pair-measure .parallel-column,
+.pair-measure .column-viewport { height: auto; overflow: visible; }
+.reader-pages .titlepage { min-height: 82%; display: flex; flex-direction: column; justify-content: center; margin: 0; break-after: column; }
+.reader-pages nav.toc { break-after: column; }
+.reader-pages h1.chapter { break-after: avoid-column; margin-top: 1.5rem; }
+.reader-pages p { orphans: 3; widows: 3; }
+.reader-pages .notes { break-before: column; }
+.parallel-pair { margin: 0 0 1.2rem; padding: 0 0 1.2rem; break-inside: avoid-column; }
+body:not(.show-latin) .parallel-pair { display: contents; }
+body:not(.show-latin) .parallel-latin { display: none; }
+body:not(.show-latin) .parallel-korean { display: block; margin: 0 0 1.2rem; padding: 0 0 1.2rem; border-bottom: 1px solid rgba(128,128,128,.18); }
+body.show-latin .parallel-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.6rem); }
+body.show-latin .parallel-pair.stacked-long { display: contents; }
+body.show-latin .parallel-pair.stacked-long .parallel-korean,
+body.show-latin .parallel-pair.stacked-long .parallel-latin { display: block; margin-bottom: 1.1rem; padding: 0 0 1rem; border: 0; border-bottom: 1px dashed rgba(128,128,128,.25); }
+.inline-footnotes { display: none; margin: .8rem 0 .2rem; padding: .65rem .8rem; border-left: 3px solid #a55c36; background: rgba(165,92,54,.07); }
+body.show-notes .inline-footnotes { display: block; }
+.inline-footnote-item { display: block; margin: .2rem 0; color: #5f5144; font: .78rem/1.65 "Noto Sans KR", "Malgun Gothic", sans-serif; }
+.inline-footnote-item strong { color: #7c3f2b; }
+.reader-pagination {
+  min-height: 58px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .45rem clamp(.8rem, 3vw, 2rem); border-top: 1px solid rgba(96,73,46,.20);
+  background: rgba(251,248,242,.97); font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.page-button {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .5rem .9rem; border: 1px solid rgba(96,73,46,.22); border-radius: 12px; background: #fff;
+  color: #352f29; cursor: pointer; font-weight: 700;
+}
+.page-button:first-child { justify-self: start; }
+.page-button:last-child { justify-self: end; }
+.page-button:hover:not(:disabled) { border-color: #7c3f2b; background: rgba(124,63,43,.06); }
+.page-button:disabled { opacity: .35; cursor: not-allowed; }
+.page-button svg { width: 19px; height: 19px; }
+.page-status { min-width: 9rem; text-align: center; color: #6a6055; font-size: .76rem; font-variant-numeric: tabular-nums; }
+.page-status strong { display: block; color: #302a24; font-size: .88rem; }
+@media (max-width: 760px) {
+  .reader-toolbar { grid-template-columns: auto 1fr; gap: .45rem; min-height: 58px; padding: .4rem .45rem; }
+  .reader-toolbar .library-home { padding: .35rem .55rem; font-size: .76rem; }
+  .reader-toggles { justify-content: flex-end; gap: .3rem; }
+  .reader-toggle { min-width: 44px; padding: .45rem .55rem; font-size: .7rem; }
+  .reader-layout-label { display: none; }
+  .reader-stage { width: calc(100% - .65rem); margin: .35rem auto; padding: 1.05rem .9rem; border-radius: 12px; }
+  .reader-stage.double::after { display: none; }
+  body.show-latin .parallel-pair {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .65rem;
+  }
+  body.show-latin .parallel-latin {
+    padding: 0 0 0 .65rem; border-top: 0; border-left: 1px dashed rgba(128,128,128,.28);
+  }
+  body.show-latin .parallel-column p { font-size: .84rem; line-height: 1.72; text-align: left; }
+  .reader-pagination { min-height: 56px; grid-template-columns: 1fr auto 1fr; gap: .35rem; padding: .35rem .45rem; }
+  .page-button { min-width: 44px; padding: .42rem .58rem; }
+  .page-button span { display: none; }
+  .page-status { min-width: 6.5rem; font-size: .68rem; }
+  .page-status strong { font-size: .8rem; }
+}
+@media (prefers-color-scheme: dark) {
+  body.reader-document { background: #0f0e0c; }
+  .reader-toolbar, .reader-pagination { background: rgba(28,25,22,.98); border-color: rgba(255,255,255,.14); }
+  .reader-toolbar .library-home, .page-button { background: #25211d; border-color: rgba(255,255,255,.16); }
+  .reader-toggle { color: #ddd3c6; border-color: rgba(255,255,255,.18); }
+  .reader-toggle[aria-pressed="true"] { color: #1a110c; background: #d28a66; border-color: #d28a66; }
+  .reader-layout-label, .page-status { color: #b9ad9f; }
+  .page-status strong { color: #eee7db; }
+  .reader-stage { background: #16151a; border-color: rgba(255,255,255,.14); }
+  .inline-footnote-item { color: #d8cfc2; }
+}
+body.embedded-reader { color-scheme: light; background: #faf6ef; color: #241f18; }
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf6ef; border-color: #e7ddcd; }
+.embedded-reader .reader-toolbar .library-home,
+.embedded-reader .page-button { background: #fff; color: #241f18; border-color: #e1d6c6; }
+.embedded-reader .reader-toggle { color: #4c443a; border-color: #dfd3c2; }
+.embedded-reader .reader-toggle[aria-pressed="true"] { color: #fff; background: #7c3f2b; border-color: #7c3f2b; }
+.embedded-reader .reader-layout-label,
+.embedded-reader .page-status { color: #857b6d; }
+.embedded-reader .page-status strong { color: #241f18; }
+.embedded-reader .reader-stage { background: #fffdf9; color: #241f18; }
+.embedded-reader .inline-footnote-item { color: #5f5144; }
+@media (prefers-reduced-motion: reduce) { .reader-pages, .reader-toggle { transition: none; } }
+</style></head>
+<body class="reader-document" data-work-id="de_ente_et_essentia" data-work-title="존재자와 본질" data-variant="라틴어 원문 병기판" data-default-latin="true">
+
+  <header class="reader-toolbar">
+    <a class="library-home" href="토마스_아퀴나스_서재.html" aria-label="토마스 아퀴나스 서재로 돌아가기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span id="library-back-label">서재</span>
+    </a>
+    <div class="reader-toggles" role="group" aria-label="본문 표시 설정">
+      <button class="reader-toggle" id="latin-visibility" type="button" aria-pressed="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h7M7.5 5v14M4.5 19h6"/><path d="m14 19 3.5-14L21 19M15.2 14h4.6"/></svg><span>라틴어 원문</span>
+      </button>
+      <button class="reader-toggle" id="notes-visibility" type="button" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>각주</span>
+      </button>
+    </div>
+    <span class="reader-layout-label" id="reader-layout-label">페이지 구성 중</span>
+  </header>
+  <main class="reader-stage" id="reader-stage" aria-label="옆으로 넘기는 책 본문">
+    <article class="reader-pages" id="reader-pages"><div class="titlepage"><h1>존재자와 본질</h1><p class="la">De ente et essentia</p><p class="author">토마스 아퀴나스</p><p class="meta">라틴어 원문 병기판<br/>라틴어 원문에서 옮김<br/>원문 출처: https://www.corpusthomisticum.org/oee.html</p></div><nav class="toc"><h2>차례</h2><ol><li><a href="#pr">머리말</a></li><li><a href="#c1">제1장</a></li><li><a href="#c2">제2장</a></li><li><a href="#c3">제3장</a></li><li><a href="#c4">제4장</a></li><li><a href="#c5">제5장</a></li><li><a href="#c6">제6장</a></li></ol></nav><h1 class="chapter" id="pr"><span class="num">Prooemium</span>머리말</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>처음의 작은 잘못은 끝에 가서 큰 잘못이 된다고 철학자<a epub:type="noteref" href="#pr-fn1" id="pr-fn1-ref"><sup>1</sup></a>는 『천체론』 제1권<a epub:type="noteref" href="#pr-fn2" id="pr-fn2-ref"><sup>2</sup></a>에서 말한다. 그런데 존재자(ens)와 본질(essentia)은 지성(intellectus)이 맨 처음 붙잡는 것이라고 아비첸나<a epub:type="noteref" href="#pr-fn3" id="pr-fn3-ref"><sup>3</sup></a>는 자기 『형이상학』 첫머리에서 말한다. 그러므로 이것들을 모르는 탓에 잘못에 빠지는 일이 없도록, 그 어려움을 풀어내려면 본질과 존재자라는 이름이 무엇을 가리키는지, 그것이 여러 가지 것 안에서 어떻게 발견되는지, 그리고 논리적 지향(志向)<a epub:type="noteref" href="#pr-fn4" id="pr-fn4-ref"><sup>4</sup></a>들 곧 유(類)<a epub:type="noteref" href="#pr-fn5" id="pr-fn5-ref"><sup>5</sup></a>·종(種, species)·종차(種差, differentia)와 어떤 관계에 있는지를 말해야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Quia parvus error in principio magnus est in fine, secundum philosophum in I caeli et mundi, ens autem et essentia sunt quae primo intellectu concipiuntur, ut dicit Avicenna in principio suae metaphysicae, ideo ne ex eorum ignorantia errare contingat, ad horum difficultatem aperiendam dicendum est quid nomine essentiae et entis significetur et quomodo in diversis inveniatur et quomodo se habeat ad intentiones logicas, scilicet genus, speciem et differentiam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 우리는 합성된 것에서 단순한 것에 대한 앎을 얻어야 하고, 뒤에 오는 것에서 앞서는 것으로 나아가야 한다. 쉬운 데서 시작해야 배움이 더 순조롭기 때문이다. 그러므로 존재자가 무엇을 가리키는지에서 시작해 본질이 무엇을 가리키는지로 나아가야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Quia vero ex compositis simplicium cognitionem accipere debemus et ex posterioribus in priora devenire, ut, a facilioribus incipientes, convenientior fiat disciplina, ideo ex significatione entis ad significationem essentiae procedendum est.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="pr-fn1"><p><a href="#pr-fn1-ref">1</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="pr-fn2"><p><a href="#pr-fn2-ref">2</a>. 아리스토텔레스 『천체론』 I, 5, 271b8-13.</p></aside>
+<aside epub:type="footnote" id="pr-fn3"><p><a href="#pr-fn3-ref">3</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="pr-fn4"><p><a href="#pr-fn4-ref">4</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+<aside epub:type="footnote" id="pr-fn5"><p><a href="#pr-fn5-ref">5</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+</section><h1 class="chapter" id="c1"><span class="num">Caput 1</span>제1장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 알아야 할 것은 이것이다. 철학자<a epub:type="noteref" href="#c1-fn1" id="c1-fn1-ref"><sup>1</sup></a>가 『형이상학』 제5권<a epub:type="noteref" href="#c1-fn2" id="c1-fn2-ref"><sup>2</sup></a>에서 말하듯이, 존재자(ens)는 그 자체로 두 가지로 말해진다. 하나는 열 가지 유(類)<a epub:type="noteref" href="#c1-fn3" id="c1-fn3-ref"><sup>3</sup></a>로 나뉘는 것이고, 다른 하나는 명제의 참을 가리키는 것이다. 둘의 차이는 이렇다. 두 번째 방식으로는, 실제로는 아무것도 놓지 않더라도 그것에 대해 긍정 명제를 세울 수 있기만 하면 무엇이든 존재자라고 말할 수 있다. 이런 방식으로는 결여<a epub:type="noteref" href="#c1-fn4" id="c1-fn4-ref"><sup>4</sup></a>와 부정도 존재자라고 불린다. 우리는 긍정이 부정에 맞선다고 말하고, 눈멂이 눈에 있다고 말하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sciendum est igitur quod, sicut in V metaphysicae philosophus dicit, ens per se dicitur dupliciter, uno modo quod dividitur per decem genera, alio modo quod significat propositionum veritatem. Horum autem differentia est quia secundo modo potest dici ens omne illud, de quo affirmativa propositio formari potest, etiam si illud in re nihil ponat. Per quem modum privationes et negationes entia dicuntur; dicimus enim quod affirmatio est opposita negationi et quod caecitas est in oculo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 첫 번째 방식으로는 실제로 무언가를 놓는 것만 존재자라고 말할 수 있다. 그러므로 첫 번째 방식으로는 눈멂 같은 것들은 존재자가 아니다. 따라서 본질(essentia)이라는 이름은 두 번째 방식으로 말해진 존재자에서 취해진 것이 아니다. 이 방식으로 존재자라고 불리면서도 본질을 갖지 않는 것들이 있기 때문인데, 결여들에서 이 점이 분명히 드러난다. 본질은 오히려 첫 번째 방식으로 말해진 존재자에서 취해진다. 그래서 주석가<a epub:type="noteref" href="#c1-fn5" id="c1-fn5-ref"><sup>5</sup></a>는 같은 자리에서 첫 번째 방식으로 말해진 존재자를 두고 «사물의 본질을 가리키는 것»<a epub:type="noteref" href="#c1-fn6" id="c1-fn6-ref"><sup>6</sup></a>이라고 말한다. 그리고 앞서 말했듯이 이 방식으로 말해진 존재자는 열 가지 유(類)로 나뉘므로, 본질은 모든 본성<a epub:type="noteref" href="#c1-fn7" id="c1-fn7-ref"><sup>7</sup></a>에 공통되는 무언가를 가리켜야 한다. 여러 존재자가 저마다 다른 유(類)와 종(種, species)에 놓이는 것은 그 본성들을 통해서이기 때문이다. 인간성(humanitas)이 사람의 본질인 것과 같고, 다른 것들도 마찬가지다. 또 어떤 것을 제 유(類)나 종(種) 안에 자리 잡게 하는 바로 그것은 그 사물이 무엇인지 밝히는 정의(定義, diffinitio)가 가리키는 것이다. 그래서 철학자들은 본질이라는 이름을 하성(何性)<a epub:type="noteref" href="#c1-fn8" id="c1-fn8-ref"><sup>8</sup></a>이라는 이름으로 바꾸어 부른다. 철학자가 자주 «무엇이었던 바로 그것»<a epub:type="noteref" href="#c1-fn9" id="c1-fn9-ref"><sup>9</sup></a>이라고 이름 붙이는 것이 이것인데, 곧 어떤 것이 무엇으로 있게 되는 근거이다. 또한 이것은 형상(forma)이라고도 불린다. 형상을 통해 각 사물의 확정성이 드러나기 때문이라고 아비첸나<a epub:type="noteref" href="#c1-fn10" id="c1-fn10-ref"><sup>10</sup></a>는 자기 『형이상학』 제2권에서 말한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed primo modo non potest dici ens nisi quod aliquid in re ponit. Unde primo modo caecitas et huiusmodi non sunt entia. Nomen igitur essentiae non sumitur ab ente secundo modo dicto, aliqua enim hoc modo dicuntur entia, quae essentiam non habent, ut patet in privationibus; sed sumitur essentia ab ente primo modo dicto. Unde Commentator in eodem loco dicit quod ens primo modo dictum est &#171;quod significat essentiam rei&#187;. Et quia, ut dictum est, ens hoc modo dictum dividitur per decem genera, oportet quod essentia significet aliquid commune omnibus naturis, per quas diversa entia in diversis generibus et speciebus collocantur, sicut humanitas est essentia hominis, et sic de aliis. Et quia illud, per quod res constituitur in proprio genere vel specie, est hoc quod significatur per diffinitionem indicantem quid est res, inde est quod nomen essentiae a philosophis in nomen quiditatis mutatur. Et hoc est quod philosophus frequenter nominat &#171;quod quid erat esse&#187;, id est hoc per quod aliquid habet esse quid. Dicitur etiam forma secundum quod per formam significatur certitudo uniuscuiusque rei, ut dicit Avicenna in II metaphysicae suae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>이것은 또 다른 이름으로 본성이라고도 불린다. 보에티우스<a epub:type="noteref" href="#c1-fn11" id="c1-fn11-ref"><sup>11</sup></a>가 『두 본성에 관하여』<a epub:type="noteref" href="#c1-fn12" id="c1-fn12-ref"><sup>12</sup></a>에서 가려낸 네 가지 가운데 첫 번째 방식으로 본성을 받아들일 때 그렇다. 곧 «어떤 방식으로든 지성(intellectus)이 붙잡을 수 있는 것»은 무엇이나 본성이라고 불린다는 뜻에서다. 사물은 자기 정의(定義)와 본질을 통하지 않고는 알려질 수 없기 때문이다. 그래서 철학자도 『형이상학』 제5권에서 모든 실체(substantia)는 본성이라고 말한다. 다만 이렇게 받아들인 본성이라는 이름은, 사물이 제 고유한 활동을 향해 놓여 있다는 쪽에서 본 사물의 본질을 가리키는 듯하다. 어떤 사물도 제 고유한 활동을 잃는 법이 없기 때문이다. 반면 하성(何性)이라는 이름은 그것이 정의(定義)를 통해 가리켜진다는 데서 취해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Hoc etiam alio nomine natura dicitur accipiendo naturam secundum primum modum illorum quattuor, quos Boethius in libro de duabus naturis assignat, secundum scilicet quod natura dicitur omne illud quod &#171;intellectu quoquo modo capi potest&#187;. Non enim res est intelligibilis nisi per diffinitionem et essentiam suam. Et sic etiam philosophus dicit in V metaphysicae quod omnis substantia est natura. Tamen nomen naturae hoc modo sumptae videtur significare essentiam rei, secundum quod habet ordinem ad propriam operationem rei, cum nulla res propria operatione destituatur. Quiditatis vero nomen sumitur ex hoc, quod per diffinitionem significatur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 본질은 그것을 통해, 그리고 그것 안에서 존재자가 존재<a epub:type="noteref" href="#c1-fn13" id="c1-fn13-ref"><sup>13</sup></a>를 갖는다는 쪽에서 말해진다. 그런데 존재자는 실체들에 대해서는 무제한으로 또 먼저 말해지고, 우유(偶有)<a epub:type="noteref" href="#c1-fn14" id="c1-fn14-ref"><sup>14</sup></a>들에 대해서는 나중에 또 어떤 점에서만 그러하다는 식으로 말해진다. 그래서 본질은 실체들 안에 본래적으로 참되게 있고, 우유(偶有)들 안에는 어떤 방식으로 제한적으로만 있다. 그런데 실체 가운데 어떤 것은 단순하고 어떤 것은 합성되어 있으며, 둘 다에 본질이 있다. 다만 단순한 것들 안에 더 참되고 더 높은 방식으로 있는데, 그것들이 존재도 더 높은 방식으로 갖기 때문이다. 실제로 그것들은 합성된 것들의 원인(principium)이며, 적어도 첫째가는 단순 실체 곧 하느님(Deus)이 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed essentia dicitur secundum quod per eam et in ea ens habet esse. Sed quia ens absolute et per prius dicitur de substantiis et per posterius et quasi secundum quid de accidentibus, inde est quod essentia proprie et vere est in substantiis, sed in accidentibus est quodammodo et secundum quid. Substantiarum vero quaedam sunt simplices et quaedam compositae, et in utrisque est essentia, sed in simplicibus veriori et nobiliori modo, secundum quod etiam esse nobilius habent. Sunt enim causa eorum quae composita sunt, ad minus substantia prima simplex, quae Deus est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 그런 실체들의 본질은 우리에게 더 감추어져 있다. 그러므로 합성된 실체들의 본질에서 시작해야 한다. 쉬운 데서 시작해야 배움이 더 순조롭기 때문이다. 그런데 합성된 실체에서는 형상과 질료(materia)가 알려져 있다. 사람에게서 영혼(anima)과 몸이 그러하듯이. 그렇다고 둘 가운데 어느 하나만 본질이라고 말할 수는 없다. 질료만으로는 사물의 본질이 아니라는 것은 분명하다. 사물이 알려지는 것도, 종(種)이나 유(類)에 자리 잡는 것도 자기 본질을 통해서이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia illarum substantiarum essentiae sunt nobis magis occultae, ideo ab essentiis substantiarum compositarum incipiendum est, ut a facilioribus convenientior fiat disciplina. In substantiis igitur compositis forma et materia nota est, ut in homine anima et corpus. Non autem potest dici quod alterum eorum tantum essentia esse dicatur. Quod enim materia sola non sit essentia rei planum est, quia res per essentiam suam et cognoscibilis est et in specie ordinatur vel genere.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 질료는 앎의 원리도 아니고, 무엇이 유(類)나 종(種)으로 정해지는 것도 질료에 따라서가 아니라 그것이 현실태(actus)로 있는 바에 따라서다. 그렇다고 형상만을 합성 실체의 본질이라고 말할 수도 없다. 몇몇 사람이 그렇게 주장하려 애쓰지만 그렇다. 앞서 말한 것에서 드러나듯이, 본질이란 사물의 정의(定義)가 가리키는 바로 그것이다. 그런데 자연적 실체의 정의(定義)는 형상만이 아니라 질료도 담는다. 그렇지 않다면 자연학의 정의(定義)와 수학의 정의(定義)가 다르지 않을 것이다. 또 자연적 실체의 정의(定義)에 질료가 그 본질에 덧붙은 것으로, 또는 그 본질 바깥의 존재자로 놓인다고 말할 수도 없다. 이런 방식의 정의(定義)는 우유(偶有)들에 고유한 것인데, 우유(偶有)들은 온전한 본질을 갖지 못하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed materia neque cognitionis principium est, neque secundum eam aliquid ad genus vel speciem determinatur, sed secundum id quod aliquid actu est. Neque etiam forma tantum essentia substantiae compositae dici potest, quamvis hoc quidam asserere conentur. Ex his enim quae dicta sunt patet quod essentia est illud, quod per diffinitionem rei significatur. Diffinitio autem substantiarum naturalium non tantum formam continet, sed etiam materiam; aliter enim diffinitiones naturales et mathematicae non differrent. Nec potest dici quod materia in diffinitione substantiae naturalis ponatur sicut additum essentiae eius vel ens extra essentiam eius, quia hic modus diffinitionis proprius est accidentibus, quae perfectam essentiam non habent.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 우유(偶有)들은 자기 정의(定義) 안에 기체(基體)<a epub:type="noteref" href="#c1-fn15" id="c1-fn15-ref"><sup>15</sup></a>를 받아들여야 하는데, 그 기체(基體)는 우유(偶有)들의 유(類) 바깥에 있다. 그러므로 본질이 질료와 형상을 아울러 담는다는 것이 분명하다. 그렇다고 본질이 질료와 형상 사이의 관계를 가리킨다거나 그 둘에 덧붙은 무엇을 가리킨다고 말할 수는 없다. 그렇다면 그것은 반드시 우유(偶有)이고 사물 바깥의 것이 될 터이며, 그것을 통해 사물이 알려지지도 않을 텐데, 이 모든 것은 본질에 어울리는 특징이기 때문이다. 질료의 현실태인 형상을 통해 질료는 현실적으로 존재자가 되고 &#x27;이것&#x27;<a epub:type="noteref" href="#c1-fn16" id="c1-fn16-ref"><sup>16</sup></a>이 되기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde oportet quod in diffinitione sua subiectum recipiant, quod est extra genus eorum. Patet ergo quod essentia comprehendit materiam et formam. Non autem potest dici quod essentia significet relationem, quae est inter materiam et formam vel aliquid superadditum ipsis, quia hoc de necessitate esset accidens et extraneum a re nec per eam res cognosceretur, quae omnia essentiae conveniunt. Per formam enim, quae est actus materiae, materia efficitur ens actu et hoc aliquid.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 나중에 덧붙는 것은 질료에 무제한으로 현실적 존재를 주는 것이 아니라 이러이러한 현실적 존재를 줄 뿐이다. 우유(偶有)들이 하는 일이 그러한데, 흼이 무엇을 현실적으로 흰 것이 되게 하는 것과 같다. 그래서 그런 형상을 얻을 때는 무제한으로 생겨난다고 말하지 않고 어떤 점에서 그렇다고 말한다. 그러므로 남는 결론은 이것이다. 합성된 실체에서 본질이라는 이름은 질료와 형상으로 합성된 그것을 가리킨다. 보에티우스가 『범주론』 주해에서 한 말도 이와 어울린다. 거기서 그는 우시아<a epub:type="noteref" href="#c1-fn17" id="c1-fn17-ref"><sup>17</sup></a>가 합성체(compositum)를 가리킨다고 말한다. 그리스 사람들에게 우시아는 우리에게 본질과 같은 말이라고 그 자신이 『두 본성에 관하여』에서 말한다. 아비첸나도 합성된 실체의 하성(何性)은 형상과 질료의 합성 그 자체라고 말한다. 주석가 또한 『형이상학』 제7권 주해에서 이렇게 말한다. «생겨날 수 있는 것들에서 종(種)이 갖는 본성은 중간에 있는 무엇, 곧 질료와 형상으로 합성된 것이다.» 이치로 따져도 들어맞는다. 합성된 실체의 존재는 형상만의 것도 질료만의 것도 아니고 합성체 자신의 것이기 때문이다. 그런데 본질은 그것에 따라 사물이 존재한다고 말해지는 바로 그것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde illud quod superadvenit non dat esse actu simpliciter materiae, sed esse actu tale, sicut etiam accidentia faciunt, ut albedo facit actu album. Unde et quando talis forma acquiritur, non dicitur generari simpliciter, sed secundum quid. Relinquitur ergo quod nomen essentiae in substantiis compositis significat id quod ex materia et forma compositum est. Et huic consonat verbum Boethii in commento praedicamentorum, ubi dicit quod usia significat compositum. Usia enim apud Graecos idem est quod essentia apud nos, ut ipsemet dicit in libro de duabus naturis. Avicenna etiam dicit quod quiditas substantiarum compositarum est ipsa compositio formae et materiae. Commentator etiam dicit super VII metaphysicae: &#171;natura quam habent species in rebus generabilibus est aliquod medium, id est compositum ex materia et forma&#187;. Huic etiam ratio concordat, quia esse substantiae compositae non est tantum formae nec tantum materiae, sed ipsius compositi. Essentia autem est secundum quam res esse dicitur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 사물이 존재자라고 불리게 하는 그 본질은 형상만도 아니고 질료만도 아니며 둘 다여야 한다. 물론 이런 종류의 존재에 대해서는 저 나름의 방식으로 형상만이 원인이기는 하다. 여러 원리로 이루어진 다른 것들에서도 우리는 이렇게 본다. 사물은 그 원리들 가운데 하나만으로 이름 붙지 않고 둘 다를 아우르는 것에서 이름을 얻는다. 맛에서 이 점이 분명히 드러난다. 뜨거움이 축축함을 삭이는 작용에서 단맛이 생기는데, 이런 식으로 열이 단맛의 원인이기는 하지만, 몸이 달다고 불리는 것은 열 때문이 아니라 뜨거움과 축축함을 아우르는 맛 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde oportet quod essentia, qua res denominatur ens, non tantum sit forma neque tantum materia, sed utrumque, quamvis huiusmodi esse suo modo sola forma sit causa. Sic enim in aliis videmus, quae ex pluribus principiis constituuntur, quod res non denominatur ex altero illorum principiorum tantum, sed ab eo, quod utrumque complectitur, ut patet in saporibus, quia ex actione calidi digerentis humidum causatur dulcedo, et quamvis hoc modo calor sit causa dulcedinis, non tamen denominatur corpus dulce a calore, sed a sapore qui calidum et humidum complectitur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 개체화의 원리는 질료이므로, 여기서 아마 이런 결론이 따라 나오는 듯 보인다. 질료와 형상을 함께 자기 안에 아우르는 본질은 개별적일 뿐 보편적이지 않다는 것이다. 그렇다면 본질이 정의(定義)가 가리키는 것인 한, 보편자(universale)에게는 정의(定義)가 없다는 결론이 나올 것이다. 그러므로 알아야 할 것은 이것이다. 질료는 아무렇게나 받아들여져 개체화의 원리가 되는 것이 아니라 오직 지정된 질료<a epub:type="noteref" href="#c1-fn18" id="c1-fn18-ref"><sup>18</sup></a>일 때만 그렇다. 내가 지정된 질료라고 말하는 것은 정해진 크기 아래에서 헤아려지는 질료를 뜻한다. 그런데 이 질료는 사람이 사람인 한에서 그 정의(定義) 안에 놓이지 않는다. 소크라테스에게 정의(定義)가 있다면 소크라테스의 정의(定義) 안에는 놓일 것이다. 사람의 정의(定義) 안에는 지정되지 않은 질료가 놓인다. 사람의 정의(定義) 안에 이 뼈와 이 살이 놓이는 것이 아니라 뼈와 살이 무제한으로 놓이며, 이것이 사람의 지정되지 않은 질료다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia individuationis principium materia est, ex hoc forte videtur sequi quod essentia, quae materiam in se complectitur simul et formam, sit tantum particularis et non universalis. Ex quo sequeretur quod universalia diffinitionem non haberent, si essentia est id quod per diffinitionem significatur. Et ideo sciendum est quod materia non quolibet modo accepta est individuationis principium, sed solum materia signata. Et dico materiam signatam, quae sub determinatis dimensionibus consideratur. Haec autem materia in diffinitione hominis, in quantum est homo, non ponitur, sed poneretur in diffinitione Socratis, si Socrates diffinitionem haberet. In diffinitione autem hominis ponitur materia non signata; non enim in diffinitione hominis ponitur hoc os et haec caro, sed os et caro absolute, quae sunt materia hominis non signata.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 사람의 본질과 소크라테스의 본질은 지정됨과 지정되지 않음에 따라서만 다르다는 것이 분명하다. 그래서 주석가는 『형이상학』 제7권 주해에서 이렇게 말한다. «소크라테스는 동물성(animalitas)과 이성성(rationalitas) 외에 다른 것이 아니며, 이것이 그의 하성(何性)이다.» 유(類)의 본질과 종(種)의 본질도 이와 같이 지정됨과 지정되지 않음에 따라 다르다. 다만 양쪽에서 지정하는 방식은 다르다. 종(種)에 견준 개체(individuum)의 지정은 크기로 정해진 질료를 통해 이루어지지만, 유(類)에 견준 종(種)의 지정은 사물의 형상에서 취해지는 구성적 종차(種差, differentia)를 통해 이루어지기 때문이다. 그런데 유(類)에 견주어 종(種)에 있는 이 정함 또는 지정은, 종(種)의 본질 안에 있으면서 유(類)의 본질 안에는 전혀 없는 무엇을 통해 이루어지는 것이 아니다. 오히려 종(種) 안에 있는 것은 무엇이든 유(類) 안에도 정해지지 않은 채로 있다. 만일 동물이 사람인 바 전체가 아니라 그 일부라면 동물은 사람에 대해 술어로 말해지지<a epub:type="noteref" href="#c1-fn19" id="c1-fn19-ref"><sup>19</sup></a> 않을 것이다. 어떤 온전한 부분도 자기 전체에 대해 술어로 말해지지 않기 때문이다. 이것이 어떻게 되는 일인지는, 몸이 동물의 부분으로 놓일 때와 유(類)로 놓일 때 어떻게 다른지 살펴보면 알 수 있다. 온전한 부분인 방식으로는 유(類)일 수 없기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sic ergo patet quod essentia hominis et essentia Socratis non differunt nisi secundum signatum et non signatum. Unde Commentator dicit super VII metaphysicae: &#171;Socrates nihil aliud est quam animalitas et rationalitas, quae sunt quiditas eius&#187;. Sic etiam essentia generis et speciei secundum signatum et non signatum differunt, quamvis alius modus designationis sit utrobique, quia designatio individui respectu speciei est per materiam determinatam dimensionibus, designatio autem speciei respectu generis est per differentiam constitutivam, quae ex forma rei sumitur. Haec autem determinatio vel designatio, quae est in specie respectu generis, non est per aliquid in essentia speciei exsistens, quod nullo modo in essentia generis sit, immo quicquid est in specie, est etiam in genere ut non determinatum. Si enim animal non esset totum quod est homo, sed pars eius, non praedicaretur de eo, cum nulla pars integralis de suo toto praedicetur. Hoc autem quomodo contingat videri poterit, si inspiciatur qualiter differt corpus secundum quod ponitur pars animalis et secundum quod ponitur genus. Non enim potest eo modo esse genus, quo est pars integralis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>이제 &#x27;몸&#x27;이라는 이 이름은 여러 가지로 받아들일 수 있다. 몸이 실체의 유(類) 안에 있다고 할 때는, 그 안에 세 방향의 크기를 그을 수 있는 그런 본성을 가졌다는 데서 그렇게 불린다. 그어진 세 방향의 크기 자체는 양의 유(類) 안에 있는 몸이기 때문이다. 그런데 사물에서는 하나의 완전성(perfectio)을 가진 것이 더 나아간 완전성에까지 이르는 일이 있다. 사람에게서 이 점이 분명히 드러나는데, 사람은 감각하는 본성을 갖고 거기서 더 나아가 지성적 본성도 갖는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Hoc igitur nomen quod est corpus multipliciter accipi potest. Corpus enim, secundum quod est in genere substantiae, dicitur ex eo quod habet talem naturam, ut in eo possint designari tres dimensiones; ipsae enim tres dimensiones designatae sunt corpus, quod est in genere quantitatis. Contingit autem in rebus, ut quod habet unam perfectionem ad ulteriorem etiam perfectionem pertingat, sicut patet in homine, qui et naturam sensitivam habet et ulterius intellectivam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 세 방향의 크기를 그을 수 있는 그런 형상을 갖는다는 이 완전성 위에, 생명이나 그 비슷한 다른 완전성이 덧붙을 수 있다. 그러므로 &#x27;몸&#x27;이라는 이 이름은 어떤 사물을 가리킬 수 있다. 그 사물은 세 방향의 크기를 그을 수 있음이 따라 나오는 그런 형상을 갖되, 딱 거기까지여서 그 형상에서 더 나아간 완전성은 전혀 따라 나오지 않는 그런 것이다. 다른 무엇이 덧붙는다면 그것은 이렇게 말해진 몸이 가리키는 바 바깥에 있게 된다. 이런 방식이라면 몸은 동물의 온전한 부분이자 질료적 부분일 것이다. 이렇게 보면 영혼은 몸이라는 이름이 가리킨 것 바깥에 있으면서 몸 자체에 덧붙는 것이 되고, 그리하여 영혼과 몸 이 둘에서 마치 부분들에서인 것처럼 동물이 이루어질 것이기 때문이다. 그런데 &#x27;몸&#x27;이라는 이 이름을 이런 방식으로도 받아들일 수 있다. 곧 어떤 사물을 가리키되, 그 사물이 그 안에 세 방향의 크기를 그을 수 있는 그런 형상을 갖기만 하면 그 형상이 무엇이든 상관없고, 거기서 더 나아간 완전성이 나올 수 있든 없든 상관없다는 식으로 말이다. 이런 방식이라면 몸은 동물의 유(類)일 것이다. 동물 안에는 몸 안에 함축되어 있지 않은 것을 하나도 집어낼 수 없기 때문이다. 영혼은 그 사물 안에 세 방향의 크기를 그을 수 있게 해 주던 그 형상과 다른 형상이 아니다. 그러므로 몸이란 그 안에 세 방향의 크기를 그을 수 있는 그런 형상을 가진 것이라고 말했을 때, 그 뜻은 이러했다. 그 형상이 무엇이든, 동물성이든 돌임이든 그 밖의 무엇이든 상관없다는 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter etiam et super hanc perfectionem, quae est habere talem formam, ut in ea possint tres dimensiones designari, potest alia perfectio adiungi, ut vita vel aliquid huiusmodi. Potest ergo hoc nomen corpus significare rem quandam, quae habet talem formam, ex qua sequitur in ipsa designabilitas trium dimensionum cum praecisione, ut scilicet ex illa forma nulla ulterior perfectio sequatur; sed si quid aliud superadditur, sit praeter significationem corporis sic dicti. Et hoc modo corpus erit integralis et materialis pars animalis, quia sic anima erit praeter id quod significatum est nomine corporis et erit superveniens ipsi corpori, ita quod ex ipsis duobus, scilicet anima et corpore, sicut ex partibus constituetur animal. Potest etiam hoc nomen corpus hoc modo accipi, ut significet rem quandam, quae habet talem formam, ex qua tres dimensiones possunt in ea designari, quaecumque forma sit illa, sive ex ea possit provenire aliqua ulterior perfectio sive non. Et hoc modo corpus erit genus animalis, quia in animali nihil est accipere quod non implicite in corpore continetur. Non enim anima est alia forma ab illa, per quam in re illa poterant designari tres dimensiones; et ideo, cum dicebatur quod corpus est quod habet talem formam, ex qua possunt designari tres dimensiones in eo, intelligebatur: quaecumque forma esset, sive animalitas sive lapideitas sive quaecumque alia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그리하여 몸이 동물의 유(類)인 한, 동물의 형상은 몸의 형상 안에 함축되어 담겨 있다. 동물이 사람에 대해 갖는 관계도 이와 같다. 만일 동물이, 제 안에 있는 원리를 통해 감각하고 움직일 수 있는 그런 완전성을 가진 사물만을 가리키되 다른 완전성은 딱 잘라 내고서 그렇게 한다면, 그때는 더 나아간 다른 완전성이 무엇이 덧붙든 동물에 대해 부분처럼 놓일 뿐 동물이라는 개념<a epub:type="noteref" href="#c1-fn20" id="c1-fn20-ref"><sup>20</sup></a> 안에 함축되어 담긴 것이 아니게 되고, 그러면 동물은 유(類)가 아닐 것이다. 그러나 동물은 어떤 사물을 가리키는 한에서 유(類)이다. 곧 그 사물의 형상에서 감각과 운동(motus)이 나올 수 있되, 그 형상이 무엇이든, 감각하는 영혼일 뿐이든 감각하면서 동시에 이성적인 영혼이든 상관없다는 뜻에서다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et sic forma animalis implicite in forma corporis continetur, prout corpus est genus eius. Et talis est etiam habitudo animalis ad hominem. Si enim animal nominaret tantum rem quandam, quae habet talem perfectionem, ut possit sentire et moveri per principium in ipso existens cum praecisione alterius perfectionis, tunc quaecumque alia perfectio ulterior superveniret, haberet se ad animal per modum partis et non sicut implicite contenta in ratione animalis, et sic animal non esset genus; sed est genus secundum quod significat rem quandam, ex cuius forma potest provenire sensus et motus, quaecumque sit illa forma, sive sit anima sensibilis tantum sive sensibilis et rationalis simul.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 유(類)는 종(種) 안에 있는 것 전체를 정해지지 않은 채로 가리킨다. 질료만을 가리키는 것이 아니다. 마찬가지로 종차(種差)도 전체를 가리키지 형상만을 가리키지 않으며, 정의(定義)도 전체를 가리키고 종(種)도 그러하다. 다만 가리키는 방식은 서로 다르다. 유(類)는 전체를 가리키되, 사물 안에서 질료적인 것을 짚어 내는 어떤 이름으로서 가리키며 고유한 형상을 정하지는 않기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sic ergo genus significat indeterminate totum id quod est in specie, non enim significat tantum materiam; similiter etiam differentia significat totum et non significat tantum formam; et etiam diffinitio significat totum, et etiam species. Sed tamen diversimode, quia genus significat totum ut quaedam denominatio determinans id quod est materiale in re sine determinatione propriae formae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 유(類)는 질료에서 취해지지만 질료는 아니다. 몸이 세 방향의 크기를 그을 수 있는 그런 완전성을 가졌다는 데서 그렇게 불린다는 것을 보면 분명하다. 이 완전성은 더 나아간 완전성에 대해 질료처럼 놓여 있다. 반면 종차(種差)는 그 반대로, 형상에서 정해진 방식으로 취한 어떤 이름과 같되, 그것을 처음 이해할 때 정해진 질료가 들어오지는 않는다. &#x27;살아 있는 것&#x27;이라고 말할 때, 곧 영혼을 가진 것을 말할 때 이 점이 분명하다. 그것이 무엇인지, 몸인지 다른 무엇인지는 정해지지 않기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde genus sumitur ex materia, quamvis non sit materia, ut patet quod corpus dicitur ex hoc quod habet talem perfectionem, ut possint in eo designari tres dimensiones; quae quidem perfectio est materialiter se habens ad ulteriorem perfectionem. Differentia vero e converso est sicut quaedam denominatio a forma determinate sumpta praeter hoc quod de primo intellectu eius sit materia determinata, ut patet, cum dicitur animatum, scilicet illud quod habet animam; non enim determinatur quid sit, utrum corpus vel aliquid aliud.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아비첸나는 유(類)가 종차(種差) 안에서 그 본질의 부분처럼 이해되는 것이 아니라 오직 본질 바깥의 존재자처럼 이해된다고 말한다. 기체(基體)가 속성<a epub:type="noteref" href="#c1-fn21" id="c1-fn21-ref"><sup>21</sup></a>을 이해하는 데 관계하는 방식과 같다. 그러므로 유(類)는 종차(種差)에 대해 그 자체로 말하자면 술어로 말해지지 않는다. 철학자가 『형이상학』 제3권과 『토피카』 제4권에서 말하듯이 그렇다. 다만 기체(基體)가 속성에 대해 술어로 말해지는 방식이라면 몰라도 그렇다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde dicit Avicenna quod genus non intelligitur in differentia sicut pars essentiae eius, sed solum sicut ens extra essentiam, sicut etiam subiectum est de intellectu passionum. Et ideo etiam genus non praedicatur de differentia per se loquendo, ut dicit philosophus in III metaphysicae et in IV topicorum, nisi forte sicut subiectum praedicatur de passione.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 정의(定義) 또는 종(種)은 둘 다를 아우른다. 곧 유(類)라는 이름이 지정하는 정해진 질료와, 종차(種差)라는 이름이 지정하는 정해진 형상을 함께 아우른다. 여기서 유(類)·종(種)·종차(種差)가 실제 사물 안의 질료·형상·합성체에 견주어 나란히 놓이는 까닭이 드러난다. 물론 그것들과 같은 것은 아니다. 유(類)는 질료가 아니라 질료에서 취해져 전체를 가리키는 것이고, 종차(種差)는 형상이 아니라 형상에서 취해져 전체를 가리키는 것이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed diffinitio vel species comprehendit utrumque, scilicet determinatam materiam, quam designat nomen generis, et determinatam formam, quam designat nomen differentiae. Ex hoc patet ratio quare genus, species et differentia se habent proportionaliter ad materiam et formam et compositum in natura, quamvis non sint idem quod illa, quia neque genus est materia, sed a materia sumptum ut significans totum, neque differentia forma, sed a forma sumpta ut significans totum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 우리는 사람이 이성적 동물이라고 말하지, 동물과 이성적인 것으로 이루어졌다고 말하지는 않는다. 사람이 영혼과 몸으로 이루어졌다고 말하는 것과는 다르다. 사람이 영혼과 몸으로 이루어졌다고 말할 때는, 두 사물에서 제3의 어떤 사물이 이루어지되 그것이 둘 가운데 어느 쪽도 아니라는 뜻이다. 사람은 영혼도 아니고 몸도 아니기 때문이다. 그러나 사람이 어떤 방식으로 동물과 이성적인 것으로 이루어졌다고 말한다면, 그것은 두 사물에서 나온 제3의 사물과 같은 것이 아니라 두 뜻에서 나온 제3의 뜻과 같은 것이다. 동물이라는 뜻은 특정한 형상을 정하지 않은 채, 마지막 완전성에 견주어 질료적인 쪽에서 사물의 본성을 드러내기 때문이다. 반면 이성적이라는 이 종차(種差)의 뜻은 특정한 형상을 정하는 데 있다. 이 두 뜻에서 종(種) 또는 정의(定義)의 뜻이 이루어진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde dicimus hominem esse animal rationale et non ex animali et rationali, sicut dicimus eum esse ex anima et corpore. Ex anima enim et corpore dicitur esse homo, sicut ex duabus rebus quaedam res tertia constituta, quae neutra illarum est. Homo enim neque est anima neque corpus. Sed si homo aliquo modo ex animali et rationali esse dicatur, non erit sicut res tertia ex duabus rebus, sed sicut intellectus tertius ex duobus intellectibus. Intellectus enim animalis est sine determinatione specialis formae, exprimens naturam rei ab eo quod est materiale respectu ultimae perfectionis. Intellectus autem huius differentiae rationalis consistit in determinatione formae specialis. Ex quibus duobus intellectibus constituitur intellectus speciei vel diffinitionis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 어떤 것들로 이루어진 사물이 그것을 이루는 사물들의 술어화를 받아들이지 않듯이, 뜻도 그것을 이루는 뜻들의 술어화를 받아들이지 않는다. 우리는 정의(定義)가 유(類)이다 또는 종차(種差)이다라고 말하지 않기 때문이다. 그런데 유(類)가 종(種)의 본질 전체를 가리키기는 해도, 같은 유(類)를 갖는 여러 종(種)에 하나의 본질이 있어야 하는 것은 아니다. 유(類)의 하나임은 정해지지 않음 또는 가림 없음에서 나오기 때문이다. 유(類)가 가리키는 것이 여러 종(種) 안에 수로 헤아려 하나인 본성이고 거기에 다른 사물이 덧붙어 그것을 정하는 종차(種差)가 되는 식은 아니다. 형상이 수로 헤아려 하나인 질료를 정하는 것과는 다르다는 말이다. 오히려 유(類)는 어떤 형상을 가리키되 이것이라거나 저것이라고 정해서 가리키지는 않으며, 종차(種差)는 그것을 정해서 드러낸다. 그리고 종차(種差)가 드러내는 그 형상은 유(類)가 정해지지 않은 채로 가리키던 바로 그것과 다르지 않다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo sicut res constituta ex aliquibus non recipit praedicationem earum rerum, ex quibus constituitur, ita nec intellectus recipit praedicationem eorum intellectuum, ex quibus constituitur. Non enim dicimus quod diffinitio sit genus aut differentia. Quamvis autem genus significet totam essentiam speciei, non tamen oportet ut diversarum specierum, quarum est idem genus, sit una essentia, quia unitas generis ex ipsa indeterminatione vel indifferentia procedit, non autem ita, quod illud quod significatur per genus sit una natura numero in diversis speciebus, cui superveniat res alia, quae sit differentia determinans ipsum, sicut forma determinat materiam, quae est una numero, sed quia genus significat aliquam formam, non tamen determinate hanc vel illam, quam determinate differentia exprimit, quae non est alia quam illa, quae indeterminate significabatur per genus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 주석가는 『형이상학』 제11권 주해에서, 제일 질료는 모든 형상을 걷어냄으로써 하나라고 불리지만 유(類)는 가리켜진 형상의 공통됨으로써 하나라고 불린다고 말한다. 여기서 분명해지는 것은, 종차(種差)가 더해져 유(類)의 하나임의 원인이던 그 정해지지 않음이 걷히면 본질에서 서로 다른 종(種)들이 남는다는 점이다. 그리고 앞서 말했듯이 종(種)의 본성은 개체에 견주어 정해지지 않았으니, 유(類)의 본성이 종(種)에 견주어 그러한 것과 같다. 그래서 유(類)인 것이 종(種)에 대해 술어로 말해질 때 그 뜻 안에 종(種) 안에 정해져 있는 전체를 뚜렷이 가르지 않은 채 함축했듯이, 종(種)인 것도 개체에 대해 술어로 말해질 때 개체 안에 본질적으로 있는 것 전체를 뚜렷이 가르지 않더라도 가리켜야 한다. 이런 방식으로 종(種)의 본질은 사람이라는 이름으로 가리켜지며, 그래서 사람은 소크라테스에 대해 술어로 말해진다. 그러나 개체화의 원리인 지정된 질료를 딱 잘라 내고서 종(種)의 본성을 가리킨다면, 그것은 부분과 같은 방식으로 놓이게 된다. 이런 방식으로 가리켜지는 것이 인간성이라는 이름이다. 인간성은 사람이 사람인 근거를 가리키기 때문이다. 그런데 지정된 질료는 사람이 사람인 근거가 아니다. 그러므로 그것은 사람이 사람이게 하는 것들 사이에 결코 들어 있지 않다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo dicit Commentator in XI metaphysicae quod materia prima dicitur una per remotionem omnium formarum, sed genus dicitur unum per communitatem formae significatae. Unde patet quod per additionem differentiae remota illa indeterminatione, quae erat causa unitatis generis, remanent species per essentiam diversae. Et quia, ut dictum est, natura speciei est indeterminata respectu individui sicut natura generis respectu speciei, inde est quod sicut id quod est genus, prout praedicabatur de specie, implicabat in sua significatione, quamvis indistincte, totum quod determinate est in specie, ita etiam et id quod est species, secundum quod praedicatur de individuo, oportet quod significet totum id quod est essentialiter in individuo, licet indistincte. Et hoc modo essentia speciei significatur nomine hominis, unde homo de Socrate praedicatur. Si autem significetur natura speciei cum praecisione materiae designatae, quae est principium individuationis, sic se habebit per modum partis. Et hoc modo significatur nomine humanitatis; humanitas enim significat id unde homo est homo. Materia autem designata non est id unde homo est homo; et ita nullo modo continetur inter illa, ex quibus homo habet quod sit homo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 인간성은 자기 뜻 안에 사람이 사람이게 하는 것들만 담으므로, 그것이 가리키는 바에서 지정된 질료가 빠지거나 잘려 나간다는 것이 분명하다. 그리고 부분은 전체에 대해 술어로 말해지지 않으므로, 인간성은 사람에 대해서도 소크라테스에 대해서도 술어로 말해지지 않는다. 그래서 아비첸나는 합성체의 하성(何性)은 그 하성(何性)이 속한 합성체 자체가 아니라고 말한다. 하성(何性) 자체도 합성되어 있기는 하지만 그렇다. 인간성이 합성되어 있더라도 사람이 아닌 것과 같으며, 오히려 지정된 질료인 무언가 안에 받아들여져야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Cum ergo humanitas in suo intellectu includat tantum ea, ex quibus homo habet quod sit homo, patet quod a significatione eius excluditur vel praeciditur materia designata. Et quia pars non praedicatur de toto, inde est quod humanitas nec de homine nec de Socrate praedicatur. Unde dicit Avicenna quod quiditas compositi non est ipsum compositum, cuius est quiditas, quamvis etiam ipsa quiditas sit composita, sicut humanitas, licet sit composita, non est homo, immo oportet quod sit recepta in aliquo quod est materia designata.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 앞서 말했듯이 유(類)에 견준 종(種)의 지정은 형상을 통해 이루어지고, 종(種)에 견준 개체의 지정은 질료를 통해 이루어진다. 그러므로 유(類)의 본성이 취해지는 그것을 가리키는 이름은, 종(種)을 완성하는 정해진 형상을 딱 잘라 내고서 전체의 질료적 부분을 가리켜야 한다. 몸이 사람의 질료적 부분인 것과 같다. 반면 종(種)의 본성이 취해지는 그것을 가리키되 지정된 질료를 딱 잘라 내고서 가리키는 이름은 형상적 부분을 가리킨다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia, ut dictum est, designatio speciei respectu generis est per formam, designatio autem individui respectu speciei est per materiam, ideo oportet ut nomen significans id, unde natura generis sumitur, cum praecisione formae determinatae perficientis speciem significet partem materialem totius, sicut corpus est pars materialis hominis. Nomen autem significans id, unde sumitur natura speciei cum praecisione materiae designatae, significat partem formalem.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 인간성은 어떤 형상처럼 가리켜지며, 전체의 형상이라고 불린다. 다만 본질적 부분들 곧 형상과 질료에 덧붙는 것처럼 그러한 것은 아니다. 집의 형상이 그 온전한 부분들에 덧붙는 것과는 다르다는 말이다. 오히려 그것은 전체인 형상, 곧 형상과 질료를 함께 아우르는 형상이되, 질료가 지정될 수 있게 하는 것들은 딱 잘라 낸 형상이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo humanitas significatur ut forma quaedam, et dicitur quod est forma totius, non quidem quasi superaddita partibus essentialibus, scilicet formae et materiae, sicut forma domus superadditur partibus integralibus eius, sed magis est forma, quae est totum scilicet formam complectens et materiam, tamen cum praecisione eorum, per quae nata est materia designari.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 사람이라는 이 이름과 인간성이라는 이 이름이 사람의 본질을 가리키되 서로 다른 방식으로 그러하다는 것이 분명하다. 앞서 말한 대로다. 사람이라는 이 이름은 본질을 전체로서 가리킨다. 곧 질료의 지정을 잘라 내지 않고 그것을 함축적으로, 뚜렷이 가르지 않은 채 담기 때문이다. 유(類)가 종차(種差)를 담는다고 말한 것과 같다. 그래서 사람이라는 이 이름은 개체들에 대해 술어로 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sic igitur patet quod essentiam hominis significat hoc nomen homo et hoc nomen humanitas, sed diversimode, ut dictum est, quia hoc nomen homo significat eam ut totum, in quantum scilicet non praecidit designationem materiae, sed implicite, continet eam et indistincte, sicut dictum est quod genus continet differentiam; et ideo praedicatur hoc nomen homo de individuis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 인간성이라는 이 이름은 본질을 부분으로서 가리킨다. 그것이 가리키는 바 안에는 사람이 사람인 한에서 사람에게 속하는 것 말고는 아무것도 담기지 않으며, 모든 지정을 잘라 내기 때문이다. 그래서 사람의 개체들에 대해 술어로 말해지지 않는다. 이런 까닭에 본질이라는 이름이 사물에 대해 술어로 놓이는 일도 있다. 우리는 소크라테스가 어떤 본질이라고 말하기 때문이다. 그런가 하면 부정되는 일도 있다. 소크라테스의 본질은 소크라테스가 아니라고 말하는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed hoc nomen humanitas significat eam ut partem, quia non continet in significatione sua nisi id, quod est hominis in quantum est homo, et praecidit omnem designationem. Unde de individuis hominis non praedicatur. Et propter hoc etiam nomen essentiae quandoque invenitur praedicatum in re, dicimus enim Socratem esse essentiam quandam; et quandoque negatur, sicut dicimus quod essentia Socratis non est Socrates.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c1-fn1"><p><a href="#c1-fn1-ref">1</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="c1-fn2"><p><a href="#c1-fn2-ref">2</a>. 아리스토텔레스 『형이상학』 V, 7, 1017a22-35.</p></aside>
+<aside epub:type="footnote" id="c1-fn3"><p><a href="#c1-fn3-ref">3</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn4"><p><a href="#c1-fn4-ref">4</a>. privatio. 마땅히 있어야 할 것이 없는 상태. 단순한 &#x27;없음&#x27;이 아니라, 있을 수 있는 자리에 아직 없음을 뜻한다.</p></aside>
+<aside epub:type="footnote" id="c1-fn5"><p><a href="#c1-fn5-ref">5</a>. 아베로에스(이븐 루시드). 아리스토텔레스 주석으로 이름이 높아 &#x27;주석가&#x27;로 통했다.</p></aside>
+<aside epub:type="footnote" id="c1-fn6"><p><a href="#c1-fn6-ref">6</a>. 아베로에스 『형이상학 주해』 V, 주해 14.</p></aside>
+<aside epub:type="footnote" id="c1-fn7"><p><a href="#c1-fn7-ref">7</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn8"><p><a href="#c1-fn8-ref">8</a>. quiditas. 어떤 것에 &#x27;그것이 무엇이냐&#x27;고 물었을 때 답이 되는 것. 본질을 정의(定義)의 관점에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn9"><p><a href="#c1-fn9-ref">9</a>. 아리스토텔레스가 본질을 가리킬 때 쓰는 표현(τὸ τί ἦν εἶναι)을 라틴어로 옮긴 말이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn10"><p><a href="#c1-fn10-ref">10</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="c1-fn11"><p><a href="#c1-fn11-ref">11</a>. 6세기 로마의 철학자. 그리스 철학 용어를 라틴어로 옮겨 중세에 전한 사람이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn12"><p><a href="#c1-fn12-ref">12</a>. 보에티우스 『에우티케스와 네스토리우스 반박』 1. 흔히 『두 본성에 관하여』로 불린다.</p></aside>
+<aside epub:type="footnote" id="c1-fn13"><p><a href="#c1-fn13-ref">13</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn14"><p><a href="#c1-fn14-ref">14</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c1-fn15"><p><a href="#c1-fn15-ref">15</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c1-fn16"><p><a href="#c1-fn16-ref">16</a>. hoc aliquid. 아리스토텔레스가 개별자를 가리킬 때 쓰는 표현(τόδε τι)이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn17"><p><a href="#c1-fn17-ref">17</a>. 그리스어 우시아(οὐσία). 아리스토텔레스가 실체를 가리킬 때 쓰는 말이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn18"><p><a href="#c1-fn18-ref">18</a>. materia signata. 이만한 크기로 여기 이렇게 놓인, 특정한 덩어리로서의 질료. 소크라테스를 다른 사람이 아닌 바로 그 사람이게 만드는 것이 이것이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn19"><p><a href="#c1-fn19-ref">19</a>. praedicatio. &#x27;A는 B이다&#x27;라고 말할 때 B를 A에 대해 말하는 일. 동사형은 &#x27;술어로 말해진다&#x27;로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c1-fn20"><p><a href="#c1-fn20-ref">20</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c1-fn21"><p><a href="#c1-fn21-ref">21</a>. passio. 여기서는 주어에 필연적으로 딸려 나오는 성질(고유속성)을 가리킨다. 있어도 그만인 우유(偶有)와 달리, 사람에게 웃을 수 있음처럼 본질에서 반드시 따라 나온다.</p></aside>
+</section><h1 class="chapter" id="c2"><span class="num">Caput 2</span>제2장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>합성된 실체(substantia)에서 본질(essentia)이라는 이름이 무엇을 가리키는지 보았으니, 이제 그것이 유(類)<a epub:type="noteref" href="#c2-fn1" id="c2-fn1-ref"><sup>1</sup></a>·종(種, species)·종차(種差, differentia)라는 개념<a epub:type="noteref" href="#c2-fn2" id="c2-fn2-ref"><sup>2</sup></a>과 어떤 관계에 있는지 살펴야 한다. 그런데 유(類)나 종(種)이나 종차(種差)라는 개념이 어울리는 그것은 지정된 이 개별자<a epub:type="noteref" href="#c2-fn3" id="c2-fn3-ref"><sup>3</sup></a>에 대해 술어로 말해진다<a epub:type="noteref" href="#c2-fn4" id="c2-fn4-ref"><sup>4</sup></a>. 그러므로 보편자(universale)라는 개념, 곧 유(類)나 종(種)이라는 개념이, 인간성(humanitas)이나 동물성(animalitas)이라는 이름처럼 부분의 방식으로 가리켜진 본질에 어울리기란 불가능하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Viso igitur quid significetur nomine essentiae in substantiis compositis videndum est quomodo se habeat ad rationem generis, speciei et differentiae. Quia autem id, cui convenit ratio generis vel speciei vel differentiae, praedicatur de hoc singulari signato, impossibile est quod ratio universalis, scilicet generis vel speciei, conveniat essentiae secundum quod per modum partis significatur, ut nomine humanitatis vel animalitatis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아비첸나<a epub:type="noteref" href="#c2-fn5" id="c2-fn5-ref"><sup>5</sup></a>는 이성성(rationalitas)이 종차(種差)가 아니라 종차(種差)의 원리(principium)라고 말한다. 같은 이치로 인간성은 종(種)이 아니고 동물성은 유(類)가 아니다. 마찬가지로 유(類)나 종(種)이라는 개념이, 플라톤주의자들이 놓았듯이 개별자 바깥에 있는 어떤 사물인 한에서의 본질에 어울린다고 말할 수도 없다. 그렇다면 유(類)와 종(種)이 이 개체(individuum)에 대해 술어로 말해지지 않을 것이기 때문이다. 소크라테스가 그에게서 떨어져 나온 그것이라고 말할 수는 없다. 또한 그 떨어져 나온 것이 이 개별자를 아는 데 도움이 되지도 않을 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo dicit Avicenna quod rationalitas non est differentia, sed differentiae principium; et eadem ratione humanitas non est species nec animalitas genus. Similiter etiam non potest dici quod ratio generis vel speciei conveniat essentiae, secundum quod est quaedam res exsistens extra singularia, ut Platonici ponebant, quia sic genus et species non praedicarentur de hoc individuo; non enim potest dici quod Socrates sit hoc quod ab eo separatum est; nec iterum illud separatum proficeret in cognitionem huius singularis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 남는 결론은 이것이다. 유(類)나 종(種)이라는 개념은, 사람이나 동물이라는 이름처럼 전체의 방식으로 가리켜지는 한에서의 본질에 어울린다. 곧 개체 안에 있는 이 전체를 함축적으로, 뚜렷이 가르지 않은 채 담는 한에서 그렇다. 그런데 이렇게 받아들인 본성<a epub:type="noteref" href="#c2-fn6" id="c2-fn6-ref"><sup>6</sup></a> 또는 본질은 두 가지로 헤아릴 수 있다. 하나는 그 자체의 개념에 따라 헤아리는 것으로, 이것이 그 본성 자체를 절대적으로 헤아리는 방식이다. 이런 방식으로는 그것이 그러한 것인 한에서 그것에 어울리는 것 말고는 그것에 대해 참인 것이 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo relinquitur quod ratio generis vel speciei conveniat essentiae, secundum quod significatur per modum totius, ut nomine hominis vel animalis, prout implicite et indistincte continet totum hoc, quod in individuo est. Natura autem vel essentia sic accepta potest dupliciter considerari: uno modo, secundum rationem propriam, et haec est absoluta consideratio ipsius. Et hoc modo nihil est verum de ea nisi quod convenit sibi secundum quod huiusmodi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 그 밖의 무엇이 그것에 돌려진다면 그 돌림은 거짓이다. 예를 들어 사람이 사람인 한에서 사람에게는 이성성과 동물성, 그리고 그 정의(定義, diffinitio) 안에 들어오는 다른 것들이 어울린다. 그러나 희거나 검거나 그 비슷한 무엇, 곧 인간성이라는 개념에 속하지 않는 것은 사람이 사람인 한에서 사람에게 어울리지 않는다. 그러므로 이렇게 헤아린 그 본성이 하나라고 말할 수 있는지 여럿이라고 말할 수 있는지 묻는다면, 어느 쪽도 인정해서는 안 된다. 둘 다 인간성이라는 뜻 바깥에 있고, 둘 다 그것에 우연히 일어날 수 있기 때문이다. 만일 여럿임이 그 뜻에 속한다면 결코 하나일 수 없을 텐데, 소크라테스 안에 있는 한에서는 하나이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde quicquid aliorum attribuatur sibi, falsa est attributio. Verbi gratia, homini in eo quod est homo convenit rationale et animal et alia, quae in diffinitione eius cadunt. Album vero aut nigrum vel quicquid huiusmodi, quod non est de ratione humanitatis, non convenit homini in eo quod homo. Unde si quaeratur utrum ista natura sic considerata possit dici una vel plures, neutrum concedendum est, quia utrumque est extra intellectum humanitatis et utrumque potest sibi accidere. Si enim pluralitas esset de intellectu eius, nunquam posset esse una, cum tamen una sit secundum quod est in Socrate.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 하나임이 그 뜻에 속한다면, 소크라테스의 본성과 플라톤의 본성이 하나이고 같은 것이 되어 여럿 안에서 여럿이 될 수 없을 것이다. 다른 하나는 그것이 이것 안에 또는 저것 안에 갖는 존재<a epub:type="noteref" href="#c2-fn7" id="c2-fn7-ref"><sup>7</sup></a>에 따라 헤아리는 방식이다. 이렇게 하면 그것이 들어 있는 그것의 개념에서 무언가가 우연히 그것에 대해 술어로 말해진다. 소크라테스가 희기 때문에 사람이 희다고 말하는 것과 같다. 이것이 사람이 사람인 한에서 사람에게 어울리지는 않더라도 그렇다. 그런데 이 본성은 두 겹의 존재를 갖는다. 하나는 개별자 안의 존재이고 다른 하나는 영혼(anima) 안의 존재이며, 둘 다에 따라 앞서 말한 본성에 우유(偶有)<a epub:type="noteref" href="#c2-fn8" id="c2-fn8-ref"><sup>8</sup></a>들이 따라붙는다. 개별자 안에서도 개별자들이 서로 다른 만큼 여러 겹의 존재를 갖는다. 그러나 본성 자체를 첫 번째 방식으로, 곧 절대적으로 헤아릴 때는 그 어떤 존재도 그것에 돌아가지 않는다. 사람의 본질이 그러한 것인 한에서 이 개별자 안에 존재를 갖는다고 말하는 것은 거짓이기 때문이다. 만일 이 개별자 안에 있음이 사람이 사람인 한에서 사람에게 어울린다면, 사람은 결코 이 개별자 바깥에 있지 못할 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter si unitas esset de ratione eius, tunc esset una et eadem Socratis et Platonis nec posset in pluribus plurificari. Alio modo consideratur secundum esse quod habet in hoc vel in illo, et sic de ipsa aliquid praedicatur per accidens ratione eius, in quo est, sicut dicitur quod homo est albus, quia Socrates est albus, quamvis hoc non conveniat homini in eo quod homo. Haec autem natura duplex habet esse, unum in singularibus et aliud in anima, et secundum utrumque consequuntur dictam naturam accidentia. Et in singularibus etiam habet multiplex esse secundum singularium diversitatem et tamen ipsi naturae secundum suam primam considerationem, scilicet absolutam, nullum istorum esse debetur. Falsum enim est dicere quod essentia hominis in quantum huiusmodi habeat esse in hoc singulari, quia si esse in hoc singulari conveniret homini in quantum est homo, nunquam esset extra hoc singulare.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 이 개별자 안에 있지 않음이 사람이 사람인 한에서 사람에게 어울린다면, 사람은 결코 그 안에 있지 못할 것이다. 그러나 사람이 사람인 한에서 이 개별자 안에 또는 저 개별자 안에 또는 영혼 안에 있는 것은 아니라고 말하는 것은 참이다. 그러므로 절대적으로 헤아린 사람의 본성은 그 어떤 존재로부터도 추상된다(abstractio)는 것이 분명하다. 다만 그 가운데 어느 것도 잘라 내지는 않는 방식으로 그렇다. 그리고 이렇게 헤아린 이 본성이 모든 개체에 대해 술어로 말해지는 그것이다. 그렇다고 보편자라는 뜻이 이렇게 받아들인 본성에 어울린다고 말할 수는 없다. 보편자라는 뜻에는 하나임과 공통됨이 속하기 때문이다. 그런데 사람의 본성에는 절대적으로 헤아릴 때 이 둘 가운데 어느 것도 어울리지 않는다. 만일 공통됨이 사람이라는 뜻에 속한다면, 인간성이 발견되는 곳 어디에서나 공통됨이 발견될 것이다. 그런데 이것은 거짓이다. 소크라테스 안에서는 아무런 공통됨도 발견되지 않고, 그 안에 있는 것은 무엇이든 개체화되어 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter etiam si conveniret homini in quantum est homo non esse in hoc singulari, nunquam esset in eo. Sed verum est dicere quod homo non in quantum est homo habet quod sit in hoc singulari vel in illo aut in anima. Ergo patet quod natura hominis absolute considerata abstrahit a quolibet esse, ita tamen quod non fiat praecisio alicuius eorum. Et haec natura sic considerata est quae praedicatur de individuis omnibus. Non tamen potest dici quod ratio universalis conveniat naturae sic acceptae, quia de ratione universalis est unitas et communitas. Naturae autem humanae neutrum horum convenit secundum suam absolutam considerationem. Si enim communitas esset de intellectu hominis, tunc in quocumque inveniretur humanitas inveniretur communitas. Et hoc falsum est, quia in Socrate non invenitur communitas aliqua, sed quicquid est in eo est individuatum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 유(類)나 종(種)이라는 개념이 개체들 안에서 갖는 존재에 따라 사람의 본성에 우연히 일어난다고 말할 수도 없다. 개체들 안에서는 사람의 본성이 하나임에 따라 발견되지 않아서, 모두에게 어울리는 어떤 하나가 되지 못하기 때문이다. 그런데 보편자라는 개념은 그것을 요구한다. 그러므로 남는 결론은, 종(種)이라는 개념이 지성(intellectus) 안에서 갖는 저 존재에 따라 사람의 본성에 우연히 일어난다는 것이다. 사람의 본성 자체가 지성 안에서는 개체화하는 모든 것으로부터 떼어 내진 존재를 갖기 때문이다. 그래서 영혼 바깥에 있는 모든 개체에 대해 한결같은 개념을 지닌다. 곧 그 모두의 닮은꼴로서 똑같이 있고, 그것들이 사람인 한에서 그 모두를 아는 데로 이끌기 때문이다. 그리고 모든 개체에 대해 그런 관계를 갖는다는 데서 지성은 종(種)이라는 개념을 찾아내어 그것에 돌린다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter etiam non potest dici quod ratio generis vel speciei accidat naturae humanae secundum esse quod habet in individuis, quia non invenitur in individuis natura humana secundum unitatem, ut sit unum quid omnibus conveniens, quod ratio universalis exigit. Relinquitur ergo quod ratio speciei accidat naturae humanae secundum illud esse quod habet in intellectu. Ipsa enim natura humana in intellectu habet esse abstractum ab omnibus individuantibus, et ideo habet rationem uniformem ad omnia individua, quae sunt extra animam, prout aequaliter est similitudo omnium et ducens in omnium cognitionem in quantum sunt homines. Et ex hoc quod talem relationem habet ad omnia individua intellectus adinvenit rationem speciei et attribuit sibi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 주석가<a epub:type="noteref" href="#c2-fn9" id="c2-fn9-ref"><sup>9</sup></a>는 『영혼론』 첫머리에서 사물 안에 보편성을 만드는 것은 지성이라고 말한다. 아비첸나도 자기 『형이상학』에서 이것을 말한다. 그리고 이렇게 이해된 본성이 영혼 바깥의 사물들에 견주어지는 한에서 보편자라는 개념을 갖기는 한다. 그 모두의 닮은꼴 하나이기 때문이다. 그러나 이 지성 안에 또는 저 지성 안에 존재를 갖는 한에서는 어떤 개별적인 가지상(可知像)<a epub:type="noteref" href="#c2-fn10" id="c2-fn10-ref"><sup>10</sup></a>이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde dicit Commentator in principio de anima quod intellectus est qui agit universalitatem in rebus. Hoc etiam Avicenna dicit in sua metaphysica. Et quamvis haec natura intellecta habeat rationem universalis secundum quod comparatur ad res extra animam, quia est una similitudo omnium, tamen secundum quod habet esse in hoc intellectu vel in illo est quaedam species intellecta particularis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 주석가가 『영혼론』 제3권에서 저지른 잘못이 분명해진다. 그는 이해된 형상(forma)의 보편성에서 모든 사람 안의 지성이 하나라는 결론을 끌어내려 했다. 그러나 저 형상의 보편성은 그것이 지성 안에서 갖는 이 존재에 따른 것이 아니라, 사물들의 닮은꼴로서 사물들에 관계 맺는 한에서 있는 것이다. 이를테면 여러 사람을 나타내는 몸을 가진 조각상이 하나 있다고 하면, 그 조각상의 상(像) 또는 모습은 이 질료(materia) 안에 있는 한에서 개별적이고 고유한 존재를 갖겠지만, 여럿을 함께 나타내는 것인 한에서는 공통됨이라는 개념을 가질 것이다. 그리고 사람의 본성을 절대적으로 헤아릴 때는 그것이 소크라테스에 대해 술어로 말해짐이 어울린다. 그러나 종(種)이라는 개념은 절대적으로 헤아릴 때 그것에 어울리지 않고, 지성 안에서 갖는 존재에 따라 그것에 따라붙는 우유(偶有)들에 속한다. 그러므로 종(種)이라는 이름은 소크라테스에 대해 술어로 말해지지 않아서, 소크라테스는 종(種)이다라고 말해지지 않는다. 만일 종(種)이라는 개념이 소크라테스 안에서 갖는 존재에 따라, 또는 절대적으로 헤아릴 때 곧 사람인 한에서 사람에게 어울린다면 그런 일이 반드시 일어날 것이다. 사람이 사람인 한에서 사람에게 어울리는 것은 무엇이든 소크라테스에 대해 술어로 말해지기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo patet defectus Commentatoris in III de anima, qui voluit ex universalitate formae intellectae unitatem intellectus in omnibus hominibus concludere, quia non est universalitas illius formae secundum hoc esse quod habet in intellectu, sed secundum quod refertur ad res ut similitudo rerum, sicut etiam, si esset una statua corporalis repraesentans multos homines, constat quod illa imago vel species statuae haberet esse singulare et proprium secundum quod esset in hac materia, sed haberet rationem communitatis secundum quod esset commune repraesentativum plurium. Et quia naturae humanae secundum suam absolutam considerationem convenit quod praedicetur de Socrate, et ratio speciei non convenit sibi secundum suam absolutam considerationem, sed est de accidentibus, quae consequuntur eam secundum esse, quod habet in intellectu, ideo nomen speciei non praedicatur de Socrate, ut dicatur: Socrates est species, quod de necessitate accideret, si ratio speciei conveniret homini secundum esse, quod habet in Socrate vel secundum suam considerationem absolutam, scilicet in quantum est homo. Quicquid enim convenit homini in quantum est homo praedicatur de Socrate.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그렇지만 술어로 말해짐은 유(類)에 그 자체로 어울린다. 그것이 유(類)의 정의(定義) 안에 놓이기 때문이다. 술어화란 지성이 붙이고 가르는 작용을 통해 완성되는 어떤 것이며, 사물 자체 안에서는 하나가 다른 하나에 대해 말해지는 그 둘의 하나임을 바탕으로 삼는다. 그러므로 술어가 될 수 있음이라는 개념은 유(類)라는 이 지향(志向)<a epub:type="noteref" href="#c2-fn11" id="c2-fn11-ref"><sup>11</sup></a>의 뜻 안에 담길 수 있다. 이 지향(志向) 또한 마찬가지로 지성의 작용을 통해 완성되기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et tamen praedicari convenit generi per se, cum in eius diffinitione ponatur. Praedicatio enim est quiddam, quod completur per actionem intellectus componentis et dividentis, habens fundamentum in re ipsa unitatem eorum, quorum unum de altero dicitur. Unde ratio praedicabilitatis potest claudi in ratione huius intentionis, quae est genus, quae similiter per actum intellectus completur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그렇더라도 지성이 어떤 것을 다른 것과 붙이면서 그것에 술어가 될 수 있음이라는 지향(志向)을 돌릴 때, 그렇게 지향(志向)이 돌려지는 그것은 유(類)라는 지향(志向) 자체가 아니다. 오히려 지성이 유(類)라는 지향(志向)을 돌리는 그것이며, 동물이라는 이 이름이 가리키는 것과 같다. 그러므로 본질 또는 본성이 종(種)이라는 개념과 어떤 관계에 있는지가 분명해진다. 종(種)이라는 개념은 본질을 절대적으로 헤아릴 때 그것에 어울리는 것들에 속하지 않는다. 또 흼이나 검음처럼 영혼 바깥에서 갖는 존재에 따라 본질에 따라붙는 우유(偶有)들에 속하지도 않는다. 오히려 지성 안에서 갖는 존재에 따라 본질에 따라붙는 우유(偶有)들에 속한다. 그리고 이런 방식으로 유(類)나 종차(種差)라는 개념도 그것에 어울린다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Nihilominus tamen id, cui intellectus intentionem praedicabilitatis attribuit, componens illud cum altero, non est ipsa intentio generis, sed potius illud, cui intellectus intentionem generis attribuit, sicut quod significatur hoc nomine animal. Sic ergo patet qualiter essentia vel natura se habet ad rationem speciei, quia ratio speciei non est de his, quae conveniunt ei secundum suam absolutam considerationem, neque est de accidentibus, quae consequuntur ipsam secundum esse, quod habet extra animam, ut albedo et nigredo, sed est de accidentibus, quae consequuntur eam secundum esse, quod habet in intellectu, et per hunc modum convenit etiam sibi ratio generis vel differentiae.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c2-fn1"><p><a href="#c2-fn1-ref">1</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn2"><p><a href="#c2-fn2-ref">2</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c2-fn3"><p><a href="#c2-fn3-ref">3</a>. singulare. 하나하나 낱낱으로 있는 것. 아퀴나스는 &#x27;개체(individuum)&#x27;와 나란히 쓰는데, 개체가 &#x27;더 나뉘지 않음&#x27;을 강조한다면 개별자는 &#x27;낱낱으로 있음&#x27;을 강조한다.</p></aside>
+<aside epub:type="footnote" id="c2-fn4"><p><a href="#c2-fn4-ref">4</a>. praedicatio. &#x27;A는 B이다&#x27;라고 말할 때 B를 A에 대해 말하는 일. 동사형은 &#x27;술어로 말해진다&#x27;로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c2-fn5"><p><a href="#c2-fn5-ref">5</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="c2-fn6"><p><a href="#c2-fn6-ref">6</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn7"><p><a href="#c2-fn7-ref">7</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn8"><p><a href="#c2-fn8-ref">8</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c2-fn9"><p><a href="#c2-fn9-ref">9</a>. 아베로에스(이븐 루시드). 아리스토텔레스 주석으로 이름이 높아 &#x27;주석가&#x27;로 통했다.</p></aside>
+<aside epub:type="footnote" id="c2-fn10"><p><a href="#c2-fn10-ref">10</a>. species intellecta. 지성이 사물을 이해할 때 그 안에 생기는 상(像). 논리학의 &#x27;종(種)&#x27;과 라틴어는 같지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn11"><p><a href="#c2-fn11-ref">11</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+</section><h1 class="chapter" id="c3"><span class="num">Caput 3</span>제3장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>이제 떨어져 있는 실체(substantia)들, 곧 영혼(anima)과 예지체(叡智體)<a epub:type="noteref" href="#c3-fn1" id="c3-fn1-ref"><sup>1</sup></a>와 제일원인<a epub:type="noteref" href="#c3-fn2" id="c3-fn2-ref"><sup>2</sup></a> 안에 본질(essentia)이 어떤 방식으로 있는지 살펴야 한다. 제일원인이 단순하다는 데는 모두가 동의하지만, 예지체(叡智體)들과 영혼에 형상(forma)과 질료(materia)의 합성을 끌어들이려 애쓰는 이들이 있다. 이 주장을 처음 내놓은 사람은 『생명의 샘』을 쓴 아비케브론<a epub:type="noteref" href="#c3-fn3" id="c3-fn3-ref"><sup>3</sup></a>인 듯하다. 그러나 이것은 철학자들이 두루 하는 말과 어긋난다. 그들은 그 실체들을 질료에서 떨어져 있는 것이라 부르고, 아무런 질료도 없이 있음을 증명한다. 그 증명 가운데 가장 유력한 것은 그것들 안에 있는 이해하는 능력에서 나온다. 우리가 보기에 형상들은 질료와 질료의 조건에서 떨어져 나오는 한에서만 현실적으로 이해될 수 있는 것이 되기 때문이다. 또 그것들이 현실적으로 이해될 수 있는 것이 되는 것은, 이해하는 실체의 능력을 통해, 곧 그 실체 안에 받아들여지고 그 실체에 의해 움직여지는 한에서다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Nunc restat videre per quem modum sit essentia in substantiis separatis, scilicet in anima, intelligentia et causa prima. Quamvis autem simplicitatem causae primae omnes concedant, tamen compositionem formae et materiae quidam nituntur inducere in intelligentias et in animam, cuius positionis auctor videtur fuisse Avicebron, auctor libri fontis vitae. Hoc autem dictis philosophorum communiter repugnat, qui eas substantias a materia separatas nominant et absque omni materia esse probant. Cuius demonstratio potissima est ex virtute intelligendi, quae in eis est. Videmus enim formas non esse intelligibiles in actu nisi secundum quod separantur a materia et a condicionibus eius; nec efficiuntur intelligibiles in actu, nisi per virtutem substantiae intelligentis secundum quod recipiuntur in ea et secundum quod aguntur per eam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 이해하는 실체라면 어떤 것이든 질료로부터 완전히 자유로워야 한다. 곧 질료를 제 부분으로 갖지도 않고, 질료적 형상들처럼 질료에 새겨진 형상도 아니어야 한다. 또 아무 질료나 이해될 수 있음을 막는 것이 아니라 몸을 이루는 질료만 그렇다고 말할 수도 없다. 만일 그것이 몸을 이루는 질료 때문이라면, 질료는 몸의 형상 아래 놓이는 한에서만 몸을 이루는 질료라고 불리므로, 질료가 이해될 수 있음을 막는 이 일을 몸의 형상에서 얻어야 할 것이다. 그런데 이것은 있을 수 없다. 몸의 형상 자체도 다른 형상들과 마찬가지로 질료에서 추상되는(abstractio) 한에서 현실적으로 이해될 수 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde oportet quod in qualibet substantia intelligente sit omnino immunitas a materia, ita quod neque habeat materiam partem sui neque etiam sit sicut forma impressa in materia, ut est de formis materialibus. Nec potest aliquis dicere quod intelligibilitatem non impediat materia quaelibet, sed materia corporalis tantum. Si enim hoc esset ratione materiae corporalis tantum, cum materia non dicatur corporalis nisi secundum quod stat sub forma corporali, tunc oporteret quod hoc haberet materia, scilicet impedire intelligibilitatem, a forma corporali. Et hoc non potest esse, quia ipsa etiam forma corporalis actu intelligibilis est, sicut et aliae formae, secundum quod a materia abstrahitur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 영혼이나 예지체(叡智體) 안에는 질료와 형상의 합성이 결코 없다. 몸을 가진 실체들에서처럼 그런 방식으로 그것들 안의 본질을 받아들일 수는 없다는 말이다. 그러나 거기에는 형상과 존재<a epub:type="noteref" href="#c3-fn4" id="c3-fn4-ref"><sup>4</sup></a>의 합성이 있다. 그래서 『원인론』 제9명제 주해에서 예지체(叡智體)는 형상과 존재를 가진 것이라고 말해지며, 거기서 형상은 하성(何性)<a epub:type="noteref" href="#c3-fn5" id="c3-fn5-ref"><sup>5</sup></a> 자체 또는 단순한 본성<a epub:type="noteref" href="#c3-fn6" id="c3-fn6-ref"><sup>6</sup></a>을 뜻한다. 이것이 어떻게 그러한지는 쉽게 볼 수 있다. 서로 이런 관계에 있는 것들, 곧 하나가 다른 하나의 존재의 원인인 것들에서는, 원인이라는 개념<a epub:type="noteref" href="#c3-fn7" id="c3-fn7-ref"><sup>7</sup></a>을 지닌 쪽이 다른 쪽 없이도 존재를 가질 수 있지만 그 반대는 아니다. 그런데 질료와 형상의 관계가 그러하다. 형상이 질료에 존재를 주기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde in anima vel in intelligentia nullo modo est compositio ex materia et forma, ut hoc modo accipiatur essentia in eis sicut in substantiis corporalibus, sed est ibi compositio formae et esse. Unde in commento IX propositionis libri de causis dicitur quod intelligentia est habens formam et esse, et accipitur ibi forma pro ipsa quiditate vel natura simplici. Et quomodo hoc sit planum est videre. Quaecumque enim ita se habent ad invicem quod unum est causa esse alterius, illud quod habet rationem causae potest habere esse sine altero, sed non convertitur. Talis autem invenitur habitudo materiae et formae, quia forma dat esse materiae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 질료가 아무 형상 없이 있기란 불가능하다. 그러나 어떤 형상이 질료 없이 있는 것은 불가능하지 않다. 형상은 형상인 한에서 질료에 매여 있지 않기 때문이다. 다만 질료 안에서만 있을 수 있는 형상들이 발견된다면, 그것은 그 형상들이 제일 원리(principium)에서 멀리 떨어져 있다는 데서 그것들에 우연히 일어나는 일이다. 제일 원리는 첫째가는 순수한 현실태(actus)이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo impossibile est esse materiam sine aliqua forma. Tamen non est impossibile esse aliquam formam sine materia. Forma enim non habet in eo quod est forma dependentiam ad materiam, sed si inveniantur aliquae formae, quae non possunt esse nisi in materia, hoc accidit eis secundum quod sunt distantes a primo principio, quod est actus primus et purus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 제일 원리에 가장 가까운 저 형상들은 질료 없이 그 자체로 자립하는 형상들이다. 앞서 말했듯이 형상은 제 유(類)<a epub:type="noteref" href="#c3-fn8" id="c3-fn8-ref"><sup>8</sup></a> 전체로 보아 질료를 필요로 하지는 않기 때문이다. 이런 종류의 형상들이 예지체(叡智體)들이다. 그러므로 이 실체들의 본질 또는 하성(何性)이 형상 자체와 다른 무엇일 필요가 없다. 그러니 합성된 실체의 본질과 단순한 실체의 본질은 이 점에서 다르다. 합성된 실체의 본질은 형상만이 아니라 형상과 질료를 아울러 담지만, 단순한 실체의 본질은 형상뿐이다. 여기서 다른 두 가지 차이가 생긴다. 하나는 합성된 실체의 본질은 전체로도 부분으로도 가리켜질 수 있다는 것인데, 앞서 말했듯이 이는 질료의 지정 때문에 일어나는 일이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde illae formae, quae sunt propinquissimae primo principio, sunt formae per se sine materia subsistentes (non enim forma secundum totum genus suum materia indiget, ut dictum est) et huiusmodi formae sunt intelligentiae. Et ideo non oportet ut essentiae vel quiditates harum substantiarum sint aliud quam ipsa forma. In hoc ergo differt essentia substantiae compositae et substantiae simplicis quod essentia substantiae compositae non est tantum forma, sed complectitur formam et materiam, essentia autem substantiae simplicis est forma tantum. Et ex hoc causantur duae aliae differentiae: una est quod essentia substantiae compositae potest significari ut totum vel ut pars, quod accidit propter materiae designationem, ut dictum est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 합성된 사물의 본질은 아무 방식으로나 그 합성된 사물 자체에 대해 술어로 말해지지<a epub:type="noteref" href="#c3-fn9" id="c3-fn9-ref"><sup>9</sup></a> 않는다. 사람이 자기 하성(何性)이라고 말할 수는 없기 때문이다. 그러나 단순한 사물의 본질은 곧 그 형상인데, 전체로서 말고는 가리켜질 수 없다. 거기에는 형상을 받아들이는 무엇 같은 것이 형상 말고는 아무것도 없기 때문이다. 그러므로 단순한 실체의 본질은 어떤 방식으로 받아들이든 그 실체에 대해 술어로 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo non quolibet modo praedicatur essentia rei compositae de ipsa re composita; non enim potest dici quod homo sit quiditas sua. Sed essentia rei simplicis, quae est sua forma, non potest significari nisi ut totum, cum nihil sit ibi praeter formam quasi formam recipiens; et ideo quocumque modo sumatur essentia substantiae simplicis de ea praedicatur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아비첸나<a epub:type="noteref" href="#c3-fn10" id="c3-fn10-ref"><sup>10</sup></a>는 «단순한 것의 하성(何性)은 그 단순한 것 자체다»라고 말한다. 그것을 받아들이는 다른 무엇이 없기 때문이다. 두 번째 차이는 이것이다. 합성된 사물들의 본질은 지정된 질료<a epub:type="noteref" href="#c3-fn11" id="c3-fn11-ref"><sup>11</sup></a> 안에 받아들여진다는 데서 그 질료의 나뉨에 따라 여럿이 된다. 그래서 어떤 것들이 종(種, species)에서는 같고 수에서는 다른 일이 생긴다. 그러나 단순한 것의 본질은 질료 안에 받아들여지지 않으므로 거기에는 그런 여럿 됨이 있을 수 없다. 그러므로 저 실체들에서는 같은 종(種)의 여러 개체(individuum)가 발견되지 않고, 거기 개체가 몇이면 종(種)도 그만큼이라야 한다. 아비첸나가 분명히 그렇게 말한다. 그러므로 이런 종류의 실체들은 질료 없이 형상뿐이기는 하지만, 그것들 안에 온갖 방식의 단순함이 있는 것은 아니고 순수한 현실태도 아니며 가능태(potentia)가 섞여 있다. 이것은 이렇게 분명해진다. 본질 또는 하성(何性)이라는 뜻에 속하지 않는 것은 무엇이든 바깥에서 와서 본질과 합성을 이룬다. 본질의 부분인 것들 없이는 어떤 본질도 이해될 수 없기 때문이다. 그런데 모든 본질 또는 하성(何性)은 그 존재에 대해 무언가를 이해하지 않고도 이해될 수 있다. 나는 사람이 무엇인지 또는 불사조가 무엇인지 이해하면서도 그것이 실재하는 사물들 가운데 존재를 갖는지는 모를 수 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde Avicenna dicit quod &#171;quiditas simplicis est ipsummet simplex&#187;, quia non est aliquid aliud recipiens ipsam. Secunda differentia est quod essentiae rerum compositarum ex eo quod recipiuntur in materia designata multiplicantur secundum divisionem eius, unde contingit quod aliqua sint idem specie et diversa numero. Sed cum essentia simplicis non sit recepta in materia, non potest ibi esse talis multiplicatio; et ideo oportet ut non inveniantur in illis substantiis plura individua eiusdem speciei, sed quot sunt ibi individua, tot sunt ibi species, ut Avicenna expresse dicit. Huiusmodi ergo substantiae quamvis sint formae tantum sine materia, non tamen in eis est omnimoda simplicitas nec sunt actus purus, sed habent permixtionem potentiae. Et hoc sic patet. Quicquid enim non est de intellectu essentiae vel quiditatis, hoc est adveniens extra et faciens compositionem cum essentia, quia nulla essentia sine his, quae sunt partes essentiae, intelligi potest. Omnis autem essentia vel quiditas potest intelligi sine hoc quod aliquid intelligatur de esse suo; possum enim intelligere quid est homo vel Phoenix et tamen ignorare an esse habeat in rerum natura.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 존재는 본질 또는 하성(何性)과 다른 것임이 분명하다. 다만 어떤 사물이 있어 그 하성(何性)이 곧 자기 존재라면 몰라도 그렇다. 그리고 이런 사물은 하나이고 첫째가는 것일 수밖에 없다. 무엇이 여럿이 되는 일은 다음 가운데 하나로만 일어날 수 있기 때문이다. 어떤 종차(種差, differentia)가 더해지거나, 유(類)의 본성이 여러 종(種)으로 여럿이 되듯이 그렇게 되거나, 형상이 서로 다른 질료들 안에 받아들여져 종(種)의 본성이 여러 개체 안에서 여럿이 되듯이 되거나, 아니면 하나는 떨어져 있고 다른 하나는 무언가 안에 받아들여져 있는 식이다. 이를테면 떨어져 있는 어떤 열이 있다면, 그것은 떨어져 있다는 바로 그 사실 때문에 떨어져 있지 않은 열과 다를 것이다. 그런데 어떤 사물이 존재일 뿐이어서 그 존재 자체가 자립한다고 놓는다면, 이 존재는 종차(種差)가 더해짐을 받아들이지 않을 것이다. 그렇게 되면 이미 존재일 뿐이 아니라 존재에 더해 어떤 형상이기도 할 테니 말이다. 질료가 더해짐은 더더욱 받아들이지 않을 것이다. 그렇게 되면 이미 자립하는 존재가 아니라 질료적인 존재일 테니 말이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ergo patet quod esse est aliud ab essentia vel quiditate, nisi forte sit aliqua res, cuius quiditas sit ipsum suum esse; et haec res non potest esse nisi una et prima, quia impossibile est, ut fiat plurificatio alicuius nisi per additionem alicuius differentiae, sicut multiplicatur natura generis in species, vel per hoc quod forma recipitur in diversis materiis, sicut multiplicatur natura speciei in diversis individuis, vel per hoc quod unum est absolutum et aliud in aliquo receptum, sicut si esset quidam calor separatus, esset alius a calore non separato ex ipsa sua separatione. Si autem ponatur aliqua res, quae sit esse tantum, ita ut ipsum esse sit subsistens, hoc esse non recipiet additionem differentiae, quia iam non esset esse tantum, sed esse et praeter hoc forma aliqua; et multo minus reciperet additionem materiae, quia iam esset esse non subsistens sed materiale.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 남는 결론은, 자기 존재인 그런 사물은 하나일 수밖에 없다는 것이다. 그러므로 그것 말고 다른 어떤 사물에서든 그 존재와 그 하성(何性) 또는 본성 또는 형상은 서로 달라야 한다. 그러므로 예지체(叡智體)들 안에는 형상 말고 존재가 따로 있어야 한다. 그래서 예지체(叡智體)는 형상과 존재라고 말한 것이다. 그런데 무엇에 어울리는 모든 것은 그 본성의 원리들에서 비롯되거나, 사람에게 웃을 수 있음이 그러하듯이 그렇게 되거나, 아니면 바깥의 어떤 원리에서 온다. 해가 비쳐 공기에 빛이 있는 것과 같다. 그런데 존재 자체가 사물의 형상이나 하성(何性)에서 비롯될 수는 없다. 작용인(作用因)<a epub:type="noteref" href="#c3-fn12" id="c3-fn12-ref"><sup>12</sup></a>으로서 비롯된다는 말이다. 그렇다면 어떤 사물이 자기 자신의 원인이 되고 어떤 사물이 자기 자신을 존재하게 만들어 낼 텐데, 이는 불가능하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde relinquitur quod talis res, quae sit suum esse, non potest esse nisi una. Unde oportet quod in qualibet alia re praeter eam aliud sit esse suum et aliud quiditas vel natura seu forma sua. Unde oportet quod in intelligentiis sit esse praeter formam; et ideo dictum est quod intelligentia est forma et esse. Omne autem quod convenit alicui vel est causatum ex principiis naturae suae, sicut risibile in homine, vel advenit ab aliquo principio extrinseco, sicut lumen in aere ex influentia solis. Non autem potest esse quod ipsum esse sit causatum ab ipsa forma vel quiditate rei (dico sicut a causa efficiente) quia sic aliqua res esset sui ipsius causa et aliqua res seipsam in esse produceret, quod est impossibile.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 그 존재가 자기 본성과 다른 모든 사물은 다른 것에서 존재를 얻어야 한다. 그리고 다른 것을 통해 있는 모든 것은 제일원인으로서 그 자체로 있는 그것에게로 돌아가므로, 모든 사물에게 존재의 원인이 되는 어떤 사물이 있어야 한다. 그것 자체가 존재일 뿐이기 때문에 그러하다. 그렇지 않다면 원인이 끝없이 이어질 것이다. 앞서 말했듯이 존재일 뿐이 아닌 모든 사물은 자기 존재의 원인을 갖기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ergo oportet quod omnis talis res, cuius esse est aliud quam natura sua habeat esse ab alio. Et quia omne, quod est per aliud, reducitur ad illud quod est per se sicut ad causam primam, oportet quod sit aliqua res, quae sit causa essendi omnibus rebus, eo quod ipsa est esse tantum. Alias iretur in infinitum in causis, cum omnis res, quae non est esse tantum, habeat causam sui esse, ut dictum est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 예지체(叡智體)는 형상과 존재이며, 존재일 뿐인 첫째 존재자(ens)에게서 존재를 얻는다는 것이 분명하다. 그리고 이것이 제일원인이며 곧 하느님(Deus)이다. 그런데 무엇을 다른 것에서 받아들이는 모든 것은 그것에 견주어 가능태에 있고, 그 안에 받아들여진 그것은 그것의 현실태이다. 그러므로 예지체(叡智體)인 그 하성(何性) 또는 형상은 하느님에게서 받아들이는 존재에 견주어 가능태에 있어야 하고, 받아들여진 저 존재는 현실태의 방식으로 있다. 그리하여 예지체(叡智體)들 안에서 가능태와 현실태가 발견된다. 다만 형상과 질료가 발견되는 것은 아니며, 그렇게 말한다면 이름만 같을 뿐이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Patet ergo quod intelligentia est forma et esse et quod esse habet a primo ente, quod est esse tantum. Et hoc est causa prima, quae Deus est. Omne autem quod recipit aliquid ab alio est in potentia respectu illius, et hoc quod receptum est in eo est actus eius. Oportet ergo quod ipsa quiditas vel forma, quae est intelligentia, sit in potentia respectu esse, quod a Deo recipit; et illud esse receptum est per modum actus. Et ita invenitur potentia et actus in intelligentiis, non tamen forma et materia nisi aequivoce.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 수동(受動), 받아들임, 기체(基體)<a epub:type="noteref" href="#c3-fn13" id="c3-fn13-ref"><sup>13</sup></a>가 됨, 그리고 질료 때문에 사물에 어울리는 듯 보이는 이런 종류의 모든 것도 지성(intellectus)적 실체와 몸을 가진 실체에 이름만 같게 어울린다. 주석가<a epub:type="noteref" href="#c3-fn14" id="c3-fn14-ref"><sup>14</sup></a>가 『영혼론』 제3권에서 말하는 대로다. 그리고 앞서 말했듯이 예지체(叡智體)의 하성(何性)은 예지체(叡智體) 자체이므로, 그 하성(何性) 또는 본질은 그것이 그것인 바로 그것이고, 하느님에게서 받아들인 그 존재는 그것이 실재하는 사물들 가운데 자립하게 하는 그것이다. 이런 까닭에 어떤 이들은 이런 종류의 실체가 &#x27;그것으로써 있음&#x27;<a epub:type="noteref" href="#c3-fn15" id="c3-fn15-ref"><sup>15</sup></a>과 &#x27;있는 그것&#x27;으로 합성된다고 말하고, 보에티우스<a epub:type="noteref" href="#c3-fn16" id="c3-fn16-ref"><sup>16</sup></a>가 말하듯이 &#x27;있는 그것&#x27;과 존재로 합성된다고도 말한다. 그리고 예지체(叡智體)들 안에 가능태와 현실태가 놓이므로 예지체(叡智體)가 여럿임을 찾아내기는 어렵지 않을 것이다. 그것들 안에 아무런 가능태도 없다면 이는 불가능할 터이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde etiam pati, recipere, subiectum esse et omnia huiusmodi, quae videntur rebus ratione materiae convenire, aequivoce conveniunt substantiis intellectualibus et corporalibus, ut in III de anima Commentator dicit. Et quia, ut dictum est, intelligentiae quiditas est ipsamet intelligentia, ideo quiditas vel essentia eius est ipsum quod est ipsa, et esse suum receptum a Deo est id, quo subsistit in rerum natura. Et propter hoc a quibusdam dicuntur huiusmodi substantiae componi ex quo est et quod est vel ex quod est et esse, ut Boethius dicit. Et quia in intelligentiis ponitur potentia et actus, non erit difficile invenire multitudinem intelligentiarum; quod esset impossibile, si nulla potentia in eis esset.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 주석가는 『영혼론』 제3권에서, 만일 가능 지성<a epub:type="noteref" href="#c3-fn17" id="c3-fn17-ref"><sup>17</sup></a>의 본성을 몰랐다면 우리는 떨어져 있는 실체들에서 여럿임을 찾아내지 못했을 것이라고 말한다. 그러므로 그것들이 서로 구별되는 것은 가능태와 현실태의 정도에 따라서다. 곧 첫째가는 것에 더 가까운 위쪽 예지체(叡智體)는 현실태를 더 많이, 가능태를 더 적게 가지며, 나머지도 그런 식이다. 그리고 이것은 사람의 영혼에서 끝을 맺는다. 사람의 영혼은 지성적 실체들 가운데 맨 아래 자리를 차지한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde Commentator dicit in III de anima quod, si natura intellectus possibilis esset ignorata, non possemus invenire multitudinem in substantiis separatis. Est ergo distinctio earum ad invicem secundum gradum potentiae et actus, ita quod intelligentia superior, quae magis propinqua est primo, habet plus de actu et minus de potentia, et sic de aliis. Et hoc completur in anima humana, quae tenet ultimum gradum in substantiis intellectualibus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 사람의 가능 지성이 이해될 수 있는 형상들에 대해 갖는 관계는, 감각되는 존재에서 맨 아래 자리를 차지하는 제일 질료가 감각되는 형상들에 대해 갖는 관계와 같다. 주석가가 『영혼론』 제3권에서 말하는 대로다. 그래서 철학자<a epub:type="noteref" href="#c3-fn18" id="c3-fn18-ref"><sup>18</sup></a>는 그것을 아무것도 쓰이지 않은 서판에 견준다. 그리고 다른 지성적 실체들 가운데 가능태를 더 많이 가진 까닭에, 사람의 영혼은 질료적 사물들에 아주 가까워져서 질료적 사물이 그 존재에 함께 참여하도록 이끌린다. 곧 영혼과 몸에서 하나의 합성체(compositum) 안에 하나의 존재가 나온다. 다만 그 존재는 영혼에 속하는 한에서는 몸에 매여 있지 않다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde intellectus possibilis eius se habet ad formas intelligibiles sicut materia prima, quae tenet ultimum gradum in esse sensibili, ad formas sensibiles, ut Commentator in III de anima dicit. Et ideo philosophus comparat eam tabulae, in qua nihil est scriptum. Et propter hoc quod inter alias substantias intellectuales plus habet de potentia, ideo efficitur in tantum propinqua rebus materialibus, ut res materialis trahatur ad participandum esse suum, ita scilicet quod ex anima et corpore resultat unum esse in uno composito, quamvis illud esse, prout est animae, non sit dependens a corpore.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 영혼인 이 형상 다음에는 가능태를 더 많이 갖고 질료에 더 가까운 다른 형상들이 발견된다. 그 정도가 심해서 그것들의 존재는 질료 없이는 있지 않다. 이것들 안에서도 차례와 정도가 발견되어 원소들의 첫 형상들에까지 이르는데, 이 형상들이 질료에 가장 가깝다. 그래서 이것들은 능동적·수동적 성질들과, 그 밖에 질료가 형상을 받아들이도록 갖추어지게 하는 것들이 요구하는 바에 따라서만 활동한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo post istam formam, quae est anima, inveniuntur aliae formae plus de potentia habentes et magis propinquae materiae in tantum quod esse earum sine materia non est. In quibus etiam invenitur ordo et gradus usque ad primas formas elementorum, quae sunt propinquissimae materiae. Unde nec aliquam operationem habent nisi secundum exigentiam qualitatum activarum et passivarum et aliarum, quibus materia ad formam disponitur.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c3-fn1"><p><a href="#c3-fn1-ref">1</a>. intelligentia. 질료 없이 지성만으로 있는 존재자, 곧 천사를 가리키는 전문 용어다. &#x27;지능&#x27;이 아니다.</p></aside>
+<aside epub:type="footnote" id="c3-fn2"><p><a href="#c3-fn2-ref">2</a>. causa prima. 다른 무엇에도 원인을 두지 않으면서 모든 것의 원인이 되는 첫째 원인. 아퀴나스에게는 신을 가리킨다.</p></aside>
+<aside epub:type="footnote" id="c3-fn3"><p><a href="#c3-fn3-ref">3</a>. 이븐 가비롤. 11세기 에스파냐의 유다인 철학자로, 라틴 세계에는 아비케브론이라는 이름으로 알려졌다.</p></aside>
+<aside epub:type="footnote" id="c3-fn4"><p><a href="#c3-fn4-ref">4</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn5"><p><a href="#c3-fn5-ref">5</a>. quiditas. 어떤 것에 &#x27;그것이 무엇이냐&#x27;고 물었을 때 답이 되는 것. 본질을 정의(定義)의 관점에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn6"><p><a href="#c3-fn6-ref">6</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn7"><p><a href="#c3-fn7-ref">7</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c3-fn8"><p><a href="#c3-fn8-ref">8</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn9"><p><a href="#c3-fn9-ref">9</a>. praedicatio. &#x27;A는 B이다&#x27;라고 말할 때 B를 A에 대해 말하는 일. 동사형은 &#x27;술어로 말해진다&#x27;로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c3-fn10"><p><a href="#c3-fn10-ref">10</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="c3-fn11"><p><a href="#c3-fn11-ref">11</a>. materia signata. 이만한 크기로 여기 이렇게 놓인, 특정한 덩어리로서의 질료. 소크라테스를 다른 사람이 아닌 바로 그 사람이게 만드는 것이 이것이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn12"><p><a href="#c3-fn12-ref">12</a>. causa efficiens. 아리스토텔레스가 나눈 네 가지 원인 가운데 하나로, 무엇을 실제로 만들어 내거나 움직이게 하는 원인이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn13"><p><a href="#c3-fn13-ref">13</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c3-fn14"><p><a href="#c3-fn14-ref">14</a>. 아베로에스(이븐 루시드). 아리스토텔레스 주석으로 이름이 높아 &#x27;주석가&#x27;로 통했다.</p></aside>
+<aside epub:type="footnote" id="c3-fn15"><p><a href="#c3-fn15-ref">15</a>. quo est. 어떤 것을 있게 해 주는 쪽, 곧 존재를 가리킨다. 이와 짝을 이루는 &#x27;있는 그것(quod est)&#x27;은 그 존재를 받아 서 있는 쪽이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn16"><p><a href="#c3-fn16-ref">16</a>. 6세기 로마의 철학자. 그리스 철학 용어를 라틴어로 옮겨 중세에 전한 사람이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn17"><p><a href="#c3-fn17-ref">17</a>. intellectus possibilis. 아직 아무것도 이해하지 않았지만 무엇이든 이해할 수 있는 상태의 지성을 말한다.</p></aside>
+<aside epub:type="footnote" id="c3-fn18"><p><a href="#c3-fn18-ref">18</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+</section><h1 class="chapter" id="c4"><span class="num">Caput 4</span>제4장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>이제까지 본 것으로 본질(essentia)이 여러 가지 것 안에서 어떻게 발견되는지 분명해진다. 실체(substantia)들 안에서 본질을 갖는 방식은 세 가지로 발견되기 때문이다. 첫째, 하느님(Deus)처럼 그 본질이 곧 자기 존재<a epub:type="noteref" href="#c4-fn1" id="c4-fn1-ref"><sup>1</sup></a> 자체인 무엇이 있다. 그래서 하느님은 하성(何性)<a epub:type="noteref" href="#c4-fn2" id="c4-fn2-ref"><sup>2</sup></a>이나 본질을 갖지 않는다고 말하는 철학자들이 있는데, 그 본질이 그 존재와 다르지 않기 때문이다. 그리고 여기서 그분이 유(類)<a epub:type="noteref" href="#c4-fn3" id="c4-fn3-ref"><sup>3</sup></a> 안에 있지 않다는 결론이 따라 나온다. 유(類) 안에 있는 모든 것은 자기 존재 말고 하성(何性)을 가져야 하기 때문이다. 유(類)나 종(種, species)의 하성(何性) 또는 본성<a epub:type="noteref" href="#c4-fn4" id="c4-fn4-ref"><sup>4</sup></a>은 그 유(類)나 종(種)에 속하는 것들 안에서 본성의 뜻<a epub:type="noteref" href="#c4-fn5" id="c4-fn5-ref"><sup>5</sup></a>에 따라서는 구별되지 않는데, 존재는 서로 다른 것들 안에서 다르기 때문이다. 그리고 우리가 하느님은 존재일 뿐이라고 말한다고 해서, 하느님이 곧 온갖 사물을 형상(forma)적으로 있게 하는 저 보편적 존재라고 말한 사람들의 잘못에 빠질 필요는 없다. 하느님인 이 존재는 그것에 아무것도 더해질 수 없는 그런 조건을 지니기 때문이다. 그러므로 그 순수함 자체로 인해 모든 존재와 구별되는 존재이다. 이런 까닭에 『원인론』 제9명제 주해에서, 존재일 뿐인 제일원인<a epub:type="noteref" href="#c4-fn6" id="c4-fn6-ref"><sup>6</sup></a>의 개체(individuum)화는 그 순수한 선함을 통해 이루어진다고 말한다. 그런데 공통된 존재는 그 뜻 안에 아무런 더함도 담지 않듯이, 그 뜻 안에 더함을 잘라 냄도 담지 않는다. 만일 그렇다면 존재 위에 무언가가 더해지는 그 어떤 것도 존재한다고 이해될 수 없을 것이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">His igitur visis patet quomodo essentia in diversis invenitur. Invenitur enim triplex modus habendi essentiam in substantiis. Aliquid enim est, sicut Deus, cuius essentia est ipsummet suum esse; et ideo inveniuntur aliqui philosophi dicentes quod Deus non habet quiditatem vel essentiam, quia essentia sua non est aliud quam esse eius. Et ex hoc sequitur quod ipse non sit in genere, quia omne quod est in genere oportet quod habeat quiditatem praeter esse suum, cum quiditas vel natura generis aut speciei non distinguatur secundum rationem naturae in illis, quorum est genus vel species, sed esse est diversum in diversis. Nec oportet, si dicimus quod Deus est esse tantum, ut in illorum errorem incidamus, qui Deum dixerunt esse illud esse universale, quo quaelibet res formaliter est. Hoc enim esse, quod Deus est, huius condicionis est, ut nulla sibi additio fieri possit; unde per ipsam suam puritatem est esse distinctum ab omni esse. Propter quod in commento IX propositionis libri de causis dicitur quod individuatio primae causae, quae est esse tantum, est per puram bonitatem eius. Esse autem commune sicut in intellectu suo non includit aliquam additionem, ita non includit in intellectu suo praecisionem additionis; quia si hoc esset, nihil posset intelligi esse, in quo super esse aliquid adderetur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 그분이 존재일 뿐이기는 해도 나머지 완전성(perfectio)과 고귀함이 그분에게 모자랄 필요는 없다. 오히려 모든 유(類) 안에 있는 모든 완전성을 갖는다. 이런 까닭에 철학자<a epub:type="noteref" href="#c4-fn7" id="c4-fn7-ref"><sup>7</sup></a>와 주석가<a epub:type="noteref" href="#c4-fn8" id="c4-fn8-ref"><sup>8</sup></a>가 『형이상학』 제5권에서 말하듯이 그분은 무제한으로 완전하다고 불린다. 그러나 그분은 그 완전성들을 모든 사물보다 뛰어난 방식으로 갖는다. 그분 안에서는 그것들이 하나이지만 다른 것들 안에서는 서로 다르기 때문이다. 그리고 이는 그 모든 완전성이 그분의 단순한 존재에 따라 그분에게 어울리기 때문이다. 누군가 하나의 성질(qualitas)로 모든 성질의 활동을 해낼 수 있다면 그 하나의 성질 안에 모든 성질을 가지듯이, 하느님도 그 존재 자체 안에 모든 완전성을 갖는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter etiam, quamvis sit esse tantum, non oportet quod deficiant ei reliquae perfectiones et nobilitates, immo habet omnes perfectiones, quae sunt in omnibus generibus. Propter quod perfectum simpliciter dicitur, ut philosophus et Commentator in V metaphysicae dicunt. Sed habet eas modo excellentiori omnibus rebus, quia in eo unum sunt, sed in aliis diversitatem habent. Et hoc est, quia omnes illae perfectiones conveniunt sibi secundum esse suum simplex; sicut si aliquis per unam qualitatem posset efficere operationes omnium qualitatum, in illa una qualitate omnes qualitates haberet, ita Deus in ipso esse suo omnes perfectiones habet.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>둘째 방식으로 본질은 창조된 지성(intellectus)적 실체들 안에서 발견된다. 그것들 안에서는 존재가 그 본질과 다르되, 본질은 질료(materia) 없이 있다. 그러므로 그것들의 존재는 무제한적이지 않고 받아들여진 것이며, 그래서 받아들이는 본성이 담을 수 있는 만큼으로 한정되고 끝이 있다. 그러나 그것들의 본성 또는 하성(何性)은 무제한적이어서 어떤 질료 안에도 받아들여지지 않는다. 그래서 『원인론』에서 예지체(叡智體)<a epub:type="noteref" href="#c4-fn9" id="c4-fn9-ref"><sup>9</sup></a>들은 아래로는 끝이 없고 위로는 끝이 있다고 말한다. 그것들은 위에 있는 것에게서 받아들이는 자기 존재에 관해서는 끝이 있지만, 아래로는 끝이 없다. 그것들의 형상은 그것들을 받아들이는 어떤 질료가 담을 수 있는 만큼으로 한정되지 않기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Secundo modo invenitur essentia in substantiis creatis intellectualibus, in quibus est aliud esse quam essentia earum, quamvis essentia sit sine materia. Unde esse earum non est absolutum, sed receptum et ideo limitatum et finitum ad capacitatem naturae recipientis, sed natura vel quiditas earum est absoluta, non recepta in aliqua materia. Et ideo dicitur in libro de causis quod intelligentiae sunt infinitae inferius et finitae superius. Sunt enim finitae quantum ad esse suum, quod a superiori recipiunt, non tamen finiuntur inferius, quia earum formae non limitantur ad capacitatem alicuius materiae recipientis eas.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 앞서 말했듯이 그런 실체들에서는 한 종(種) 안에 여러 개체가 발견되지 않는다. 다만 사람의 영혼(anima)은 그것이 결합하는 몸 때문에 예외다. 영혼의 개체화가 시작되는 데 관해서는 몸에 기대어 있기는 하다. 영혼이 개체화된 존재를 얻는 것은 자기가 그 현실태(actus)인 몸 안에서일 뿐이기 때문이다. 그러나 몸이 없어진다고 해서 개체화가 사라져야 하는 것은 아니다. 영혼은 무제한적인 존재를 갖고, 이 몸의 형상이 되었다는 데서 개체화된 존재를 얻었으므로, 저 존재는 언제까지나 개체화된 채로 남기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo in talibus substantiis non invenitur multitudo individuorum in una specie, ut dictum est, nisi in anima humana propter corpus, cui unitur. Et licet individuatio eius ex corpore occasionaliter dependeat quantum ad sui inchoationem, quia non acquiritur sibi esse individuatum nisi in corpore, cuius est actus, non tamen oportet ut subtracto corpore individuatio pereat, quia cum habeat esse absolutum, ex quo acquisitum est sibi esse individuatum ex hoc quod facta est forma huius corporis, illud esse semper remanet individuatum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아비첸나<a epub:type="noteref" href="#c4-fn10" id="c4-fn10-ref"><sup>10</sup></a>는 영혼들의 개체화 또는 여럿 됨이 시작에 관해서는 몸에 매여 있지만 끝에 관해서는 그렇지 않다고 말한다. 그리고 이 실체들 안에서는 하성(何性)이 존재와 같지 않으므로 그것들은 범주 안에 자리 잡을 수 있다. 이런 까닭에 그것들 안에서 유(類)와 종(種)과 종차(種差, differentia)가 발견된다. 다만 그것들의 고유한 종차(種差)는 우리에게 감추어져 있다. 감각되는 사물들에서도 본질적인 종차(種差) 자체는 우리가 알지 못하며, 그래서 본질적인 것에서 생겨나는 우유(偶有)<a epub:type="noteref" href="#c4-fn11" id="c4-fn11-ref"><sup>11</sup></a>적 종차(種差)를 통해 가리켜진다. 원인이 그 결과를 통해 가리켜지는 것과 같으며, 두 발 가짐이 사람의 종차(種差)로 놓이는 것과 같다. 그런데 질료 없는 실체들의 고유한 우유(偶有)들은 우리가 알지 못한다. 그러므로 그것들의 종차(種差)는 그 자체로도, 우유(偶有)적 종차(種差)를 통해서도 우리가 가리킬 수 없다. 다만 이것은 알아야 한다. 저 실체들과 감각되는 실체들에서 유(類)와 종차(種差)를 취하는 방식이 같지 않다는 점이다. 감각되는 것들에서는 유(類)가 사물 안의 질료적인 것에서 취해지고 종차(種差)는 그 안의 형상적인 것에서 취해지기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo dicit Avicenna quod individuatio animarum vel multiplicatio dependet ex corpore quantum ad sui principium, sed non quantum ad sui finem. Et quia in istis substantiis quiditas non est idem quod esse, ideo sunt ordinabiles in praedicamento, et propter hoc invenitur in eis genus et species et differentia, quamvis earum differentiae propriae nobis occultae sint. In rebus enim sensibilibus etiam ipsae differentiae essentiales ignotae sunt, unde significantur per differentias accidentales, quae ex essentialibus oriuntur, sicut causa significatur per suum effectum, sicut bipes ponitur differentia hominis. Accidentia autem propria substantiarum immaterialium nobis ignota sunt; unde differentiae earum nec per se nec per accidentales differentias a nobis significari possunt. Hoc tamen sciendum est quod non eodem modo sumitur genus et differentia in illis substantiis et in substantiis sensibilibus, quia in sensibilibus genus sumitur ab eo quod est materiale in re, differentia vero ab eo quod est formale in ipsa.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아비첸나는 자기 『영혼론』 첫머리에서, 질료와 형상으로 합성된 사물들에서 형상은 «그 형상으로 이루어지는 것의 단순한 종차(種差)»라고 말한다. 형상 자체가 종차(種差)라는 개념이 아니라 종차(種差)의 원리(principium)라는 개념이며, 그가 자기 『형이상학』에서 같은 말을 한다. 그런 종차(種差)가 단순한 종차라고 불리는 것은, 그것이 사물의 하성(何性)의 부분인 것 곧 형상에서 취해지기 때문이다. 그런데 질료 없는 실체들은 단순한 하성(何性)이므로, 그것들 안에서는 종차(種差)가 하성(何性)의 부분인 것에서 취해질 수 없고 하성(何性) 전체에서 취해진다. 그래서 아비첸나는 『영혼론』 첫머리에서 «단순한 종차(種差)를 갖는 것은 그 본질이 질료와 형상으로 합성된 종(種)들뿐이다»라고 말한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde dicit Avicenna in principio libri sui de anima quod forma in rebus compositis ex materia et forma est &#171;differentia simplex eius, quod constituitur ex illa&#187;, non autem ita quod ipsa forma sit differentia, sed quia est principium differentiae, ut idem dicit in sua metaphysica. Et dicitur talis differentia esse differentia simplex, quia sumitur ab eo quod est pars quiditatis rei, scilicet a forma. Cum autem substantiae immateriales sint simplices quiditates, non potest in eis differentia sumi ab eo quod est pars quiditatis, sed a tota quiditate; et ideo in principio de anima dicit Avicenna quod &#171;differentiam simplicem non habent nisi species, quarum essentiae sunt compositae ex materia et forma&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 그것들 안에서도 유(類)는 본질 전체에서 취해지되 다른 방식으로 그렇게 된다. 떨어져 있는 한 실체는 다른 실체와 질료 없음에서 일치하고, 가능태(potentia)에서 멀어지고 순수한 현실태에 가까워지는 완전성의 정도에서 서로 다르기 때문이다. 그러므로 그것들이 질료 없는 것인 한에서 따라 나오는 바에서 그것들의 유(類)가 취해진다. 지성적임이나 그 비슷한 무엇이 그러하다. 그런데 그것들 안에서 완전성의 정도에 따라 나오는 바에서 그것들의 종차(種差)가 취해지지만, 그 종차(種差)는 우리가 알지 못한다. 그렇다고 이 종차(種差)들이 우유(偶有)적이어야 하는 것은 아니다. 그것들은 더 크고 더 작은 완전성에 따른 것인데, 그런 차이는 종(種)을 다르게 만들지 않기 때문이다. 같은 형상을 받아들이는 데서의 완전성의 정도는 종(種)을 다르게 만들지 않는다. 같은 개념의 흼에 함께 참여하면서 더 희거나 덜 흰 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter etiam in eis ex tota essentia sumitur genus, modo tamen differenti. Una enim substantia separata convenit cum alia in immaterialitate et differunt ab invicem in gradu perfectionis secundum recessum a potentialitate et accessum ad actum purum. Et ideo ab eo quod consequitur illas in quantum sunt immateriales sumitur in eis genus, sicut est intellectualitas vel aliquid huiusmodi. Ab eo autem quod consequitur in eis gradum perfectionis sumitur in eis differentia, nobis tamen ignota. Nec oportet has differentias esse accidentales, quia sunt secundum maiorem et minorem perfectionem, quae non diversificant speciem. Gradus enim perfectionis in recipiendo eandem formam non diversificat speciem, sicut albius et minus album in participando eiusdem rationis albedinem.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 함께 참여하는 형상이나 본성 자체에서의 완전성의 정도가 다르면 종(種)이 달라진다. 철학자가 『동물지』 제7권에서 말하듯이, 본성이 식물에서 동물로 나아갈 때 동물과 식물 사이에 있는 어떤 것들을 거쳐 단계를 밟는 것과 같다. 또한 지성적 실체들의 나눔이 언제나 두 개의 참된 종차(種差)로 이루어져야 하는 것도 아니다. 철학자가 『동물지』 제11권에서 말하듯이 모든 사물에서 그런 일이 일어나기란 불가능하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed diversus gradus perfectionis in ipsis formis vel naturis participatis speciem diversificat, sicut natura procedit per gradus de plantis ad animalia per quaedam, quae sunt media inter animalia et plantas, secundum philosophum in VII de animalibus. Nec iterum est necessarium, ut divisio intellectualium substantiarum sit semper per duas differentias veras, quia hoc est impossibile in omnibus rebus accidere, ut philosophus dicit in XI de animalibus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>셋째 방식으로 본질은 질료와 형상으로 합성된 실체들 안에서 발견된다. 그것들 안에서는 존재도 받아들여진 것이고 끝이 있는데, 다른 것에서 존재를 얻기 때문이다. 또한 그것들의 본성 또는 하성(何性)은 지정된 질료<a epub:type="noteref" href="#c4-fn12" id="c4-fn12-ref"><sup>12</sup></a> 안에 받아들여진다. 그러므로 그것들은 위로도 아래로도 끝이 있으며, 그것들 안에서는 지정된 질료가 나뉘는 까닭에 한 종(種) 안에 여러 개체가 있을 수 있다. 그리고 이것들에서 본질이 논리적 지향(志向)<a epub:type="noteref" href="#c4-fn13" id="c4-fn13-ref"><sup>13</sup></a>들과 어떤 관계에 있는지는 앞에서 말했다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Tertio modo invenitur essentia in substantiis compositis ex materia et forma, in quibus et esse est receptum et finitum, propter hoc quod ab alio esse habent, et iterum natura vel quiditas earum est recepta in materia signata. Et ideo sunt finitae et superius et inferius, et in eis iam propter divisionem materiae signatae possibilis est multiplicatio individuorum in una specie. Et in his qualiter se habet essentia ad intentiones logicas, supra dictum est.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c4-fn1"><p><a href="#c4-fn1-ref">1</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn2"><p><a href="#c4-fn2-ref">2</a>. quiditas. 어떤 것에 &#x27;그것이 무엇이냐&#x27;고 물었을 때 답이 되는 것. 본질을 정의(定義)의 관점에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn3"><p><a href="#c4-fn3-ref">3</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn4"><p><a href="#c4-fn4-ref">4</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn5"><p><a href="#c4-fn5-ref">5</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c4-fn6"><p><a href="#c4-fn6-ref">6</a>. causa prima. 다른 무엇에도 원인을 두지 않으면서 모든 것의 원인이 되는 첫째 원인. 아퀴나스에게는 신을 가리킨다.</p></aside>
+<aside epub:type="footnote" id="c4-fn7"><p><a href="#c4-fn7-ref">7</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="c4-fn8"><p><a href="#c4-fn8-ref">8</a>. 아베로에스(이븐 루시드). 아리스토텔레스 주석으로 이름이 높아 &#x27;주석가&#x27;로 통했다.</p></aside>
+<aside epub:type="footnote" id="c4-fn9"><p><a href="#c4-fn9-ref">9</a>. intelligentia. 질료 없이 지성만으로 있는 존재자, 곧 천사를 가리키는 전문 용어다. &#x27;지능&#x27;이 아니다.</p></aside>
+<aside epub:type="footnote" id="c4-fn10"><p><a href="#c4-fn10-ref">10</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="c4-fn11"><p><a href="#c4-fn11-ref">11</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c4-fn12"><p><a href="#c4-fn12-ref">12</a>. materia signata. 이만한 크기로 여기 이렇게 놓인, 특정한 덩어리로서의 질료. 소크라테스를 다른 사람이 아닌 바로 그 사람이게 만드는 것이 이것이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn13"><p><a href="#c4-fn13-ref">13</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+</section><h1 class="chapter" id="c5"><span class="num">Caput 5</span>제5장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>이제 본질(essentia)이 우유(偶有)<a epub:type="noteref" href="#c5-fn1" id="c5-fn1-ref"><sup>1</sup></a>들 안에 어떻게 있는지 살펴야 한다. 모든 실체(substantia)들 안에 어떻게 있는지는 말했다. 그리고 앞서 말했듯이 본질은 정의(定義, diffinitio)가 가리키는 것이므로, 우유(偶有)들은 정의(定義)를 갖는 방식대로 본질을 가져야 한다. 그런데 우유(偶有)들은 온전하지 못한 정의(定義)를 갖는다. 그것들의 정의(定義) 안에 기체(基體)<a epub:type="noteref" href="#c5-fn2" id="c5-fn2-ref"><sup>2</sup></a>를 놓지 않고서는 정의될 수 없기 때문이다. 그리고 이는 우유(偶有)들이 기체(基體)에서 벗어나 그 자체로 무제한적인 존재<a epub:type="noteref" href="#c5-fn3" id="c5-fn3-ref"><sup>3</sup></a>를 갖지 못하기 때문이다. 오히려 형상(forma)과 질료(materia)가 합쳐질 때 거기서 실체적 존재가 남듯이, 우유(偶有)가 기체(基體)에 다가올 때 그 둘에서 우유(偶有)적 존재가 남는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Nunc restat videre quomodo sit essentia in accidentibus. Qualiter enim sit in omnibus substantiis, dictum est. Et quia, ut dictum est, essentia est id quod per diffinitionem significatur, oportet ut eo modo habeant essentiam quo habent diffinitionem. Diffinitionem autem habent incompletam, quia non possunt diffiniri, nisi ponatur subiectum in eorum diffinitione. Et hoc ideo est, quia non habent per se esse, absolutum a subiecto, sed sicut ex forma et materia relinquitur esse substantiale, quando componuntur, ita ex accidente et subiecto relinquitur esse accidentale, quando accidens subiecto advenit.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 실체적 형상도 질료도 온전한 본질을 갖지 못한다. 실체적 형상의 정의(定義) 안에도 그것이 무엇의 형상인지 그 무엇을 놓아야 하기 때문이다. 그리하여 그 정의(定義)는 자기 유(類)<a epub:type="noteref" href="#c5-fn4" id="c5-fn4-ref"><sup>4</sup></a> 바깥에 있는 무언가를 더함으로써 이루어지며, 우유(偶有)적 형상의 정의(定義)도 그러하다. 그래서 자연학자는 영혼(anima)을 오직 자연적 물체의 형상인 한에서만 헤아리므로, 영혼의 정의(定義) 안에 물체를 놓는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ideo etiam nec forma substantialis completam essentiam habet nec materia, quia etiam in diffinitione formae substantialis oportet quod ponatur illud, cuius est forma; et ita diffinitio eius est per additionem alicuius, quod est extra genus eius, sicut et diffinitio formae accidentalis. Unde et in diffinitione animae ponitur corpus a naturali, qui considerat animam solum in quantum est forma physici corporis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그렇지만 실체적 형상과 우유(偶有)적 형상 사이에는 이만한 차이가 있다. 실체적 형상이 자기가 다가가는 그것 없이 그 자체로 무제한적인 존재를 갖지 못하듯이, 그것이 다가가는 그것 곧 질료도 그러하다. 그러므로 둘이 결합하는 데서 사물이 그 자체로 자립하는 저 존재가 남고, 그 둘에서 그 자체로 하나인 것이 이루어진다. 이런 까닭에 그 둘이 결합하는 데서 어떤 본질이 남는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed tamen inter formas substantiales et accidentales tantum interest, quia sicut forma substantialis non habet per se esse absolutum sine eo cui advenit, ita nec illud cui advenit, scilicet materia. Et ideo ex coniunctione utriusque relinquitur illud esse, in quo res per se subsistit, et ex eis efficitur unum per se; propter quod ex coniunctione eorum relinquitur essentia quaedam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 형상은 그 자체로 헤아릴 때 온전한 본질의 개념<a epub:type="noteref" href="#c5-fn5" id="c5-fn5-ref"><sup>5</sup></a>을 갖지 못하지만 온전한 본질의 부분이다. 그러나 우유(偶有)가 다가가는 그것은 그 자체로 온전한 존재자(ens)이며 자기 존재 안에 자립한다. 그리고 이 존재는 나중에 덧붙는 우유(偶有)보다 본성<a epub:type="noteref" href="#c5-fn6" id="c5-fn6-ref"><sup>6</sup></a>상 앞선다. 그러므로 나중에 덧붙는 우유(偶有)는 자기가 다가가는 그것과 결합함으로써, 사물이 그 안에 자립하고 그것을 통해 사물이 그 자체로 존재자가 되는 저 존재를 만들어 내지 않는다. 오히려 어떤 둘째 존재를 만들어 내는데, 그 둘째 존재 없이도 자립하는 사물이 존재한다고 이해될 수 있다. 첫째 것이 둘째 것 없이 이해될 수 있는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde forma, quamvis in se considerata non habeat completam rationem essentiae, tamen est pars essentiae completae. Sed illud, cui advenit accidens, est ens in se completum, subsistens in suo esse. Quod quidem esse naturaliter praecedit accidens quod supervenit. Et ideo accidens superveniens ex coniunctione sui cum eo cui advenit non causat illud esse, in quo res subsistit, per quod res est ens per se, sed causat quoddam esse secundum, sine quo res subsistens intelligi potest esse, sicut primum potest intelligi sine secundo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 우유(偶有)와 기체(基體)에서 그 자체로 하나인 것이 이루어지지 않고 우연히 하나인 것이 이루어진다. 그러므로 그 둘이 결합하는 데서는 형상이 질료에 결합하는 데서와 달리 어떤 본질이 나오지 않는다. 이런 까닭에 우유(偶有)는 온전한 본질의 개념을 갖지도 않고 온전한 본질의 부분도 아니다. 오히려 그것이 제한적인 뜻에서 존재자이듯이 본질도 제한적인 뜻에서 갖는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde ex accidente et subiecto non efficitur unum per se, sed unum per accidens. Et ideo ex eorum coniunctione non resultat essentia quaedam, sicut ex coniunctione formae ad materiam. Propter quod accidens neque rationem completae essentiae habet neque pars essentiae completae est, sed sicut est ens secundum quid, ita et essentiam secundum quid habet.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 어떤 유(類)에서든 가장 크게 또 가장 참되게 그렇다고 말해지는 것은 그 유(類) 안에서 뒤에 오는 것들의 원인이다. 『형이상학』 제2권에서 말하듯이, 뜨거움의 끝에 있는 불이 뜨거운 사물들 안에 있는 열의 원인인 것과 같다. 그러므로 존재자라는 유(類) 안에서 첫째가는 것이며 가장 참되고 가장 크게 본질을 갖는 실체는, 둘째로 또 제한적인 뜻에서 존재자라는 개념에 함께 참여하는 우유(偶有)들의 원인이어야 한다. 다만 이는 여러 방식으로 일어난다. 실체의 부분은 질료와 형상이므로, 어떤 우유(偶有)들은 주로 형상을 따라 나오고 어떤 우유(偶有)들은 질료를 따라 나온다. 그런데 그 존재가 질료에 매여 있지 않은 어떤 형상이 발견되는데, 지성(intellectus)적 영혼이 그러하다. 반면 질료는 형상을 통하지 않고는 존재를 갖지 못한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia illud, quod dicitur maxime et verissime in quolibet genere, est causa eorum quae sunt post in illo genere, sicut ignis qui est in fine caliditatis est causa caloris in rebus calidis, ut in II metaphysicae dicitur, ideo substantia quae est primum in genere entis, verissime et maxime essentiam habens, oportet quod sit causa accidentium, quae secundario et quasi secundum quid rationem entis participant. Quod tamen diversimode contingit. Quia enim partes substantiae sunt materia et forma, ideo quaedam accidentia principaliter consequuntur formam et quaedam materiam. Forma autem invenitur aliqua, cuius esse non dependet ad materiam, ut anima intellectualis; materia vero non habet esse nisi per formam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 형상을 따라 나오는 우유(偶有)들 가운데에는 질료와 아무 나눔도 갖지 않는 것이 있다. 이해함이 그러한데, 철학자<a epub:type="noteref" href="#c5-fn7" id="c5-fn7-ref"><sup>7</sup></a>가 『영혼론』 제3권에서 증명하듯이 이해함은 몸의 기관을 통해 이루어지지 않는다. 그러나 형상을 따라 나오는 것들 가운데 질료와 나눔을 갖는 것들도 있다. 감각함이 그러하다. 그러나 형상과의 나눔 없이 질료를 따라 나오는 우유(偶有)는 하나도 없다. 다만 질료를 따라 나오는 이 우유(偶有)들 안에서도 어떤 차이가 발견된다. 어떤 우유(偶有)들은 질료가 특수한 형상에 대해 갖는 차례에 따라 나온다. 동물에서 수컷과 암컷이 그러한데, 『형이상학』 제10권에서 말하듯이 그 차이는 질료로 돌아간다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde in accidentibus, quae consequuntur formam, est aliquid, quod non habet communicationem cum materia, sicut est intelligere, quod non est per organum corporale, sicut probat philosophus in III de anima. Aliqua vero ex consequentibus formam sunt, quae habent communicationem cum materia, sicut sentire. Sed nullum accidens consequitur materiam sine communicatione formae. In his tamen accidentibus, quae materiam consequuntur, invenitur quaedam diversitas. Quaedam enim accidentia consequuntur materiam secundum ordinem, quem habet ad formam specialem, sicut masculinum et femininum in animalibus, quorum diversitas ad materiam reducitur, ut dicitur in X metaphysicae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 동물의 형상이 걷히면 앞서 말한 우유(偶有)들은 이름만 같게 남을 뿐이다. 그러나 어떤 우유(偶有)들은 질료가 일반적인 형상에 대해 갖는 차례에 따라 나오며, 그래서 특수한 형상이 걷혀도 질료 안에 그대로 남는다. 에티오피아 사람의 검은 살빛이 그러한데, 이는 원소들이 섞인 데서 오는 것이지 영혼의 개념에서 오는 것이 아니며, 그래서 죽은 뒤에도 그들 안에 남는다. 그리고 사물은 저마다 질료에서 개체(individuum)화되고 자기 형상을 통해 유(類)나 종(種, species)에 자리 잡으므로, 질료를 따라 나오는 우유(偶有)들은 개체의 우유(偶有)이며, 같은 종(種)의 개체들이 서로 다른 것도 이 우유(偶有)들에 따라서다. 반면 형상을 따라 나오는 우유(偶有)들은 유(類) 또는 종(種)의 고유한 속성<a epub:type="noteref" href="#c5-fn8" id="c5-fn8-ref"><sup>8</sup></a>이다. 그러므로 유(類)나 종(種)의 본성에 함께 참여하는 모든 것 안에서 발견된다. 사람에게서 웃을 수 있음이 형상을 따라 나오는 것과 같은데, 웃음은 사람의 영혼이 무언가를 알아차리는 데서 생기기 때문이다. 또 알아야 할 것은, 우유(偶有)들이 때로는 본질적인 원리(principium)들에서 온전한 현실태(actus)에 따라 비롯된다는 점이다. 불 안의 열이 그러한데, 불은 언제나 현실적으로 뜨겁다. 그러나 때로는 알맞음에 따라서만 비롯되고 그 완성은 바깥의 작용자<a epub:type="noteref" href="#c5-fn9" id="c5-fn9-ref"><sup>9</sup></a>에서 온다. 공기의 투명함이 그러한데, 이는 바깥의 빛나는 물체를 통해 완성된다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde remota forma animalis dicta accidentia non remanent nisi aequivoce. Quaedam vero consequuntur materiam secundum ordinem, quem habet ad formam generalem, et ideo remota forma speciali adhuc in ea remanent, sicut nigredo cutis est in Aethiope ex mixtione elementorum et non ex ratione animae, et ideo post mortem in eis remanet. Et quia unaquaeque res individuatur ex materia et collocatur in genere vel specie per suam formam, ideo accidentia, quae consequuntur materiam, sunt accidentia individui, secundum quae etiam individua eiusdem speciei ad invicem differunt, accidentia vero, quae consequuntur formam, sunt propriae passiones vel generis vel speciei; unde inveniuntur in omnibus participantibus naturam generis vel speciei, sicut risibile consequitur in homine formam, quia risus contingit ex aliqua apprehensione animae hominis. Sciendum etiam est quod accidentia aliquando ex principiis essentialibus causantur secundum actum perfectum, sicut calor in igne, qui semper est actu calidus; aliquando vero secundum aptitudinem tantum, sed complementum accidit ex agente exteriori, sicut diaphaneitas in aere, quae completur per corpus lucidum exterius.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런 것들에서 알맞음은 떼어 낼 수 없는 우유(偶有)이지만, 사물의 본질 바깥에 있거나 사물을 이루는 데 들어오지 않는 어떤 원리에서 오는 완성은 떼어 낼 수 있다. 움직여짐 같은 것이 그러하다. 또 알아야 할 것은, 우유(偶有)들에서는 유(類)와 종차(種差, differentia)와 종(種)을 실체들에서와 다른 방식으로 취한다는 점이다. 실체들에서는 실체적 형상과 질료에서 그 자체로 하나인 것이 이루어지고 그 둘이 결합하는 데서 어떤 하나의 본성이 나오며, 이 본성이 본래적으로 실체라는 범주에 자리 잡는다. 그러므로 실체들에서는 합성체(compositum)를 가리키는 구체적인 이름들이 본래적으로 유(類) 안에 있다고 말해진다. 종(種)이나 유(類)로서 그러한데, 사람이나 동물이 그렇다. 그러나 형상이나 질료는 이런 방식으로 범주 안에 있지 않고 되돌려 놓음으로써만 그러하다. 원리들이 유(類) 안에 있다고 말해지는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et in talibus aptitudo est accidens inseparabile, sed complementum, quod advenit ex aliquo principio, quod est extra essentiam rei vel quod non intrat constitutionem rei, est separabile, sicut moveri et huiusmodi. Sciendum est etiam quod in accidentibus alio modo sumitur genus, differentia et species quam in substantiis. Quia enim in substantiis ex forma substantiali et materia efficitur per se unum una quadam natura ex earum coniunctione resultante, quae proprie in praedicamento substantiae collocatur, ideo in substantiis nomina concreta, quae compositum significant, proprie in genere esse dicuntur sicut species vel genera, ut homo vel animal. Non autem forma vel materia est hoc modo in praedicamento nisi per reductionem, sicut principia in genere esse dicuntur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 우유(偶有)와 기체(基體)에서는 그 자체로 하나인 것이 이루어지지 않는다. 그러므로 그 둘이 결합하는 데서 유(類)나 종(種)이라는 지향(志向)<a epub:type="noteref" href="#c5-fn10" id="c5-fn10-ref"><sup>10</sup></a>을 돌릴 수 있는 어떤 본성이 나오지 않는다. 그러므로 구체적으로 말해진 우유(偶有)의 이름들은 종(種)이나 유(類)로서 범주에 놓이지 않는다. 흰 것이나 음악적인 것이 그러하며, 되돌려 놓음으로써만 그렇게 된다. 오직 추상(abstractio)적으로 가리켜지는 한에서만 놓이는데, 흼이나 음악이 그러하다. 그리고 우유(偶有)들은 질료와 형상으로 합성되지 않으므로, 합성된 실체들에서처럼 질료에서 유(類)를 취하고 형상에서 종차(種差)를 취할 수 없다. 오히려 첫째 유(類)는 존재 방식 자체에서 취해져야 한다. 존재자가 앞서고 뒤서는 순서에 따라 열 가지 유(類)에 대해 여러 방식으로 술어로 말해지는<a epub:type="noteref" href="#c5-fn11" id="c5-fn11-ref"><sup>11</sup></a> 데 따라서다. 이를테면 양은 실체의 잼이라는 데서 그렇게 불리고, 질은 실체의 갖춤이라는 데 따라 그렇게 불리며, 철학자가 『형이상학』 제9권에서 말하듯이 나머지도 그러하다. 반면 우유(偶有)들에서 종차(種差)는 그것들이 비롯되는 원리들이 서로 다른 데서 취해진다. 그리고 고유한 속성들은 기체(基體)의 고유한 원리들에서 비롯되므로, 우유(偶有)들이 본래적으로 유(類) 안에 있는 한에서 추상적으로 정의(定義)될 때는 그 정의(定義) 안에 종차(種差) 자리에 기체(基體)가 놓인다. 들창코임은 코의 굽음이라고 말하는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed ex accidente et subiecto non fit unum per se. Unde non resultat ex eorum coniunctione aliqua natura, cui intentio generis vel speciei possit attribui. Unde nomina accidentalia concretive dicta non ponuntur in praedicamento sicut species vel genera, ut album vel musicum, nisi per reductionem, sed solum secundum quod in abstracto significantur, ut albedo et musica. Et quia accidentia non componuntur ex materia et forma, ideo non potest in eis sumi genus a materia et differentia a forma sicut in substantiis compositis, sed oportet ut genus primum sumatur ex ipso modo essendi, secundum quod ens diversimode secundum prius et posterius de decem generibus praedicatur; sicut dicitur quantitas ex eo quod est mensura substantiae, et qualitas secundum quod est dispositio substantiae, et sic de aliis secundum philosophum IX metaphysicae. Differentiae vero in eis sumuntur ex diversitate principiorum, ex quibus causantur. Et quia propriae passiones ex propriis principiis subiecti causantur, ideo subiectum ponitur in diffinitione eorum loco differentiae, si in abstracto diffiniuntur secundum quod sunt proprie in genere, sicut dicitur quod simitas est nasi curvitas.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 그것들의 정의(定義)를 구체적으로 말해지는 데 따라 취한다면 그 반대가 될 것이다. 그때는 기체(基體)가 그 정의(定義) 안에 유(類)처럼 놓일 텐데, 그렇게 되면 합성된 실체들의 방식으로 정의(定義)되기 때문이다. 합성된 실체들에서는 유(類)라는 개념이 질료에서 취해진다. 들창코인 것은 굽은 코라고 우리가 말하는 것과 같다. 한 우유(偶有)가 다른 우유(偶有)의 원리일 때도 마찬가지다. 관계의 원리는 능동과 수동과 양인 것과 같다. 그래서 철학자는 『형이상학』 제5권에서 이것들에 따라 관계를 나눈다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed e converso esset, si eorum diffinitio sumeretur secundum quod concretive dicuntur. Sic enim subiectum in eorum diffinitione poneretur sicut genus, quia tunc diffinirentur per modum substantiarum compositarum, in quibus ratio generis sumitur a materia, sicut dicimus quod simum est nasus curvus. Similiter etiam est, si unum accidens alterius accidentis principium sit, sicut principium relationis est actio et passio et quantitas; et ideo secundum haec dividit philosophus relationem in V metaphysicae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 우유(偶有)들의 고유한 원리가 언제나 드러나 있지는 않으므로, 우리는 때로 그 결과에서 우유(偶有)들의 종차(種差)를 취한다. 모으는 것과 흩는 것이 빛깔의 종차(種差)라고 말해지는 것과 같다. 이것들은 빛이 많은 데서 또는 적은 데서 비롯되며, 여기서 빛깔의 여러 종(種)이 비롯된다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia propria principia accidentium non semper sunt manifesta, ideo quandoque sumimus differentias accidentium ex eorum effectibus, sicut congregativum et disgregativum dicuntur differentiae coloris, quae causantur ex abundantia vel paucitate lucis, ex quo diversae species colorum causantur.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c5-fn1"><p><a href="#c5-fn1-ref">1</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c5-fn2"><p><a href="#c5-fn2-ref">2</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c5-fn3"><p><a href="#c5-fn3-ref">3</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn4"><p><a href="#c5-fn4-ref">4</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn5"><p><a href="#c5-fn5-ref">5</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c5-fn6"><p><a href="#c5-fn6-ref">6</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn7"><p><a href="#c5-fn7-ref">7</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="c5-fn8"><p><a href="#c5-fn8-ref">8</a>. passio. 여기서는 주어에 필연적으로 딸려 나오는 성질(고유속성)을 가리킨다. 있어도 그만인 우유(偶有)와 달리, 사람에게 웃을 수 있음처럼 본질에서 반드시 따라 나온다.</p></aside>
+<aside epub:type="footnote" id="c5-fn9"><p><a href="#c5-fn9-ref">9</a>. agens. 무엇을 실제로 일어나게 하는 쪽. 작용인이 하는 일을 그 주체 쪽에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn10"><p><a href="#c5-fn10-ref">10</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn11"><p><a href="#c5-fn11-ref">11</a>. praedicatio. &#x27;A는 B이다&#x27;라고 말할 때 B를 A에 대해 말하는 일. 동사형은 &#x27;술어로 말해진다&#x27;로 옮긴다.</p></aside>
+</section><h1 class="chapter" id="c6"><span class="num">Caput 6</span>제6장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 본질(essentia)이 실체(substantia)들과 우유(偶有)<a epub:type="noteref" href="#c6-fn1" id="c6-fn1-ref"><sup>1</sup></a>들 안에 어떻게 있는지, 합성된 실체와 단순한 실체 안에 어떻게 있는지, 그리고 이 모든 것 안에서 논리학의 보편적 지향(志向)<a epub:type="noteref" href="#c6-fn2" id="c6-fn2-ref"><sup>2</sup></a>들이 어떻게 발견되는지가 분명해졌다. 다만 첫째가는 것은 예외인데, 그것은 단순함의 끝에 있어서 유(類)<a epub:type="noteref" href="#c6-fn3" id="c6-fn3-ref"><sup>3</sup></a>나 종(種, species)이라는 개념<a epub:type="noteref" href="#c6-fn4" id="c6-fn4-ref"><sup>4</sup></a>이 어울리지 않으며, 따라서 그 단순함 때문에 정의(定義, diffinitio)도 어울리지 않는다. 이 글은 여기서 끝을 맺는다. 아멘.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sic ergo patet quomodo essentia est in substantiis et accidentibus et quomodo in substantiis compositis et simplicibus et qualiter in his omnibus intentiones universales logicae inveniuntur excepto primo, quod est in fine simplicitatis, cui non convenit ratio generis vel speciei et per consequens nec diffinitio propter suam simplicitatem. In quo sit finis et consummatio huius sermonis. Amen.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c6-fn1"><p><a href="#c6-fn1-ref">1</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c6-fn2"><p><a href="#c6-fn2-ref">2</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+<aside epub:type="footnote" id="c6-fn3"><p><a href="#c6-fn3-ref">3</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c6-fn4"><p><a href="#c6-fn4-ref">4</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+</section></article>
+  </main>
+  <nav class="reader-pagination" aria-label="책장 넘기기">
+    <button class="page-button" id="page-previous" type="button">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span>이전</span>
+    </button>
+    <span class="page-status" aria-live="polite"><small id="page-counter-label">페이지</small><strong id="page-counter">1 / 1</strong></span>
+    <button class="page-button" id="page-next" type="button"><span>다음</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </nav>
+  
+<dialog class="footnote-dialog" id="footnote-dialog" aria-labelledby="footnote-dialog-title">
+  <div class="footnote-dialog-head">
+    <p class="footnote-dialog-title" id="footnote-dialog-title">각주</p>
+    <button class="footnote-close" id="footnote-close" type="button" aria-label="각주 닫기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="footnote-dialog-content" id="footnote-dialog-content"></div>
+</dialog>
+
+
+<script>
+(() => {
+  const body = document.body;
+  const stage = document.getElementById('reader-stage');
+  const pages = document.getElementById('reader-pages');
+  const previous = document.getElementById('page-previous');
+  const next = document.getElementById('page-next');
+  const counter = document.getElementById('page-counter');
+  const counterLabel = document.getElementById('page-counter-label');
+  const layoutLabel = document.getElementById('reader-layout-label');
+  const latinButton = document.getElementById('latin-visibility');
+  const notesButton = document.getElementById('notes-visibility');
+  const dialog = document.getElementById('footnote-dialog');
+  const title = document.getElementById('footnote-dialog-title');
+  const content = document.getElementById('footnote-dialog-content');
+  const close = document.getElementById('footnote-close');
+  const reader = body.dataset;
+  const embedded = window.parent && window.parent !== window;
+  const preferenceKey = 'aquinasReaderPreferences';
+  const progressKey = `aquinasReaderPage:${reader.workId || 'work'}:${reader.variant || 'edition'}`;
+  let preferences = {};
+  let currentPage = 0;
+  let totalPages = 1;
+  let columnsPerSpread = 1;
+  let pageWidth = 0;
+  let pageGap = 32;
+  let firstLayout = true;
+  let layoutRevision = 0;
+  let resizeTimer = null;
+  let wheelLocked = false;
+  let touchStartX = null;
+  let sourceHtml = '';
+
+  try { preferences = JSON.parse(localStorage.getItem(preferenceKey)) || {}; } catch { preferences = {}; }
+  const defaultLatin = reader.defaultLatin === 'true';
+  body.classList.toggle('show-latin', preferences.latin == null ? defaultLatin : Boolean(preferences.latin));
+  body.classList.toggle('show-notes', Boolean(preferences.notes));
+  body.classList.toggle('embedded-reader', embedded);
+  if (embedded) {
+    const backLabel = document.getElementById('library-back-label');
+    if (backLabel) backLabel.textContent = '저작 선택';
+  }
+
+  function noteText(note) {
+    const paragraph = note && note.querySelector('p');
+    const clone = paragraph ? paragraph.cloneNode(true) : note?.cloneNode(true);
+    if (!clone) return '';
+    clone.querySelectorAll('a').forEach(anchor => anchor.remove());
+    return clone.textContent.replace(/^\s*\.\s*/, '').trim();
+  }
+
+  function buildInlineFootnotes() {
+    const byParagraph = new Map();
+    document.querySelectorAll('a[id$="-ref"][href^="#"]').forEach(reference => {
+      reference.classList.add('footnote-reference');
+      const paragraph = reference.closest('p');
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!paragraph || !note) return;
+      if (!byParagraph.has(paragraph)) byParagraph.set(paragraph, []);
+      byParagraph.get(paragraph).push({ number: reference.textContent.trim(), text: noteText(note) });
+    });
+    byParagraph.forEach((items, paragraph) => {
+      const box = document.createElement('span');
+      box.className = 'inline-footnotes';
+      box.setAttribute('role', 'note');
+      items.forEach(item => {
+        const line = document.createElement('span');
+        line.className = 'inline-footnote-item';
+        const number = document.createElement('strong');
+        number.textContent = `${item.number}. `;
+        line.append(number, document.createTextNode(item.text));
+        box.append(line);
+      });
+      paragraph.insertAdjacentElement('afterend', box);
+    });
+  }
+
+  function prepareSource() {
+    const notes = pages.querySelector('.notes');
+    if (notes) {
+      const source = document.createElement('div');
+      source.id = 'footnote-source';
+      source.hidden = true;
+      source.append(notes);
+      body.append(source);
+    }
+    sourceHtml = pages.innerHTML;
+  }
+
+  function wrapColumnFlow(column) {
+    const viewport = document.createElement('div');
+    viewport.className = 'column-viewport';
+    const flow = document.createElement('div');
+    flow.className = 'column-flow';
+    while (column.firstChild) flow.append(column.firstChild);
+    viewport.append(flow);
+    column.append(viewport);
+    return flow;
+  }
+
+  function createPairPage(pair, segment, sliceHeights, { measure = false } = {}) {
+    const page = document.createElement('section');
+    page.className = `book-page paired-page${measure ? ' pair-measure' : ''}`;
+    const clone = pair.cloneNode(true);
+    clone.classList.remove('stacked-long');
+    const flows = Array.from(clone.querySelectorAll('.parallel-column')).map(wrapColumnFlow);
+    if (!measure) {
+      clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+      flows.forEach((flow, index) => {
+        flow.style.transform = `translateY(${-segment * sliceHeights[index]}px)`;
+      });
+      page.dataset.segment = String(segment + 1);
+    }
+    page.append(clone);
+    return { page, flows };
+  }
+
+  function buildManualPages() {
+    const blocks = Array.from(pages.children);
+    pages.replaceChildren();
+    const maximumSlice = Math.max(120, pages.clientHeight - 46);
+
+    blocks.forEach(block => {
+      if (!block.classList.contains('parallel-pair')) {
+        const page = document.createElement('section');
+        page.className = `book-page${block.matches('h1.chapter') ? ' chapter-opening' : ''}`;
+        page.append(block);
+        pages.append(page);
+        return;
+      }
+
+      const measurement = createPairPage(block, 0, [], { measure: true });
+      pages.append(measurement.page);
+      const sliceHeights = measurement.flows.map(flow => {
+        const sample = flow.querySelector('p') || flow;
+        const lineHeight = Math.max(12, parseFloat(getComputedStyle(sample).lineHeight) || 24);
+        return Math.max(lineHeight * 4, Math.floor(maximumSlice / lineHeight) * lineHeight);
+      });
+      const segments = Math.max(1, ...measurement.flows.map((flow, index) => Math.ceil(flow.scrollHeight / sliceHeights[index])));
+      measurement.page.remove();
+      for (let segment = 0; segment < segments; segment += 1) {
+        pages.append(createPairPage(block, segment, sliceHeights).page);
+      }
+    });
+  }
+
+  function savePreferences() {
+    preferences = { latin: body.classList.contains('show-latin'), notes: body.classList.contains('show-notes') };
+    try { localStorage.setItem(preferenceKey, JSON.stringify(preferences)); } catch { /* 오프라인 파일 저장이 막혀도 독서는 계속한다. */ }
+  }
+
+  function updateToggleState() {
+    const latin = body.classList.contains('show-latin');
+    const notes = body.classList.contains('show-notes');
+    latinButton.setAttribute('aria-pressed', String(latin));
+    latinButton.setAttribute('aria-label', latin ? '라틴어 원문 숨기기' : '라틴어 원문 함께 보기');
+    notesButton.setAttribute('aria-pressed', String(notes));
+    notesButton.setAttribute('aria-label', notes ? '본문 각주 접기' : '본문 각주 함께 보기');
+  }
+
+  function updatePage() {
+    currentPage = Math.max(0, Math.min(totalPages - 1, currentPage));
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    pages.style.transform = `translate3d(${-currentPage * stride}px, 0, 0)`;
+    previous.disabled = currentPage === 0;
+    next.disabled = currentPage >= totalPages - 1;
+    counter.textContent = `${currentPage + 1} / ${totalPages}`;
+    counterLabel.textContent = columnsPerSpread === 2 ? '펼침' : '페이지';
+    try { localStorage.setItem(progressKey, String(currentPage)); } catch { /* 저장 실패는 무시 */ }
+  }
+
+  function layoutPages({ preserve = true } = {}) {
+    const revision = ++layoutRevision;
+    const oldRatio = preserve && totalPages > 1 ? currentPage / (totalPages - 1) : 0;
+    pages.style.transform = 'translate3d(0,0,0)';
+    pages.innerHTML = sourceHtml;
+
+    const style = getComputedStyle(stage);
+    const available = Math.max(280, stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
+    pageGap = available >= 900 ? 44 : available >= 560 ? 30 : 20;
+    columnsPerSpread = !body.classList.contains('show-latin') && available >= 900 ? 2 : 1;
+    pageWidth = (available - pageGap * (columnsPerSpread - 1)) / columnsPerSpread;
+    pages.style.setProperty('--reader-page-width', `${pageWidth}px`);
+    pages.style.setProperty('--reader-page-gap', `${pageGap}px`);
+    pages.classList.toggle('manual-pages', body.classList.contains('show-latin'));
+    if (body.classList.contains('show-latin')) buildManualPages();
+    stage.classList.toggle('double', columnsPerSpread === 2);
+    layoutLabel.textContent = columnsPerSpread === 2
+      ? '양면 펼침'
+      : body.classList.contains('show-latin') ? '번역 · 원문 대조' : '한 면 읽기';
+
+    /* 숨겨진 Electron 창에서도 rAF 지연 없이 즉시 실제 조판 치수를 확정한다. */
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    const columns = pages.classList.contains('manual-pages')
+      ? Math.max(1, pages.children.length)
+      : Math.max(1, Math.ceil((pages.scrollWidth + pageGap - 1) / (pageWidth + pageGap)));
+    totalPages = Math.max(1, Math.ceil(columns / columnsPerSpread));
+    if (firstLayout) {
+      let saved = 0;
+      try { saved = Number(localStorage.getItem(progressKey)) || 0; } catch { saved = 0; }
+      currentPage = Math.min(totalPages - 1, Math.max(0, saved));
+      firstLayout = false;
+    } else if (preserve) {
+      currentPage = Math.round(oldRatio * Math.max(0, totalPages - 1));
+    } else {
+      currentPage = 0;
+    }
+    updatePage();
+  }
+
+  function turn(delta) {
+    const target = currentPage + delta;
+    if (target < 0 || target >= totalPages) return;
+    currentPage = target;
+    updatePage();
+  }
+
+  latinButton.addEventListener('click', () => {
+    body.classList.toggle('show-latin');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  notesButton.addEventListener('click', () => {
+    body.classList.toggle('show-notes');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  previous.addEventListener('click', () => turn(-1));
+  next.addEventListener('click', () => turn(1));
+
+  document.addEventListener('click', event => {
+    const reference = event.target.closest('a.footnote-reference[href^="#"]');
+    if (reference) {
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!note) return;
+      event.preventDefault();
+      title.textContent = `각주 ${reference.textContent.trim()}`;
+      content.textContent = noteText(note);
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+      return;
+    }
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const target = document.getElementById(anchor.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    const left = target.getBoundingClientRect().left - pages.getBoundingClientRect().left;
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    currentPage = Math.max(0, Math.min(totalPages - 1, Math.floor(left / stride)));
+    updatePage();
+  });
+
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  document.addEventListener('keydown', event => {
+    const tag = document.activeElement?.tagName;
+    if (dialog.open || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+      event.preventDefault(); turn(1);
+    } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+      event.preventDefault(); turn(-1);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); currentPage = 0; updatePage();
+    } else if (event.key === 'End') {
+      event.preventDefault(); currentPage = totalPages - 1; updatePage();
+    }
+  });
+
+  stage.addEventListener('wheel', event => {
+    const amount = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    if (Math.abs(amount) < 8) return;
+    event.preventDefault();
+    if (wheelLocked) return;
+    wheelLocked = true;
+    turn(amount > 0 ? 1 : -1);
+    setTimeout(() => { wheelLocked = false; }, 360);
+  }, { passive: false });
+  stage.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0]?.clientX ?? null; }, { passive: true });
+  stage.addEventListener('touchend', event => {
+    if (touchStartX == null) return;
+    const distance = (event.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+    touchStartX = null;
+    if (Math.abs(distance) >= 48) turn(distance < 0 ? 1 : -1);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => layoutPages(), 140);
+  });
+
+  buildInlineFootnotes();
+  prepareSource();
+  updateToggleState();
+  layoutPages({ preserve: false });
+
+  if (embedded) {
+    window.parent.postMessage({
+      type: 'aquinas:reader-ready',
+      workId: reader.workId || '',
+      title: reader.workTitle || document.title,
+      variant: reader.variant || '',
+    }, '*');
+  }
+})();
+</script>
+</body></html>

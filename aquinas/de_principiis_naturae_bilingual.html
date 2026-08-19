@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#7c3f2b"/><link rel="icon" type="image/png" href="aquinas-app-icon.png"/><title>자연의 원리 — 라틴어 원문 병기판</title><style>
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+body {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+  line-height: 1.9; margin: 0 auto; padding: 3rem 1.5rem 6rem;
+  max-width: 42rem; word-break: keep-all; overflow-wrap: break-word;
+  background: #fbfaf7; color: #23201c;
+}
+.library-home {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .55rem .9rem;
+  margin: 0 0 2rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: rgba(255,255,255,.58); color: inherit; text-decoration: none;
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: .86rem;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.library-home:hover { background: #fff; border-color: rgba(96,73,46,.48); }
+.library-home:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+@media (prefers-color-scheme: dark) {
+  body { background: #16151a; color: #e2ded6; }
+  .library-home { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+  .library-home:hover { background: rgba(255,255,255,.11); }
+}
+@media (prefers-reduced-motion: reduce) { .library-home { transition: none; } }
+.titlepage { text-align: center; margin: 2rem 0 5rem; }
+.titlepage h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+.titlepage .la { font-style: italic; opacity: .55; margin: 0 0 2.5rem; }
+.titlepage .author { font-size: 1.05rem; margin: 0; }
+.titlepage .la, .titlepage .author, .titlepage .meta { text-align: center; }
+.titlepage .meta { font-size: .8rem; opacity: .5; margin-top: 3rem; line-height: 1.8; }
+nav.toc {
+  margin: 0 0 4rem; padding: 1.4rem 1.6rem; border-radius: .5rem;
+  background: rgba(128,128,128,.08); font-size: .95rem;
+}
+nav.toc h2 { font-size: .8rem; letter-spacing: .16em; opacity: .5;
+             font-weight: normal; margin: 0 0 .9rem; }
+nav.toc ol { margin: 0; padding-left: 1.2rem; }
+nav.toc li { margin: .35rem 0; }
+nav.toc a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+nav.toc a:hover { border-bottom-color: currentColor; }
+h1.chapter { font-size: 1.5rem; margin: 4.5rem 0 2rem; scroll-margin-top: 2rem; }
+h1.chapter .num { display: block; font-size: .62em; font-weight: normal;
+                  letter-spacing: .22em; opacity: .5; margin-bottom: .5em; }
+h1.chapter .subtitle { display: block; font-size: .72em; font-weight: normal;
+                       line-height: 1.55; margin-top: .55em; opacity: .78; }
+p { margin: 0 0 1.2em; text-align: justify; }
+sup { font-size: .72em; vertical-align: super; line-height: 0; }
+/* 각주 앵커는 <a><sup>1</sup></a> 구조다. sup 안의 a가 아니라 a 안의 sup. */
+a sup { padding: 0 .15em; color: #8a6d3b; }
+@media (prefers-color-scheme: dark) { a sup { color: #c9a86a; } }
+a:has(> sup) { text-decoration: none; }
+a[id$="-ref"] { border-radius: .35rem; }
+a[id$="-ref"]:hover sup { background: rgba(165,92,54,.14); }
+a[id$="-ref"]:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+a { color: inherit; }
+.latin-toggle { margin: -.5em 0 1.6em; font-size: .87em; }
+.latin-toggle summary {
+  cursor: pointer; opacity: .45; list-style: none;
+  letter-spacing: .04em; padding: .2em 0; user-select: none;
+}
+.latin-toggle summary::-webkit-details-marker { display: none; }
+.latin-toggle summary::before { content: "▸ "; }
+.latin-toggle[open] summary::before { content: "▾ "; }
+.latin-toggle summary:hover { opacity: .75; }
+.latin-toggle p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-style: italic; opacity: .8; margin: .6em 0 0;
+  padding-left: 1em; border-left: 2px solid rgba(128,128,128,.3);
+}
+.notes { margin-top: 3.5rem; padding-top: 1.4rem;
+         border-top: 1px solid rgba(128,128,128,.3); font-size: .87rem; }
+.notes h2 { font-size: .78rem; letter-spacing: .14em; opacity: .5;
+            font-weight: normal; margin: 0 0 1.1rem; }
+.notes aside { margin: 0 0 .75em; opacity: .85; scroll-margin-top: 40vh; }
+.notes aside:target { background: rgba(255,214,0,.22); border-radius: .2rem; }
+.notes p { margin: 0; }
+.parallel-pair {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem; padding: 1.4rem 0 1.7rem; border-bottom: 1px solid rgba(128,128,128,.22);
+}
+.parallel-pair:first-of-type { border-top: 1px solid rgba(128,128,128,.22); }
+.parallel-column { min-width: 0; }
+.parallel-column::before {
+  display: block; margin-bottom: .65rem; font: 700 .68rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: .13em; opacity: .5;
+}
+.parallel-korean::before { content: "한국어"; }
+.parallel-latin { padding-left: 1.7rem; border-left: 1px solid rgba(128,128,128,.25); }
+.parallel-latin::before { content: "LATINA"; }
+.parallel-pair p { margin: 0; }
+.parallel-latin p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-size: .93rem; font-style: normal; line-height: 1.8; text-align: left; opacity: .86;
+}
+.footnote-dialog {
+  width: min(32rem, calc(100% - 2rem)); max-height: min(70vh, 34rem); padding: 1.35rem 1.45rem 1.45rem;
+  border: 1px solid rgba(96,73,46,.28); border-radius: 16px; background: #fffdf8; color: #23201c;
+  box-shadow: 0 24px 80px rgba(24,18,13,.28); font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+}
+.footnote-dialog::backdrop { background: rgba(20,16,12,.48); backdrop-filter: blur(2px); }
+.footnote-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }
+.footnote-dialog-title { margin: 0; font: 700 .8rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif; letter-spacing: .12em; color: #7c3f2b; }
+.footnote-dialog-content { overflow: auto; font-size: .94rem; line-height: 1.75; }
+.footnote-close {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(96,73,46,.22); border-radius: 999px; background: transparent; color: inherit; cursor: pointer;
+}
+.footnote-close:hover { background: rgba(124,63,43,.08); }
+.footnote-close:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.footnote-close svg { width: 20px; height: 20px; }
+@media (max-width: 760px) {
+  .parallel-pair { grid-template-columns: 1fr; gap: 1rem; }
+  .parallel-latin { padding: 1rem 0 0; border-left: 0; border-top: 1px dashed rgba(128,128,128,.28); }
+}
+@media (prefers-color-scheme: dark) {
+  .footnote-dialog { background: #242126; color: #eee7dc; border-color: rgba(255,255,255,.18); }
+  .footnote-dialog-title { color: #dca07e; }
+  .footnote-close { border-color: rgba(255,255,255,.18); }
+}
+@media (prefers-reduced-motion: reduce) { .footnote-dialog::backdrop { backdrop-filter: none; } }
+
+/* 실제 책처럼 세로 스크롤 없이 좌우로 넘기는 독서 화면 */
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body.reader-document {
+  max-width: none; margin: 0; padding: 0; display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto; background: #e8e0d3;
+}
+body.embedded-reader { background: #faf7f2; }
+.reader-toolbar {
+  z-index: 20; min-height: 62px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .55rem clamp(.7rem, 2vw, 1.5rem);
+  border-bottom: 1px solid rgba(96,73,46,.20); background: rgba(251,248,242,.96);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.reader-toolbar .library-home { justify-self: start; min-height: 44px; margin: 0; padding: .45rem .75rem; background: #fff; }
+.reader-toolbar .library-home svg { width: 18px; height: 18px; margin-right: .35rem; }
+.reader-toggles { display: flex; align-items: center; justify-content: center; gap: .45rem; }
+.reader-toggle {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .42rem;
+  padding: .52rem .8rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: transparent; color: #51483e; cursor: pointer; font: 700 .78rem/1.2 inherit;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.reader-toggle svg { width: 18px; height: 18px; }
+.reader-toggle:hover { border-color: rgba(124,63,43,.55); background: rgba(124,63,43,.06); }
+.reader-toggle[aria-pressed="true"] { border-color: #7c3f2b; background: #7c3f2b; color: #fff; }
+.reader-toggle:focus-visible, .page-button:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.reader-layout-label { justify-self: end; color: #766b5e; font-size: .72rem; white-space: nowrap; }
+.reader-stage {
+  position: relative; min-width: 0; min-height: 0; width: min(96rem, calc(100% - 1.4rem));
+  margin: .7rem auto; padding: clamp(1.1rem, 2.7vw, 2.7rem) clamp(1.15rem, 4vw, 4.5rem);
+  overflow: hidden; border: 1px solid rgba(96,73,46,.20); border-radius: 18px;
+  background: #fbfaf7; box-shadow: 0 18px 48px rgba(45,31,20,.12);
+}
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf7f2; }
+.embedded-reader .reader-stage {
+  width: 100%; margin: 0; border-width: 0; border-radius: 0; box-shadow: none;
+}
+.reader-stage.double::after {
+  content: ""; position: absolute; z-index: 1; top: 1rem; bottom: 1rem; left: 50%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(96,73,46,.18) 12%, rgba(96,73,46,.18) 88%, transparent);
+  box-shadow: 8px 0 20px rgba(70,49,31,.06), -8px 0 20px rgba(70,49,31,.06); pointer-events: none;
+}
+.reader-pages {
+  height: 100%; min-width: 0; column-width: var(--reader-page-width, 38rem); column-gap: var(--reader-page-gap, 3rem);
+  column-fill: auto; transform: translate3d(0,0,0); transition: transform .28s ease;
+  will-change: transform; overflow: visible;
+}
+.reader-pages.manual-pages {
+  width: max-content; display: flex; align-items: stretch; gap: var(--reader-page-gap, 2rem);
+  column-width: auto; column-fill: balance;
+}
+.book-page {
+  width: var(--reader-page-width, 38rem); height: 100%; flex: 0 0 var(--reader-page-width, 38rem);
+  overflow: hidden;
+}
+.book-page > .titlepage { height: 100%; }
+.chapter-opening { display: flex; align-items: center; }
+.chapter-opening h1.chapter { width: 100%; margin: 0; text-align: center; }
+.paired-page .parallel-pair {
+  height: 100%; display: grid; margin: 0; padding: .35rem 0; overflow: hidden; break-inside: auto;
+}
+.paired-page .parallel-column { height: 100%; overflow: hidden; }
+.paired-page .column-viewport { height: calc(100% - 1.8rem); overflow: hidden; }
+.paired-page .column-flow { width: 100%; }
+.pair-measure { position: fixed; left: -100000px; top: 0; visibility: hidden; pointer-events: none; }
+.pair-measure .parallel-pair,
+.pair-measure .parallel-column,
+.pair-measure .column-viewport { height: auto; overflow: visible; }
+.reader-pages .titlepage { min-height: 82%; display: flex; flex-direction: column; justify-content: center; margin: 0; break-after: column; }
+.reader-pages nav.toc { break-after: column; }
+.reader-pages h1.chapter { break-after: avoid-column; margin-top: 1.5rem; }
+.reader-pages p { orphans: 3; widows: 3; }
+.reader-pages .notes { break-before: column; }
+.parallel-pair { margin: 0 0 1.2rem; padding: 0 0 1.2rem; break-inside: avoid-column; }
+body:not(.show-latin) .parallel-pair { display: contents; }
+body:not(.show-latin) .parallel-latin { display: none; }
+body:not(.show-latin) .parallel-korean { display: block; margin: 0 0 1.2rem; padding: 0 0 1.2rem; border-bottom: 1px solid rgba(128,128,128,.18); }
+body.show-latin .parallel-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.6rem); }
+body.show-latin .parallel-pair.stacked-long { display: contents; }
+body.show-latin .parallel-pair.stacked-long .parallel-korean,
+body.show-latin .parallel-pair.stacked-long .parallel-latin { display: block; margin-bottom: 1.1rem; padding: 0 0 1rem; border: 0; border-bottom: 1px dashed rgba(128,128,128,.25); }
+.inline-footnotes { display: none; margin: .8rem 0 .2rem; padding: .65rem .8rem; border-left: 3px solid #a55c36; background: rgba(165,92,54,.07); }
+body.show-notes .inline-footnotes { display: block; }
+.inline-footnote-item { display: block; margin: .2rem 0; color: #5f5144; font: .78rem/1.65 "Noto Sans KR", "Malgun Gothic", sans-serif; }
+.inline-footnote-item strong { color: #7c3f2b; }
+.reader-pagination {
+  min-height: 58px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .45rem clamp(.8rem, 3vw, 2rem); border-top: 1px solid rgba(96,73,46,.20);
+  background: rgba(251,248,242,.97); font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.page-button {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .5rem .9rem; border: 1px solid rgba(96,73,46,.22); border-radius: 12px; background: #fff;
+  color: #352f29; cursor: pointer; font-weight: 700;
+}
+.page-button:first-child { justify-self: start; }
+.page-button:last-child { justify-self: end; }
+.page-button:hover:not(:disabled) { border-color: #7c3f2b; background: rgba(124,63,43,.06); }
+.page-button:disabled { opacity: .35; cursor: not-allowed; }
+.page-button svg { width: 19px; height: 19px; }
+.page-status { min-width: 9rem; text-align: center; color: #6a6055; font-size: .76rem; font-variant-numeric: tabular-nums; }
+.page-status strong { display: block; color: #302a24; font-size: .88rem; }
+@media (max-width: 760px) {
+  .reader-toolbar { grid-template-columns: auto 1fr; gap: .45rem; min-height: 58px; padding: .4rem .45rem; }
+  .reader-toolbar .library-home { padding: .35rem .55rem; font-size: .76rem; }
+  .reader-toggles { justify-content: flex-end; gap: .3rem; }
+  .reader-toggle { min-width: 44px; padding: .45rem .55rem; font-size: .7rem; }
+  .reader-layout-label { display: none; }
+  .reader-stage { width: calc(100% - .65rem); margin: .35rem auto; padding: 1.05rem .9rem; border-radius: 12px; }
+  .reader-stage.double::after { display: none; }
+  body.show-latin .parallel-pair {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .65rem;
+  }
+  body.show-latin .parallel-latin {
+    padding: 0 0 0 .65rem; border-top: 0; border-left: 1px dashed rgba(128,128,128,.28);
+  }
+  body.show-latin .parallel-column p { font-size: .84rem; line-height: 1.72; text-align: left; }
+  .reader-pagination { min-height: 56px; grid-template-columns: 1fr auto 1fr; gap: .35rem; padding: .35rem .45rem; }
+  .page-button { min-width: 44px; padding: .42rem .58rem; }
+  .page-button span { display: none; }
+  .page-status { min-width: 6.5rem; font-size: .68rem; }
+  .page-status strong { font-size: .8rem; }
+}
+@media (prefers-color-scheme: dark) {
+  body.reader-document { background: #0f0e0c; }
+  .reader-toolbar, .reader-pagination { background: rgba(28,25,22,.98); border-color: rgba(255,255,255,.14); }
+  .reader-toolbar .library-home, .page-button { background: #25211d; border-color: rgba(255,255,255,.16); }
+  .reader-toggle { color: #ddd3c6; border-color: rgba(255,255,255,.18); }
+  .reader-toggle[aria-pressed="true"] { color: #1a110c; background: #d28a66; border-color: #d28a66; }
+  .reader-layout-label, .page-status { color: #b9ad9f; }
+  .page-status strong { color: #eee7db; }
+  .reader-stage { background: #16151a; border-color: rgba(255,255,255,.14); }
+  .inline-footnote-item { color: #d8cfc2; }
+}
+body.embedded-reader { color-scheme: light; background: #faf6ef; color: #241f18; }
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf6ef; border-color: #e7ddcd; }
+.embedded-reader .reader-toolbar .library-home,
+.embedded-reader .page-button { background: #fff; color: #241f18; border-color: #e1d6c6; }
+.embedded-reader .reader-toggle { color: #4c443a; border-color: #dfd3c2; }
+.embedded-reader .reader-toggle[aria-pressed="true"] { color: #fff; background: #7c3f2b; border-color: #7c3f2b; }
+.embedded-reader .reader-layout-label,
+.embedded-reader .page-status { color: #857b6d; }
+.embedded-reader .page-status strong { color: #241f18; }
+.embedded-reader .reader-stage { background: #fffdf9; color: #241f18; }
+.embedded-reader .inline-footnote-item { color: #5f5144; }
+@media (prefers-reduced-motion: reduce) { .reader-pages, .reader-toggle { transition: none; } }
+</style></head>
+<body class="reader-document" data-work-id="de_principiis_naturae" data-work-title="자연의 원리" data-variant="라틴어 원문 병기판" data-default-latin="true">
+
+  <header class="reader-toolbar">
+    <a class="library-home" href="토마스_아퀴나스_서재.html" aria-label="토마스 아퀴나스 서재로 돌아가기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span id="library-back-label">서재</span>
+    </a>
+    <div class="reader-toggles" role="group" aria-label="본문 표시 설정">
+      <button class="reader-toggle" id="latin-visibility" type="button" aria-pressed="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h7M7.5 5v14M4.5 19h6"/><path d="m14 19 3.5-14L21 19M15.2 14h4.6"/></svg><span>라틴어 원문</span>
+      </button>
+      <button class="reader-toggle" id="notes-visibility" type="button" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>각주</span>
+      </button>
+    </div>
+    <span class="reader-layout-label" id="reader-layout-label">페이지 구성 중</span>
+  </header>
+  <main class="reader-stage" id="reader-stage" aria-label="옆으로 넘기는 책 본문">
+    <article class="reader-pages" id="reader-pages"><div class="titlepage"><h1>자연의 원리</h1><p class="la">De principiis naturae</p><p class="author">토마스 아퀴나스</p><p class="meta">라틴어 원문 병기판<br/>라틴어 원문에서 옮김<br/>원문 출처: https://www.corpusthomisticum.org/opn.html</p></div><nav class="toc"><h2>차례</h2><ol><li><a href="#c1">제1장</a></li><li><a href="#c2">제2장</a></li><li><a href="#c3">제3장</a></li><li><a href="#c4">제4장</a></li><li><a href="#c5">제5장</a></li><li><a href="#c6">제6장</a></li></ol></nav><h1 class="chapter" id="c1"><span class="num">Caput 1</span>제1장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>주목하라. 어떤 것은 있지 않으면서도 있을 수 있고, 어떤 것은 실제로 있다. 있을 수 있는 것은 가능태(potentia)로 있다고 말해지고, 이미 있는 것은 현실태(actus)로 있다고 말해진다. 그런데 존재<a epub:type="noteref" href="#c1-fn1" id="c1-fn1-ref"><sup>1</sup></a>는 두 겹이다. 하나는 사물의 본질(essentia)적 존재 곧 실체(substantia)적 존재인데, 사람이 있음이 그러하며 이것이 무제한적 존재다. 다른 하나는 우유(偶有)<a epub:type="noteref" href="#c1-fn2" id="c1-fn2-ref"><sup>2</sup></a>적 존재로, 사람이 흼이 그러하며 이것은 무엇으로 있음이다. 이 두 존재 각각에 대해 가능태에 있는 무언가가 있다. 어떤 것은 사람이 되도록 가능태에 있으니 정액과 월경혈<a epub:type="noteref" href="#c1-fn3" id="c1-fn3-ref"><sup>3</sup></a>이 그러하고, 어떤 것은 희게 되도록 가능태에 있으니 사람이 그러하다. 실체적 존재에 대해 가능태에 있는 것이든 우유(偶有)적 존재에 대해 가능태에 있는 것이든 질료(materia)라고 말할 수 있다. 사람의 정액이 그러하고, 흼에 대한 사람이 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Nota quod quoddam potest esse licet non sit, quoddam vero est. Illud quod potest esse dicitur esse potentia; illud quod iam est, dicitur esse actu. Sed duplex est esse: scilicet esse essentiale rei, sive substantiale ut hominem esse, et hoc est esse simpliciter. Est autem aliud esse accidentale, ut hominem esse album, et hoc est esse aliquid. Ad utrumque esse est aliquid in potentia. Aliquid enim est in potentia ut sit homo, ut sperma et sanguis menstruus; aliquid est in potentia ut sit album, ut homo. Tam illud quod est in potentia ad esse substantiale, quam illud quod est in potentia ad esse accidentale, potest dici materia, sicut sperma hominis, et homo albedinis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 이 점에서 다르다. 실체적 존재에 대해 가능태에 있는 질료는 &#x27;그것에서 나오는 질료&#x27;라고 불리고, 우유(偶有)적 존재에 대해 가능태에 있는 것은 &#x27;그 안에 있는 질료&#x27;라고 불린다. 또 본래대로 말하자면, 우유(偶有)적 존재에 대해 가능태에 있는 것은 기체(基體)<a epub:type="noteref" href="#c1-fn4" id="c1-fn4-ref"><sup>4</sup></a>라고 불리고, 실체적 존재에 대해 가능태에 있는 것은 본래적으로 질료라고 불린다. 우유(偶有)적 존재에 대해 가능태에 있는 것이 기체(基體)라고 불린다는 표시는 이것이다. 우유(偶有)들은 기체(基體) 안에 있다고 말해지지만, 실체적 형상(forma)이 기체(基體) 안에 있다고는 말하지 않는다. 그리고 이 점에서 질료는 기체(基體)와 다르다. 기체(基體)는 자기에게 다가오는 것에서 존재를 얻지 않고 그 자체로 온전한 존재를 갖기 때문이다. 사람이 흼에서 존재를 얻지 않는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed in hoc differt: quia materia quae est in potentia ad esse substantiale, dicitur materia ex qua; quae autem est in potentia ad esse accidentale, dicitur materia in qua. Item, proprie loquendo, quod est in potentia ad esse accidentale dicitur subiectum, quod vero est in potentia ad esse substantiale, dicitur proprie materia. Quod autem illud quod est in potentia ad esse accidentale dicatur subiectum, signum est quia; dicuntur esse accidentia in subiecto, non autem quod forma substantialis sit in subiecto. Et secundum hoc differt materia a subiecto: quia subiectum est quod non habet esse ex eo quod advenit, sed per se habet esse completum, sicut homo non habet esse ab albedine.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 질료는 자기에게 다가오는 것에서 존재를 얻는다. 그 자체로는 온전하지 못한 존재를 갖기 때문이다. 그러므로 무제한적으로 말하자면 형상이 질료에 존재를 주고 기체(基體)가 우유(偶有)에 존재를 준다. 다만 때로 하나가 다른 하나를 대신해 쓰이기도 한다. 곧 질료가 기체(基體)를 대신하고 그 반대도 그러하다. 그런데 가능태에 있는 모든 것을 질료라고 말할 수 있듯이, 무엇이 그것에서 존재를 얻는 그 모든 것은 그 존재가 실체적이든 우유(偶有)적이든 형상이라고 말할 수 있다. 사람이 가능태로 희다가 흼을 통해 현실태로 희게 되고, 정액이 가능태로 사람이다가 영혼(anima)을 통해 현실태로 사람이 되는 것과 같다. 그리고 형상이 현실태로 있게 만들므로 형상은 현실태라고 말해진다. 그런데 실체적 존재를 현실태로 있게 만드는 것은 실체적 형상이고, 우유(偶有)적 존재를 현실태로 있게 만드는 것은 우유(偶有)적 형상이라고 불린다. 그리고 생성<a epub:type="noteref" href="#c1-fn5" id="c1-fn5-ref"><sup>5</sup></a>은 형상을 향한 운동(motus)이므로, 두 겹의 형상에는 두 겹의 생성이 대응한다. 실체적 형상에는 무제한적 생성이 대응하고, 우유(偶有)적 형상에는 제한적 생성이 대응한다. 실체적 형상이 들어올 때는 무엇이 무제한적으로 된다고 말해진다. 그러나 우유(偶有)적 형상이 들어올 때는 무엇이 무제한적으로 된다고 말하지 않고 이것으로 된다고 말한다. 사람이 희게 될 때 우리는 사람이 무제한적으로 되거나 생성된다고 말하지 않고, 흰 것으로 되거나 생성된다고 말하는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed materia habet esse ex eo quod ei advenit, quia de se habet esse incompletum. Unde, simpliciter loquendo, forma dat esse materiae, sed subiectum accidenti, licet aliquando unum sumatur pro altero scilicet materia pro subiecto, et e converso. Sicut autem omne quod est in potentia potest dici materia, ita omne a quo aliquid habet esse, quodcumque esse sit sive substantiale, sive accidentale, potest dici forma; sicut homo cum sit potentia albus, fit actu albus, per albedinem et sperma, cum sit potentia homo, fit actu homo per animam. Et quia forma facit esse in actu, ideo forma dicitur esse actus. Quod autem facit actu esse substantiale, est forma substantialis, et quod facit actu esse accidentale, dicitur forma accidentalis. Et quia generatio est motus ad formam, duplici formae respondet duplex generatio: formae substantiali respondet generatio simpliciter; formae vero accidentali generatio secundum quid. Quando enim introducitur forma substantialis, dicitur aliquid fieri simpliciter. Quando autem introducitur forma accidentalis, non dicitur aliquid fieri simpliciter, sed fieri hoc; sicut quando homo fit albus, non dicimus simpliciter hominem fieri vel generari, sed fieri vel generari album.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그리고 이 두 겹의 생성에는 두 겹의 소멸(corruptio)이 대응한다. 곧 무제한적 소멸과 제한적 소멸이다. 그런데 무제한적 생성과 소멸은 실체라는 유(類)<a epub:type="noteref" href="#c1-fn6" id="c1-fn6-ref"><sup>6</sup></a> 안에서만 있고, 제한적 생성과 소멸은 다른 유(類)들 안에 있다. 그리고 생성은 있지 않음 또는 존재자(ens) 아님에서 있음 또는 존재자로 가는 어떤 바뀜이고, 거꾸로 소멸은 있음에서 있지 않음으로 가는 것이어야 한다. 그런데 아무 있지 않음에서나 생성이 이루어지지는 않고, 가능태로 존재자인 있지 않음에서 이루어진다. 구리에서 조각상이 되는 것과 같은데, 조각상에 대해 구리는 가능태에 있지 현실태에 있지 않다. 그러므로 생성이 있으려면 세 가지가 요구된다. 곧 가능태로 있는 존재자인 질료, 현실태로 있지 않음인 결여<a epub:type="noteref" href="#c1-fn7" id="c1-fn7-ref"><sup>7</sup></a>, 그리고 그것을 통해 현실태가 되는 것인 형상이다. 구리에서 조각상이 될 때와 같다. 조각상의 형상에 대해 가능태에 있는 구리는 질료이고, 아직 모양<a epub:type="noteref" href="#c1-fn8" id="c1-fn8-ref"><sup>8</sup></a>이 잡히지 않았거나 갖추어지지 않았다는 이것은 결여라고 불리며, 그것 때문에 조각상이라고 불리는 그 모양은 형상이다. 다만 실체적 형상은 아니다. 구리는 형상 곧 모양이 다가오기 전에도 현실태로 존재를 갖고, 그 존재가 저 모양에 매여 있지 않기 때문이다. 그러므로 우유(偶有)적 형상이다. 기술이 만드는 형상은 모두 우유(偶有)적이다. 기술은 자연<a epub:type="noteref" href="#c1-fn9" id="c1-fn9-ref"><sup>9</sup></a>이 이미 온전한 존재로 세워 놓은 것 위에서만 작업하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et huic duplici generationi respondet duplex corruptio, scilicet simpliciter, et secundum quid. Generatio vero et corruptio simpliciter non sunt nisi in genere substantiae; sed generatio et corruptio secundum quid sunt in aliis generibus. Et quia generatio est quaedam mutatio de non esse vel ente ad esse vel ens, e converso autem corruptio debet esse de esse ad non esse, non ex quolibet non esse fit generatio, sed ex non ente quod est ens in potentia; sicut idolum ex cupro, ad quod idolum est (cuprum) in potentia, non in actu. Ad hoc ergo quod sit generatio, tria requiruntur: scilicet ens potentia, quod est materia; et non esse actu, quod est privatio; et id per quod fit actu, scilicet forma. Sicut quando ex cupro fit idolum, cuprum quod est potentia ad formam idoli, est materia; hoc autem quod est infiguratum sive indispositum, dicitur privatio; figura autem a qua dicitur idolum, est forma, non autem substantialis quia cuprum ante adventum formae seu figurae habet esse in actu, et eius esse non dependet ab illa figura; sed est forma accidentalis. Omnes enim formae artificiales sunt accidentales. Ars enim non operatur nisi supra id quod iam constitutum est in esse perfecto a natura.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c1-fn1"><p><a href="#c1-fn1-ref">1</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn2"><p><a href="#c1-fn2-ref">2</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c1-fn3"><p><a href="#c1-fn3-ref">3</a>. 아리스토텔레스 생물학에서는 아비가 형상을, 어미가 질료를 준다고 보았다. 당대의 생물학 지식에 따른 예시다.</p></aside>
+<aside epub:type="footnote" id="c1-fn4"><p><a href="#c1-fn4-ref">4</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c1-fn5"><p><a href="#c1-fn5-ref">5</a>. generatio. 없던 것이 있게 되는 일. 아래의 &#x27;소멸(corruptio)&#x27;과 짝을 이루며, 자연 사물의 변화를 이 둘로 설명한다.</p></aside>
+<aside epub:type="footnote" id="c1-fn6"><p><a href="#c1-fn6-ref">6</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c1-fn7"><p><a href="#c1-fn7-ref">7</a>. privatio. 마땅히 있어야 할 것이 없는 상태. 단순한 &#x27;없음&#x27;이 아니라, 있을 수 있는 자리에 아직 없음을 뜻한다.</p></aside>
+<aside epub:type="footnote" id="c1-fn8"><p><a href="#c1-fn8-ref">8</a>. figura. 겉으로 드러난 생김새. 형상(forma)의 한 갈래이되 우유적인 것이어서, 구리가 조각상 모양을 얻어도 구리이기를 그치지 않는다.</p></aside>
+<aside epub:type="footnote" id="c1-fn9"><p><a href="#c1-fn9-ref">9</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+</section><h1 class="chapter" id="c2"><span class="num">Caput 2</span>제2장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 자연<a epub:type="noteref" href="#c2-fn1" id="c2-fn1-ref"><sup>1</sup></a>의 원리(principium)는 셋이다. 곧 질료(materia)와 형상(forma)과 결여<a epub:type="noteref" href="#c2-fn2" id="c2-fn2-ref"><sup>2</sup></a>다. 그 가운데 하나 곧 형상은 생성<a epub:type="noteref" href="#c2-fn3" id="c2-fn3-ref"><sup>3</sup></a>이 그것을 향해 가는 그것이고, 나머지 둘은 생성이 그것에서 나오는 쪽에 있다. 그러므로 질료와 결여는 기체(基體)<a epub:type="noteref" href="#c2-fn4" id="c2-fn4-ref"><sup>4</sup></a>로는 같지만 개념<a epub:type="noteref" href="#c2-fn5" id="c2-fn5-ref"><sup>5</sup></a>으로는 다르다. 청동인 바로 그것이 형상이 다가오기 전에는 모양<a epub:type="noteref" href="#c2-fn6" id="c2-fn6-ref"><sup>6</sup></a> 없는 것인데, 청동이라 불리는 근거와 모양 없다고 불리는 근거가 다르기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sunt igitur tria principia naturae, scilicet materia, forma et privatio; quorum alterum, scilicet forma, est id ad quod est generatio; alia duo sunt ex parte eius ex quo est generatio. Unde materia et privatio sunt idem subiecto, sed differunt ratione. Illud enim idem quod est aes est infiguratum ante adventum formae; sed ex alia ratione dicitur aes, et ex alia infiguratum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 결여는 그 자체로 원리가 아니라 우유(偶有)<a epub:type="noteref" href="#c2-fn7" id="c2-fn7-ref"><sup>7</sup></a>적으로 원리라고 말해진다. 곧 질료와 함께 맞물리기 때문이다. 우리가 &#x27;의사가 집을 짓는다&#x27;는 것이 우유(偶有)적이라고 말하는 것과 같다. 의사라는 데서가 아니라 건축가라는 데서 짓는 것인데, 건축가임이 한 기체(基體) 안에서 의사임과 맞물린 것이다. 그런데 우유(偶有)는 두 겹이다. 곧 필연적인 것으로 사물에서 떨어지지 않는 것인데 사람에게 웃을 수 있음이 그러하고, 필연적이지 않은 것으로 떨어지는 것인데 사람에게서 흼이 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde privatio dicitur esse principium non per se, sed per accidens, quia scilicet concidit cum materia; sicut dicimus quod hoc est per accidens: medicus aedificat: non enim ex eo quod medicus, sed ex eo quod aedificator, quod concidit medico in uno subiecto. Sed duplex est accidens: scilicet necessarium, quod non separatur a re, ut risibile hominis; et non necessarium, quod separatur, ut album ab homine.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 결여가 우유(偶有)적으로 원리라 해도, 그것이 생성에 필요하지 않다는 결론이 따라 나오지는 않는다. 질료는 결여에서 벗겨지지 않기 때문이다. 질료가 한 형상 아래 있는 한 다른 형상의 결여를 갖고, 그 반대도 그러하다. 불 안에는 공기의 결여가 있고 공기 안에는 불의 결여가 있는 것과 같다. 그리고 알아야 할 것은, 생성이 있지 않음에서 나오더라도 우리는 부정이 원리라고 말하지 않고 결여가 원리라고 말한다는 점이다. 부정은 자기에게 기체(基體)를 정해 주지 않기 때문이다. &#x27;보지 못한다&#x27;는 존재자(ens)가 아닌 것에 대해서도 말할 수 있으니 키마이라<a epub:type="noteref" href="#c2-fn8" id="c2-fn8-ref"><sup>8</sup></a>는 보지 못한다고 하며, 또 볼 수 있게 태어나지 않은 존재자에 대해서도 말할 수 있으니 돌에 대해 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde, licet privatio sit principium per accidens, non sequitur quod non sit necessarium ad generationem, quia materia a privatione non denudatur; inquantum enim est sub una forma, habet privationem alterius, et e converso, sicut in igne est privatio aeris, et in aere privatio ignis. Et sciendum, quod cum generatio sit ex non esse, non dicimus quod negatio sit principium, sed privatio, quia negatio non determinat sibi subiectum. Non videt enim potest dici etiam de non entibus, ut Chimaera non videt; et iterum de entibus quae non nata sunt habere visum, sicut de lapidibus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 결여는 정해진 기체(基體)에 대해서만 말해진다. 곧 그 안에 그 갖춤이 생겨날 수 있게 태어난 기체(基體)에 대해서만 말해진다. 눈멂이 볼 수 있게 태어난 것들에 대해서만 말해지는 것과 같다. 그리고 생성은 무제한적으로 존재자가 아닌 것에서 이루어지지 않고, 어떤 기체(基體) 안에 있는 존재자 아님에서 이루어지되 아무 기체(基體)에서나가 아니라 정해진 기체(基體)에서 이루어진다. 아무 불 아닌 것에서나 불이 되는 것이 아니라, 불의 형상이 생겨날 수 있게 태어난 그런 불 아닌 것에서 불이 되기 때문이다. 그러므로 결여가 원리라고 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed privatio non dicitur nisi de determinato subiecto, in quo scilicet natus est fieri habitus; sicut caecitas non dicitur nisi de his quae sunt nata videre. Et quia generatio non fit ex non ente simpliciter, sed ex non ente quod est in aliquo subiecto, et non in quolibet, sed in determinato (non enim ex quolibet non igne fit ignis, sed ex tali non igne, circa quod nata sit fieri forma ignis), ideo dicitur quod privatio est principium.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 이 점에서 다른 것들과 다르다. 다른 것들은 있음에서도 됨에서도 원리이기 때문이다. 조각상이 되려면 청동이 있어야 하고 마지막에는 조각상의 모양이 있어야 한다. 또한 이미 조각상이 되었을 때도 이 둘이 있어야 한다. 그러나 결여는 됨에서는 원리이지만 있음에서는 원리가 아니다. 조각상이 되는 동안에는 조각상이 아니어야 하기 때문이다. 만일 조각상이라면 되고 있지 않을 것이다. 되고 있는 것은 있지 않기 때문인데, 잇따라 이루어지는 것에서만은 예외다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed in hoc differt ab aliis, quia alia sunt principia et in esse et in fieri. Ad hoc enim quod fiat idolum, oportet quod sit aes, et quod ultima sit figura idoli; et iterum, quando iam idolum est oportet haec duo esse. Sed privatio est principium in fieri et non in esse: quia dum fit idolum, oportet quod non sit idolum. Si enim esset, non fieret, quia quod fit non est, nisi in successivis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 이미 조각상이 된 다음에는 거기에 조각상의 결여가 없다. 긍정과 부정이 함께 있지 않듯이 결여와 갖춤도 함께 있지 않기 때문이다. 또 결여는 위에서 밝힌 대로 우유(偶有)적으로 원리이고, 나머지 둘은 그 자체로 원리다. 그러므로 지금까지 말한 것에서, 질료가 형상 및 결여와 개념으로 다르다는 것이 분명해진다. 질료는 그 안에서 형상과 결여가 이해되는 그것이기 때문이다. 구리 안에서 모양과 모양 없음이 이해되는 것과 같다. 그런데 질료는 때로 결여와 함께 이름 붙고 때로 결여 없이 이름 붙는다. 청동은 조각상의 질료이면서도 결여를 함께 지니지 않는다. 내가 청동이라고 말할 때 갖추어지지 않았다거나 모양 없다는 뜻이 이해되지는 않기 때문이다. 그러나 밀가루는 빵에 대해 질료이면서 자기 안에 빵의 형상의 결여를 함께 지닌다. 내가 밀가루라고 말할 때 빵의 형상에 맞선 갖추어지지 않음 또는 정돈되지 않음이 가리켜지기 때문이다. 그리고 생성에서 질료 곧 기체(基體)는 남아 있지만 결여는 남지 않고, 질료와 결여로 합성된 것도 남지 않는다. 그러므로 결여를 함께 지니지 않는 질료는 남아 있는 것이고, 함께 지니는 질료는 지나가는 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed ex quo iam idolum est, non est ibi privatio idoli, quia affirmatio et negatio non sunt simul, similiter nec privatio et habitus. Item privatio est principium per accidens, ut supra expositum est, alia duo sunt principia per se. Ex dictis igitur patet quod materia differt a forma et a privatione secundum rationem. Materia enim est id in quo intelligitur forma et privatio: sicut in cupro intelligitur figura et infiguratum. Quandoque quidem materia nominatur cum privatione, quandoque sine privatione: sicut aes, cum sit materia idoli, non importat privationem, quia ex hoc quod dico aes, non intelligitur indispositum seu infiguratum, sed farina, cum sit materia respectu panis, importat in se privationem formae panis, quia ex hoc quod dico farinam, significatur indispositio sive inordinatio opposita formae panis. Et quia in generatione materia sive subiectum permanet, privatio vero non, neque compositum ex materia et privatione, ideo materia quae non importat privationem, est permanens: quae autem importat, est transiens.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 알아야 할 것은, 어떤 질료는 형상과의 합성을 갖는다는 점이다. 청동은 조각상에 대해 질료이지만 청동 자체는 질료와 형상으로 합성되어 있다. 그러므로 청동은 제일질료<a epub:type="noteref" href="#c2-fn9" id="c2-fn9-ref"><sup>9</sup></a>라고 불리지 않는다. 질료를 갖기 때문이다. 그런데 어떤 형상도 결여도 없이 이해되면서 형상과 결여의 밑에 놓이는 그 질료는 제일질료라고 불린다. 그것에 앞서는 다른 질료가 없기 때문이다. 그리고 이것은 휠레<a epub:type="noteref" href="#c2-fn10" id="c2-fn10-ref"><sup>10</sup></a>라고도 불린다. 그리고 모든 정의(定義, diffinitio)와 모든 앎은 형상을 통해 이루어지므로, 제일질료는 그 자체로는 알려지거나 정의(定義)될 수 없고 견줌을 통해서만 그러하다. 곧 청동이 조각상과 모양 없음에 대해 놓이는 것과 같은 방식으로 모든 형상과 결여에 대해 놓이는 그것이 제일질료라고 말하는 식이다. 그리고 이것이 무제한적으로 첫째가는 것이라고 불린다. 또한 어떤 유(類)<a epub:type="noteref" href="#c2-fn11" id="c2-fn11-ref"><sup>11</sup></a>에 대해 무엇을 제일질료라고 말할 수도 있다. 물이 녹을 수 있는 것들의 질료인 것과 같다. 그러나 이것은 무제한적으로 첫째가는 것은 아니다. 질료와 형상으로 합성되어 있어서 앞선 질료를 갖기 때문이다. 그리고 알아야 할 것은, 제일질료도 형상도 생성되지 않고 소멸(corruptio)되지 않는다는 점이다. 모든 생성은 무엇에서 무엇으로 가는 것이기 때문이다. 그런데 생성이 그것에서 나오는 그것은 질료이고, 생성이 그것을 향해 가는 그것은 형상이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed sciendum, quod quaedam materia habet compositionem formae: sicut aes, cum sit materia respectu idoli, ipsum tamen aes est compositum ex materia et forma; et ideo aes non dicitur materia prima, quia habet materiam. Ipsa autem materia quae intelligitur sine qualibet forma et privatione, sed subiecta formae et privationi, dicitur materia prima, propter hoc quod ante ipsam non est alia materia. Et hoc etiam dicitur yle. Et quia omnis definitio et omnis cognitio est per formam, ideo materia prima per se non potest cognosci vel definiri sed per comparationem ut dicatur quod illud est materia prima, quod hoc modo se habet ad omnes formas et privationes sicut aes ad idolum et infiguratum. Et haec dicitur simpliciter prima. Potest etiam aliquid dici materia prima respectu alicuius generis, sicut aqua est materia liquabilium. Non tamen est prima simpliciter, quia est composita ex materia et forma, unde habet materiam priorem. Et sciendum quod materia prima, et etiam forma, non generatur neque corrumpitur, quia omnis generatio est ad aliquid ex aliquo. Id autem ex quo est generatio, est materia; id ad quod est forma.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 질료나 형상이 생성된다면 질료의 질료가 있고 형상의 형상이 있어 끝없이 이어질 것이다. 그러므로 본래대로 말하자면 생성은 합성체(compositum)에만 있다. 또 알아야 할 것은, 제일질료는 모든 것 안에서 수로 헤아려 하나라고 말해진다는 점이다. 그런데 수로 헤아려 하나라는 말은 두 가지로 쓰인다. 하나는 수로 헤아려 정해진 하나의 형상을 갖는다는 뜻이니 소크라테스가 그러하다. 이런 방식으로는 제일질료가 수로 헤아려 하나라고 말해지지 않는다. 자기 안에 아무 형상도 갖지 않기 때문이다. 또 무엇이 수로 헤아려 하나라고 말해지는 것은 수로 헤아려 다르게 만드는 갖춤들이 없기 때문이기도 하다. 이런 방식으로 제일질료는 수로 헤아려 하나라고 말해진다. 수에서 차이가 생기게 하는 모든 갖춤 없이 이해되기 때문이다. 그리고 알아야 할 것은, 질료가 자기 본성 안에 아무 형상이나 결여도 갖지 않더라도 결코 형상과 결여에서 벗겨지지는 않는다는 점이다. 청동이라는 개념 안에 모양 있음도 모양 없음도 들어 있지 않지만 그러하다. 때로는 한 형상 아래 있고 때로는 다른 형상 아래 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Si igitur materia vel forma generaretur, materiae esset materia, et formae forma, in infinitum. Unde generatio non est nisi compositi, proprie loquendo. Sciendum est etiam, quod materia prima dicitur una numero in omnibus. Sed unum numero dicitur duobus modis: scilicet quod habet unam formam determinatam in numero, sicut Socrates: et hoc modo materia prima non dicitur unum numero, cum in se non habeat aliquam formam. Dicitur etiam aliquid unum numero, quia est sine dispositionibus quae faciunt differre secundum numerum: et hoc modo dicitur materia prima unum numero, quia intelligitur sine omnibus dispositionibus a quibus est differentia in numero. Et sciendum quod licet materia non habeat in sua natura aliquam formam vel privationem, sicut in ratione aeris neque est figuratum neque infiguratum; tamen nunquam denudatur a forma et privatione: quandoque enim est sub una forma, quandoque sub alia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 질료는 그 자체로는 결코 있을 수 없다. 자기 개념 안에 아무 형상도 갖지 않으므로 현실태(actus)로 존재<a epub:type="noteref" href="#c2-fn12" id="c2-fn12-ref"><sup>12</sup></a>를 갖지 않기 때문이다. 현실태로 있음은 형상에서만 오며, 질료는 오직 가능태(potentia)로만 있다. 그러므로 현실태로 있는 것은 무엇이든 제일질료라고 말할 수 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed per se nunquam potest esse, quia cum in ratione sua non habeat aliquam formam, non habet esse in actu, cum esse in actu non sit nisi a forma, sed est solum in potentia. Et ideo quicquid est actu, non potest dici materia prima.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c2-fn1"><p><a href="#c2-fn1-ref">1</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn2"><p><a href="#c2-fn2-ref">2</a>. privatio. 마땅히 있어야 할 것이 없는 상태. 단순한 &#x27;없음&#x27;이 아니라, 있을 수 있는 자리에 아직 없음을 뜻한다.</p></aside>
+<aside epub:type="footnote" id="c2-fn3"><p><a href="#c2-fn3-ref">3</a>. generatio. 없던 것이 있게 되는 일. 아래의 &#x27;소멸(corruptio)&#x27;과 짝을 이루며, 자연 사물의 변화를 이 둘로 설명한다.</p></aside>
+<aside epub:type="footnote" id="c2-fn4"><p><a href="#c2-fn4-ref">4</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c2-fn5"><p><a href="#c2-fn5-ref">5</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c2-fn6"><p><a href="#c2-fn6-ref">6</a>. figura. 겉으로 드러난 생김새. 형상(forma)의 한 갈래이되 우유적인 것이어서, 구리가 조각상 모양을 얻어도 구리이기를 그치지 않는다.</p></aside>
+<aside epub:type="footnote" id="c2-fn7"><p><a href="#c2-fn7-ref">7</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c2-fn8"><p><a href="#c2-fn8-ref">8</a>. 사자와 염소와 뱀이 뒤섞인 그리스 신화의 괴물. 실제로는 있지 않은 것을 가리킬 때 스콜라 철학이 즐겨 든 예다.</p></aside>
+<aside epub:type="footnote" id="c2-fn9"><p><a href="#c2-fn9-ref">9</a>. materia prima. 모든 형상에 앞서 놓이는 가장 밑바탕의 질료. 그 자체로는 아무 규정도 갖지 않는다.</p></aside>
+<aside epub:type="footnote" id="c2-fn10"><p><a href="#c2-fn10-ref">10</a>. 그리스어 휠레(ὕλη). 아리스토텔레스가 질료를 가리킬 때 쓴 말로, 본디 &#x27;재목&#x27;을 뜻한다.</p></aside>
+<aside epub:type="footnote" id="c2-fn11"><p><a href="#c2-fn11-ref">11</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c2-fn12"><p><a href="#c2-fn12-ref">12</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+</section><h1 class="chapter" id="c3"><span class="num">Caput 3</span>제3장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 지금까지 말한 것에서 자연<a epub:type="noteref" href="#c3-fn1" id="c3-fn1-ref"><sup>1</sup></a>의 원리(principium)가 셋임이 분명해진다. 곧 질료(materia)와 형상(forma)과 결여<a epub:type="noteref" href="#c3-fn2" id="c3-fn2-ref"><sup>2</sup></a>다. 그러나 이것들만으로는 생성<a epub:type="noteref" href="#c3-fn3" id="c3-fn3-ref"><sup>3</sup></a>에 넉넉하지 않다. 가능태(potentia)에 있는 것은 자기를 현실태(actus)로 이끌어 낼 수 없기 때문이다. 조각상에 대해 가능태로 있는 구리가 자기를 조각상으로 만들지 못하고, 조각상의 형상을 가능태에서 현실태로 끌어내는 작업자를 필요로 하는 것과 같다. 형상 또한 자기를 가능태에서 현실태로 끌어내지 못한다. 여기서 나는 생성되는 것의 형상, 곧 우리가 생성의 끝점이라고 말한 그 형상을 두고 말한다. 형상은 이미 이루어진 존재<a epub:type="noteref" href="#c3-fn4" id="c3-fn4-ref"><sup>4</sup></a> 안에서만 있는데, 작업하는 것은 되어 가는 중에 곧 사물이 되고 있는 동안에 있기 때문이다. 그러므로 질료와 형상 말고도 작용하는 어떤 원리가 있어야 하며, 이것은 작용인(作用因)<a epub:type="noteref" href="#c3-fn5" id="c3-fn5-ref"><sup>5</sup></a> 또는 움직이는 것 또는 작용자<a epub:type="noteref" href="#c3-fn6" id="c3-fn6-ref"><sup>6</sup></a> 또는 운동(motus)의 원리가 거기서 나오는 그것이라고 말해진다. 그리고 아리스토텔레스가 『형이상학』 제2권에서 말하듯이 작용하는 모든 것은 무언가를 겨냥해서만 작용하므로, 넷째가는 다른 것이 있어야 한다. 곧 작업자가 겨냥하는 그것이며, 이것이 목적<a epub:type="noteref" href="#c3-fn7" id="c3-fn7-ref"><sup>7</sup></a>이라고 불린다. 그리고 알아야 할 것은, 자연적이든 의지적이든 모든 작용자가 목적을 겨냥한다는 점이다. 그렇다고 모든 작용자가 목적을 안다거나 목적에 대해 헤아린다는 결론이 따라 나오지는 않는다. 목적을 아는 것은 그 활동이 정해져 있지 않고 맞선 것들을 향해 열려 있는 것들에게 필요하기 때문이다. 의지(voluntas)로 작용하는 것들이 그러하다. 그러므로 그것들은 자기 활동을 정할 목적을 알아야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ex dictis igitur patet tria esse naturae principia scilicet materia, forma et privatio. Sed haec non sunt sufficientia ad generationem. Quod enim est in potentia, non potest se reducere ad actum: sicut cuprum quod est potentia idolum, non facit se idolum, sed indiget operante, qui formam idoli extrahat de potentia in actum. Forma etiam non extraheret se de potentia in actum (et loquor de forma generati, quam diximus esse terminum generationis); forma enim non est nisi in facto esse: quod autem operatur est in fieri, idest dum res fit. Oportet ergo praeter materiam et formam esse aliquod principium quod agat, et hoc dicitur esse efficiens, vel movens, vel agens, vel unde est principium motus. Et quia, ut dicit Aristoteles in secundo Metaph., omne quod agit, non agit nisi intendendo aliquid, oportet esse aliud quartum, id scilicet quod intenditur ab operante: et hoc dicitur finis. Et sciendum, quod omne agens tam naturale quam voluntarium intendit finem, non tamen sequitur quod omne agens cognoscat finem, vel deliberet de fine. Cognoscere enim finem est necessarium in his quorum actiones non sunt determinatae, sed se habent ad opposita, sicut se habent agentia voluntaria; et ideo oportet quod cognoscant finem per quem suas actiones determinent.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 자연적 작용자들에게는 활동이 정해져 있다. 그러므로 목적에 이르는 수단들을 골라야 할 필요가 없다. 아비첸나<a epub:type="noteref" href="#c3-fn8" id="c3-fn8-ref"><sup>8</sup></a>는 키타라 연주자<a epub:type="noteref" href="#c3-fn9" id="c3-fn9-ref"><sup>9</sup></a>의 예를 든다. 그는 줄을 뜯을 때마다 헤아릴 필요가 없다. 뜯는 법이 그에게 정해져 있기 때문이다. 그렇지 않다면 뜯는 사이에 지체가 생겨 소리가 어그러질 것이다. 그런데 의지로 작업하는 쪽이 자연적 작용자보다 헤아릴 법해 보인다. 그러므로 더 큰 쪽에서 미루어 보는 논법으로 이 점이 분명해진다. 곧 자연적 작용자가 헤아림 없이도 목적을 겨냥할 수 있다는 것이다. 그리고 이렇게 겨냥한다는 것은 무언가를 향한 자연적 기욺을 갖는다는 것 외에 다른 것이 아니었다. 그러므로 지금까지 말한 것에서 원인이 넷임이 분명해진다. 곧 질료인(質料因, causa materialis)·작용인(作用因)·형상인(形相因, causa formalis)·목적인(目的因, causa finalis)이다. 그런데 『형이상학』 제5권에서 말하듯이 원리와 원인은 서로 바꿔 쓸 수 있지만, 아리스토텔레스는 『자연학』에서 원인을 넷으로, 원리를 셋으로 놓는다. 그는 원인을 바깥의 것으로도 안의 것으로도 받아들인다. 질료와 형상은 사물에 안의 것이라고 불리는데, 사물을 이루는 부분이기 때문이다. 작용인(作用因)과 목적인(目的因)은 바깥의 것이라고 불리는데, 사물 바깥에 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed in agentibus naturalibus sunt actiones determinatae: unde non est necessarium eligere ea quae sunt ad finem. Et ponit exemplum Avicenna de citharaedo quem non oportet de qualibet percussione chordarum deliberare, cum percussiones sint determinatae apud ipsum; alioquin esset inter percussiones mora, quod esset absonum. Magis autem videtur de operante voluntarie quod deliberet, quam de agente naturali. Et ita patet per locum a maiori, quod possibile est agens naturale sine deliberatione intendere finem: et hoc intendere nihil aliud erat quam habere naturalem inclinationem ad aliquid. Ex dictis ergo patet, quod sunt quatuor causae: scilicet materialis, efficiens, formalis et finalis. Licet autem principium et causa dicantur convertibiliter, ut dicitur in quinto Metaph., tamen Aristoteles in Lib. Physic., ponit quatuor causas et tria principia. Causas autem accipit tam pro extrinsecis quam pro intrinsecis. Materia et forma dicuntur intrinsecae rei, eo quod sunt partes constituentes rem; efficiens et finalis dicuntur extrinsecae, quia sunt extra rem.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 원리는 오직 안의 원인만을 받아들인다. 그런데 결여는 원인 가운데 이름 붙지 않는다. 앞서 말했듯이 우유(偶有)<a epub:type="noteref" href="#c3-fn10" id="c3-fn10-ref"><sup>10</sup></a>적으로 원리이기 때문이다. 그리고 우리가 원인이 넷이라고 말할 때는 그 자체로 원인인 것들을 두고 하는 말이다. 다만 우유(偶有)적으로 원인인 것들도 거기로 돌아간다. 우유(偶有)적으로 있는 모든 것은 그 자체로 있는 것으로 돌아가기 때문이다. 그런데 아리스토텔레스가 『자연학』 제1권에서 원리를 안의 원인으로 놓기는 하지만, 『형이상학』 제11권에서 말하듯이 원리는 본래적으로 바깥의 원인에 대해 말해지고, 원소(elementum)는 사물의 부분인 원인 곧 안의 원인에 대해 말해지며, 원인은 둘 다에 대해 말해진다. 다만 때로 하나가 다른 하나를 대신해 놓이기도 한다. 모든 원인은 원리라고 말할 수 있고 모든 원리는 원인이라고 말할 수 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed principia accipit solum causas intrinsecas. Privatio autem non nominatur inter causas, quia est principium per accidens, ut dictum est. Et cum dicimus quatuor causas, intelligimus de causis per se, ad quas tamen causae per accidens reducuntur, quia omne quod est per accidens, reducitur ad id quod est per se. Sed licet principia ponat Aristoteles pro causis intrinsecis in primo Physic., tamen, ut dicitur in undecimo Metaph., principium dicitur proprie de causis extrinsecis, elementum de causis quae sunt partes rei, idest de causis intrinsecis, causa dicitur de utrisque. Tamen aliquando unum ponitur pro altero. Omnis enim causa potest dici principium, et omne principium causa.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 원인은 널리 쓰이는 뜻의 원리보다 무언가를 더 얹는 듯하다. 첫째가는 것은 그 뒤에 오는 것의 존재가 거기서 따라 나오든 아니든 원리라고 말할 수 있기 때문이다. 대장장이가 칼의 원리라고 불리는 것과 같은데, 그의 작업에서 칼의 존재가 나오기 때문이다. 그런데 무엇이 검음에서 흼으로 움직여질 때, 검음이 저 운동의 원리라고 말해진다. 그리고 널리 말해 운동이 거기서 시작되는 모든 것은 원리라고 말해진다. 그러나 검음은 흼의 존재가 거기서 따라 나오는 그것은 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed tamen causa videtur addere supra principium communiter dictum, quia id quod est primum, sive consequatur esse posterius sive non, potest dici principium, sicut faber dicitur principium cultelli, ut ex eius operatione est esse cultelli. Sed quando aliquid movetur de nigredine ad albedinem, dicitur quod nigrum est principium illius motus; et universaliter omne id a quo incipit esse motus dicitur principium: tamen nigredo non est id ex quo consequatur esse albedo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 원인은 뒤에 오는 것의 존재가 거기서 따라 나오는 그 첫째가는 것에 대해서만 말해진다. 그래서 원인은 그 존재에서 다른 것이 따라 나오는 그것이라고 말해진다. 그러므로 운동이 거기서 시작되는 저 첫째가는 것은 원리라고 불릴지언정 그 자체로 원인이라고 말할 수는 없다. 이런 까닭에 결여는 원리 가운데 놓이고 원인 가운데 놓이지 않는다. 결여는 생성이 거기서 시작되는 그것이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed causa solum dicitur de illo primo ex quo consequitur esse posterioris: unde dicitur quod causa est ex cuius esse sequitur aliud. Et ideo illud primum a quo incipit esse motus, non potest dici causa per se etsi dicatur principium: et propter hoc privatio ponitur inter principia, et non inter causas, quia privatio est id a quo incipit generatio.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 결여는 위에서 밝힌 대로 질료와 맞물리는 한에서 우유(偶有)적으로 원인이라고 말할 수도 있다. 그런데 원소는 본래적으로는 사물의 합성이 거기서 나오는 원인들에 대해서만 말해지며, 이것들은 본래적으로 질료적인 것이다. 또한 아무 질료인(質料因)에 대해서나 말해지는 것이 아니라 첫 합성이 거기서 나오는 그 질료인(質料因)에 대해서만 말해진다. 팔다리가 사람의 원소가 아닌 것과 같다. 팔다리도 다른 것들로 합성되어 있기 때문이다. 그러나 우리는 흙과 물이 원소라고 말한다. 이것들은 다른 물체들로 합성되지 않으며, 자연적 물체들의 첫 합성이 이것들에서 나오기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed potest etiam dici causa per accidens, inquantum concidit materiae, ut supra expositum est. Elementum vero non dicitur proprie nisi de causis ex quibus est compositio rei, quae proprie sunt materiales. Et iterum non de qualibet causa materiali, sed de illa ex qua est prima compositio: sicut nec membra elementa sunt hominis, quia membra etiam sunt composita ex aliis; sed dicimus quod terra et aqua sunt elementa, quia haec non componuntur ex aliis corporibus, sed ex ipsis est prima compositio corporum naturalium.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그래서 아리스토텔레스는 『형이상학』 제5권에서 원소란 사물이 첫째로 그것에서 합성되고 그 사물 안에 있으며 형상에 따라 나뉘지 않는 그것이라고 말한다. 첫째 부분 곧 &#x27;사물이 첫째로 그것에서 합성된다&#x27;는 것에 대한 풀이는 우리가 말한 것으로 분명하다. 둘째 부분 곧 &#x27;그 사물 안에 있다&#x27;는 것은, 생성을 거치며 통째로 소멸(corruptio)하는 저 질료와 구별하려고 놓인 것이다. 빵은 피의 질료이지만 빵이 소멸하지 않고서는 피가 생성되지 않는다. 그러므로 빵은 피 안에 남아 있지 않으며, 따라서 빵을 피의 원소라고 말할 수 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde Aristoteles in quinto Metaph. dicit quod elementum est id ex quo componitur res primo, et est in ea, et non dividitur secundum formam. Expositio primae particulae, ex quo componitur res primo, patet per ea quae diximus. Secunda particula, scilicet et est in ea, ponitur ad differentiam illius materiae quae ex toto corrumpitur per generationem: sicut panis est materia sanguinis, sed non generatur sanguis nisi corrumpatur panis; unde panis non remanet in sanguine: unde non potest dici panis elementum sanguinis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 원소는 어떤 방식으로든 남아 있어야 한다. 『생성과 소멸에 관하여』에서 말하듯이 원소는 소멸하지 않기 때문이다. 셋째 부분 곧 &#x27;형상에 따라 나뉘지 않는다&#x27;는 것은, 형상에서 곧 종(種, species)에서 서로 다른 부분을 갖는 것들과 구별하려고 놓인 것이다. 손이 그러한데, 그 부분인 살과 뼈는 종(種)에 따라 다르다. 그러나 원소는 종(種)에 따라 다른 부분들로 나뉘지 않는다. 물이 그러한데, 그 어떤 부분도 물이다. 원소이려면 양에 따라 나뉘지 않아야 하는 것은 아니고, 종(種)에 따라 나뉘지 않으면 넉넉하다. 그리고 아예 나뉘지 않는 것도 원소라고 불린다. 글자가 낱말의 원소라고 불리는 것과 같다. 그러므로 원리가 어떤 방식으로 원인보다 넓고, 원인이 원소보다 넓다는 것이 분명하다. 그리고 이것이 주석가<a epub:type="noteref" href="#c3-fn11" id="c3-fn11-ref"><sup>11</sup></a>가 『형이상학』 제5권에서 말하는 바다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed elementa oportet aliquo modo manere, cum non corrumpantur, ut dicitur in libro de Gener. Tertia particula, scilicet et non dividitur secundum formam, ponitur ad differentiam eorum scilicet quae habent partes diversas in forma, idest in specie, sicut manus, cuius partes sunt caro et ossa, quae differunt secundum speciem. Sed elementum non dividitur in partes diversas secundum speciem, sicut aqua, cuius quaelibet pars est aqua. Non enim oportet ad esse elementi ut non dividatur secundum quantitatem, sed sufficit si non dividatur secundum speciem: et si etiam non dividatur, dicitur elementum, sicut litterae dicuntur elementa dictionum. Patet igitur quod principium quodam modo in plus habet se quam causa; et causa in plus quam elementum. Et hoc est quod dicit Commentator in quinto Metaph.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c3-fn1"><p><a href="#c3-fn1-ref">1</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn2"><p><a href="#c3-fn2-ref">2</a>. privatio. 마땅히 있어야 할 것이 없는 상태. 단순한 &#x27;없음&#x27;이 아니라, 있을 수 있는 자리에 아직 없음을 뜻한다.</p></aside>
+<aside epub:type="footnote" id="c3-fn3"><p><a href="#c3-fn3-ref">3</a>. generatio. 없던 것이 있게 되는 일. 아래의 &#x27;소멸(corruptio)&#x27;과 짝을 이루며, 자연 사물의 변화를 이 둘로 설명한다.</p></aside>
+<aside epub:type="footnote" id="c3-fn4"><p><a href="#c3-fn4-ref">4</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn5"><p><a href="#c3-fn5-ref">5</a>. causa efficiens. 아리스토텔레스가 나눈 네 가지 원인 가운데 하나로, 무엇을 실제로 만들어 내거나 움직이게 하는 원인이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn6"><p><a href="#c3-fn6-ref">6</a>. agens. 무엇을 실제로 일어나게 하는 쪽. 작용인이 하는 일을 그 주체 쪽에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c3-fn7"><p><a href="#c3-fn7-ref">7</a>. finis. 무엇을 위해 그것이 있는가, 곧 목적을 가리킨다. 같은 낱말이 시간이나 정도의 &#x27;끝&#x27;을 뜻할 때는 그대로 &#x27;끝&#x27;으로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c3-fn8"><p><a href="#c3-fn8-ref">8</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+<aside epub:type="footnote" id="c3-fn9"><p><a href="#c3-fn9-ref">9</a>. 키타라는 고대 그리스의 발현악기다. 연주자가 줄 하나하나를 뜯을 때마다 따로 생각하지 않듯, 자연도 매번 헤아리지 않고 목적을 향한다는 비유다.</p></aside>
+<aside epub:type="footnote" id="c3-fn10"><p><a href="#c3-fn10-ref">10</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c3-fn11"><p><a href="#c3-fn11-ref">11</a>. 아베로에스(이븐 루시드). 아리스토텔레스 주석으로 이름이 높아 &#x27;주석가&#x27;로 통했다.</p></aside>
+</section><h1 class="chapter" id="c4"><span class="num">Caput 4</span>제4장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 원인의 갈래가 넷임을 보았으니, 이제 알아야 할 것은 같은 것이 여러 원인을 갖는 일이 불가능하지 않다는 점이다. 조각상이 그러한데, 그 원인은 구리이기도 하고 장인이기도 하다. 다만 장인은 작용인(作用因)<a epub:type="noteref" href="#c4-fn1" id="c4-fn1-ref"><sup>1</sup></a>으로서, 구리는 질료(materia)로서 그러하다. 또 같은 것이 서로 맞선 것들의 원인이 되는 일도 불가능하지 않다. 키잡이가 배가 무사한 원인이기도 하고 가라앉는 원인이기도 한 것과 같다. 다만 뒤엣것은 그가 없음으로써, 앞엣것은 그가 있음으로써 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Viso igitur quod quatuor sunt causarum genera, sciendum est quod non est impossibile quod idem habeat plures causas: ut idolum cuius causa est cuprum et artifex, sed artifex ut efficiens, cuprum ut materia. Non autem est impossibile ut idem sit causa contrariorum: sicut gubernator est causa salutis navis et submersionis, sed huius per absentiam, illius quidem per praesentiam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>또 알아야 할 것은, 같은 것이 같은 것에 대해 원인이면서 결과일 수 있다는 점이다. 다만 방식이 다르다. 걷기는 건강의 원인이되 작용인(作用因)으로서 그러하고, 건강은 걷기의 원인이되 목적<a epub:type="noteref" href="#c4-fn2" id="c4-fn2-ref"><sup>2</sup></a>으로서 그러하다. 걷기는 때로 건강을 위해 하는 것이기 때문이다. 또한 몸은 영혼(anima)의 질료이고 영혼은 몸의 형상(forma)이다. 작용인(作用因)은 목적에 대해 원인이라고 말해진다. 목적은 작용자<a epub:type="noteref" href="#c4-fn3" id="c4-fn3-ref"><sup>3</sup></a>의 작업을 통하지 않고서는 현실태(actus)로 있지 않기 때문이다. 그러나 목적은 작용인(作用因)의 원인이라고 말해진다. 작용인(作用因)은 목적을 겨냥함으로써만 작업하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sciendum est etiam quod possibile est ut aliquid idem sit causa et causatum respectu eiusdem, sed diversimode: ut deambulatio est causa sanitatis ut efficiens, sed sanitas est causa deambulationis ut finis: deambulatio enim est aliquando propter sanitatem. Et etiam corpus est materia animae, anima vero est forma corporis. Efficiens enim dicitur causa respectu finis, cum finis non sit in actu nisi per operationem agentis: sed finis dicitur causa efficientis, cum non operetur nisi per intentionem finis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 작용인(作用因)은 목적인 그것의 원인이다. 곧 건강이 있게 하는 원인이다. 그렇다고 목적을 목적이게 만들지는 않으며, 따라서 목적이 원인 노릇 하게 하는 원인은 아니다. 곧 목적을 목적다운 것이 되게 만들지는 않는다. 의사가 건강을 현실태로 있게 만들지만 건강이 목적이게 만들지는 않는 것과 같다. 한편 목적은 작용인(作用因)인 그것의 원인이 아니라, 작용인(作用因)이 작용인(作用因)이게 하는 원인이다. 건강이 의사를 의사이게 만들지는 않지만, 여기서 내가 말하는 건강은 의사가 작업하여 이루어지는 건강인데, 의사가 작용인(作用因)이 되게는 만들기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde efficiens est causa illius quod est finis: ut sit sanitas; non tamen facit finem esse finem, et ita non est causa causalitatis finis, idest non facit finem esse finalem: sicut medicus facit sanitatem esse in actu, non tamen facit quod sanitas sit finis. Finis autem non est causa illius quod est efficiens, sed est causa ut efficiens sit efficiens: sanitas enim non facit medicum esse medicum (et dico sanitatem quae fit operante medico), sed facit ut medicus sit efficiens.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 목적은 작용인(作用因)이 원인 노릇 하게 하는 원인이다. 작용인(作用因)을 작용인(作用因)이게 만들기 때문이다. 마찬가지로 질료를 질료이게 만들고 형상을 형상이게 만든다. 질료는 목적을 통하지 않고서는 형상을 받아들이지 않고, 형상은 목적을 통하지 않고서는 질료를 완성하지 않기 때문이다. 그러므로 목적은 원인들의 원인<a epub:type="noteref" href="#c4-fn4" id="c4-fn4-ref"><sup>4</sup></a>이라고 말해진다. 모든 원인 안에서 원인 노릇의 원인이기 때문이다. 질료는 형상의 원인이라고 말해지는데, 형상은 질료 안에서만 있기 때문이다. 마찬가지로 형상은 질료의 원인인데, 질료는 형상을 통하지 않고서는 현실태로 존재<a epub:type="noteref" href="#c4-fn5" id="c4-fn5-ref"><sup>5</sup></a>를 갖지 않기 때문이다. 『자연학』 제2권에서 말하듯이 질료와 형상은 서로 견주어 말해진다. 그것들은 합성체(compositum)에 대해 부분이 전체에 대하듯, 단순한 것이 합성된 것에 대하듯 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Unde finis est causa causalitatis efficientis, quia facit efficiens esse efficiens: similiter facit materiam esse materiam, et formam esse formam, cum materia non suscipiat formam nisi per finem, et forma non perficiat materiam nisi per finem. Unde dicitur quod finis est causa causarum, quia est causa causalitatis in omnibus causis. Materia enim dicitur causa formae, inquantum forma non est nisi in materia; et similiter forma est causa materiae, inquantum materia non habet esse in actu nisi per formam. Materia enim et forma dicuntur relative ad invicem, ut dicitur in secundo physicorum. Dicuntur enim ad compositum sicut partes ad totum, et simplex ad compositum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그런데 모든 원인은 원인인 한에서 본성<a epub:type="noteref" href="#c4-fn6" id="c4-fn6-ref"><sup>6</sup></a>상 결과보다 앞선다. 그러므로 알아야 할 것은, 아리스토텔레스가 『동물지』 제16권에서 말하듯이 &#x27;앞선다&#x27;는 말이 두 가지로 쓰인다는 점이다. 그 차이 때문에 같은 것에 대해 무엇이 앞선다고도 뒤선다고도 말할 수 있고, 원인이라고도 결과라고도 말할 수 있다. 무엇이 다른 것보다 생성<a epub:type="noteref" href="#c4-fn7" id="c4-fn7-ref"><sup>7</sup></a>과 시간(tempus)에서 앞선다고 말해지기도 하고, 또 실체(substantia)와 완성에서 앞선다고 말해지기도 하기 때문이다. 그런데 자연의 작업은 온전하지 못한 것에서 온전한 것으로, 완성되지 않은 것에서 완성된 것으로 나아간다. 그러므로 온전하지 못한 것이 생성과 시간에서는 온전한 것보다 앞서지만, 온전한 것이 완성에서는 앞선다. 어른이 아이보다 실체와 완성에서 앞서지만 아이가 어른보다 생성과 시간에서 앞선다고 말할 수 있는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed quia omnis causa, inquantum est causa, naturaliter prior est causato, sciendum quod prius dicitur duobus modis, ut dicit Aristoteles in decimosexto de Animal.; per quorum diversitatem potest aliquid dici prius et posterius respectu eiusdem, et causa et causatum. Dicitur enim aliquid prius altero generatione et tempore, et iterum in substantia et complemento. Cum ergo naturae operatio procedat ab imperfecto ad perfectum, et ab incompleto ad completum, imperfectum est prius perfecto, secundum generationem et tempus, sed perfectum est prius in complemento: sicut potest dici quod vir est ante puerum in substantia et complemento, sed puer est ante virum generatione et tempore.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 생성될 수 있는 사물들에서 온전하지 못한 것이 온전한 것보다 앞서고 가능태(potentia)가 현실태보다 앞선다고 해도, 곧 같은 하나에서 온전하지 못함이 온전함보다 또 가능태에 있음이 현실태에 있음보다 앞선다고 헤아릴 때 그러하더라도, 무제한적으로 말하자면 현실태와 온전한 것이 앞서야 한다. 가능태를 현실태로 이끄는 것은 현실태로 있고, 온전하지 못한 것을 온전하게 하는 것은 온전하기 때문이다. 질료는 생성과 시간에서 형상보다 앞선다. 다가옴을 받는 쪽이 다가오는 쪽보다 앞서기 때문이다. 그러나 형상은 완전성(perfectio)에서 질료보다 앞선다. 질료는 형상을 통하지 않고서는 온전한 존재를 갖지 않기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed licet in rebus generabilibus imperfectum sit prius perfecto, et potentia prior actu, considerando in aliquo eodem quod prius est imperfectum quam perfectum, et in potentia quam in actu, simpliciter tamen loquendo, oportet actum et perfectum prius esse: quia quod reducit potentiam ad actum, actu est, et quod perficit imperfectum, perfectum est. Materia quidem est prior forma generatione et tempore: prius enim est cui advenit, quam quod advenit. Forma vero est prior materia perfectione, quia materia non habet esse completum nisi per formam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>마찬가지로 작용인(作用因)은 생성과 시간에서 목적보다 앞선다. 작용인(作用因)에게서 목적을 향한 운동(motus)이 나오기 때문이다. 그러나 목적은 실체와 완성에서, 작용인(作用因)이 작용인인 한에서 그것보다 앞선다. 작용인(作用因)의 활동은 목적을 통하지 않고서는 완성되지 않기 때문이다. 그러므로 이 두 원인 곧 질료와 작용인(作用因)은 생성의 길에서 앞서고, 형상과 목적은 완전성의 길에서 앞선다. 그리고 주목할 것은 필연성이 두 겹이라는 점이다. 곧 무제한적 필연성과 조건적 필연성이다. 무제한적 필연성은 생성의 길에서 앞서는 원인들 곧 질료와 작용인(作用因)에서 나오는 것이다. 죽음의 필연성이 그러한데, 이는 질료에서, 그리고 서로 맞선 것들이 합쳐진 갖춤에서 온다. 이것이 무제한적이라고 불리는 것은 막을 것이 없기 때문이다. 이것은 질료의 필연성이라고도 불린다. 한편 조건적 필연성은 생성에서 뒤에 오는 원인들 곧 형상과 목적에서 나온다. 사람이 생겨나야 한다면 잉태가 있어야 한다고 우리가 말하는 것과 같다. 이것이 조건적인 까닭은, 이 여자가 잉태하는 일이 무제한적으로 필연적인 것이 아니라 사람이 생겨나야 한다는 조건 아래에서만 필연적이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Similiter efficiens prior est fine generatione et tempore, cum ab efficiente fiat motus ad finem; sed finis est prior efficiente inquantum est efficiens, in substantia et complemento, cum actio efficientis non compleatur nisi per finem. Igitur istae duae causae, scilicet materia et efficiens, sunt prius per viam generationis; sed forma et finis sunt prius per viam perfectionis. Et notandum quod duplex est necessitas: scilicet necessitas absoluta et necessitas conditionalis. Necessitas quidem absoluta est quae procedit a causis prioribus in viam generationis, quae sunt materia et efficiens: sicut necessitas mortis quae provenit ex materia et ex dispositione contrariorum componentium; et haec dicitur absoluta quia non habet impedimentum. Haec etiam dicitur necessitas materiae. Necessitas autem conditionalis procedit a causis posterioribus in generatione, scilicet a forma et fine: sicut dicimus quod necessarium est esse conceptionem, si debeat generari homo; et ista est conditionalis, quia hanc mulierem concipere non est necessarium simpliciter, sed sub conditione, si debeat generari homo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그리고 이것은 목적의 필연성이라고 불린다. 또 알아야 할 것은, 세 원인이 하나로 겹칠 수 있다는 점이다. 곧 형상과 목적과 작용인(作用因)이다. 불의 생성에서 이것이 분명하다. 불이 불을 낳으므로 불은 낳는 한에서 작용인(作用因)이다. 또 불은 앞서 가능태였던 것을 현실태로 있게 만드는 한에서 형상이다. 또 작용자가 겨냥하는 것인 한에서, 그리고 그 작용자의 작업이 그것에서 끝나는 한에서 목적이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et haec dicitur necessitas finis. Et est sciendum quod tres causae possunt incidere in unum, scilicet forma, finis, et efficiens: sicut patet in generatione ignis. Ignis enim generat ignem, ergo ignis est causa efficiens inquantum generat; et iterum ignis est forma inquantum facit esse actu quod prius erat potentia; et iterum est, finis inquantum est intentum ab agente et inquantum terminantur ad ipsum operationes ipsius agentis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 목적은 두 겹이다. 곧 생성의 목적과 생성된 사물의 목적이다. 칼의 생성에서 이것이 분명하다. 칼의 형상은 생성의 목적이지만, 칼의 작업인 자름은 생성된 것 곧 칼 자체의 목적이다. 그런데 생성의 목적은 때로 앞서 말한 두 원인과 맞물린다. 곧 종(種, species)에서 닮은 것에서 생성이 이루어질 때 그러한데, 사람이 사람을 낳고 올리브나무가 올리브나무를 낳는 것과 같다. 이것은 생성된 사물의 목적에 대해서는 이해될 수 없다. 그런데 알아야 할 것은, 목적이 형상과 수로 헤아려 같은 것으로 겹친다는 점이다. 생성된 것의 형상인 바로 그것이 수로 헤아려 같은 것으로서 생성의 목적이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed duplex est finis, scilicet finis generationis, et finis rei generatae: sicut patet in generatione cultelli. Forma enim cultelli est finis generationis; sed incidere, quod est operatio cultelli, est finis ipsius generati, scilicet cultelli. Finis autem generationis concidit ex duabus dictis causis aliquando, scilicet quando fit generatio a simili in specie, sicut homo generat hominem, et oliva olivam: quod non potest intelligi de fine rei generatae. Sciendum autem quod finis incidit cum forma in idem numero, quia illud idem in numero quod est forma generati est finis generationis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 목적은 작용인(作用因)과 수로 헤아려 같은 것으로 겹치지 않고 종(種)으로 같은 것으로 겹친다. 만드는 것과 만들어진 것이 수로 헤아려 같기란 불가능하지만 종(種)으로는 같을 수 있기 때문이다. 사람이 사람을 낳을 때 낳는 사람과 태어난 사람은 수로는 다르지만 종(種)으로는 같은 것과 같다. 한편 질료는 다른 것들과 맞물리지 않는다. 질료는 가능태로 있는 존재자(ens)라는 데서 온전하지 못하다는 개념<a epub:type="noteref" href="#c4-fn8" id="c4-fn8-ref"><sup>8</sup></a>을 갖지만, 다른 원인들은 현실태로 있으므로 온전하다는 개념을 갖기 때문이다. 그런데 온전한 것과 온전하지 못한 것은 같은 것으로 겹치지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed cum efficiente non incidit in idem numero, sed in idem specie. Impossibile est enim ut faciens et factum sint idem numero, sed possunt esse idem specie: ut quando homo generat hominem, homo generans et generatus sunt diversa in numero sed idem in specie. Materia autem non concidit cum aliis, quia materia, ex eo quod est ens in potentia, habet rationem imperfecti, sed aliae causae cum sint actu, habent rationem perfecti; perfectum autem et imperfectum non concidunt in idem.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c4-fn1"><p><a href="#c4-fn1-ref">1</a>. causa efficiens. 아리스토텔레스가 나눈 네 가지 원인 가운데 하나로, 무엇을 실제로 만들어 내거나 움직이게 하는 원인이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn2"><p><a href="#c4-fn2-ref">2</a>. finis. 무엇을 위해 그것이 있는가, 곧 목적을 가리킨다. 같은 낱말이 시간이나 정도의 &#x27;끝&#x27;을 뜻할 때는 그대로 &#x27;끝&#x27;으로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c4-fn3"><p><a href="#c4-fn3-ref">3</a>. agens. 무엇을 실제로 일어나게 하는 쪽. 작용인이 하는 일을 그 주체 쪽에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn4"><p><a href="#c4-fn4-ref">4</a>. 목적이 없으면 작용자가 움직이지 않고, 작용자가 움직이지 않으면 질료도 형상을 받지 않는다. 그런 뜻에서 목적인이 다른 원인들을 원인이게 한다.</p></aside>
+<aside epub:type="footnote" id="c4-fn5"><p><a href="#c4-fn5-ref">5</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn6"><p><a href="#c4-fn6-ref">6</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="c4-fn7"><p><a href="#c4-fn7-ref">7</a>. generatio. 없던 것이 있게 되는 일. 아래의 &#x27;소멸(corruptio)&#x27;과 짝을 이루며, 자연 사물의 변화를 이 둘로 설명한다.</p></aside>
+<aside epub:type="footnote" id="c4-fn8"><p><a href="#c4-fn8-ref">8</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+</section><h1 class="chapter" id="c5"><span class="num">Caput 5</span>제5장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러므로 원인이 넷임을 보았으니, 곧 작용인(作用因)<a epub:type="noteref" href="#c5-fn1" id="c5-fn1-ref"><sup>1</sup></a>과 질료인(質料因, causa materialis)과 형상인(形相因, causa formalis)과 목적인(目的因, causa finalis)임을 보았으니, 이제 알아야 할 것은 이 원인들 각각이 여러 방식으로 나뉜다는 점이다. 무엇이 앞선 것으로서 원인이라고 말해지고 무엇이 뒤선 것으로서 원인이라고 말해지기 때문이다. 우리가 기술과 의사가 건강의 원인이라고 말하는 것과 같다. 다만 기술은 앞선 것으로서 원인이고 의사는 뒤선 것으로서 원인이다. 형상인(形相因)에서도 다른 원인들에서도 마찬가지다. 그리고 주목하라. 우리는 언제나 물음을 첫째 원인으로 되돌려야 한다. 이를테면 &#x27;왜 이 사람이 건강한가?&#x27;라고 묻는다면 &#x27;의사가 낫게 했기 때문&#x27;이라고 답해야 하고, 다시 &#x27;왜 의사가 낫게 했는가?&#x27;라고 물으면 &#x27;그가 지닌 낫게 하는 기술 때문&#x27;이라고 답해야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Viso igitur quod sint quatuor causae, scilicet efficiens, materialis, formalis et finalis, sciendum est quod quaelibet istarum causarum dividitur multis modis. Dicitur enim aliquid causa per prius, et aliquid per posterius, sicut dicimus quod ars et medicus sunt causa sanitatis: sed ars est causa per prius, et medicus per posterius; et similiter in causa formali, et in aliis causis. Et nota quod semper debemus reducere quaestionem ad primam causam, ut si quaeratur: quare est iste sanus? Dicendum est: quia medicus sanavit et iterum, quare medicus sanavit propter artem sanandi quam habet.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>알아야 할 것은, 가까운 원인이라는 말과 뒤선 원인이라는 말이 같고, 먼 원인이라는 말과 앞선 원인이라는 말이 같다는 점이다. 그러므로 원인을 앞선 것과 뒤선 것으로 나누는 것과 먼 것과 가까운 것으로 나누는 이 두 나눔은 같은 것을 가리킨다. 그런데 여기서 살펴야 할 것은, 언제나 더 보편적인 것이 먼 원인이라고 불리고 더 특수한 것이 가까운 원인이라고 불린다는 점이다. 우리가 사람의 가까운 형상(forma)은 그 정의(定義, diffinitio) 곧 &#x27;이성적이고 죽을 수 있는 동물&#x27;이고, 동물은 더 멀며, 실체(substantia)는 더욱 멀다고 말하는 것과 같다. 위에 있는 모든 것은 아래 있는 것들의 형상이기 때문이다. 마찬가지로 조각상의 가까운 질료(materia)는 구리이고 먼 질료는 금속이며 더 먼 것은 물체다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sciendum est quod idem est dictu causa propinqua quod causa posterior, et causa remota quod causa prior. Unde istae duae divisiones causarum: alia per prius, alia per posterius; et causarum alia remota, alia propinqua, idem significant. Hoc autem observandum est, quod semper illud quod universalius est, causa remota dicitur, quod autem specialius, causa propinqua: sicut dicimus quod forma hominis propinqua est sua definitio, scilicet animal rationale mortale, sed animal est magis remota, et iterum substantia remotior est. Omnia enim superiora sunt formae inferiorum. Et similiter materia idoli propinqua est cuprum, sed remota est metallum, et iterum remotius corpus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>또 원인 가운데 어떤 것은 그 자체로 원인이고 어떤 것은 우유(偶有)<a epub:type="noteref" href="#c5-fn2" id="c5-fn2-ref"><sup>2</sup></a>적으로 원인이다. 그 자체로 원인이란 어떤 사물의 원인이되 그러한 것인 한에서 원인인 것을 말한다. 건축가가 집의 원인이고 나무가 걸상의 질료인 것과 같다. 우유(偶有)적으로 원인이란 그 자체로 원인인 것에 우연히 딸리는 것이다. 우리가 &#x27;문법학자가 집을 짓는다&#x27;고 말할 때와 같다. 문법학자는 집 지음의 원인이라고 우유(偶有)적으로 말해진다. 문법학자인 한에서가 아니라 건축가에게 우연히 딸린 한에서 그러하기 때문이다. 다른 원인들에서도 마찬가지다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Item causarum alia est per se, alia per accidens. Causa per se dicitur causa alicuius rei inquantum huiusmodi, sicut aedificator est causa domus, et lignum materia scamni. Causa per accidens est illa quae accidit causae per se, sicut cum dicimus grammaticus aedificat. Grammaticus enim dicitur causa aedificationis per accidens, non enim inquantum grammaticus, sed inquantum accidit aedificatori. Et similiter est in aliis causis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>또 원인 가운데 어떤 것은 단순하고 어떤 것은 합성되어 있다. 단순한 원인이라고 말해지는 것은, 그 자체로 원인인 것만을 원인이라고 말하거나 우유(偶有)적으로 원인인 것만을 원인이라고 말할 때다. 우리가 건축가가 집의 원인이라고 말하는 경우, 그리고 마찬가지로 의사가 집의 원인이라고 말하는 경우가 그러하다. 한편 합성된 원인이라고 말해지는 것은 둘 다를 원인이라고 말할 때다. 우리가 &#x27;의사인 건축가가 집의 원인이다&#x27;라고 말하는 경우가 그러하다. 또 아비첸나<a epub:type="noteref" href="#c5-fn3" id="c5-fn3-ref"><sup>3</sup></a>가 풀이하는 대로, 다른 것을 보태지 않고도 원인인 것을 단순한 원인이라고 말할 수도 있다. 조각상에 대한 구리가 그러한데, 다른 질료를 보태지 않고 구리에서 조각상이 되기 때문이다. 그리고 의사가 건강을 만든다거나 불이 데운다고 말하는 경우가 그러하다. 한편 합성된 원인은 원인이 되기 위해 여럿이 모여야 할 때를 말한다. 한 사람이 배를 움직이는 원인이 아니라 여럿이 그러한 것과 같고, 돌 하나가 집의 질료가 아니라 여럿이 그러한 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Item causarum quaedam est simplex, et quaedam composita. Simplex causa dicitur quando solum dicitur causa illud quod per se est causa, vel etiam solum illud quod est per accidens: sicut si dicamus aedificatorem esse causam domus, et similiter si dicamus medicum esse causam domus. Composita autem dicitur quando utrumque dicitur causa, ut si dicamus: aedificator medicus est causa domus. Potest etiam dici causa simplex, secundum quod exponit Avicenna, illud quod sine adiunctione alterius est causa, sicut cuprum idoli, sine adiunctione enim alterius materiae ex cupro fit idolum; et sicut dicitur quod medicus facit sanitatem, vel quod ignis calefacit. Composita autem causa est, quando oportet plura advenire ad hoc quod sit causa: sicut unus homo non est causa motus navis, sed multi; et sicut unus lapis non est materia domus, sed multi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>또 원인 가운데 어떤 것은 현실태(actus)로 있고 어떤 것은 가능태(potentia)로 있다. 현실태로 있는 원인은 현실태로 사물을 일으키는 원인이다. 건축가가 집을 지을 때가 그러하고, 구리에서 조각상이 되고 있을 때가 그러하다. 한편 가능태로 있는 원인은 현실태로 사물을 일으키지는 않지만 일으킬 수 있는 원인이다. 집을 짓고 있지 않은 건축가가 그러하다. 그리고 알아야 할 것은, 현실태로 있는 원인을 두고 말하자면 원인과 결과가 함께 있어야 한다는 점이다. 곧 하나가 있으면 다른 하나도 있어야 한다. 건축가가 현실태로 있다면 집을 짓고 있어야 하고, 집 지음이 현실태로 있다면 건축가가 현실태로 있어야 하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Item causarum quaedam est actu, quaedam potentia. Causa in actu est quae actu causat rem, sicut aedificator cum aedificat, vel cuprum cum ex eo est idolum. Causa autem in potentia est quae licet non causet rem in actu, tamen potest causare: ut aedificator, dum non aedificat. Et sciendum quod loquendo de causis in actu, necessarium est causam et causatum simul esse, ita quod si unum sit, et alterum. Si enim est aedificator in actu, oportet quod aedificet; et si sit aedificatio in actu, oportet quod sit aedificator in actu.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>그러나 오직 가능태로만 있는 원인에서는 이것이 필연적이지 않다. 그리고 알아야 할 것은, 보편적 원인은 보편적 결과에 견주어지고 개별적 원인은 개별적 결과에 견주어진다는 점이다. 우리가 건축가는 집의 원인이고 이 건축가는 이 집의 원인이라고 말하는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed hoc non est necessarium in causis quae sunt solum in potentia. Sciendum est autem quod causa universalis comparatur causato universali, causa vero singularis comparatur causato singulari: sicut dicimus quod aedificator est causa domus, et hic aedificator huius domus.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c5-fn1"><p><a href="#c5-fn1-ref">1</a>. causa efficiens. 아리스토텔레스가 나눈 네 가지 원인 가운데 하나로, 무엇을 실제로 만들어 내거나 움직이게 하는 원인이다.</p></aside>
+<aside epub:type="footnote" id="c5-fn2"><p><a href="#c5-fn2-ref">2</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="c5-fn3"><p><a href="#c5-fn3-ref">3</a>. 이븐 시나. 페르시아의 철학자·의학자로, 아퀴나스의 본질 이해에 큰 영향을 주었다.</p></aside>
+</section><h1 class="chapter" id="c6"><span class="num">Caput 6</span>제6장</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>또 알아야 할 것은, 안의 원리(principium) 곧 질료(materia)와 형상(forma)을 두고 말하자면, 원리를 지닌 것들이 서로 일치하고 다른 만큼 원리들도 일치하고 다르다는 점이다. 어떤 것들은 수로 헤아려 같다. 소크라테스와, 소크라테스를 가리키며 말한 &#x27;이 사람&#x27;이 그러하다. 어떤 것들은 수로는 다르고 종(種, species)으로는 같다. 소크라테스와 플라톤이 그러한데, 사람이라는 종(種)에서 일치하지만 수로는 다르다. 또 어떤 것들은 종(種)으로는 다르지만 유(類)<a epub:type="noteref" href="#c6-fn1" id="c6-fn1-ref"><sup>1</sup></a>로는 같다. 사람과 나귀가 동물이라는 유(類)에서 일치하는 것과 같다. 또 어떤 것들은 유(類)로 다르고 오직 유비(類比)<a epub:type="noteref" href="#c6-fn2" id="c6-fn2-ref"><sup>2</sup></a>에 따라서만 같다. 실체(substantia)와 양이 그러한데, 이것들은 어떤 유(類)에서도 일치하지 않고 오직 유비(類比)에 따라서만 일치한다. 곧 존재자(ens)라는 점에서만 일치한다. 그런데 존재자는 유(類)가 아니다. 일의적(一義的)<a epub:type="noteref" href="#c6-fn3" id="c6-fn3-ref"><sup>3</sup></a>으로 술어로 말해지지<a epub:type="noteref" href="#c6-fn4" id="c6-fn4-ref"><sup>4</sup></a> 않고 유비(類比)적으로 말해지기 때문이다. 이것을 이해하려면 알아야 할 것이 있다. 무엇이 여럿에 대해 술어로 말해지는 방식이 세 가지라는 점이다. 곧 일의적(一義的)으로, 다의적으로, 유비(類比)적으로다. 일의적(一義的)으로 술어로 말해진다는 것은 같은 이름에 따라, 그리고 같은 개념<a epub:type="noteref" href="#c6-fn5" id="c6-fn5-ref"><sup>5</sup></a> 곧 같은 정의(定義, diffinitio)에 따라 말해지는 것이다. 동물이 사람에 대해서도 나귀에 대해서도 술어로 말해지는 것과 같다. 둘 다 동물이라고 불리고, 둘 다 감각하는 살아 있는 실체인데 이것이 동물의 정의(定義)이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sciendum est etiam quod loquendo de principiis intrinsecis, scilicet materia et forma, secundum convenientiam principiatorum et differentiam est convenientia et differentia principiorum: quaedam enim sunt idem numero, sicut Socrates et hic homo demonstrato Socrate; quaedam sunt diversa numero et sunt idem in specie, ut Socrates et Plato, qui, licet conveniant in specie humana, tamen differunt numero. Quaedam autem differunt specie, sed sunt idem genere, sicut homo et asinus conveniunt in genere animalis; quaedam autem sunt diversa in genere, sed sunt idem solum secundum analogiam, sicut substantia et quantitas, quae non conveniunt in aliquo genere, sed conveniunt solum secundum analogiam: conveniunt enim in eo solum quod est ens. Ens autem non est genus, quia non praedicatur univoce, sed analogice. Ad huius intelligentiam sciendum est, quod tripliciter aliquid praedicatur de pluribus: univoce, aequivoce et analogice. Univoce praedicatur quod praedicatur secundum idem nomen et secundum rationem eamdem, idest definitionem, sicut animal praedicatur de homine et de asino. Utrumque enim dicitur animal, et utrumque est substantia animata sensibilis, quod est definitio animalis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>다의적으로 술어로 말해진다는 것은 같은 이름에 따라 말해지되 다른 개념에 따라 말해지는 것이다. &#x27;개&#x27;가 짖는 것에 대해서도 하늘의 것에 대해서도<a epub:type="noteref" href="#c6-fn6" id="c6-fn6-ref"><sup>6</sup></a> 말해지는 것과 같은데, 이것들은 이름에서만 일치하고 정의(定義) 곧 뜻에서는 일치하지 않는다. 『형이상학』 제4권에서 말하듯이 이름이 가리키는 그것이 정의(定義)이기 때문이다. 유비(類比)적으로 술어로 말해진다는 것은, 개념이 서로 다른 여럿에 대해 말해지되 그 개념들이 어떤 하나에 돌려지는 것이다. &#x27;건강하다&#x27;가 동물의 몸에 대해서도 오줌에 대해서도 마실 것에 대해서도 말해지는 것과 같다. 그러나 모두에서 온전히 같은 것을 가리키지는 않는다. 오줌에 대해서는 건강의 표시로서, 몸에 대해서는 기체(基體)<a epub:type="noteref" href="#c6-fn7" id="c6-fn7-ref"><sup>7</sup></a>로서, 마실 것에 대해서는 원인으로서 말해지기 때문이다. 그렇더라도 이 모든 개념은 하나의 목적<a epub:type="noteref" href="#c6-fn8" id="c6-fn8-ref"><sup>8</sup></a> 곧 건강에 돌려진다. 유비(類比)에 따라 곧 비례나 견줌이나 어울림에 따라 일치하는 것들은 때로 하나의 목적에 돌려진다. 앞서 든 예에서 이 점이 분명하다. 때로는 하나의 작용자<a epub:type="noteref" href="#c6-fn9" id="c6-fn9-ref"><sup>9</sup></a>에 돌려진다. &#x27;의사&#x27;가 기술을 지니고 일하는 사람에 대해서도, 노파처럼 기술 없이 일하는 사람에 대해서도, 나아가 도구에 대해서도 말해지는 것과 같은데, 이는 하나의 작용자 곧 의술에 돌려짐으로써 그러하다. 또 때로는 하나의 기체(基體)에 돌려진다. &#x27;존재자&#x27;가 실체에 대해서도 질과 양과 그 밖의 범주들에 대해서도 말해지는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Aequivoce praedicatur, quod praedicatur de aliquibus secundum idem nomen, et secundum diversam rationem: sicut canis dicitur de latrabili et de caelesti, quae conveniunt solum in nomine, et non in definitione sive significatione: id enim quod significatur per nomen, est definitio, sicut dicitur in quarto Metaph. Analogice dicitur praedicari, quod praedicatur de pluribus quorum rationes diversae sunt sed attribuuntur uni alicui eidem: sicut sanum dicitur de corpore animalis et de urina et de potione, sed non ex toto idem significat in omnibus. Dicitur enim de urina ut de signo sanitatis, de corpore ut de subiecto, de potione ut de causa; sed tamen omnes istae rationes attribuuntur uni fini, scilicet sanitati. Aliquando enim ea quae conveniunt secundum analogiam, id est in proportione vel comparatione vel convenientia, attribuuntur uni fini, sicut patet in praedicto exemplo; aliquando uni agenti, sicut medicus dicitur et de eo qui operatur per artem et de eo qui operatur sine arte, ut vetula, et etiam de instrumentis, sed per attributionem ad unum agens, quod est medicina; aliquando autem per attributionem ad unum subiectum, sicut ens dicitur de substantia, de qualitate et quantitate et aliis praedicamentis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p>실체가 존재자인 근거와 양이나 다른 것들이 존재자인 근거가 온전히 같지는 않고, 모두가 실체에 돌려짐으로써 그렇게 말해지기 때문이다. 실체는 다른 것들의 기체(基體)다. 그러므로 존재자는 실체에 대해 앞선 것으로서 말해지고 다른 것들에 대해 뒤선 것으로서 말해진다. 그러므로 존재자는 실체와 양의 유(類)가 아니다. 어떤 유(類)도 자기 종(種)들에 대해 앞서고 뒤서는 방식으로 술어로 말해지지 않고, 유비(類比)적으로 말해지기 때문이다. 그리고 이것이 우리가 실체와 양은 유(類)로 다르되 유비(類比)로는 같다고 말한 바다. 그러므로 수로 헤아려 같은 것들에서는 형상과 질료도 수로 헤아려 같다. 툴리우스와 키케로<a epub:type="noteref" href="#c6-fn10" id="c6-fn10-ref"><sup>10</sup></a>가 그러하다. 한편 종(種)으로 같고 수로 다른 것들에서는 질료와 형상도 수로 같지 않고 종(種)으로 같다. 소크라테스와 플라톤이 그러하다. 마찬가지로 유(類)로 같은 것들에서는 원리들도 유(類)로 같다. 나귀와 말의 영혼(anima)과 몸은 종(種)으로 다르지만 유(類)로는 같다. 마찬가지로 오직 유비(類比)에 따라서만 일치하는 것들에서는 원리들도 오직 유비(類比) 곧 비례에 따라서만 같다. 질료와 형상과 결여<a epub:type="noteref" href="#c6-fn11" id="c6-fn11-ref"><sup>11</sup></a>, 곧 가능태(potentia)와 현실태(actus)는 실체의 원리이자 다른 유(類)들의 원리다. 그렇지만 실체의 질료와 양의 질료는, 마찬가지로 형상과 결여도 유(類)로 다르며, 오직 비례에 따라서만 일치한다. 곧 실체의 질료가 질료라는 개념에서 실체에 대해 놓이는 것과 같이 양의 질료가 양에 대해 놓인다는 점에서만 일치한다. 그렇더라도 실체가 나머지 것들의 원인이듯이 실체의 원리는 다른 모든 것의 원리다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Non enim ex toto est eadem ratio qua substantia est ens, et quantitas, et alia, sed omnia dicuntur ex eo quod attribuuntur substantiae, quod est subiectum aliorum. Et ideo ens dicitur per prius de substantia, et per posterius de aliis. Et ideo ens non est genus substantiae et quantitatis, quia nullum genus praedicatur per prius et posterius de suis speciebus, sed praedicatur analogice. Et hoc est quod diximus quod substantia et quantitas differunt genere, sed sunt idem analogia. Eorum igitur quae sunt idem numero, forma et materia sunt idem numero, ut Tullii et Ciceronis. Eorum autem quae sunt idem in specie diversa numero, etiam materia et forma non est eadem numero, sed specie, sicut Socratis et Platonis. Et similiter eorum quae sunt idem genere, et principia sunt idem genere: ut anima et corpus asini et equi differunt specie, sed sunt idem genere. Et similiter eorum quae conveniunt secundum analogiam tantum, principia sunt eadem secundum analogiam tantum, sive proportionem. Materia enim et forma et privatio, sive potentia et actus, sunt principia substantiae et aliorum generum. Tamen materia substantiae et quantitatis, et similiter forma et privatio differunt genere, sed conveniunt solum secundum proportionem in hoc quod, sicut se habet materia substantiae ad substantiam in ratione materiae, ita se habet materia quantitatis ad quantitatem. Sicut tamen substantia est causa ceterorum, ita principia substantiae sunt principia omnium aliorum.</p></div></div>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="c6-fn1"><p><a href="#c6-fn1-ref">1</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="c6-fn2"><p><a href="#c6-fn2-ref">2</a>. analogia. 여러 가지에 같은 이름을 쓰되 뜻이 똑같지도 전혀 다르지도 않고, 하나를 중심으로 견주어 쓰이는 방식이다.</p></aside>
+<aside epub:type="footnote" id="c6-fn3"><p><a href="#c6-fn3-ref">3</a>. univocus. 여러 가지에 같은 이름을 쓰면서 뜻도 똑같은 경우. &#x27;사람&#x27;과 &#x27;말&#x27;을 둘 다 동물이라 부르는 것이 그러하다.</p></aside>
+<aside epub:type="footnote" id="c6-fn4"><p><a href="#c6-fn4-ref">4</a>. praedicatio. &#x27;A는 B이다&#x27;라고 말할 때 B를 A에 대해 말하는 일. 동사형은 &#x27;술어로 말해진다&#x27;로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c6-fn5"><p><a href="#c6-fn5-ref">5</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="c6-fn6"><p><a href="#c6-fn6-ref">6</a>. 라틴어 canis는 짖는 개와 큰개자리(별자리)를 함께 가리킨다. 이름만 같고 뜻이 전혀 다른 예다.</p></aside>
+<aside epub:type="footnote" id="c6-fn7"><p><a href="#c6-fn7-ref">7</a>. subiectum. 성질이 얹히는 바탕. 근대 철학이 말하는 &#x27;주체&#x27;와는 뜻이 다르다.</p></aside>
+<aside epub:type="footnote" id="c6-fn8"><p><a href="#c6-fn8-ref">8</a>. finis. 무엇을 위해 그것이 있는가, 곧 목적을 가리킨다. 같은 낱말이 시간이나 정도의 &#x27;끝&#x27;을 뜻할 때는 그대로 &#x27;끝&#x27;으로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="c6-fn9"><p><a href="#c6-fn9-ref">9</a>. agens. 무엇을 실제로 일어나게 하는 쪽. 작용인이 하는 일을 그 주체 쪽에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="c6-fn10"><p><a href="#c6-fn10-ref">10</a>. 마르쿠스 툴리우스 키케로. 한 사람을 부르는 두 이름이므로 수로 헤아려 하나인 것의 예가 된다.</p></aside>
+<aside epub:type="footnote" id="c6-fn11"><p><a href="#c6-fn11-ref">11</a>. privatio. 마땅히 있어야 할 것이 없는 상태. 단순한 &#x27;없음&#x27;이 아니라, 있을 수 있는 자리에 아직 없음을 뜻한다.</p></aside>
+</section></article>
+  </main>
+  <nav class="reader-pagination" aria-label="책장 넘기기">
+    <button class="page-button" id="page-previous" type="button">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span>이전</span>
+    </button>
+    <span class="page-status" aria-live="polite"><small id="page-counter-label">페이지</small><strong id="page-counter">1 / 1</strong></span>
+    <button class="page-button" id="page-next" type="button"><span>다음</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </nav>
+  
+<dialog class="footnote-dialog" id="footnote-dialog" aria-labelledby="footnote-dialog-title">
+  <div class="footnote-dialog-head">
+    <p class="footnote-dialog-title" id="footnote-dialog-title">각주</p>
+    <button class="footnote-close" id="footnote-close" type="button" aria-label="각주 닫기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="footnote-dialog-content" id="footnote-dialog-content"></div>
+</dialog>
+
+
+<script>
+(() => {
+  const body = document.body;
+  const stage = document.getElementById('reader-stage');
+  const pages = document.getElementById('reader-pages');
+  const previous = document.getElementById('page-previous');
+  const next = document.getElementById('page-next');
+  const counter = document.getElementById('page-counter');
+  const counterLabel = document.getElementById('page-counter-label');
+  const layoutLabel = document.getElementById('reader-layout-label');
+  const latinButton = document.getElementById('latin-visibility');
+  const notesButton = document.getElementById('notes-visibility');
+  const dialog = document.getElementById('footnote-dialog');
+  const title = document.getElementById('footnote-dialog-title');
+  const content = document.getElementById('footnote-dialog-content');
+  const close = document.getElementById('footnote-close');
+  const reader = body.dataset;
+  const embedded = window.parent && window.parent !== window;
+  const preferenceKey = 'aquinasReaderPreferences';
+  const progressKey = `aquinasReaderPage:${reader.workId || 'work'}:${reader.variant || 'edition'}`;
+  let preferences = {};
+  let currentPage = 0;
+  let totalPages = 1;
+  let columnsPerSpread = 1;
+  let pageWidth = 0;
+  let pageGap = 32;
+  let firstLayout = true;
+  let layoutRevision = 0;
+  let resizeTimer = null;
+  let wheelLocked = false;
+  let touchStartX = null;
+  let sourceHtml = '';
+
+  try { preferences = JSON.parse(localStorage.getItem(preferenceKey)) || {}; } catch { preferences = {}; }
+  const defaultLatin = reader.defaultLatin === 'true';
+  body.classList.toggle('show-latin', preferences.latin == null ? defaultLatin : Boolean(preferences.latin));
+  body.classList.toggle('show-notes', Boolean(preferences.notes));
+  body.classList.toggle('embedded-reader', embedded);
+  if (embedded) {
+    const backLabel = document.getElementById('library-back-label');
+    if (backLabel) backLabel.textContent = '저작 선택';
+  }
+
+  function noteText(note) {
+    const paragraph = note && note.querySelector('p');
+    const clone = paragraph ? paragraph.cloneNode(true) : note?.cloneNode(true);
+    if (!clone) return '';
+    clone.querySelectorAll('a').forEach(anchor => anchor.remove());
+    return clone.textContent.replace(/^\s*\.\s*/, '').trim();
+  }
+
+  function buildInlineFootnotes() {
+    const byParagraph = new Map();
+    document.querySelectorAll('a[id$="-ref"][href^="#"]').forEach(reference => {
+      reference.classList.add('footnote-reference');
+      const paragraph = reference.closest('p');
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!paragraph || !note) return;
+      if (!byParagraph.has(paragraph)) byParagraph.set(paragraph, []);
+      byParagraph.get(paragraph).push({ number: reference.textContent.trim(), text: noteText(note) });
+    });
+    byParagraph.forEach((items, paragraph) => {
+      const box = document.createElement('span');
+      box.className = 'inline-footnotes';
+      box.setAttribute('role', 'note');
+      items.forEach(item => {
+        const line = document.createElement('span');
+        line.className = 'inline-footnote-item';
+        const number = document.createElement('strong');
+        number.textContent = `${item.number}. `;
+        line.append(number, document.createTextNode(item.text));
+        box.append(line);
+      });
+      paragraph.insertAdjacentElement('afterend', box);
+    });
+  }
+
+  function prepareSource() {
+    const notes = pages.querySelector('.notes');
+    if (notes) {
+      const source = document.createElement('div');
+      source.id = 'footnote-source';
+      source.hidden = true;
+      source.append(notes);
+      body.append(source);
+    }
+    sourceHtml = pages.innerHTML;
+  }
+
+  function wrapColumnFlow(column) {
+    const viewport = document.createElement('div');
+    viewport.className = 'column-viewport';
+    const flow = document.createElement('div');
+    flow.className = 'column-flow';
+    while (column.firstChild) flow.append(column.firstChild);
+    viewport.append(flow);
+    column.append(viewport);
+    return flow;
+  }
+
+  function createPairPage(pair, segment, sliceHeights, { measure = false } = {}) {
+    const page = document.createElement('section');
+    page.className = `book-page paired-page${measure ? ' pair-measure' : ''}`;
+    const clone = pair.cloneNode(true);
+    clone.classList.remove('stacked-long');
+    const flows = Array.from(clone.querySelectorAll('.parallel-column')).map(wrapColumnFlow);
+    if (!measure) {
+      clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+      flows.forEach((flow, index) => {
+        flow.style.transform = `translateY(${-segment * sliceHeights[index]}px)`;
+      });
+      page.dataset.segment = String(segment + 1);
+    }
+    page.append(clone);
+    return { page, flows };
+  }
+
+  function buildManualPages() {
+    const blocks = Array.from(pages.children);
+    pages.replaceChildren();
+    const maximumSlice = Math.max(120, pages.clientHeight - 46);
+
+    blocks.forEach(block => {
+      if (!block.classList.contains('parallel-pair')) {
+        const page = document.createElement('section');
+        page.className = `book-page${block.matches('h1.chapter') ? ' chapter-opening' : ''}`;
+        page.append(block);
+        pages.append(page);
+        return;
+      }
+
+      const measurement = createPairPage(block, 0, [], { measure: true });
+      pages.append(measurement.page);
+      const sliceHeights = measurement.flows.map(flow => {
+        const sample = flow.querySelector('p') || flow;
+        const lineHeight = Math.max(12, parseFloat(getComputedStyle(sample).lineHeight) || 24);
+        return Math.max(lineHeight * 4, Math.floor(maximumSlice / lineHeight) * lineHeight);
+      });
+      const segments = Math.max(1, ...measurement.flows.map((flow, index) => Math.ceil(flow.scrollHeight / sliceHeights[index])));
+      measurement.page.remove();
+      for (let segment = 0; segment < segments; segment += 1) {
+        pages.append(createPairPage(block, segment, sliceHeights).page);
+      }
+    });
+  }
+
+  function savePreferences() {
+    preferences = { latin: body.classList.contains('show-latin'), notes: body.classList.contains('show-notes') };
+    try { localStorage.setItem(preferenceKey, JSON.stringify(preferences)); } catch { /* 오프라인 파일 저장이 막혀도 독서는 계속한다. */ }
+  }
+
+  function updateToggleState() {
+    const latin = body.classList.contains('show-latin');
+    const notes = body.classList.contains('show-notes');
+    latinButton.setAttribute('aria-pressed', String(latin));
+    latinButton.setAttribute('aria-label', latin ? '라틴어 원문 숨기기' : '라틴어 원문 함께 보기');
+    notesButton.setAttribute('aria-pressed', String(notes));
+    notesButton.setAttribute('aria-label', notes ? '본문 각주 접기' : '본문 각주 함께 보기');
+  }
+
+  function updatePage() {
+    currentPage = Math.max(0, Math.min(totalPages - 1, currentPage));
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    pages.style.transform = `translate3d(${-currentPage * stride}px, 0, 0)`;
+    previous.disabled = currentPage === 0;
+    next.disabled = currentPage >= totalPages - 1;
+    counter.textContent = `${currentPage + 1} / ${totalPages}`;
+    counterLabel.textContent = columnsPerSpread === 2 ? '펼침' : '페이지';
+    try { localStorage.setItem(progressKey, String(currentPage)); } catch { /* 저장 실패는 무시 */ }
+  }
+
+  function layoutPages({ preserve = true } = {}) {
+    const revision = ++layoutRevision;
+    const oldRatio = preserve && totalPages > 1 ? currentPage / (totalPages - 1) : 0;
+    pages.style.transform = 'translate3d(0,0,0)';
+    pages.innerHTML = sourceHtml;
+
+    const style = getComputedStyle(stage);
+    const available = Math.max(280, stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
+    pageGap = available >= 900 ? 44 : available >= 560 ? 30 : 20;
+    columnsPerSpread = !body.classList.contains('show-latin') && available >= 900 ? 2 : 1;
+    pageWidth = (available - pageGap * (columnsPerSpread - 1)) / columnsPerSpread;
+    pages.style.setProperty('--reader-page-width', `${pageWidth}px`);
+    pages.style.setProperty('--reader-page-gap', `${pageGap}px`);
+    pages.classList.toggle('manual-pages', body.classList.contains('show-latin'));
+    if (body.classList.contains('show-latin')) buildManualPages();
+    stage.classList.toggle('double', columnsPerSpread === 2);
+    layoutLabel.textContent = columnsPerSpread === 2
+      ? '양면 펼침'
+      : body.classList.contains('show-latin') ? '번역 · 원문 대조' : '한 면 읽기';
+
+    /* 숨겨진 Electron 창에서도 rAF 지연 없이 즉시 실제 조판 치수를 확정한다. */
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    const columns = pages.classList.contains('manual-pages')
+      ? Math.max(1, pages.children.length)
+      : Math.max(1, Math.ceil((pages.scrollWidth + pageGap - 1) / (pageWidth + pageGap)));
+    totalPages = Math.max(1, Math.ceil(columns / columnsPerSpread));
+    if (firstLayout) {
+      let saved = 0;
+      try { saved = Number(localStorage.getItem(progressKey)) || 0; } catch { saved = 0; }
+      currentPage = Math.min(totalPages - 1, Math.max(0, saved));
+      firstLayout = false;
+    } else if (preserve) {
+      currentPage = Math.round(oldRatio * Math.max(0, totalPages - 1));
+    } else {
+      currentPage = 0;
+    }
+    updatePage();
+  }
+
+  function turn(delta) {
+    const target = currentPage + delta;
+    if (target < 0 || target >= totalPages) return;
+    currentPage = target;
+    updatePage();
+  }
+
+  latinButton.addEventListener('click', () => {
+    body.classList.toggle('show-latin');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  notesButton.addEventListener('click', () => {
+    body.classList.toggle('show-notes');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  previous.addEventListener('click', () => turn(-1));
+  next.addEventListener('click', () => turn(1));
+
+  document.addEventListener('click', event => {
+    const reference = event.target.closest('a.footnote-reference[href^="#"]');
+    if (reference) {
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!note) return;
+      event.preventDefault();
+      title.textContent = `각주 ${reference.textContent.trim()}`;
+      content.textContent = noteText(note);
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+      return;
+    }
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const target = document.getElementById(anchor.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    const left = target.getBoundingClientRect().left - pages.getBoundingClientRect().left;
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    currentPage = Math.max(0, Math.min(totalPages - 1, Math.floor(left / stride)));
+    updatePage();
+  });
+
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  document.addEventListener('keydown', event => {
+    const tag = document.activeElement?.tagName;
+    if (dialog.open || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+      event.preventDefault(); turn(1);
+    } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+      event.preventDefault(); turn(-1);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); currentPage = 0; updatePage();
+    } else if (event.key === 'End') {
+      event.preventDefault(); currentPage = totalPages - 1; updatePage();
+    }
+  });
+
+  stage.addEventListener('wheel', event => {
+    const amount = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    if (Math.abs(amount) < 8) return;
+    event.preventDefault();
+    if (wheelLocked) return;
+    wheelLocked = true;
+    turn(amount > 0 ? 1 : -1);
+    setTimeout(() => { wheelLocked = false; }, 360);
+  }, { passive: false });
+  stage.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0]?.clientX ?? null; }, { passive: true });
+  stage.addEventListener('touchend', event => {
+    if (touchStartX == null) return;
+    const distance = (event.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+    touchStartX = null;
+    if (Math.abs(distance) >= 48) turn(distance < 0 ? 1 : -1);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => layoutPages(), 140);
+  });
+
+  buildInlineFootnotes();
+  prepareSource();
+  updateToggleState();
+  layoutPages({ preserve: false });
+
+  if (embedded) {
+    window.parent.postMessage({
+      type: 'aquinas:reader-ready',
+      workId: reader.workId || '',
+      title: reader.workTitle || document.title,
+      variant: reader.variant || '',
+    }, '*');
+  }
+})();
+</script>
+</body></html>
