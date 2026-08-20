@@ -21,7 +21,7 @@
       "id": "de_unitate_intellectus",
       "title": "지성의 단일성",
       "title_la": "De unitate intellectus contra Averroistas",
-      "korean_chars": 46585,
+      "korean_chars": 46751,
       "total_pages": 67,
       "paragraphs": 104
     },
@@ -37,7 +37,7 @@
       "id": "de_substantiis_separatis",
       "title": "분리된 실체에 관하여",
       "title_la": "De substantiis separatis",
-      "korean_chars": 76825,
+      "korean_chars": 76938,
       "total_pages": 110,
       "paragraphs": 188
     },
@@ -56,6 +56,15 @@
       "korean_chars": 25128,
       "total_pages": 36,
       "paragraphs": 89,
+      "category": "신학대전"
+    },
+    {
+      "id": "summa_i_v02",
+      "title": "신학대전 제1부 2권 — 하느님의 단순성과 완전성",
+      "title_la": "Summa Theologiae, Prima Pars, qq. 3-11",
+      "korean_chars": 84709,
+      "total_pages": 122,
+      "paragraphs": 360,
       "category": "신학대전"
     }
   ]
