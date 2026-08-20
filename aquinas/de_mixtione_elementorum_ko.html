@@ -55,6 +55,18 @@ a[id$="-ref"]:hover sup { background: rgba(165,92,54,.14); }
 a[id$="-ref"]:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
 a { color: inherit; }
 .latin-toggle { margin: -.5em 0 1.6em; font-size: .87em; }
+/* 신학대전: 문제 안의 항, 항 안의 반론/반대/본론/답변 */
+.articulus { margin: 2.6rem 0; }
+.articulus-title { font-size: 1rem; margin: 0 0 1rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--rule, #d9cfbe); letter-spacing: .02em; }
+p.summa { margin: 0 0 1.05rem; }
+p.summa .role { display: inline-block; margin-right: .5rem; font-size: .8rem;
+  color: #7a6a55; white-space: nowrap; }
+p.summa.arg, p.summa.ad { margin-left: 1.3rem; font-size: .97em; color: #4a4234; }
+p.summa.sc { margin-left: 1.3rem; font-style: italic; }
+p.summa.co { margin-top: 1.2rem; }
+p.summa.co .role { font-weight: 600; color: #6e4f2f; }
+
 .latin-toggle summary {
   cursor: pointer; opacity: .45; list-style: none;
   letter-spacing: .04em; padding: .2em 0; user-select: none;
@@ -198,6 +210,8 @@ body.embedded-reader { background: #faf7f2; }
 body:not(.show-latin) .parallel-pair { display: contents; }
 body:not(.show-latin) .parallel-latin { display: none; }
 body:not(.show-latin) .parallel-korean { display: block; margin: 0 0 1.2rem; padding: 0 0 1.2rem; border-bottom: 1px solid rgba(128,128,128,.18); }
+/* 라틴어를 끄면 남는 단은 한국어뿐이다. 그때 문단마다 '한국어'라고 붙이는 것은 군더더기다. */
+body:not(.show-latin) .parallel-korean::before { display: none; }
 body.show-latin .parallel-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.6rem); }
 body.show-latin .parallel-pair.stacked-long { display: contents; }
 body.show-latin .parallel-pair.stacked-long .parallel-korean,
@@ -511,14 +525,30 @@ body.embedded-reader { color-scheme: light; background: #faf6ef; color: #241f18;
     pages.style.transform = 'translate3d(0,0,0)';
     pages.innerHTML = sourceHtml;
 
+    /* 무대의 실제 콘텐츠 폭. clientWidth는 정수로 반올림되므로 여기 쓰면 안 된다 —
+       0.4px쯤 어긋난 폭으로 이동량을 계산하면 페이지를 넘길수록 오차가 쌓여
+       옆 페이지가 조금씩 함께 보인다. 테두리·안쪽 여백을 소수점째로 빼고,
+       내림해서 무대보다 넓어지는 일이 없게 한다. */
     const style = getComputedStyle(stage);
-    const available = Math.max(280, stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
-    pageGap = available >= 900 ? 44 : available >= 560 ? 30 : 20;
+    const padLeft = parseFloat(style.paddingLeft);
+    const padRight = parseFloat(style.paddingRight);
+    const available = Math.max(280, Math.floor(
+      stage.getBoundingClientRect().width - padLeft - padRight
+      - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth)
+    ));
+    /* 단 사이 간격은 무대의 안쪽 여백보다 좁아서는 안 된다. overflow:hidden은
+       안쪽 여백까지가 아니라 테두리 안쪽에서 잘라내므로, 간격이 여백보다 좁으면
+       그 여백이 옆 페이지를 들여다보는 창이 되어 글자 끝이 비쳐 보인다. */
+    const minGap = Math.ceil(Math.max(padLeft, padRight));
+    pageGap = Math.max(available >= 900 ? 44 : available >= 560 ? 30 : 20, minGap);
     columnsPerSpread = !body.classList.contains('show-latin') && available >= 900 ? 2 : 1;
     pageWidth = (available - pageGap * (columnsPerSpread - 1)) / columnsPerSpread;
     pages.style.setProperty('--reader-page-width', `${pageWidth}px`);
     pages.style.setProperty('--reader-page-gap', `${pageGap}px`);
     pages.classList.toggle('manual-pages', body.classList.contains('show-latin'));
+    /* 단 조판이 이동량과 똑같은 수를 쓰도록 폭을 못 박는다. 대조 보기는
+       페이지를 직접 붙여 만들므로(width: max-content) 지정하지 않는다. */
+    pages.style.width = pages.classList.contains('manual-pages') ? '' : `${available}px`;
     if (body.classList.contains('show-latin')) buildManualPages();
     stage.classList.toggle('double', columnsPerSpread === 2);
     layoutLabel.textContent = columnsPerSpread === 2

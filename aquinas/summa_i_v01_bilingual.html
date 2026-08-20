@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#7c3f2b"/><link rel="icon" type="image/png" href="aquinas-app-icon.png"/><title>신학대전 제1부 1권 — 거룩한 가르침과 하느님의 존재 — 라틴어 원문 병기판</title><style>
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+body {
+  font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+  line-height: 1.9; margin: 0 auto; padding: 3rem 1.5rem 6rem;
+  max-width: 42rem; word-break: keep-all; overflow-wrap: break-word;
+  background: #fbfaf7; color: #23201c;
+}
+.library-home {
+  display: inline-flex; align-items: center; min-height: 44px; padding: .55rem .9rem;
+  margin: 0 0 2rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: rgba(255,255,255,.58); color: inherit; text-decoration: none;
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: .86rem;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.library-home:hover { background: #fff; border-color: rgba(96,73,46,.48); }
+.library-home:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+@media (prefers-color-scheme: dark) {
+  body { background: #16151a; color: #e2ded6; }
+  .library-home { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+  .library-home:hover { background: rgba(255,255,255,.11); }
+}
+@media (prefers-reduced-motion: reduce) { .library-home { transition: none; } }
+.titlepage { text-align: center; margin: 2rem 0 5rem; }
+.titlepage h1 { font-size: 2.1rem; margin: 0 0 .3rem; letter-spacing: -.01em; }
+.titlepage .la { font-style: italic; opacity: .55; margin: 0 0 2.5rem; }
+.titlepage .author { font-size: 1.05rem; margin: 0; }
+.titlepage .la, .titlepage .author, .titlepage .meta { text-align: center; }
+.titlepage .meta { font-size: .8rem; opacity: .5; margin-top: 3rem; line-height: 1.8; }
+nav.toc {
+  margin: 0 0 4rem; padding: 1.4rem 1.6rem; border-radius: .5rem;
+  background: rgba(128,128,128,.08); font-size: .95rem;
+}
+nav.toc h2 { font-size: .8rem; letter-spacing: .16em; opacity: .5;
+             font-weight: normal; margin: 0 0 .9rem; }
+nav.toc ol { margin: 0; padding-left: 1.2rem; }
+nav.toc li { margin: .35rem 0; }
+nav.toc a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+nav.toc a:hover { border-bottom-color: currentColor; }
+h1.chapter { font-size: 1.5rem; margin: 4.5rem 0 2rem; scroll-margin-top: 2rem; }
+h1.chapter .num { display: block; font-size: .62em; font-weight: normal;
+                  letter-spacing: .22em; opacity: .5; margin-bottom: .5em; }
+h1.chapter .subtitle { display: block; font-size: .72em; font-weight: normal;
+                       line-height: 1.55; margin-top: .55em; opacity: .78; }
+p { margin: 0 0 1.2em; text-align: justify; }
+sup { font-size: .72em; vertical-align: super; line-height: 0; }
+/* 각주 앵커는 <a><sup>1</sup></a> 구조다. sup 안의 a가 아니라 a 안의 sup. */
+a sup { padding: 0 .15em; color: #8a6d3b; }
+@media (prefers-color-scheme: dark) { a sup { color: #c9a86a; } }
+a:has(> sup) { text-decoration: none; }
+a[id$="-ref"] { border-radius: .35rem; }
+a[id$="-ref"]:hover sup { background: rgba(165,92,54,.14); }
+a[id$="-ref"]:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+a { color: inherit; }
+.latin-toggle { margin: -.5em 0 1.6em; font-size: .87em; }
+/* 신학대전: 문제 안의 항, 항 안의 반론/반대/본론/답변 */
+.articulus { margin: 2.6rem 0; }
+.articulus-title { font-size: 1rem; margin: 0 0 1rem; padding-bottom: .4rem;
+  border-bottom: 1px solid var(--rule, #d9cfbe); letter-spacing: .02em; }
+p.summa { margin: 0 0 1.05rem; }
+p.summa .role { display: inline-block; margin-right: .5rem; font-size: .8rem;
+  color: #7a6a55; white-space: nowrap; }
+p.summa.arg, p.summa.ad { margin-left: 1.3rem; font-size: .97em; color: #4a4234; }
+p.summa.sc { margin-left: 1.3rem; font-style: italic; }
+p.summa.co { margin-top: 1.2rem; }
+p.summa.co .role { font-weight: 600; color: #6e4f2f; }
+
+.latin-toggle summary {
+  cursor: pointer; opacity: .45; list-style: none;
+  letter-spacing: .04em; padding: .2em 0; user-select: none;
+}
+.latin-toggle summary::-webkit-details-marker { display: none; }
+.latin-toggle summary::before { content: "▸ "; }
+.latin-toggle[open] summary::before { content: "▾ "; }
+.latin-toggle summary:hover { opacity: .75; }
+.latin-toggle p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-style: italic; opacity: .8; margin: .6em 0 0;
+  padding-left: 1em; border-left: 2px solid rgba(128,128,128,.3);
+}
+.notes { margin-top: 3.5rem; padding-top: 1.4rem;
+         border-top: 1px solid rgba(128,128,128,.3); font-size: .87rem; }
+.notes h2 { font-size: .78rem; letter-spacing: .14em; opacity: .5;
+            font-weight: normal; margin: 0 0 1.1rem; }
+.notes aside { margin: 0 0 .75em; opacity: .85; scroll-margin-top: 40vh; }
+.notes aside:target { background: rgba(255,214,0,.22); border-radius: .2rem; }
+.notes p { margin: 0; }
+.parallel-pair {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem; padding: 1.4rem 0 1.7rem; border-bottom: 1px solid rgba(128,128,128,.22);
+}
+.parallel-pair:first-of-type { border-top: 1px solid rgba(128,128,128,.22); }
+.parallel-column { min-width: 0; }
+.parallel-column::before {
+  display: block; margin-bottom: .65rem; font: 700 .68rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif;
+  letter-spacing: .13em; opacity: .5;
+}
+.parallel-korean::before { content: "한국어"; }
+.parallel-latin { padding-left: 1.7rem; border-left: 1px solid rgba(128,128,128,.25); }
+.parallel-latin::before { content: "LATINA"; }
+.parallel-pair p { margin: 0; }
+.parallel-latin p {
+  font-family: "Gentium Plus", Georgia, "Times New Roman", serif;
+  font-size: .93rem; font-style: normal; line-height: 1.8; text-align: left; opacity: .86;
+}
+.footnote-dialog {
+  width: min(32rem, calc(100% - 2rem)); max-height: min(70vh, 34rem); padding: 1.35rem 1.45rem 1.45rem;
+  border: 1px solid rgba(96,73,46,.28); border-radius: 16px; background: #fffdf8; color: #23201c;
+  box-shadow: 0 24px 80px rgba(24,18,13,.28); font-family: "Noto Serif KR", "Nanum Myeongjo", Batang, serif;
+}
+.footnote-dialog::backdrop { background: rgba(20,16,12,.48); backdrop-filter: blur(2px); }
+.footnote-dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .8rem; }
+.footnote-dialog-title { margin: 0; font: 700 .8rem/1.2 "Noto Sans KR", "Malgun Gothic", sans-serif; letter-spacing: .12em; color: #7c3f2b; }
+.footnote-dialog-content { overflow: auto; font-size: .94rem; line-height: 1.75; }
+.footnote-close {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  border: 1px solid rgba(96,73,46,.22); border-radius: 999px; background: transparent; color: inherit; cursor: pointer;
+}
+.footnote-close:hover { background: rgba(124,63,43,.08); }
+.footnote-close:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.footnote-close svg { width: 20px; height: 20px; }
+@media (max-width: 760px) {
+  .parallel-pair { grid-template-columns: 1fr; gap: 1rem; }
+  .parallel-latin { padding: 1rem 0 0; border-left: 0; border-top: 1px dashed rgba(128,128,128,.28); }
+}
+@media (prefers-color-scheme: dark) {
+  .footnote-dialog { background: #242126; color: #eee7dc; border-color: rgba(255,255,255,.18); }
+  .footnote-dialog-title { color: #dca07e; }
+  .footnote-close { border-color: rgba(255,255,255,.18); }
+}
+@media (prefers-reduced-motion: reduce) { .footnote-dialog::backdrop { backdrop-filter: none; } }
+
+/* 실제 책처럼 세로 스크롤 없이 좌우로 넘기는 독서 화면 */
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body.reader-document {
+  max-width: none; margin: 0; padding: 0; display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto; background: #e8e0d3;
+}
+body.embedded-reader { background: #faf7f2; }
+.reader-toolbar {
+  z-index: 20; min-height: 62px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .55rem clamp(.7rem, 2vw, 1.5rem);
+  border-bottom: 1px solid rgba(96,73,46,.20); background: rgba(251,248,242,.96);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.reader-toolbar .library-home { justify-self: start; min-height: 44px; margin: 0; padding: .45rem .75rem; background: #fff; }
+.reader-toolbar .library-home svg { width: 18px; height: 18px; margin-right: .35rem; }
+.reader-toggles { display: flex; align-items: center; justify-content: center; gap: .45rem; }
+.reader-toggle {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .42rem;
+  padding: .52rem .8rem; border: 1px solid rgba(96,73,46,.22); border-radius: 999px;
+  background: transparent; color: #51483e; cursor: pointer; font: 700 .78rem/1.2 inherit;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.reader-toggle svg { width: 18px; height: 18px; }
+.reader-toggle:hover { border-color: rgba(124,63,43,.55); background: rgba(124,63,43,.06); }
+.reader-toggle[aria-pressed="true"] { border-color: #7c3f2b; background: #7c3f2b; color: #fff; }
+.reader-toggle:focus-visible, .page-button:focus-visible { outline: 3px solid #a55c36; outline-offset: 3px; }
+.reader-layout-label { justify-self: end; color: #766b5e; font-size: .72rem; white-space: nowrap; }
+.reader-stage {
+  position: relative; min-width: 0; min-height: 0; width: min(96rem, calc(100% - 1.4rem));
+  margin: .7rem auto; padding: clamp(1.1rem, 2.7vw, 2.7rem) clamp(1.15rem, 4vw, 4.5rem);
+  overflow: hidden; border: 1px solid rgba(96,73,46,.20); border-radius: 18px;
+  background: #fbfaf7; box-shadow: 0 18px 48px rgba(45,31,20,.12);
+}
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf7f2; }
+.embedded-reader .reader-stage {
+  width: 100%; margin: 0; border-width: 0; border-radius: 0; box-shadow: none;
+}
+.reader-stage.double::after {
+  content: ""; position: absolute; z-index: 1; top: 1rem; bottom: 1rem; left: 50%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(96,73,46,.18) 12%, rgba(96,73,46,.18) 88%, transparent);
+  box-shadow: 8px 0 20px rgba(70,49,31,.06), -8px 0 20px rgba(70,49,31,.06); pointer-events: none;
+}
+.reader-pages {
+  height: 100%; min-width: 0; column-width: var(--reader-page-width, 38rem); column-gap: var(--reader-page-gap, 3rem);
+  column-fill: auto; transform: translate3d(0,0,0); transition: transform .28s ease;
+  will-change: transform; overflow: visible;
+}
+.reader-pages.manual-pages {
+  width: max-content; display: flex; align-items: stretch; gap: var(--reader-page-gap, 2rem);
+  column-width: auto; column-fill: balance;
+}
+.book-page {
+  width: var(--reader-page-width, 38rem); height: 100%; flex: 0 0 var(--reader-page-width, 38rem);
+  overflow: hidden;
+}
+.book-page > .titlepage { height: 100%; }
+.chapter-opening { display: flex; align-items: center; }
+.chapter-opening h1.chapter { width: 100%; margin: 0; text-align: center; }
+.paired-page .parallel-pair {
+  height: 100%; display: grid; margin: 0; padding: .35rem 0; overflow: hidden; break-inside: auto;
+}
+.paired-page .parallel-column { height: 100%; overflow: hidden; }
+.paired-page .column-viewport { height: calc(100% - 1.8rem); overflow: hidden; }
+.paired-page .column-flow { width: 100%; }
+.pair-measure { position: fixed; left: -100000px; top: 0; visibility: hidden; pointer-events: none; }
+.pair-measure .parallel-pair,
+.pair-measure .parallel-column,
+.pair-measure .column-viewport { height: auto; overflow: visible; }
+.reader-pages .titlepage { min-height: 82%; display: flex; flex-direction: column; justify-content: center; margin: 0; break-after: column; }
+.reader-pages nav.toc { break-after: column; }
+.reader-pages h1.chapter { break-after: avoid-column; margin-top: 1.5rem; }
+.reader-pages p { orphans: 3; widows: 3; }
+.reader-pages .notes { break-before: column; }
+.parallel-pair { margin: 0 0 1.2rem; padding: 0 0 1.2rem; break-inside: avoid-column; }
+body:not(.show-latin) .parallel-pair { display: contents; }
+body:not(.show-latin) .parallel-latin { display: none; }
+body:not(.show-latin) .parallel-korean { display: block; margin: 0 0 1.2rem; padding: 0 0 1.2rem; border-bottom: 1px solid rgba(128,128,128,.18); }
+/* 라틴어를 끄면 남는 단은 한국어뿐이다. 그때 문단마다 '한국어'라고 붙이는 것은 군더더기다. */
+body:not(.show-latin) .parallel-korean::before { display: none; }
+body.show-latin .parallel-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.2rem, 3vw, 2.6rem); }
+body.show-latin .parallel-pair.stacked-long { display: contents; }
+body.show-latin .parallel-pair.stacked-long .parallel-korean,
+body.show-latin .parallel-pair.stacked-long .parallel-latin { display: block; margin-bottom: 1.1rem; padding: 0 0 1rem; border: 0; border-bottom: 1px dashed rgba(128,128,128,.25); }
+.inline-footnotes { display: none; margin: .8rem 0 .2rem; padding: .65rem .8rem; border-left: 3px solid #a55c36; background: rgba(165,92,54,.07); }
+body.show-notes .inline-footnotes { display: block; }
+.inline-footnote-item { display: block; margin: .2rem 0; color: #5f5144; font: .78rem/1.65 "Noto Sans KR", "Malgun Gothic", sans-serif; }
+.inline-footnote-item strong { color: #7c3f2b; }
+.reader-pagination {
+  min-height: 58px; display: grid; grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+  align-items: center; gap: 1rem; padding: .45rem clamp(.8rem, 3vw, 2rem); border-top: 1px solid rgba(96,73,46,.20);
+  background: rgba(251,248,242,.97); font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+.page-button {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  padding: .5rem .9rem; border: 1px solid rgba(96,73,46,.22); border-radius: 12px; background: #fff;
+  color: #352f29; cursor: pointer; font-weight: 700;
+}
+.page-button:first-child { justify-self: start; }
+.page-button:last-child { justify-self: end; }
+.page-button:hover:not(:disabled) { border-color: #7c3f2b; background: rgba(124,63,43,.06); }
+.page-button:disabled { opacity: .35; cursor: not-allowed; }
+.page-button svg { width: 19px; height: 19px; }
+.page-status { min-width: 9rem; text-align: center; color: #6a6055; font-size: .76rem; font-variant-numeric: tabular-nums; }
+.page-status strong { display: block; color: #302a24; font-size: .88rem; }
+@media (max-width: 760px) {
+  .reader-toolbar { grid-template-columns: auto 1fr; gap: .45rem; min-height: 58px; padding: .4rem .45rem; }
+  .reader-toolbar .library-home { padding: .35rem .55rem; font-size: .76rem; }
+  .reader-toggles { justify-content: flex-end; gap: .3rem; }
+  .reader-toggle { min-width: 44px; padding: .45rem .55rem; font-size: .7rem; }
+  .reader-layout-label { display: none; }
+  .reader-stage { width: calc(100% - .65rem); margin: .35rem auto; padding: 1.05rem .9rem; border-radius: 12px; }
+  .reader-stage.double::after { display: none; }
+  body.show-latin .parallel-pair {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .65rem;
+  }
+  body.show-latin .parallel-latin {
+    padding: 0 0 0 .65rem; border-top: 0; border-left: 1px dashed rgba(128,128,128,.28);
+  }
+  body.show-latin .parallel-column p { font-size: .84rem; line-height: 1.72; text-align: left; }
+  .reader-pagination { min-height: 56px; grid-template-columns: 1fr auto 1fr; gap: .35rem; padding: .35rem .45rem; }
+  .page-button { min-width: 44px; padding: .42rem .58rem; }
+  .page-button span { display: none; }
+  .page-status { min-width: 6.5rem; font-size: .68rem; }
+  .page-status strong { font-size: .8rem; }
+}
+@media (prefers-color-scheme: dark) {
+  body.reader-document { background: #0f0e0c; }
+  .reader-toolbar, .reader-pagination { background: rgba(28,25,22,.98); border-color: rgba(255,255,255,.14); }
+  .reader-toolbar .library-home, .page-button { background: #25211d; border-color: rgba(255,255,255,.16); }
+  .reader-toggle { color: #ddd3c6; border-color: rgba(255,255,255,.18); }
+  .reader-toggle[aria-pressed="true"] { color: #1a110c; background: #d28a66; border-color: #d28a66; }
+  .reader-layout-label, .page-status { color: #b9ad9f; }
+  .page-status strong { color: #eee7db; }
+  .reader-stage { background: #16151a; border-color: rgba(255,255,255,.14); }
+  .inline-footnote-item { color: #d8cfc2; }
+}
+body.embedded-reader { color-scheme: light; background: #faf6ef; color: #241f18; }
+.embedded-reader .reader-toolbar,
+.embedded-reader .reader-pagination { background: #faf6ef; border-color: #e7ddcd; }
+.embedded-reader .reader-toolbar .library-home,
+.embedded-reader .page-button { background: #fff; color: #241f18; border-color: #e1d6c6; }
+.embedded-reader .reader-toggle { color: #4c443a; border-color: #dfd3c2; }
+.embedded-reader .reader-toggle[aria-pressed="true"] { color: #fff; background: #7c3f2b; border-color: #7c3f2b; }
+.embedded-reader .reader-layout-label,
+.embedded-reader .page-status { color: #857b6d; }
+.embedded-reader .page-status strong { color: #241f18; }
+.embedded-reader .reader-stage { background: #fffdf9; color: #241f18; }
+.embedded-reader .inline-footnote-item { color: #5f5144; }
+@media (prefers-reduced-motion: reduce) { .reader-pages, .reader-toggle { transition: none; } }
+</style></head>
+<body class="reader-document" data-work-id="summa_i_v01" data-work-title="신학대전 제1부 1권 — 거룩한 가르침과 하느님의 존재" data-variant="라틴어 원문 병기판" data-default-latin="true">
+
+  <header class="reader-toolbar">
+    <a class="library-home" href="토마스_아퀴나스_서재.html" aria-label="토마스 아퀴나스 서재로 돌아가기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span id="library-back-label">서재</span>
+    </a>
+    <div class="reader-toggles" role="group" aria-label="본문 표시 설정">
+      <button class="reader-toggle" id="latin-visibility" type="button" aria-pressed="true">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h7M7.5 5v14M4.5 19h6"/><path d="m14 19 3.5-14L21 19M15.2 14h4.6"/></svg><span>라틴어 원문</span>
+      </button>
+      <button class="reader-toggle" id="notes-visibility" type="button" aria-pressed="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>각주</span>
+      </button>
+    </div>
+    <span class="reader-layout-label" id="reader-layout-label">페이지 구성 중</span>
+  </header>
+  <main class="reader-stage" id="reader-stage" aria-label="옆으로 넘기는 책 본문">
+    <article class="reader-pages" id="reader-pages"><div class="titlepage"><h1>신학대전 제1부 1권 — 거룩한 가르침과 하느님의 존재</h1><p class="la">Summa Theologiae, Prima Pars, qq. 1-2</p><p class="author">토마스 아퀴나스</p><p class="meta">라틴어 원문 병기판<br/>라틴어 원문에서 옮김<br/>원문 출처: https://www.corpusthomisticum.org/sth1001.html · https://www.corpusthomisticum.org/sth1002.html</p></div><nav class="toc"><h2>차례</h2><ol><li><a href="#q1">제1문제</a></li><li><a href="#q2">제2문제</a></li></ol></nav><h1 class="chapter" id="q1"><span class="num">Quaestio 1</span>제1문제</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa pr"><span class="role">서문</span>우리가 다루려는 바가 어떤 확실한 한계 안에 담기도록, 먼저 거룩한 가르침(sacra doctrina) 자체가 어떤 것이며 어디까지 미치는지 살펴야 한다. 이에 관하여 물을 것이 열 가지다. 첫째, 이 가르침의 필요성. 둘째, 그것이 학문<a epub:type="noteref" href="#q1-fn1" id="q1-fn1-ref"><sup>1</sup></a>인가. 셋째, 그것이 하나인가 여럿인가. 넷째, 그것이 사변적인가 실천적인가. 다섯째, 그것을 다른 학문들과 견주는 일. 여섯째, 그것이 지혜인가. 일곱째, 그것의 주제가 무엇인가. 여덟째, 그것이 논증을 쓰는가. 아홉째, 그것이 비유나 상징을 담은 말투를 써야 하는가. 열째, 이 가르침의 성경을 여러 뜻에 따라 풀이해야 하는가.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et ut intentio nostra sub aliquibus certis limitibus comprehendatur, necessarium est primo investigare de ipsa sacra doctrina, qualis sit, et ad quae se extendat. Circa quae quaerenda sunt decem. Primo, de necessitate huius doctrinae. Secundo, utrum sit scientia. Tertio, utrum sit una vel plures. Quarto, utrum sit speculativa vel practica. Quinto, de comparatione eius ad alias scientias. Sexto, utrum sit sapientia. Septimo, quid sit subiectum eius. Octavo, utrum sit argumentativa. Nono, utrum uti debeat metaphoricis vel symbolicis locutionibus. Decimo, utrum Scriptura sacra huius doctrinae sit secundum plures sensus exponenda.</p></div></div>
+<section class="articulus" id="q1-a1"><h2 class="articulus-title">제1항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>첫째 항으로 이렇게 나아간다. 철학의 여러 분과 밖에 또 다른 가르침을 두는 것은 필요하지 않다고 보인다. 사람은 제 헤아림을 넘어서는 것들에 손을 뻗어서는 안 되기 때문이다. 집회서 3장<a epub:type="noteref" href="#q1-fn2" id="q1-fn2-ref"><sup>2</sup></a>에서 «너보다 높은 것을 찾지 마라»고 한 대로다. 그런데 헤아림 아래 놓이는 것들은 철학의 여러 분과 안에서 넉넉히 전해진다. 그러므로 철학의 여러 분과 밖에 또 다른 가르침을 두는 것은 군더더기로 보인다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum sic proceditur. Videtur quod non sit necessarium, praeter philosophicas disciplinas, aliam doctrinam haberi. Ad ea enim quae supra rationem sunt, homo non debet conari, secundum illud Eccli. III, &#171;altiora te ne quaesieris&#187;. Sed ea quae rationi subduntur, sufficienter traduntur in philosophicis disciplinis. Superfluum igitur videtur, praeter philosophicas disciplinas, aliam doctrinam haberi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 가르침은 존재자(ens)에 관한 것일 수밖에 없다. 참된 것이 아니면 아무것도 알려지지 않으며, 참된 것은 존재자와 맞바꾸어 쓸 수 있기 때문이다. 그런데 모든 존재자는 철학의 여러 분과에서 다루어지고, 하느님(Deus)에 관해서도 그러하다. 그래서 철학의 어떤 부분은 신학, 곧 하느님에 관한 학문이라 불린다. 철학자<a epub:type="noteref" href="#q1-fn3" id="q1-fn3-ref"><sup>3</sup></a>가 『형이상학』 제6권<a epub:type="noteref" href="#q1-fn4" id="q1-fn4-ref"><sup>4</sup></a>에서 밝힌 대로다. 그러므로 철학의 여러 분과 밖에 또 다른 가르침을 두는 것이 필요하지는 않았다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, doctrina non potest esse nisi de ente, nihil enim scitur nisi verum, quod cum ente convertitur. Sed de omnibus entibus tractatur in philosophicis disciplinis, et etiam de Deo, unde quaedam pars philosophiae dicitur theologia, sive scientia divina, ut patet per philosophum in VI Metaphys. Non fuit igitur necessarium, praeter philosophicas disciplinas, aliam doctrinam haberi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 티모테오 2서 3장<a epub:type="noteref" href="#q1-fn5" id="q1-fn5-ref"><sup>5</sup></a>에서 이렇게 말해진다. «하느님의 영감으로 쓰인 모든 성경은 가르치고 꾸짖고 바로잡고 의로움으로 이끌어 기르는 데 쓸모가 있다.» 그런데 하느님의 영감으로 쓰인 성경은 철학의 여러 분과에 속하지 않는다. 그 분과들은 사람의 헤아림으로 찾아낸 것이기 때문이다. 그러므로 철학의 여러 분과 밖에 하느님의 영감으로 된 또 다른 학문이 있는 것이 쓸모가 있다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicitur II ad Tim. III, &#171;omnis Scriptura divinitus inspirata utilis est ad docendum, ad arguendum, ad corripiendum, ad erudiendum ad iustitiam&#187;. Scriptura autem divinitus inspirata non pertinet ad philosophicas disciplinas, quae sunt secundum rationem humanam inventae. Utile igitur est, praeter philosophicas disciplinas, esse aliam scientiam divinitus inspiratam.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 사람의 헤아림으로 캐내는 철학의 여러 분과 밖에, 하느님의 계시에 따른 어떤 가르침이 있는 것이 사람의 구원을 위하여 필요했다. 첫째로는 사람이 제 헤아림의 파악을 넘어서는 어떤 목적<a epub:type="noteref" href="#q1-fn6" id="q1-fn6-ref"><sup>6</sup></a>을 향하여 하느님께 정해져 있기 때문이다. 이사야서 64장<a epub:type="noteref" href="#q1-fn7" id="q1-fn7-ref"><sup>7</sup></a>에서 «하느님, 당신을 사랑하는 이들에게 당신께서 마련해 두신 것을 당신 밖의 어떤 눈도 보지 못하였습니다»라고 한 대로다. 그런데 자기가 뜻하는 바와 하는 일을 목적에 맞추어 정해야 하는 사람들에게는 그 목적이 미리 알려져 있어야 한다. 그러므로 사람의 헤아림을 넘어서는 어떤 것들이 하느님의 계시로 그에게 알려지는 일이 구원을 위하여 필요했다. 또한 사람의 헤아림으로 캐낼 수 있는 하느님에 관한 것들에 대해서도, 사람이 하느님의 계시로 배우는 일이 필요했다. 헤아림으로 캐낸 하느님에 관한 진리는 적은 사람에게, 오랜 시간(tempus)이 지나서야, 그것도 많은 잘못이 섞인 채로 이르렀을 터인데, 사람의 구원 전체는 하느님 안에 있는 그 진리를 아는 데 달려 있기 때문이다. 그러므로 구원이 사람들에게 더 알맞게 또 더 확실하게 이르도록, 하느님에 관한 것들을 하느님의 계시로 배우는 일이 필요했다. 그러므로 헤아림으로 캐내는 철학의 여러 분과 밖에, 계시로 주어지는 거룩한 가르침을 두는 것이 필요했다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod necessarium fuit ad humanam salutem, esse doctrinam quandam secundum revelationem divinam, praeter philosophicas disciplinas, quae ratione humana investigantur. Primo quidem, quia homo ordinatur ad Deum sicut ad quendam finem qui comprehensionem rationis excedit, secundum illud Isaiae LXIV, &#171;oculus non vidit Deus absque te, quae praeparasti diligentibus te&#187;. Finem autem oportet esse praecognitum hominibus, qui suas intentiones et actiones debent ordinare in finem. Unde necessarium fuit homini ad salutem, quod ei nota fierent quaedam per revelationem divinam, quae rationem humanam excedunt. Ad ea etiam quae de Deo ratione humana investigari possunt, necessarium fuit hominem instrui revelatione divina. Quia veritas de Deo, per rationem investigata, a paucis, et per longum tempus, et cum admixtione multorum errorum, homini proveniret, a cuius tamen veritatis cognitione dependet tota hominis salus, quae in Deo est. Ut igitur salus hominibus et convenientius et certius proveniat, necessarium fuit quod de divinis per divinam revelationem instruantur. Necessarium igitur fuit, praeter philosophicas disciplinas, quae per rationem investigantur, sacram doctrinam per revelationem haberi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 사람의 앎보다 높은 것들을 사람이 헤아림으로 캐물어서는 안 되지만, 하느님께서 계시하신 것이라면 신앙으로 받아들여야 한다. 그래서 같은 자리<a epub:type="noteref" href="#q1-fn8" id="q1-fn8-ref"><sup>8</sup></a>에 «사람의 감각을 넘어서는 많은 것이 너에게 보여졌다»는 말이 이어진다. 그리고 거룩한 가르침은 바로 이런 것들에 있다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod, licet ea quae sunt altiora hominis cognitione, non sint ab homine per rationem inquirenda, sunt tamen, a Deo revelata, suscipienda per fidem. Unde et ibidem subditur, &#171;plurima supra sensum hominum ostensa sunt tibi&#187;. Et in huiusmodi sacra doctrina consistit.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 알 수 있는 것의 개념<a epub:type="noteref" href="#q1-fn9" id="q1-fn9-ref"><sup>9</sup></a>이 다르면 학문도 달라진다. 천문학자와 자연학자는 같은 결론을, 이를테면 땅이 둥글다는 것을 증명한다. 그러나 천문학자는 수학에 속한 중간항, 곧 질료(materia)에서 떼어 낸 중간항으로 증명하고, 자연학자는 질료를 둘러싸고 살핀 중간항으로 증명한다. 그러므로 철학의 여러 분과가 타고난 헤아림의 빛으로 알 수 있는 한에서 다루는 바로 그 사물들을, 다른 학문이 하느님의 계시의 빛으로 알려지는 한에서 다루는 데에는 아무런 걸림이 없다. 그래서 거룩한 가르침에 속하는 신학은 철학의 한 부분으로 놓이는 저 신학과 유(類)<a epub:type="noteref" href="#q1-fn10" id="q1-fn10-ref"><sup>10</sup></a>에 따라 다르다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod diversa ratio cognoscibilis diversitatem scientiarum inducit. Eandem enim conclusionem demonstrat astrologus et naturalis, puta quod terra est rotunda, sed astrologus per medium mathematicum, idest a materia abstractum; naturalis autem per medium circa materiam consideratum. Unde nihil prohibet de eisdem rebus, de quibus philosophicae disciplinae tractant secundum quod sunt cognoscibilia lumine naturalis rationis, et aliam scientiam tractare secundum quod cognoscuntur lumine divinae revelationis. Unde theologia quae ad sacram doctrinam pertinet, differt secundum genus ab illa theologia quae pars philosophiae ponitur.</p></div></div>
+</section>
+<section class="articulus" id="q1-a2"><h2 class="articulus-title">제2항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>둘째 항으로 이렇게 나아간다. 거룩한 가르침은 학문이 아니라고 보인다. 모든 학문은 그 자체로 알려진 원리(principium)에서 나아가기 때문이다. 그런데 거룩한 가르침은 신앙의 조항에서 나아가는데, 이 조항들은 모든 사람이 받아들이지 않으므로 그 자체로 알려진 것이 아니다. 테살로니카 2서 3장<a epub:type="noteref" href="#q1-fn11" id="q1-fn11-ref"><sup>11</sup></a>에서 «신앙은 모든 사람의 것이 아니다»라고 말하는 대로다. 그러므로 거룩한 가르침은 학문이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum sic proceditur. Videtur quod sacra doctrina non sit scientia. Omnis enim scientia procedit ex principiis per se notis. Sed sacra doctrina procedit ex articulis fidei, qui non sunt per se noti, cum non ab omnibus concedantur, &#171;non enim omnium est fides&#187;, ut dicitur II Thessalon. III. Non igitur sacra doctrina est scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 학문은 개별적인 것들에 관한 것이 아니다. 그런데 거룩한 가르침은 개별적인 것들을, 이를테면 아브라함과 이사악과 야곱이 한 일 따위를 다룬다. 그러므로 거룩한 가르침은 학문이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, scientia non est singularium. Sed sacra doctrina tractat de singularibus, puta de gestis Abrahae, Isaac et Iacob, et similibus. Ergo sacra doctrina non est scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 아우구스티누스<a epub:type="noteref" href="#q1-fn12" id="q1-fn12-ref"><sup>12</sup></a>는 『삼위일체론』 제14권<a epub:type="noteref" href="#q1-fn13" id="q1-fn13-ref"><sup>13</sup></a>에서 이렇게 말한다. «가장 구원에 이바지하는 신앙을 낳고 기르고 지키고 굳세게 하는 그것만이 이 학문에 돌려진다.» 그런데 이는 거룩한 가르침 말고 어떤 학문에도 속하지 않는다. 그러므로 거룩한 가르침은 학문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod Augustinus dicit, XIV de Trinitate, &#171;huic scientiae attribuitur illud tantummodo quo fides saluberrima gignitur, nutritur, defenditur, roboratur&#187;. Hoc autem ad nullam scientiam pertinet nisi ad sacram doctrinam. Ergo sacra doctrina est scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 거룩한 가르침이 학문이라고 답해야 한다고 말한다. 그러나 학문에 두 갈래가 있음을 알아야 한다. 어떤 것들은 지성(intellectus)의 타고난 빛으로 알려진 원리에서 나아가니, 산술과 기하 따위가 그러하다. 어떤 것들은 더 높은 학문의 빛으로 알려진 원리에서 나아가니, 광학이 기하로 알려진 원리에서 나아가고 음악이 산술로 알려진 원리에서 나아가는 것과 같다. 거룩한 가르침은 이 뒤의 방식으로 학문이다. 더 높은 학문의 빛으로 알려진 원리에서 나아가기 때문인데, 그 더 높은 학문이란 곧 하느님과 복된 이들의 학문이다. 그러므로 음악이 산술 하는 이에게서 건네받은 원리를 믿듯이, 거룩한 가르침은 하느님께서 자기에게 계시하신 원리를 믿는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum sacram doctrinam esse scientiam. Sed sciendum est quod duplex est scientiarum genus. Quaedam enim sunt, quae procedunt ex principiis notis lumine naturali intellectus, sicut arithmetica, geometria, et huiusmodi. Quaedam vero sunt, quae procedunt ex principiis notis lumine superioris scientiae, sicut perspectiva procedit ex principiis notificatis per geometriam, et musica ex principiis per arithmeticam notis. Et hoc modo sacra doctrina est scientia, quia procedit ex principiis notis lumine superioris scientiae, quae scilicet est scientia Dei et beatorum. Unde sicut musica credit principia tradita sibi ab arithmetico, ita doctrina sacra credit principia revelata sibi a Deo.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 어떤 학문의 원리든 그 자체로 알려져 있거나, 아니면 더 높은 학문의 앎으로 돌려진다. 거룩한 가르침의 원리가 바로 그러한 것이니, 앞서 말한 대로다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod principia cuiuslibet scientiae vel sunt nota per se, vel reducuntur ad notitiam superioris scientiae. Et talia sunt principia sacrae doctrinae, ut dictum est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 개별적인 것들이 거룩한 가르침에서 전해지기는 하지만, 그것들을 주로 다루기 때문은 아니다. 도덕에 관한 학문에서 그러하듯 삶의 본보기로 끌어들이기도 하고, 하느님의 계시가 우리에게 이르는 통로가 된 사람들의 권위를 밝히려고 끌어들이기도 한다. 성경 곧 거룩한 가르침은 그 권위 위에 세워진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod singularia traduntur in sacra doctrina, non quia de eis principaliter tractetur, sed introducuntur tum in exemplum vitae, sicut in scientiis moralibus; tum etiam ad declarandum auctoritatem virorum per quos ad nos revelatio divina processit, super quam fundatur sacra Scriptura seu doctrina.</p></div></div>
+</section>
+<section class="articulus" id="q1-a3"><h2 class="articulus-title">제3항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>셋째 항으로 이렇게 나아간다. 거룩한 가르침은 하나의 학문이 아니라고 보인다. 철학자가 『분석론 후서』 제1권<a epub:type="noteref" href="#q1-fn14" id="q1-fn14-ref"><sup>14</sup></a>에서 «하나의 학문이란 주제가 하나의 유(類)에 속하는 학문이다»라고 하기 때문이다. 그런데 거룩한 가르침이 다루는 창조주와 피조물은 하나의 유(類)에 속하는 주제 아래 담기지 않는다. 그러므로 거룩한 가르침은 하나의 학문이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium sic proceditur. Videtur quod sacra doctrina non sit una scientia. Quia secundum philosophum in I Poster., &#171;una scientia est quae est unius generis subiecti&#187;. Creator autem et creatura, de quibus in sacra doctrina tractatur, non continentur sub uno genere subiecti. Ergo sacra doctrina non est una scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 거룩한 가르침에서는 천사와 물체적 피조물과 사람의 품행을 다룬다. 그런데 이런 것들은 철학의 서로 다른 여러 분과에 속한다. 그러므로 거룩한 가르침은 하나의 학문이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, in sacra doctrina tractatur de Angelis, de creaturis corporalibus, de moribus hominum. Huiusmodi autem ad diversas scientias philosophicas pertinent. Igitur sacra doctrina non est una scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 성경은 그것을 하나의 학문처럼 말한다. 지혜서 10장<a epub:type="noteref" href="#q1-fn15" id="q1-fn15-ref"><sup>15</sup></a>에서 «그분께서 그에게 거룩한 이들의 학문을 주셨다»고 말하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod sacra Scriptura de ea loquitur sicut de una scientia, dicitur enim Sap. X, &#171;dedit illi scientiam sanctorum&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 거룩한 가르침이 하나의 학문이라고 답해야 한다고 말한다. 능력(potentia)과 습성이 하나인지는 대상<a epub:type="noteref" href="#q1-fn16" id="q1-fn16-ref"><sup>16</sup></a>에 따라 살펴야 하는데, 질료 쪽에서가 아니라 대상의 형상적 개념 쪽에서 살펴야 한다. 이를테면 사람과 나귀와 돌은 빛깔을 지녔다는 하나의 형상적 개념에서 만나며, 그것이 곧 시각의 대상이다. 그러므로 성경은 어떤 것들을 하느님께서 계시하신 것인 한에서 살피니 앞서 말한 대로이며, 하느님께서 계시하실 수 있는 것은 무엇이든 이 학문이 지닌 대상의 하나의 형상적 개념을 함께 나눈다. 그래서 그것들은 하나의 학문 아래 담기듯이 거룩한 가르침 아래 담긴다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum sacram doctrinam unam scientiam esse. Est enim unitas potentiae et habitus consideranda secundum obiectum, non quidem materialiter, sed secundum rationem formalem obiecti, puta homo, asinus et lapis conveniunt in una formali ratione colorati, quod est obiectum visus. Quia igitur sacra Scriptura considerat aliqua secundum quod sunt divinitus revelata, secundum quod dictum est, omnia quaecumque sunt divinitus revelabilia, communicant in una ratione formali obiecti huius scientiae. Et ideo comprehenduntur sub sacra doctrina sicut sub scientia una.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 거룩한 가르침은 하느님과 피조물을 나란히 놓고 규정하지 않는다. 하느님을 주로 규정하고, 피조물은 원리로서든 목적으로서든 하느님께 관계되는 한에서 규정한다. 그러므로 학문의 하나됨은 가로막히지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod sacra doctrina non determinat de Deo et de creaturis ex aequo, sed de Deo principaliter, et de creaturis secundum quod referuntur ad Deum, ut ad principium vel finem. Unde unitas scientiae non impeditur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 더 높은 하나의 능력이나 습성 아래 함께 떨어지는 사안들을 두고 더 낮은 능력이나 습성이 여럿으로 갈리는 데에는 아무런 걸림이 없다. 더 높은 능력이나 습성은 그 대상을 더 두루 미치는 형상적 개념 아래에서 바라보기 때문이다. 이를테면 공통감각의 대상은 감각될 수 있는 것인데, 이것이 볼 수 있는 것과 들을 수 있는 것을 제 아래 담는다. 그래서 공통감각은 하나의 능력이면서도 다섯 감각의 모든 대상에까지 미친다. 이와 마찬가지로 철학의 서로 다른 여러 분과에서 다루어지는 것들을, 거룩한 가르침은 하나이면서도 하나의 개념 아래에서, 곧 하느님께서 계시하실 수 있는 것인 한에서 살필 수 있다. 그리하여 거룩한 가르침은 만물에 대하여 하나이며 단순한 하느님의 학문이 찍어 낸 자국과 같은 것이 된다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod nihil prohibet inferiores potentias vel habitus diversificari circa illas materias, quae communiter cadunt sub una potentia vel habitu superiori, quia superior potentia vel habitus respicit obiectum sub universaliori ratione formali. Sicut obiectum sensus communis est sensibile, quod comprehendit sub se visibile et audibile, unde sensus communis, cum sit una potentia, extendit se ad omnia obiecta quinque sensuum. Et similiter ea quae in diversis scientiis philosophicis tractantur, potest sacra doctrina, una existens, considerare sub una ratione, inquantum scilicet sunt divinitus revelabilia, ut sic sacra doctrina sit velut quaedam impressio divinae scientiae, quae est una et simplex omnium.</p></div></div>
+</section>
+<section class="articulus" id="q1-a4"><h2 class="articulus-title">제4항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>넷째 항으로 이렇게 나아간다. 거룩한 가르침은 실천에 속한 학문이라고 보인다. 철학자가 『형이상학』 제2권<a epub:type="noteref" href="#q1-fn17" id="q1-fn17-ref"><sup>17</sup></a>에서 말하듯 실천의 목적은 하는 일이기 때문이다. 그런데 거룩한 가르침은 하는 일을 향하여 정해져 있다. 야고보서 1장<a epub:type="noteref" href="#q1-fn18" id="q1-fn18-ref"><sup>18</sup></a>에서 «말씀을 실행하는 사람이 되십시오. 듣기만 하는 사람이 되지 마십시오»라고 한 대로다. 그러므로 거룩한 가르침은 실천에 속한 학문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad quartum sic proceditur. Videtur quod sacra doctrina sit scientia practica. Finis enim practicae est operatio, secundum philosophum in II Metaphys. Sacra autem doctrina ad operationem ordinatur, secundum illud Iac. I, &#171;estote factores verbi, et non auditores tantum&#187;. Ergo sacra doctrina est practica scientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 거룩한 가르침은 옛 법과 새 법으로 나뉜다. 그런데 법은 도덕에 관한 학문에 속하고, 이는 실천에 속한 학문이다. 그러므로 거룩한 가르침은 실천에 속한 학문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, sacra doctrina dividitur per legem veterem et novam. Lex autem pertinet ad scientiam moralem, quae est scientia practica. Ergo sacra doctrina est scientia practica.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 실천에 속한 모든 학문은 사람이 이룰 수 있는 것들에 관한 것이다. 도덕에 관한 학문이 사람이 하는 일에 관한 것이고, 건축술이 건물에 관한 것과 같다. 그런데 거룩한 가르침은 주로 하느님에 관한 것이며, 사람이야말로 그분의 작품이다. 그러므로 그것은 실천에 속한 학문이 아니라 오히려 사변에 속한 학문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra, omnis scientia practica est de rebus operabilibus ab homine; ut moralis de actibus hominum, et aedificativa de aedificiis. Sacra autem doctrina est principaliter de Deo, cuius magis homines sunt opera. Non ergo est scientia practica, sed magis speculativa.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 앞서 말한 대로 거룩한 가르침은 하나이면서도 철학의 서로 다른 여러 분과에 속하는 것들에까지 미친다. 서로 다른 것들 안에서 하나의 형상적 개념을 눈여겨보기 때문이니, 곧 그것들이 하느님의 빛으로 알려질 수 있는 것인 한에서다. 그러므로 철학의 여러 학문에서는 어떤 것은 사변에 속하고 어떤 것은 실천에 속하지만, 거룩한 가르침은 그 둘을 다 제 아래 담는다. 하느님께서도 같은 학문으로 당신 자신을 아시고 당신께서 지으시는 것들도 아시는 것과 같다. 그러나 그것은 실천에 속하기보다 사변에 속한다. 사람이 하는 일보다 하느님께 속한 것들을 더 주되게 다루기 때문이며, 사람이 하는 일은 그것을 통하여 사람이 하느님을 온전히 아는 데로 정해지는 한에서 다룬다. 영원한 지복(至福)이 바로 그 앎에 있다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod sacra doctrina, ut dictum est, una existens, se extendit ad ea quae pertinent ad diversas scientias philosophicas, propter rationem formalem quam in diversis attendit, scilicet prout sunt divino lumine cognoscibilia. Unde licet in scientiis philosophicis alia sit speculativa et alia practica, sacra tamen doctrina comprehendit sub se utramque; sicut et Deus eadem scientia se cognoscit, et ea quae facit. Magis tamen est speculativa quam practica, quia principalius agit de rebus divinis quam de actibus humanis; de quibus agit secundum quod per eos ordinatur homo ad perfectam Dei cognitionem, in qua aeterna beatitudo consistit.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론들에 대한 답</span>이로써 반론들에 대한 답도 분명해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Et per hoc patet responsio ad obiecta.</p></div></div>
+</section>
+<section class="articulus" id="q1-a5"><h2 class="articulus-title">제5항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>다섯째 항으로 이렇게 나아간다. 거룩한 가르침이 다른 학문들보다 품격이 높지는 않다고 보인다. 확실함은 학문의 품격에 속하기 때문이다. 그런데 다른 학문들은 그 원리를 의심할 수 없으니, 원리인 신앙의 조항이 의심을 받는 거룩한 가르침보다 더 확실해 보인다. 그러므로 다른 학문들이 이것보다 품격이 높아 보인다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad quintum sic proceditur. Videtur quod sacra doctrina non sit dignior aliis scientiis. Certitudo enim pertinet ad dignitatem scientiae. Sed aliae scientiae, de quarum principiis dubitari non potest, videntur esse certiores sacra doctrina, cuius principia, scilicet articuli fidei, dubitationem recipiunt. Aliae igitur scientiae videntur ista digniores.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 더 낮은 학문은 더 높은 학문에게서 받는 법이니, 음악 하는 이가 산술 하는 이에게서 받는 것과 같다. 그런데 거룩한 가르침은 철학의 여러 분과에게서 무엇인가를 받는다. 히에로니무스가 로마의 웅변가 마그누스에게 보낸 편지<a epub:type="noteref" href="#q1-fn19" id="q1-fn19-ref"><sup>19</sup></a>에서 이렇게 말하기 때문이다. «옛 스승들은 철학자들의 가르침과 견해를 제 책에 어찌나 뿌려 놓았는지, 그 책에서 세상의 학식을 먼저 놀라워해야 할지 성경의 학문을 먼저 놀라워해야 할지 알 수 없을 지경이다.» 그러므로 거룩한 가르침은 다른 학문들보다 낮다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, inferioris scientiae est a superiori accipere, sicut musicus ab arithmetico. Sed sacra doctrina accipit aliquid a philosophicis disciplinis, dicit enim Hieronymus in epistola ad magnum oratorem urbis Romae, quod &#171;doctores antiqui intantum philosophorum doctrinis atque sententiis suos resperserunt libros, ut nescias quid in illis prius admirari debeas, eruditionem saeculi, an scientiam Scripturarum&#187;. Ergo sacra doctrina est inferior aliis scientiis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 다른 학문들은 이 학문의 시녀라고 불린다. 잠언 9장<a epub:type="noteref" href="#q1-fn20" id="q1-fn20-ref"><sup>20</sup></a>에서 «그 여인이 시녀들을 보내어 성채로 부르게 하였다»고 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod aliae scientiae dicuntur ancillae huius, Prov. IX, &#171;misit ancillas suas vocare ad arcem&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 이 학문은 어떤 쪽에서는 사변에 속하고 어떤 쪽에서는 실천에 속하므로, 사변에 속한 학문이든 실천에 속한 학문이든 다른 모든 것을 넘어선다. 사변에 속한 학문들 가운데 하나가 다른 하나보다 품격이 높다고 말해지는 것은 확실함 때문이기도 하고 다루는 바의 품격 때문이기도 하다. 이 학문은 그 둘 모두에서 다른 사변 학문들을 넘어선다. 확실함으로 보면, 다른 학문들은 잘못을 저지를 수 있는 사람의 타고난 헤아림의 빛에서 확실함을 얻지만 이것은 속을 수 없는 하느님의 학문의 빛에서 확실함을 얻기 때문이다. 다루는 바의 품격으로 보면, 이 학문은 그 높이로 헤아림을 넘어서는 것들을 주로 다루지만 다른 학문들은 헤아림 아래 놓이는 것들만을 살피기 때문이다. 한편 실천에 속한 학문들 가운데는 더 멀리 있는 목적을 향하여 정해진 것이 품격이 높으니, 정치가 병법보다 그러하다. 군대의 좋음은 나라의 좋음을 향하여 정해지기 때문이다. 그런데 이 가르침이 실천에 속하는 한에서 그 목적은 영원한 지복(至福)이며, 실천에 속한 학문들의 다른 모든 목적은 마지막 목적인 그것을 향하여 정해진다. 그러므로 어느 모로 보나 그것이 다른 것들보다 품격이 높음이 분명하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod, cum ista scientia quantum ad aliquid sit speculativa, et quantum ad aliquid sit practica, omnes alias transcendit tam speculativas quam practicas. Speculativarum enim scientiarum una altera dignior dicitur, tum propter certitudinem, tum propter dignitatem materiae. Et quantum ad utrumque, haec scientia alias speculativas scientias excedit. Secundum certitudinem quidem, quia aliae scientiae certitudinem habent ex naturali lumine rationis humanae, quae potest errare, haec autem certitudinem habet ex lumine divinae scientiae, quae decipi non potest. Secundum dignitatem vero materiae, quia ista scientia est principaliter de his quae sua altitudine rationem transcendunt, aliae vero scientiae considerant ea tantum quae rationi subduntur. Practicarum vero scientiarum illa dignior est, quae ad ulteriorem finem ordinatur, sicut civilis militari, nam bonum exercitus ad bonum civitatis ordinatur. Finis autem huius doctrinae inquantum est practica, est beatitudo aeterna, ad quam sicut ad ultimum finem ordinantur omnes alii fines scientiarum practicarum. Unde manifestum est, secundum omnem modum, eam digniorem esse aliis.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 본성<a epub:type="noteref" href="#q1-fn21" id="q1-fn21-ref"><sup>21</sup></a>으로 보아 더 확실한 것이 우리에게는 덜 확실할 수 있으니, 이는 우리 지성이 약하기 때문이며 여기에는 아무런 걸림이 없다. 『형이상학』 제2권에서 말하듯 우리 지성은 본성에서 가장 뚜렷한 것들 앞에서 마치 올빼미의 눈이 햇빛 앞에 선 것과 같다. 그러므로 어떤 이들에게 신앙의 조항을 두고 생기는 의심은 사물이 확실하지 않아서가 아니라 사람의 지성이 약해서 생긴다. 그런데도 가장 높은 것들에 관하여 얻을 수 있는 앎은 아무리 작더라도, 가장 낮은 것들에 관하여 얻는 가장 확실한 앎보다 더 바랄 만하다. 『동물지』 제11권<a epub:type="noteref" href="#q1-fn22" id="q1-fn22-ref"><sup>22</sup></a>에서 말하는 대로다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod nihil prohibet id quod est certius secundum naturam, esse quoad nos minus certum, propter debilitatem intellectus nostri, qui se habet ad manifestissima naturae, sicut oculus noctuae ad lumen solis, sicut dicitur in II Metaphys. Unde dubitatio quae accidit in aliquibus circa articulos fidei, non est propter incertitudinem rei, sed propter debilitatem intellectus humani. Et tamen minimum quod potest haberi de cognitione rerum altissimarum, desiderabilius est quam certissima cognitio quae habetur de minimis rebus, ut dicitur in XI de animalibus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 이 학문이 철학의 여러 분과에게서 무엇인가를 받을 수는 있지만, 그것들이 반드시 있어야 해서가 아니라 이 학문이 전하는 것들을 더 잘 드러내기 위해서다. 그것은 제 원리를 다른 학문들에게서 받지 않고 계시를 통하여 하느님께 곧바로 받기 때문이다. 그러므로 다른 학문들을 더 높은 것으로 여겨 받는 것이 아니라 더 낮은 것이자 시녀로 여겨 쓴다. 으뜸가는 기술이 아래에서 거드는 기술들을 쓰는 것과 같고, 정치가 병법을 쓰는 것과 같다. 그리고 이렇게 그것들을 쓰는 일 자체도 이 학문이 모자라거나 넉넉하지 못해서가 아니라 우리 지성이 약해서다. 우리 지성은 타고난 헤아림으로 알려지는 것들에서 출발해야 이 학문이 전하는 것들, 곧 헤아림을 넘어서는 것들로 더 쉽게 손에 이끌리듯 나아가기 때문이다. 다른 학문들은 바로 그 타고난 헤아림에서 나아간다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod haec scientia accipere potest aliquid a philosophicis disciplinis, non quod ex necessitate eis indigeat, sed ad maiorem manifestationem eorum quae in hac scientia traduntur. Non enim accipit sua principia ab aliis scientiis, sed immediate a Deo per revelationem. Et ideo non accipit ab aliis scientiis tanquam a superioribus, sed utitur eis tanquam inferioribus et ancillis; sicut architectonicae utuntur subministrantibus, ut civilis militari. Et hoc ipsum quod sic utitur eis, non est propter defectum vel insufficientiam eius, sed propter defectum intellectus nostri; qui ex his quae per naturalem rationem (ex qua procedunt aliae scientiae) cognoscuntur, facilius manuducitur in ea quae sunt supra rationem, quae in hac scientia traduntur.</p></div></div>
+</section>
+<section class="articulus" id="q1-a6"><h2 class="articulus-title">제6항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>여섯째 항으로 이렇게 나아간다. 이 가르침은 지혜가 아니라고 보인다. 제 원리를 다른 데서 받아 놓는 가르침은 어떤 것도 지혜라는 이름에 값하지 못하기 때문이다. «지혜로운 이가 할 일은 질서를 세우는 것이지 질서에 매이는 것이 아니다»라고 『형이상학』 제1권<a epub:type="noteref" href="#q1-fn23" id="q1-fn23-ref"><sup>23</sup></a>에서 말한다. 그런데 이 가르침은 제 원리를 다른 데서 받아 놓으니, 앞서 말한 것에서 분명하다. 그러므로 이 가르침은 지혜가 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad sextum sic proceditur. Videtur quod haec doctrina non sit sapientia. Nulla enim doctrina quae supponit sua principia aliunde, digna est nomine sapientiae, &#171;quia sapientis est ordinare, et non ordinari&#187; (I Metaphys.). Sed haec doctrina supponit principia sua aliunde, ut ex dictis patet. Ergo haec doctrina non est sapientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 다른 학문들의 원리를 증명하는 일이 지혜에 속하며, 그래서 『니코마코스 윤리학』 제6권<a epub:type="noteref" href="#q1-fn24" id="q1-fn24-ref"><sup>24</sup></a>에서 분명하듯 지혜는 학문들의 머리라고 불린다. 그런데 이 가르침은 다른 학문들의 원리를 증명하지 않는다. 그러므로 그것은 지혜가 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, ad sapientiam pertinet probare principia aliarum scientiarum, unde ut caput dicitur scientiarum, ut VI Ethic. patet. Sed haec doctrina non probat principia aliarum scientiarum. Ergo non est sapientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 3</span>또한 이 가르침은 공부로 얻어진다. 그런데 지혜는 부어 주심으로 지니게 되며, 그래서 이사야서 11장<a epub:type="noteref" href="#q1-fn25" id="q1-fn25-ref"><sup>25</sup></a>에서 분명하듯 성령의 일곱 선물 가운데 하나로 헤아려진다. 그러므로 이 가르침은 지혜가 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, haec doctrina per studium acquiritur. Sapientia autem per infusionem habetur, unde inter septem dona spiritus sancti connumeratur, ut patet Isaiae XI. Ergo haec doctrina non est sapientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 신명기 4장<a epub:type="noteref" href="#q1-fn26" id="q1-fn26-ref"><sup>26</sup></a>, 곧 법이 시작되는 자리에서 «이것이 뭇 백성 앞에서 우리의 지혜요 지성이다»라고 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicitur Deut. IV, in principio legis, &#171;haec est nostra sapientia et intellectus coram populis&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 이 가르침은 사람이 지닌 모든 지혜 가운데 가장 지혜로우니, 어떤 유(類) 안에서만이 아니라 단적으로 그러하다. 지혜로운 이가 할 일은 질서를 세우고 판단하는 것인데, 판단은 더 높은 원인을 통하여 더 낮은 것들에 대하여 내려지기 때문이다. 그래서 어느 유(類)에서든 그 유(類)의 가장 높은 원인을 살피는 이가 지혜롭다고 불린다. 이를테면 건축이라는 유(類)에서는 집의 형상(forma)을 짜는 장인이, 나무를 다듬거나 돌을 마련하는 아래의 장인들에 견주어 지혜로운 이요 으뜸 장인이라고 불린다. 그래서 코린토 1서 3장<a epub:type="noteref" href="#q1-fn27" id="q1-fn27-ref"><sup>27</sup></a>에서 «나는 지혜로운 으뜸 장인으로서 기초를 놓았다»고 말해진다. 또한 사람의 삶 전체라는 유(類)에서는 현명한 이가 지혜롭다고 불리니, 사람이 하는 일을 마땅한 목적으로 정하는 한에서 그러하다. 그래서 잠언 10장<a epub:type="noteref" href="#q1-fn28" id="q1-fn28-ref"><sup>28</sup></a>에서 «지혜는 사람에게 현명함이다»라고 말해진다. 그러므로 온 우주의 가장 높은 원인, 곧 하느님이신 그분을 단적으로 살피는 이가 가장 지혜롭다고 불린다. 그래서 아우구스티누스가 『삼위일체론』 제12권<a epub:type="noteref" href="#q1-fn29" id="q1-fn29-ref"><sup>29</sup></a>에서 밝히듯 지혜는 하느님께 속한 것들을 아는 앎이라고 말해진다. 그런데 거룩한 가르침은 하느님을 가장 높은 원인인 한에서 가장 고유하게 규정한다. 피조물을 통하여 알 수 있는 것에 대해서만이 아니라, 로마서 1장<a epub:type="noteref" href="#q1-fn30" id="q1-fn30-ref"><sup>30</sup></a>에서 «하느님에 관하여 알려진 것이 그들에게 드러나 있다»고 말하듯 철학자들이 알아낸 그것에 대해서만이 아니라, 그분 홀로 당신 자신에 관하여 아시고 계시로 다른 이들에게 나누어 주신 그것에 대해서도 그러하기 때문이다. 그러므로 거룩한 가르침이 가장 지혜롭다고 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod haec doctrina maxime sapientia est inter omnes sapientias humanas, non quidem in aliquo genere tantum, sed simpliciter. Cum enim sapientis sit ordinare et iudicare, iudicium autem per altiorem causam de inferioribus habeatur; ille sapiens dicitur in unoquoque genere, qui considerat causam altissimam illius generis. Ut in genere aedificii, artifex qui disponit formam domus, dicitur sapiens et architector, respectu inferiorum artificum, qui dolant ligna vel parant lapides, unde dicitur I Cor. III, &#171;ut sapiens architector fundamentum posui&#187;. Et rursus, in genere totius humanae vitae, prudens sapiens dicitur, inquantum ordinat humanos actus ad debitum finem, unde dicitur Prov. X, &#171;sapientia est viro prudentia&#187;. Ille igitur qui considerat simpliciter altissimam causam totius universi, quae Deus est, maxime sapiens dicitur, unde et sapientia dicitur esse divinorum cognitio, ut patet per Augustinum, XII de Trinitate. Sacra autem doctrina propriissime determinat de Deo secundum quod est altissima causa, quia non solum quantum ad illud quod est per creaturas cognoscibile (quod philosophi cognoverunt, ut dicitur Rom. I, &#171;quod notum est Dei, manifestum est illis&#187;); sed etiam quantum ad id quod notum est sibi soli de seipso, et aliis per revelationem communicatum. Unde sacra doctrina maxime dicitur sapientia.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 거룩한 가르침은 제 원리를 사람의 어떤 학문에서 받아 놓지 않고 하느님의 학문에서 받아 놓는다. 우리의 모든 앎은 가장 높은 지혜인 그 학문에서 질서를 받는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod sacra doctrina non supponit sua principia ab aliqua scientia humana, sed a scientia divina, a qua, sicut a summa sapientia, omnis nostra cognitio ordinatur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 다른 학문들의 원리는 그 자체로 알려져 있어 증명할 수 없거나, 아니면 어떤 다른 학문에서 타고난 헤아림으로 증명된다. 그런데 이 학문에 고유한 앎은 계시로 오는 앎이지 타고난 헤아림으로 오는 앎이 아니다. 그러므로 다른 학문들의 원리를 증명하는 일은 이 학문에 속하지 않고, 다만 그것들을 두고 판단하는 일만이 속한다. 다른 학문들에서 발견되는 것 가운데 이 학문의 진리에 어긋나는 것은 무엇이든 거짓으로 단죄되기 때문이다. 그래서 코린토 2서 10장<a epub:type="noteref" href="#q1-fn31" id="q1-fn31-ref"><sup>31</sup></a>에서 «우리는 궁리를 무너뜨리며, 하느님의 학문에 맞서 스스로를 높이 쳐드는 모든 것을 무너뜨린다»고 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod aliarum scientiarum principia vel sunt per se nota, et probari non possunt, vel per aliquam rationem naturalem probantur in aliqua alia scientia. Propria autem huius scientiae cognitio est, quae est per revelationem, non autem quae est per naturalem rationem. Et ideo non pertinet ad eam probare principia aliarum scientiarum, sed solum iudicare de eis, quidquid enim in aliis scientiis invenitur veritati huius scientiae repugnans, totum condemnatur ut falsum, unde dicitur II Cor. X, &#171;consilia destruentes, et omnem altitudinem extollentem se adversus scientiam Dei&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 3에 대한 답</span>셋째에 대하여는 이렇게 말해야 한다. 판단이 지혜로운 이에게 속하므로, 판단하는 두 가지 방식에 따라 지혜도 두 가지로 받아들여진다. 어떤 이가 판단하는 데에는 두 길이 있기 때문이다. 하나는 기울어짐을 통한 길이다. 덕의 습성을 지닌 이는 덕에 따라 해야 할 것들을 두고 바르게 판단하니, 그리로 기울어져 있는 한에서 그러하다. 그래서 『니코마코스 윤리학』 제10권<a epub:type="noteref" href="#q1-fn32" id="q1-fn32-ref"><sup>32</sup></a>에서 덕을 갖춘 이가 사람이 하는 일의 자요 잣대라고 말해진다. 다른 하나는 앎을 통한 길이다. 도덕에 관한 학문을 배운 이는 덕을 지니지 않았더라도 덕에 속한 일들을 두고 판단할 수 있다. 그러므로 하느님께 속한 것들을 두고 판단하는 첫째 방식은 성령의 선물로 놓이는 지혜에 속한다. 코린토 1서 2장<a epub:type="noteref" href="#q1-fn33" id="q1-fn33-ref"><sup>33</sup></a>에서 «영적인 사람은 모든 것을 판단한다»고 한 대로이며, 디오니시우스도 『신명론』 제2장<a epub:type="noteref" href="#q1-fn34" id="q1-fn34-ref"><sup>34</sup></a>에서 «히에로테우스는 배우기만 한 것이 아니라 하느님께 속한 것들을 몸소 겪으면서 가르침을 받았다»고 말한다. 그러나 판단하는 둘째 방식은 이 가르침에 속하니, 공부로 지니게 되는 한에서 그러하다. 그 원리는 계시에서 오지만 말이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium dicendum quod, cum iudicium ad sapientem pertineat, secundum duplicem modum iudicandi, dupliciter sapientia accipitur. Contingit enim aliquem iudicare, uno modo per modum inclinationis, sicut qui habet habitum virtutis, recte iudicat de his quae sunt secundum virtutem agenda, inquantum ad illa inclinatur, unde et in X Ethic. dicitur quod virtuosus est mensura et regula actuum humanorum. Alio modo, per modum cognitionis, sicut aliquis instructus in scientia morali, posset iudicare de actibus virtutis, etiam si virtutem non haberet. Primus igitur modus iudicandi de rebus divinis, pertinet ad sapientiam quae ponitur donum spiritus sancti secundum illud I Cor. II, &#171;spiritualis homo iudicat omnia,&#187; etc., et Dionysius dicit, II cap. de divinis nominibus, &#171;Hierotheus doctus est non solum discens, sed et patiens divina&#187;. Secundus autem modus iudicandi pertinet ad hanc doctrinam, secundum quod per studium habetur; licet eius principia ex revelatione habeantur.</p></div></div>
+</section>
+<section class="articulus" id="q1-a7"><h2 class="articulus-title">제7항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>일곱째 항으로 이렇게 나아간다. 하느님은 이 학문의 주제가 아니라고 보인다. 철학자가 『분석론 후서』 제1권에서 말하듯 어떤 학문에서든 그 주제가 무엇인지를 앞서 놓아야 하기 때문이다. 그런데 이 학문은 하느님이 무엇인지를 앞서 놓지 않는다. 다마스케누스<a epub:type="noteref" href="#q1-fn35" id="q1-fn35-ref"><sup>35</sup></a>가 «하느님에 관하여 그분이 무엇인지 말하기란 할 수 없는 일이다<a epub:type="noteref" href="#q1-fn36" id="q1-fn36-ref"><sup>36</sup></a>»라고 말하기 때문이다. 그러므로 하느님은 이 학문의 주제가 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad septimum sic proceditur. Videtur quod Deus non sit subiectum huius scientiae. In qualibet enim scientia oportet supponere de subiecto quid est, secundum philosophum in I Poster. Sed haec scientia non supponit de Deo quid est, dicit enim Damascenus, &#171;in Deo quid est, dicere impossibile est&#187;. Ergo Deus non est subiectum huius scientiae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 어떤 학문 안에서 규정되는 모든 것은 그 학문의 주제 아래 담긴다. 그런데 성경에서는 하느님 말고도 다른 많은 것이 규정되니, 이를테면 피조물에 관한 것과 사람의 품행에 관한 것이 그러하다. 그러므로 하느님은 이 학문의 주제가 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, omnia quae determinantur in aliqua scientia, comprehenduntur sub subiecto illius scientiae. Sed in sacra Scriptura determinatur de multis aliis quam de Deo, puta de creaturis, et de moribus hominum. Ergo Deus non est subiectum huius scientiae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 어떤 학문 안에서 말이 오가는 그것이 그 학문의 주제다. 그런데 이 학문 안에서는 하느님에 관하여 말이 오간다. 그래서 그것은 하느님에 관한 말이라는 뜻으로 신학이라 불린다. 그러므로 하느님은 이 학문의 주제다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra, illud est subiectum scientiae, de quo est sermo in scientia. Sed in hac scientia fit sermo de Deo, dicitur enim theologia, quasi sermo de Deo. Ergo Deus est subiectum huius scientiae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 하느님이 이 학문의 주제라고 답해야 한다고 말한다. 주제가 학문에 대하여 지니는 관계는 대상이 능력이나 습성에 대하여 지니는 관계와 같기 때문이다. 그런데 어떤 능력이나 습성의 대상으로 고유하게 지정되는 것은, 그 개념 아래에서 모든 것이 그 능력이나 습성에 관계되는 그것이다. 사람과 돌이 빛깔을 지녔다는 점에서 시각에 관계되는 것과 같으며, 그래서 빛깔을 지닌 것이 시각의 고유한 대상이다. 그런데 거룩한 가르침에서는 모든 것이 하느님이라는 개념 아래에서 다루어진다. 그것들이 하느님 자신이거나, 아니면 원리로서든 목적으로서든 하느님께 질서 지어져 있기 때문이다. 그러므로 하느님이 참으로 이 학문의 주제라는 결론이 나온다. 이는 이 학문의 원리에서도 분명해진다. 그 원리란 곧 신앙의 조항이며 이는 하느님에 관한 것인데, 학문 전체가 원리 안에 잠재적으로 담겨 있으므로 원리의 주제와 학문 전체의 주제는 같기 때문이다. 그런데 어떤 이들은 이 학문에서 다루어지는 것들만 눈여겨보고 그것들이 어떤 개념 아래에서 살펴지는지는 보지 않은 채, 이 학문의 주제를 달리 지정하였다. 사물과 표징이라 하기도 하고, 회복의 일이라 하기도 하고, 온 그리스도 곧 머리와 지체라 하기도 하였다. 이 모든 것이 이 학문에서 다루어지기는 하지만, 하느님께 질서 지어져 있는 한에서 다루어진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod Deus est subiectum huius scientiae. Sic enim se habet subiectum ad scientiam, sicut obiectum ad potentiam vel habitum. Proprie autem illud assignatur obiectum alicuius potentiae vel habitus, sub cuius ratione omnia referuntur ad potentiam vel habitum, sicut homo et lapis referuntur ad visum inquantum sunt colorata, unde coloratum est proprium obiectum visus. Omnia autem pertractantur in sacra doctrina sub ratione Dei, vel quia sunt ipse Deus; vel quia habent ordinem ad Deum, ut ad principium et finem. Unde sequitur quod Deus vere sit subiectum huius scientiae. Quod etiam manifestum fit ex principiis huius scientiae, quae sunt articuli fidei, quae est de Deo, idem autem est subiectum principiorum et totius scientiae, cum tota scientia virtute contineatur in principiis. Quidam vero, attendentes ad ea quae in ista scientia tractantur, et non ad rationem secundum quam considerantur, assignaverunt aliter subiectum huius scientiae, vel res et signa; vel opera reparationis; vel totum Christum, idest caput et membra. De omnibus enim istis tractatur in ista scientia, sed secundum ordinem ad Deum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 우리가 하느님에 관하여 그분이 무엇인지 알 수는 없지만, 이 가르침에서는 본성에 속하든 은총에 속하든 그분의 결과를 정의(定義, diffinitio) 대신 삼아, 이 가르침이 하느님에 관하여 살피는 것들에 이른다. 철학의 어떤 학문들에서도 결과를 원인의 정의(定義) 대신 삼아 결과를 통하여 원인에 관한 무엇인가를 증명하는 것과 같다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod, licet de Deo non possimus scire quid est, utimur tamen eius effectu, in hac doctrina, vel naturae vel gratiae, loco definitionis, ad ea quae de Deo in hac doctrina considerantur, sicut et in aliquibus scientiis philosophicis demonstratur aliquid de causa per effectum, accipiendo effectum loco definitionis causae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 거룩한 가르침에서 규정되는 다른 모든 것은 하느님 아래 담기되, 부분이나 종(種, species)이나 우유(偶有)<a epub:type="noteref" href="#q1-fn37" id="q1-fn37-ref"><sup>37</sup></a>로서가 아니라 어떤 식으로든 그분께 질서 지어진 것으로서 담긴다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod omnia alia quae determinantur in sacra doctrina, comprehenduntur sub Deo, non ut partes vel species vel accidentia, sed ut ordinata aliqualiter ad ipsum.</p></div></div>
+</section>
+<section class="articulus" id="q1-a8"><h2 class="articulus-title">제8항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>여덟째 항으로 이렇게 나아간다. 이 가르침은 논증을 쓰지 않는다고 보인다. 암브로시우스가 『가톨릭 신앙론』 제1권<a epub:type="noteref" href="#q1-fn38" id="q1-fn38-ref"><sup>38</sup></a>에서 «신앙을 찾는 자리에서는 논증을 치워라»라고 말하기 때문이다. 그런데 이 가르침에서는 무엇보다 신앙을 찾는다. 그래서 요한복음 20장<a epub:type="noteref" href="#q1-fn39" id="q1-fn39-ref"><sup>39</sup></a>에서 «이것을 쓴 것은 너희가 믿게 하려는 것이다»라고 말해진다. 그러므로 거룩한 가르침은 논증을 쓰지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad octavum sic proceditur. Videtur quod haec doctrina non sit argumentativa. Dicit enim Ambrosius in libro I de fide Catholica, &#171;tolle argumenta, ubi fides quaeritur&#187;. Sed in hac doctrina praecipue fides quaeritur, unde dicitur Ioan. XX, &#171;haec scripta sunt ut credatis&#187;. Ergo sacra doctrina non est argumentativa.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 그것이 논증을 쓴다면 권위에서 논증하거나 헤아림에서 논증할 것이다. 권위에서 한다면 이는 그 품격에 맞지 않아 보인다. 보에티우스<a epub:type="noteref" href="#q1-fn40" id="q1-fn40-ref"><sup>40</sup></a>에 따르면 권위에 기댄 논거 자리가 가장 약하기 때문이다. 헤아림에서 한다 해도 이는 그 목적에 맞지 않는다. 그레고리우스가 강론에서<a epub:type="noteref" href="#q1-fn41" id="q1-fn41-ref"><sup>41</sup></a> «사람의 헤아림이 증거를 대는 자리에서는 신앙이 공로를 지니지 못한다»라고 말하기 때문이다. 그러므로 거룩한 가르침은 논증을 쓰지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, si sit argumentativa, aut argumentatur ex auctoritate, aut ex ratione. Si ex auctoritate, non videtur hoc congruere eius dignitati, nam locus ab auctoritate est infirmissimus, secundum Boetium. Si etiam ex ratione, hoc non congruit eius fini, quia secundum Gregorium in homilia, &#171;fides non habet meritum, ubi humana ratio praebet experimentum&#187;. Ergo sacra doctrina non est argumentativa.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 티토서 1장<a epub:type="noteref" href="#q1-fn42" id="q1-fn42-ref"><sup>42</sup></a>에서 주교에 관하여 이렇게 말해진다. «가르침에 맞갖은 미더운 말씀을 굳게 지키는 사람이라야 한다. 그래야 건전한 가르침으로 남을 격려할 수도 있고, 반대하는 이들을 꾸짖을 수도 있다.»</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicitur ad Titum I, de episcopo, &#171;amplectentem eum qui secundum doctrinam est, fidelem sermonem, ut potens sit exhortari in doctrina sana, et eos qui contradicunt arguere&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 다른 학문들이 제 원리를 증명하려고 논증하지 않고 원리에서 출발하여 그 학문 안의 다른 것들을 보이려고 논증하듯이, 이 가르침도 제 원리인 신앙의 조항을 증명하려고 논증하지 않고 그것들에서 출발하여 다른 무엇인가를 보이는 데로 나아간다. 사도가 코린토 1서 15장<a epub:type="noteref" href="#q1-fn43" id="q1-fn43-ref"><sup>43</sup></a>에서 그리스도의 부활에서 출발하여 모든 이의 부활을 증명하려고 논증하는 것과 같다. 그러나 철학의 여러 학문에서 이 점을 눈여겨보아야 한다. 더 낮은 학문들은 제 원리를 증명하지도 않고 원리를 부인하는 이와 다투지도 않으며, 그 일을 더 높은 학문에 맡긴다. 그러나 그것들 가운데 으뜸가는 학문, 곧 형이상학은 제 원리를 부인하는 이와 다툰다. 맞선 이가 무엇인가를 받아들인다면 그러하고, 아무것도 받아들이지 않는다면 그와 다툴 수는 없으나 그의 논거를 풀어 줄 수는 있다. 그러므로 성경은 더 높은 것을 두지 않으므로 제 원리를 부인하는 이와 몸소 다툰다. 맞선 이가 하느님의 계시로 주어진 것들 가운데 무엇인가를 받아들인다면 논증으로 다투니, 우리가 거룩한 가르침의 권위를 들어 이단자들과 다투고 한 조항을 들어 다른 조항을 부인하는 이들과 다투는 것과 같다. 그러나 맞선 이가 하느님께서 계시하신 것을 아무것도 믿지 않는다면, 신앙의 조항을 헤아림으로 증명할 길은 더 남아 있지 않고, 다만 그가 신앙에 맞서 끌어대는 논거를 풀어 줄 길만 남는다. 신앙은 그르칠 수 없는 진리에 기대어 있고 참인 것에 맞선 것은 증명될 수 없으므로, 신앙에 맞서 끌어대는 증명들이 참된 증명이 아니라 풀어 낼 수 있는 논거임이 분명하기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod, sicut aliae scientiae non argumentantur ad sua principia probanda, sed ex principiis argumentantur ad ostendendum alia in ipsis scientiis; ita haec doctrina non argumentatur ad sua principia probanda, quae sunt articuli fidei; sed ex eis procedit ad aliquid aliud ostendendum; sicut apostolus, I ad Cor. XV, ex resurrectione Christi argumentatur ad resurrectionem communem probandam. Sed tamen considerandum est in scientiis philosophicis, quod inferiores scientiae nec probant sua principia, nec contra negantem principia disputant, sed hoc relinquunt superiori scientiae, suprema vero inter eas, scilicet metaphysica, disputat contra negantem sua principia, si adversarius aliquid concedit, si autem nihil concedit, non potest cum eo disputare, potest tamen solvere rationes ipsius. Unde sacra Scriptura, cum non habeat superiorem, disputat cum negante sua principia, argumentando quidem, si adversarius aliquid concedat eorum quae per divinam revelationem habentur; sicut per auctoritates sacrae doctrinae disputamus contra haereticos, et per unum articulum contra negantes alium. Si vero adversarius nihil credat eorum quae divinitus revelantur, non remanet amplius via ad probandum articulos fidei per rationes, sed ad solvendum rationes, si quas inducit, contra fidem. Cum enim fides infallibili veritati innitatur, impossibile autem sit de vero demonstrari contrarium, manifestum est probationes quae contra fidem inducuntur, non esse demonstrationes, sed solubilia argumenta.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 사람의 헤아림에서 나온 논증은 신앙에 속한 것들을 증명하는 자리를 얻지 못하지만, 앞서 말한 대로 이 가르침은 신앙의 조항에서 출발하여 다른 것들을 논증한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod, licet argumenta rationis humanae non habeant locum ad probandum quae fidei sunt, tamen ex articulis fidei haec doctrina ad alia argumentatur, ut dictum est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 권위에서 논증하는 일은 이 가르침에 가장 고유하다. 이 가르침의 원리는 계시로 지니게 되므로, 계시를 받은 이들의 권위를 믿어야 하기 때문이다. 이것이 이 가르침의 품격을 깎아내리지도 않는다. 사람의 헤아림 위에 세워진 권위에 기댄 논거 자리는 가장 약하지만, 하느님의 계시 위에 세워진 권위에 기댄 논거 자리는 가장 힘차기 때문이다. 그런데도 거룩한 가르침은 사람의 헤아림도 쓴다. 신앙을 증명하려고 쓰지는 않으니, 그렇게 하면 신앙의 공로가 사라질 것이기 때문이다. 다만 이 가르침이 전하는 다른 어떤 것들을 드러내려고 쓴다. 은총은 본성을 없애지 않고 온전하게 하므로, 타고난 헤아림이 신앙을 받들어야 하기 때문이다. 의지(voluntas)의 타고난 기울어짐이 사랑을 따르는 것과 같다. 그래서 사도도 코린토 2서 10장<a epub:type="noteref" href="#q1-fn44" id="q1-fn44-ref"><sup>44</sup></a>에서 «모든 지성을 사로잡아 그리스도께 순종하게 한다»고 말한다. 여기서 거룩한 가르침이 철학자들의 권위도 쓰는 까닭이 나온다. 그들이 타고난 헤아림으로 진리를 알 수 있었던 자리에서는 그러하다. 사도행전 17장<a epub:type="noteref" href="#q1-fn45" id="q1-fn45-ref"><sup>45</sup></a>에서 바오로가 아라토스의 말을 끌어대어 «너희 시인 가운데 몇 사람이 말한 대로 우리도 그분의 자손이다»라고 말하는 것과 같다. 그러나 거룩한 가르침은 이런 권위를 바깥에서 온 논거이자 그럴듯한 논거로 여겨 쓴다. 정경에 속한 성경의 권위는 고유한 것으로 여겨 반드시 그러해야 하는 논증으로 쓰고, 교회의 다른 스승들의 권위는 제 것에서 논증하듯 쓰되 그럴듯한 논증으로 쓴다. 우리의 신앙은 정경에 속한 책을 쓴 사도들과 예언자들에게 주어진 계시에 기대어 있지, 다른 스승들에게 어떤 계시가 있었다 하더라도 그 계시에 기대어 있지 않기 때문이다. 그래서 아우구스티누스는 히에로니무스에게 보낸 편지<a epub:type="noteref" href="#q1-fn46" id="q1-fn46-ref"><sup>46</sup></a>에서 이렇게 말한다. «나는 정경이라 불리는 성경의 책들에만 이 영예를 돌리기로 배웠으니, 그 책을 쓴 어떤 저자도 글에서 무엇 하나 그르치지 않았다고 아주 굳게 믿는 것이다. 그러나 다른 책들은 이렇게 읽는다. 그 지은이가 아무리 거룩함과 학식으로 뛰어나더라도, 그가 그렇게 여겼거나 그렇게 썼다는 이유만으로 그것을 참이라 여기지는 않는다.»</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod argumentari ex auctoritate est maxime proprium huius doctrinae, eo quod principia huius doctrinae per revelationem habentur, et sic oportet quod credatur auctoritati eorum quibus revelatio facta est. Nec hoc derogat dignitati huius doctrinae, nam licet locus ab auctoritate quae fundatur super ratione humana, sit infirmissimus; locus tamen ab auctoritate quae fundatur super revelatione divina, est efficacissimus. Utitur tamen sacra doctrina etiam ratione humana, non quidem ad probandum fidem, quia per hoc tolleretur meritum fidei; sed ad manifestandum aliqua alia quae traduntur in hac doctrina. Cum enim gratia non tollat naturam, sed perficiat, oportet quod naturalis ratio subserviat fidei; sicut et naturalis inclinatio voluntatis obsequitur caritati. Unde et apostolus dicit, II ad Cor. X, &#171;in captivitatem redigentes omnem intellectum in obsequium Christi&#187;. Et inde est quod etiam auctoritatibus philosophorum sacra doctrina utitur, ubi per rationem naturalem veritatem cognoscere potuerunt; sicut Paulus, actuum XVII, inducit verbum Arati, dicens, &#171;sicut et quidam poetarum vestrorum dixerunt, genus Dei sumus&#187;. Sed tamen sacra doctrina huiusmodi auctoritatibus utitur quasi extraneis argumentis, et probabilibus. Auctoritatibus autem canonicae Scripturae utitur proprie, ex necessitate argumentando. Auctoritatibus autem aliorum doctorum Ecclesiae, quasi arguendo ex propriis, sed probabiliter. Innititur enim fides nostra revelationi apostolis et prophetis factae, qui canonicos libros scripserunt, non autem revelationi, si qua fuit aliis doctoribus facta. Unde dicit Augustinus, in epistola ad Hieronymum, &#171;solis eis Scripturarum libris qui canonici appellantur, didici hunc honorem deferre, ut nullum auctorem eorum in scribendo errasse aliquid firmissime credam. Alios autem ita lego, ut, quantalibet sanctitate doctrinaque praepolleant, non ideo verum putem, quod ipsi ita senserunt vel scripserunt&#187;.</p></div></div>
+</section>
+<section class="articulus" id="q1-a9"><h2 class="articulus-title">제9항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>아홉째 항으로 이렇게 나아간다. 성경은 비유를 쓰지 말아야 한다고 보인다. 가장 낮은 가르침에 고유한 것은, 앞서 말한 대로 다른 것들 사이에서 가장 높은 자리를 차지하는 이 학문에 어울리지 않아 보이기 때문이다. 그런데 여러 닮은 꼴과 그려 보임으로 나아가는 것은 시를 짓는 일에 고유하며, 이는 모든 가르침 가운데 가장 낮다. 그러므로 이런 닮은 꼴을 쓰는 일은 이 학문에 알맞지 않다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad nonum sic proceditur. Videtur quod sacra Scriptura non debeat uti metaphoris. Illud enim quod est proprium infimae doctrinae, non videtur competere huic scientiae, quae inter alias tenet locum supremum, ut iam dictum est. Procedere autem per similitudines varias et repraesentationes, est proprium poeticae, quae est infima inter omnes doctrinas. Ergo huiusmodi similitudinibus uti, non est conveniens huic scientiae.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 이 가르침은 진리를 드러내는 데로 정해져 있다고 보인다. 그래서 그것을 드러내는 이들에게 상이 약속된다. 집회서 24장<a epub:type="noteref" href="#q1-fn47" id="q1-fn47-ref"><sup>47</sup></a>에서 «나를 밝히 드러내는 이들은 영원한 생명을 얻으리라»고 한다. 그런데 이런 닮은 꼴로는 진리가 가려진다. 그러므로 하느님께 속한 것들을 물체적 사물의 닮은 꼴 아래 전하는 일은 이 가르침에 어울리지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, haec doctrina videtur esse ordinata ad veritatis manifestationem, unde et manifestatoribus eius praemium promittitur, Eccli. XXIV, &#171;qui elucidant me, vitam aeternam habebunt&#187;. Sed per huiusmodi similitudines veritas occultatur. Non ergo competit huic doctrinae divina tradere sub similitudine corporalium rerum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 3</span>또한 어떤 피조물이 더 높을수록 그만큼 더 하느님을 닮음에 가까이 간다. 그러므로 피조물 가운데 어떤 것을 하느님께 옮겨 쓴다면, 그런 옮겨 씀은 가장 낮은 피조물이 아니라 무엇보다 더 높은 피조물에서 이루어져야 할 것이다. 그런데도 성경에서는 그 반대가 자주 발견된다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, quanto aliquae creaturae sunt sublimiores, tanto magis ad divinam similitudinem accedunt. Si igitur aliquae ex creaturis transumerentur ad Deum, tunc oporteret talem transumptionem maxime fieri ex sublimioribus creaturis, et non ex infimis. Quod tamen in Scripturis frequenter invenitur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 호세아서 12장<a epub:type="noteref" href="#q1-fn48" id="q1-fn48-ref"><sup>48</sup></a>에서 «나는 그들에게 환시를 거듭 보여 주었고, 예언자들의 손을 빌려 닮은 꼴로 나를 나타내었다»고 말해진다. 그런데 무엇인가를 닮은 꼴 아래 전하는 것이 곧 비유를 쓰는 일이다. 그러므로 비유를 쓰는 일은 거룩한 가르침에 속한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicitur Osee XII, &#171;ego visionem multiplicavi eis, et in manibus prophetarum assimilatus sum&#187;. Tradere autem aliquid sub similitudine, est metaphoricum. Ergo ad sacram doctrinam pertinet uti metaphoris.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 성경이 하느님께 속한 것들과 영적인 것들을 물체적인 것의 닮은 꼴 아래 전하는 일은 알맞다. 하느님께서는 모든 것을 그 본성에 맞갖게 돌보시기 때문이다. 그런데 사람에게는 감각될 수 있는 것을 거쳐 지성으로 알 수 있는 것에 이르는 일이 본성에 맞다. 우리의 모든 앎은 감각에서 시작하기 때문이다. 그러므로 성경에서 영적인 것들이 물체적인 것의 비유 아래 우리에게 전해지는 것은 알맞다. 디오니시우스가 『천상 위계론』 제1장<a epub:type="noteref" href="#q1-fn49" id="q1-fn49-ref"><sup>49</sup></a>에서 «여러 겹의 거룩한 덮개로 감싸이지 않고서는 하느님의 빛살이 우리에게 달리 비칠 수 없다»고 말하는 바가 이것이다. 또한 성경은 모든 이에게 두루 내놓아지므로, 로마서 1장<a epub:type="noteref" href="#q1-fn50" id="q1-fn50-ref"><sup>50</sup></a>에서 «나는 지혜로운 이에게도 어리석은 이에게도 빚을 지고 있다»고 한 대로, 영적인 것들이 물체적인 것의 닮은 꼴 아래 내놓아지는 일이 성경에 어울린다. 그래야 지성으로 알 수 있는 것을 그 자체로 받아들일 만하지 못한 이들이라도 적어도 그렇게나마 성경을 붙잡을 수 있기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod conveniens est sacrae Scripturae divina et spiritualia sub similitudine corporalium tradere. Deus enim omnibus providet secundum quod competit eorum naturae. Est autem naturale homini ut per sensibilia ad intelligibilia veniat, quia omnis nostra cognitio a sensu initium habet. Unde convenienter in sacra Scriptura traduntur nobis spiritualia sub metaphoris corporalium. Et hoc est quod dicit Dionysius, I cap. caelestis hierarchiae, &#171;impossibile est nobis aliter lucere divinum radium, nisi varietate sacrorum velaminum circumvelatum&#187;. Convenit etiam sacrae Scripturae, quae communiter omnibus proponitur (secundum illud ad Rom. I, &#171;sapientibus et insipientibus debitor sum&#187;), ut spiritualia sub similitudinibus corporalium proponantur; ut saltem vel sic rudes eam capiant, qui ad intelligibilia secundum se capienda non sunt idonei.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 시인은 그려 보이려고 비유를 쓰니, 그려 보임은 사람에게 본성으로 즐거운 것이기 때문이다. 그러나 거룩한 가르침은 앞서 말한 대로 반드시 그래야 하기 때문에, 또 쓸모가 있기 때문에 비유를 쓴다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod poeta utitur metaphoris propter repraesentationem, repraesentatio enim naturaliter homini delectabilis est. Sed sacra doctrina utitur metaphoris propter necessitatem et utilitatem, ut dictum est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 디오니시우스가 말하듯 하느님의 계시의 빛살은 그것을 감싸는 감각될 수 있는 모양<a epub:type="noteref" href="#q1-fn51" id="q1-fn51-ref"><sup>51</sup></a> 때문에 무너지지 않고 제 진리 안에 머문다. 그리하여 계시를 받는 정신<a epub:type="noteref" href="#q1-fn52" id="q1-fn52-ref"><sup>52</sup></a>들이 닮은 꼴에 머물러 있도록 내버려 두지 않고 오히려 그것들을 지성으로 알 수 있는 것에 대한 앎으로 들어 올리며, 계시를 받은 이들을 통하여 다른 이들도 이것들에 관하여 배우게 한다. 그래서 성경의 한 자리에서 비유 아래 전해지는 것들이 다른 자리에서는 더 또렷하게 풀이된다. 그리고 모양으로 가리는 그 일 자체도 쓸모가 있으니, 부지런히 배우는 이들을 단련시키고 믿지 않는 이들의 비웃음을 막아 주기 때문이다. 그들에 관하여 마태오복음 7장<a epub:type="noteref" href="#q1-fn53" id="q1-fn53-ref"><sup>53</sup></a>에서 «거룩한 것을 개들에게 주지 마라»고 말해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod radius divinae revelationis non destruitur propter figuras sensibiles quibus circumvelatur, ut dicit Dionysius, sed remanet in sua veritate; ut mentes quibus fit revelatio, non permittat in similitudinibus permanere, sed elevet eas ad cognitionem intelligibilium; et per eos quibus revelatio facta est, alii etiam circa haec instruantur. Unde ea quae in uno loco Scripturae traduntur sub metaphoris, in aliis locis expressius exponuntur. Et ipsa etiam occultatio figurarum utilis est, ad exercitium studiosorum, et contra irrisiones infidelium, de quibus dicitur, Matth. VII, &#171;nolite sanctum dare canibus&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 3에 대한 답</span>셋째에 대하여는 이렇게 말해야 한다. 디오니시우스가 『천상 위계론』 제2장<a epub:type="noteref" href="#q1-fn54" id="q1-fn54-ref"><sup>54</sup></a>에서 가르치듯, 성경에서 하느님께 속한 것들이 귀한 물체의 모양보다 하찮은 물체의 모양 아래 전해지는 편이 더 알맞다. 그 까닭은 세 가지다. 첫째로 이로써 사람의 생각이 잘못에서 더 잘 벗어나기 때문이다. 이런 것들이 하느님께 속한 것들을 두고 고유하게 말해진 것이 아님이 뚜렷이 드러나는데, 하느님께 속한 것들이 귀한 물체의 모양 아래 그려진다면 그 점이 의심스러울 수 있을 터이다. 물체보다 더 귀한 것은 아무것도 떠올릴 줄 모르는 이들에게는 더욱 그러하다. 둘째로 이 방식이 이 삶에서 우리가 하느님에 관하여 지니는 앎에 더 알맞기 때문이다. 그분에 관해서는 무엇이신지보다 무엇이 아니신지가 우리에게 더 드러나며, 그러므로 하느님에게서 더 멀리 떨어진 사물들의 닮은 꼴이, 그분께서 우리가 하느님에 관하여 말하거나 생각하는 것 위에 계시다는 더 참된 가늠을 우리에게 만들어 준다. 셋째로 이런 것들로써 하느님께 속한 것들이 마땅하지 않은 이들에게 더 잘 가려지기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium dicendum quod, sicut docet Dionysius, cap. II Cael. Hier., magis est conveniens quod divina in Scripturis tradantur sub figuris vilium corporum, quam corporum nobilium. Et hoc propter tria. Primo, quia per hoc magis liberatur humanus animus ab errore. Manifestum enim apparet quod haec secundum proprietatem non dicuntur de divinis, quod posset esse dubium, si sub figuris nobilium corporum describerentur divina; maxime apud illos qui nihil aliud a corporibus nobilius excogitare noverunt. Secundo, quia hic modus convenientior est cognitioni quam de Deo habemus in hac vita. Magis enim manifestatur nobis de ipso quid non est, quam quid est, et ideo similitudines illarum rerum quae magis elongantur a Deo, veriorem nobis faciunt aestimationem quod sit supra illud quod de Deo dicimus vel cogitamus. Tertio, quia per huiusmodi, divina magis occultantur indignis.</p></div></div>
+</section>
+<section class="articulus" id="q1-a10"><h2 class="articulus-title">제10항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>열째 항으로 이렇게 나아간다. 성경은 한 글자 아래 여러 뜻을 지니지 않는다고 보인다. 그 뜻들이란 역사적 뜻 곧 문자적 뜻, 우의적 뜻, 전의적 뜻 곧 도덕적 뜻, 그리고 신비적 뜻이다. 한 성경 안에서 뜻이 여럿이면 헷갈림과 속임을 낳고 논증의 든든함을 없애기 때문이다. 그래서 여러 뜻을 지닌 명제에서는 논증이 나아가지 못하며, 이에 따라 몇 가지 그릇된 추리가 지목된다. 그런데 성경은 어떤 그릇된 추리도 없이 진리를 보이는 데 효험이 있어야 한다. 그러므로 성경 안에서 한 글자 아래 여러 뜻이 전해져서는 안 된다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad decimum sic proceditur. Videtur quod sacra Scriptura sub una littera non habeat plures sensus, qui sunt historicus vel litteralis, allegoricus, tropologicus sive moralis, et anagogicus. Multiplicitas enim sensuum in una Scriptura parit confusionem et deceptionem, et tollit arguendi firmitatem, unde ex multiplicibus propositionibus non procedit argumentatio, sed secundum hoc aliquae fallaciae assignantur. Sacra autem Scriptura debet esse efficax ad ostendendam veritatem absque omni fallacia. Ergo non debent in ea sub una littera plures sensus tradi.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 아우구스티누스는 『믿음의 유익』<a epub:type="noteref" href="#q1-fn55" id="q1-fn55-ref"><sup>55</sup></a>에서 «구약이라 불리는 성경은 네 갈래로 전해진다. 곧 역사에 따라, 까닭 밝힘에 따라, 견주어 봄에 따라, 우의에 따라 전해진다»고 말한다. 그런데 이 넷은 앞서 말한 넷과 아주 딴것으로 보인다. 그러므로 성경의 같은 글자를 앞서 말한 네 가지 뜻에 따라 풀이하는 일이 알맞아 보이지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, Augustinus dicit in libro de utilitate credendi, quod &#171;Scriptura quae testamentum vetus vocatur, quadrifariam traditur, scilicet, secundum historiam, secundum aetiologiam, secundum analogiam, secundum allegoriam&#187;. Quae quidem quatuor a quatuor praedictis videntur esse aliena omnino. Non igitur conveniens videtur quod eadem littera sacrae Scripturae secundum quatuor sensus praedictos exponatur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 3</span>또한 앞서 말한 뜻들 밖에도 비유적 뜻이 있음이 발견되는데, 이것은 저 네 가지 뜻 가운데 어디에도 담기지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, praeter praedictos sensus, invenitur sensus parabolicus, qui inter illos sensus quatuor non continetur.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 그레고리우스는 『욥기 강해』 제20권<a epub:type="noteref" href="#q1-fn56" id="q1-fn56-ref"><sup>56</sup></a>에서 «성경은 말하는 방식 그 자체로 모든 학문을 넘어선다. 하나이며 같은 말로 일어난 일을 이야기하면서 신비를 드러내기 때문이다»라고 말한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicit Gregorius, XX Moralium, &#171;sacra Scriptura omnes scientias ipso locutionis suae more transcendit, quia uno eodemque sermone, dum narrat gestum, prodit mysterium&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 성경의 지은이는 하느님이시며, 그분의 권능 안에는 말을 가리킴에 맞추어 쓰는 일만이 아니라 사물 자체를 그렇게 쓰는 일도 들어 있다. 말을 맞추어 쓰는 일은 사람도 할 수 있다. 그러므로 모든 학문에서 말이 무엇인가를 가리키지만, 이 학문은 말로 가리켜진 사물 자체가 또 무엇인가를 가리킨다는 고유함을 지닌다. 그러므로 말이 사물을 가리키는 저 첫째 가리킴은 첫째 뜻에 속하니, 곧 역사적 뜻 또는 문자적 뜻이다. 그러나 말로 가리켜진 사물이 다시 다른 사물을 가리키는 저 가리킴은 영적인 뜻이라 불리며, 이는 문자적 뜻 위에 세워지고 그것을 앞서 놓는다. 그런데 이 영적인 뜻은 세 갈래로 나뉜다. 사도가 히브리서 7장<a epub:type="noteref" href="#q1-fn57" id="q1-fn57-ref"><sup>57</sup></a>에서 말하듯 옛 법은 새 법의 예표(豫表)이며, 디오니시우스가 『교회 위계론』<a epub:type="noteref" href="#q1-fn58" id="q1-fn58-ref"><sup>58</sup></a>에서 말하듯 새 법 자체는 앞으로 올 영광의 예표(豫表)이고, 또한 새 법 안에서 머리이신 분에게 일어난 일들은 우리가 해야 할 일들의 표징이다. 그러므로 옛 법에 속한 것들이 새 법에 속한 것들을 가리키는 한에서는 우의적 뜻이고, 그리스도 안에서 이루어진 일들이나 그리스도를 가리키는 것들이 우리가 해야 할 일들의 표징인 한에서는 도덕적 뜻이며, 영원한 영광 안에 있는 것들을 가리키는 한에서는 신비적 뜻이다. 그런데 문자적 뜻이란 지은이가 뜻한 그것이고 성경의 지은이는 하느님이시며 그분은 당신 지성으로 모든 것을 한꺼번에 파악하시므로, 아우구스티누스가 『고백록』 제12권<a epub:type="noteref" href="#q1-fn59" id="q1-fn59-ref"><sup>59</sup></a>에서 말하듯 성경의 한 글자 안에 문자적 뜻에 따라서도 여러 뜻이 있다 하여 알맞지 않을 것이 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod auctor sacrae Scripturae est Deus, in cuius potestate est ut non solum voces ad significandum accommodet (quod etiam homo facere potest), sed etiam res ipsas. Et ideo, cum in omnibus scientiis voces significent, hoc habet proprium ista scientia, quod ipsae res significatae per voces, etiam significant aliquid. Illa ergo prima significatio, qua voces significant res, pertinet ad primum sensum, qui est sensus historicus vel litteralis. Illa vero significatio qua res significatae per voces, iterum res alias significant, dicitur sensus spiritualis; qui super litteralem fundatur, et eum supponit. Hic autem sensus spiritualis trifariam dividitur. Sicut enim dicit apostolus, ad Hebr. VII, lex vetus figura est novae legis, et ipsa nova lex, ut dicit Dionysius in ecclesiastica hierarchia, est figura futurae gloriae, in nova etiam lege, ea quae in capite sunt gesta, sunt signa eorum quae nos agere debemus. Secundum ergo quod ea quae sunt veteris legis, significant ea quae sunt novae legis, est sensus allegoricus, secundum vero quod ea quae in Christo sunt facta, vel in his quae Christum significant, sunt signa eorum quae nos agere debemus, est sensus moralis, prout vero significant ea quae sunt in aeterna gloria, est sensus anagogicus. Quia vero sensus litteralis est, quem auctor intendit, auctor autem sacrae Scripturae Deus est, qui omnia simul suo intellectu comprehendit, non est inconveniens, ut dicit Augustinus XII confessionum, si etiam secundum litteralem sensum in una littera Scripturae plures sint sensus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 이 뜻들이 여럿이라 하여 한 말이 여러 뜻을 지니게 되는 것도 아니고, 여럿임의 다른 갈래가 생기는 것도 아니다. 앞서 말한 대로 이 뜻들은 한 말이 여럿을 가리켜서 여럿이 되는 것이 아니라, 말로 가리켜진 사물 자체가 다른 사물들의 표징일 수 있어서 여럿이 되기 때문이다. 그러므로 성경에 아무런 헷갈림도 뒤따르지 않는다. 모든 뜻이 하나 위에, 곧 문자적 뜻 위에 세워지기 때문이다. 아우구스티누스가 도나투스파 빈켄티우스를 거슬러 쓴 편지에서<a epub:type="noteref" href="#q1-fn60" id="q1-fn60-ref"><sup>60</sup></a> 말하듯, 논거는 오직 문자적 뜻에서만 끌어낼 수 있고 우의에 따라 말해진 것에서는 끌어낼 수 없다. 그렇다고 이로써 성경이 무엇을 잃는 것은 아니다. 신앙에 반드시 있어야 할 것으로서 영적인 뜻 아래 담긴 것 가운데, 성경이 어딘가에서 문자적 뜻으로 뚜렷이 전하지 않는 것은 하나도 없기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod multiplicitas horum sensuum non facit aequivocationem, aut aliam speciem multiplicitatis, quia, sicut iam dictum est, sensus isti non multiplicantur propter hoc quod una vox multa significet; sed quia ipsae res significatae per voces, aliarum rerum possunt esse signa. Et ita etiam nulla confusio sequitur in sacra Scriptura, cum omnes sensus fundentur super unum, scilicet litteralem; ex quo solo potest trahi argumentum, non autem ex his quae secundum allegoriam dicuntur, ut dicit Augustinus in epistola contra Vincentium Donatistam. Non tamen ex hoc aliquid deperit sacrae Scripturae, quia nihil sub spirituali sensu continetur fidei necessarium, quod Scriptura per litteralem sensum alicubi manifeste non tradat.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 저 셋, 곧 역사와 까닭 밝힘과 견주어 봄은 하나의 문자적 뜻에 속한다. 아우구스티누스 자신이 풀이하듯 역사란 무엇인가를 그저 내놓는 것이고, 까닭 밝힘이란 말해진 것의 원인을 대는 것이다. 마태오복음 19장<a epub:type="noteref" href="#q1-fn61" id="q1-fn61-ref"><sup>61</sup></a>에서 주님께서 모세가 아내를 내보내도록 허락한 까닭을 대시며 그것이 그들의 심성이 굳은 탓이라 하신 것과 같다. 견주어 봄이란 한 성경의 진리가 다른 성경의 진리에 어긋나지 않음을 보이는 것이다. 그런데 저 넷 가운데 우의만이 홀로 세 가지 영적인 뜻을 대신하여 놓인다. 생빅토르의 후고<a epub:type="noteref" href="#q1-fn62" id="q1-fn62-ref"><sup>62</sup></a>도 우의적 뜻 아래 신비적 뜻까지 담아, 자기 『명제집』 제3권에서 오직 세 가지 뜻만을, 곧 역사적 뜻과 우의적 뜻과 전의적 뜻만을 놓았다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod illa tria, historia, aetiologia, analogia, ad unum litteralem sensum pertinent. Nam historia est, ut ipse Augustinus exponit, cum simpliciter aliquid proponitur, aetiologia vero, cum causa dicti assignatur, sicut cum dominus assignavit causam quare Moyses permisit licentiam repudiandi uxores, scilicet propter duritiam cordis ipsorum, Matt. XIX, analogia vero est, cum veritas unius Scripturae ostenditur veritati alterius non repugnare. Sola autem allegoria, inter illa quatuor, pro tribus spiritualibus sensibus ponitur. Sicut et Hugo de sancto Victore sub sensu allegorico etiam anagogicum comprehendit, ponens in tertio suarum sententiarum solum tres sensus, scilicet historicum, allegoricum et tropologicum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 3에 대한 답</span>셋째에 대하여는 이렇게 말해야 한다. 비유적 뜻은 문자적 뜻 아래 담긴다. 말로 어떤 것은 고유하게 가리켜지고 어떤 것은 빗대어 가리켜지는데, 문자적 뜻은 빗댄 그 모양 자체가 아니라 그 모양으로 빗대어진 그것이기 때문이다. 성경이 하느님의 팔을 말할 때, 하느님께 그런 물체적 지체가 있다는 것이 문자적 뜻이 아니라, 이 지체로 가리켜지는 그것 곧 일을 이루는 능력이 문자적 뜻이다. 이로써 성경의 문자적 뜻 아래에는 거짓이 결코 놓일 수 없음이 분명해진다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium dicendum quod sensus parabolicus sub litterali continetur, nam per voces significatur aliquid proprie, et aliquid figurative; nec est litteralis sensus ipsa figura, sed id quod est figuratum. Non enim cum Scriptura nominat Dei brachium, est litteralis sensus quod in Deo sit membrum huiusmodi corporale, sed id quod per hoc membrum significatur, scilicet virtus operativa. In quo patet quod sensui litterali sacrae Scripturae nunquam potest subesse falsum.</p></div></div>
+</section>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="q1-fn1"><p><a href="#q1-fn1-ref">1</a>. scientia. 원리에서 결론을 논증으로 이끌어 내는 앎. 근대의 &#x27;과학&#x27;이 아니라 아리스토텔레스가 말한 뜻의 학문이며, 신학대전 제1문제 전체가 이 낱말의 뜻을 두고 묻는다.</p></aside>
+<aside epub:type="footnote" id="q1-fn2"><p><a href="#q1-fn2-ref">2</a>. 집회서 3장 22절. 아퀴나스가 인용하는 불가타 본문이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn3"><p><a href="#q1-fn3-ref">3</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="q1-fn4"><p><a href="#q1-fn4-ref">4</a>. 아리스토텔레스 『형이상학』 제6권 제1장. 이론에 속한 학문을 자연학·수학·신학으로 나누고 신학을 으뜸으로 꼽는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn5"><p><a href="#q1-fn5-ref">5</a>. 티모테오 2서 3장 16절.</p></aside>
+<aside epub:type="footnote" id="q1-fn6"><p><a href="#q1-fn6-ref">6</a>. finis. 무엇을 위해 그것이 있는가, 곧 목적을 가리킨다. 같은 낱말이 시간이나 정도의 &#x27;끝&#x27;을 뜻할 때는 그대로 &#x27;끝&#x27;으로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="q1-fn7"><p><a href="#q1-fn7-ref">7</a>. 이사야서 64장 4절. 바오로가 코린토 1서 2장 9절에서 다시 인용하는 구절이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn8"><p><a href="#q1-fn8-ref">8</a>. 집회서 3장 25절. 앞의 반론이 인용한 구절 바로 뒤에 이어지는 말이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn9"><p><a href="#q1-fn9-ref">9</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="q1-fn10"><p><a href="#q1-fn10-ref">10</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn11"><p><a href="#q1-fn11-ref">11</a>. 테살로니카 2서 3장 2절.</p></aside>
+<aside epub:type="footnote" id="q1-fn12"><p><a href="#q1-fn12-ref">12</a>. 히포의 아우구스티누스(354–430). 라틴 교부 가운데 가장 큰 영향을 끼친 신학자로, 아퀴나스가 신앙 문제에서 가장 자주 기대는 권위다.</p></aside>
+<aside epub:type="footnote" id="q1-fn13"><p><a href="#q1-fn13-ref">13</a>. 아우구스티누스 『삼위일체론』 제14권 제1장.</p></aside>
+<aside epub:type="footnote" id="q1-fn14"><p><a href="#q1-fn14-ref">14</a>. 아리스토텔레스 『분석론 후서』 제1권 제28장. 학문의 하나됨을 그 주제의 유로 재는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn15"><p><a href="#q1-fn15-ref">15</a>. 지혜서 10장 10절.</p></aside>
+<aside epub:type="footnote" id="q1-fn16"><p><a href="#q1-fn16-ref">16</a>. obiectum. 인식 능력이나 작용이 향하는 대상. 바탕을 뜻하는 subiectum과 구별한다.</p></aside>
+<aside epub:type="footnote" id="q1-fn17"><p><a href="#q1-fn17-ref">17</a>. 아리스토텔레스 『형이상학』 제2권 제1장.</p></aside>
+<aside epub:type="footnote" id="q1-fn18"><p><a href="#q1-fn18-ref">18</a>. 야고보서 1장 22절.</p></aside>
+<aside epub:type="footnote" id="q1-fn19"><p><a href="#q1-fn19-ref">19</a>. 히에로니무스 『서간집』 제70번. 로마의 웅변가 마그누스에게 그리스도교 저술가들이 이교 학문을 인용하는 까닭을 설명한 편지다.</p></aside>
+<aside epub:type="footnote" id="q1-fn20"><p><a href="#q1-fn20-ref">20</a>. 잠언 9장 3절. 지혜가 마련한 잔치로 부르는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn21"><p><a href="#q1-fn21-ref">21</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn22"><p><a href="#q1-fn22-ref">22</a>. 아리스토텔레스 『동물의 부분에 관하여』 제1권 제5장. 중세 라틴어권은 아리스토텔레스의 동물 관련 저작들을 한 묶음으로 헤아려 이렇게 인용했다.</p></aside>
+<aside epub:type="footnote" id="q1-fn23"><p><a href="#q1-fn23-ref">23</a>. 아리스토텔레스 『형이상학』 제1권 제2장.</p></aside>
+<aside epub:type="footnote" id="q1-fn24"><p><a href="#q1-fn24-ref">24</a>. 아리스토텔레스 『니코마코스 윤리학』 제6권 제7장.</p></aside>
+<aside epub:type="footnote" id="q1-fn25"><p><a href="#q1-fn25-ref">25</a>. 이사야서 11장 2절에서 3절. 주님의 영이 지닌 일곱 가지를 꼽는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn26"><p><a href="#q1-fn26-ref">26</a>. 신명기 4장 6절.</p></aside>
+<aside epub:type="footnote" id="q1-fn27"><p><a href="#q1-fn27-ref">27</a>. 코린토 1서 3장 10절.</p></aside>
+<aside epub:type="footnote" id="q1-fn28"><p><a href="#q1-fn28-ref">28</a>. 잠언 10장 23절.</p></aside>
+<aside epub:type="footnote" id="q1-fn29"><p><a href="#q1-fn29-ref">29</a>. 아우구스티누스 『삼위일체론』 제12권 제14장. 지혜와 학식을 갈라, 하느님께 속한 것들을 아는 앎을 지혜라 부르는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn30"><p><a href="#q1-fn30-ref">30</a>. 로마서 1장 19절.</p></aside>
+<aside epub:type="footnote" id="q1-fn31"><p><a href="#q1-fn31-ref">31</a>. 코린토 2서 10장 4절에서 5절.</p></aside>
+<aside epub:type="footnote" id="q1-fn32"><p><a href="#q1-fn32-ref">32</a>. 아리스토텔레스 『니코마코스 윤리학』 제10권 제5장.</p></aside>
+<aside epub:type="footnote" id="q1-fn33"><p><a href="#q1-fn33-ref">33</a>. 코린토 1서 2장 15절.</p></aside>
+<aside epub:type="footnote" id="q1-fn34"><p><a href="#q1-fn34-ref">34</a>. 위 디오니시우스 『신명론』 제2장. 히에로테우스는 이 책이 스승으로 내세우는 인물이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn35"><p><a href="#q1-fn35-ref">35</a>. 다마스쿠스의 요한(약 675–749). 그리스 교부의 가르침을 집대성한 신학자로, 그의 『정통 신앙론』이 서방에 널리 읽혔다.</p></aside>
+<aside epub:type="footnote" id="q1-fn36"><p><a href="#q1-fn36-ref">36</a>. 다마스케누스 『정통 신앙론』 제1권 제4장.</p></aside>
+<aside epub:type="footnote" id="q1-fn37"><p><a href="#q1-fn37-ref">37</a>. accidens. 실체에 딸려 있을 뿐 그 자체로는 서지 못하는 것. 빛깔이나 크기처럼 있어도 그만 없어도 그만인 성질을 말한다. 마시는 우유(牛乳)와는 무관하다.</p></aside>
+<aside epub:type="footnote" id="q1-fn38"><p><a href="#q1-fn38-ref">38</a>. 암브로시우스 『가톨릭 신앙론』 제1권 제13장.</p></aside>
+<aside epub:type="footnote" id="q1-fn39"><p><a href="#q1-fn39-ref">39</a>. 요한복음 20장 31절.</p></aside>
+<aside epub:type="footnote" id="q1-fn40"><p><a href="#q1-fn40-ref">40</a>. 6세기 로마의 철학자. 그리스 철학 용어를 라틴어로 옮겨 중세에 전한 사람이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn41"><p><a href="#q1-fn41-ref">41</a>. 대 그레고리우스 『복음서 강론집』 제26번.</p></aside>
+<aside epub:type="footnote" id="q1-fn42"><p><a href="#q1-fn42-ref">42</a>. 티토서 1장 9절.</p></aside>
+<aside epub:type="footnote" id="q1-fn43"><p><a href="#q1-fn43-ref">43</a>. 코린토 1서 15장 12절에서 20절.</p></aside>
+<aside epub:type="footnote" id="q1-fn44"><p><a href="#q1-fn44-ref">44</a>. 코린토 2서 10장 5절.</p></aside>
+<aside epub:type="footnote" id="q1-fn45"><p><a href="#q1-fn45-ref">45</a>. 사도행전 17장 28절. 바오로가 아테네에서 그리스 시인 아라토스의 시구를 인용하는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn46"><p><a href="#q1-fn46-ref">46</a>. 아우구스티누스 『서간집』 제82번.</p></aside>
+<aside epub:type="footnote" id="q1-fn47"><p><a href="#q1-fn47-ref">47</a>. 집회서 24장 31절.</p></aside>
+<aside epub:type="footnote" id="q1-fn48"><p><a href="#q1-fn48-ref">48</a>. 호세아서 12장 11절.</p></aside>
+<aside epub:type="footnote" id="q1-fn49"><p><a href="#q1-fn49-ref">49</a>. 위 디오니시우스 『천상 위계론』 제1장.</p></aside>
+<aside epub:type="footnote" id="q1-fn50"><p><a href="#q1-fn50-ref">50</a>. 로마서 1장 14절.</p></aside>
+<aside epub:type="footnote" id="q1-fn51"><p><a href="#q1-fn51-ref">51</a>. figura. 겉으로 드러난 생김새. 형상(forma)의 한 갈래이되 우유적인 것이어서, 구리가 조각상 모양을 얻어도 구리이기를 그치지 않는다.</p></aside>
+<aside epub:type="footnote" id="q1-fn52"><p><a href="#q1-fn52-ref">52</a>. mens. 영혼(anima) 가운데 지성적인 부분을 가리키며, 하느님께 쓰일 때는 신적 지성 자체를 뜻한다. 영혼 전체를 가리키는 anima와 구별한다.</p></aside>
+<aside epub:type="footnote" id="q1-fn53"><p><a href="#q1-fn53-ref">53</a>. 마태오복음 7장 6절.</p></aside>
+<aside epub:type="footnote" id="q1-fn54"><p><a href="#q1-fn54-ref">54</a>. 위 디오니시우스 『천상 위계론』 제2장.</p></aside>
+<aside epub:type="footnote" id="q1-fn55"><p><a href="#q1-fn55-ref">55</a>. 아우구스티누스 『믿음의 유익』 제3장.</p></aside>
+<aside epub:type="footnote" id="q1-fn56"><p><a href="#q1-fn56-ref">56</a>. 대 그레고리우스 『욥기 강해』 제20권 제1장.</p></aside>
+<aside epub:type="footnote" id="q1-fn57"><p><a href="#q1-fn57-ref">57</a>. 히브리서 7장 19절과 그 앞뒤. 옛 법이 앞으로 올 좋은 것들의 그림자임을 말하는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q1-fn58"><p><a href="#q1-fn58-ref">58</a>. 위 디오니시우스 『교회 위계론』 제5장.</p></aside>
+<aside epub:type="footnote" id="q1-fn59"><p><a href="#q1-fn59-ref">59</a>. 아우구스티누스 『고백록』 제12권 제31장.</p></aside>
+<aside epub:type="footnote" id="q1-fn60"><p><a href="#q1-fn60-ref">60</a>. 아우구스티누스 『서간집』 제93번. 도나투스파의 빈켄티우스에게 보낸 편지다.</p></aside>
+<aside epub:type="footnote" id="q1-fn61"><p><a href="#q1-fn61-ref">61</a>. 마태오복음 19장 8절.</p></aside>
+<aside epub:type="footnote" id="q1-fn62"><p><a href="#q1-fn62-ref">62</a>. 위그 드 생빅토르(약 1096–1141). 파리 생빅토르 수도원의 신학자로 『성사론』을 남겼다.</p></aside>
+</section><h1 class="chapter" id="q2"><span class="num">Quaestio 2</span>제2문제</h1>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa pr"><span class="role">서문</span>그러므로 이 거룩한 가르침(sacra doctrina)이 주로 꾀하는 바는 하느님(Deus)을 아는 앎을 전하는 것이며, 그것도 그분이 그분 자신 안에 계신 대로만이 아니라 사물들의 원리(principium)이자 목적<a epub:type="noteref" href="#q2-fn1" id="q2-fn1-ref"><sup>1</sup></a>이신 대로, 특히 이성적 피조물의 원리이자 목적이신 대로 전하는 것이다. 앞서 말한 것에서 분명한 대로다. 그러므로 이 가르침을 풀어 놓으려 하면서 우리는 첫째로 하느님에 관하여 다루고, 둘째로 이성적 피조물이 하느님을 향하여 나아가는 운동(motus)에 관하여 다루며, 셋째로 그리스도에 관하여 다룰 것이다. 그분은 사람이신 한에서 우리가 하느님께 나아가는 길이시다. 하느님에 관한 살핌은 세 부분이 될 것이다. 첫째로 하느님의 본질(essentia)에 속한 것들을 살피고, 둘째로 위격들의 구별에 속한 것들을 살피며, 셋째로 그분에게서 피조물이 나오는 일에 속한 것들을 살필 것이다. 그런데 하느님의 본질을 두고는, 첫째로 하느님이 계신지를 살펴야 하고, 둘째로 어떻게 계신지, 아니 오히려 어떻게 계시지 않는지를 살펴야 하며, 셋째로 그분께서 하시는 일에 속한 것들, 곧 앎<a epub:type="noteref" href="#q2-fn2" id="q2-fn2-ref"><sup>2</sup></a>과 의지(voluntas)와 능력(potentia)을 살펴야 할 것이다. 첫째 것을 두고 세 가지를 묻는다. 첫째, 하느님이 계심이 그 자체로 알려진 것인가. 둘째, 그것이 증명될 수 있는가. 셋째, 하느님이 계신가.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Quia igitur principalis intentio huius sacrae doctrinae est Dei cognitionem tradere, et non solum secundum quod in se est, sed etiam secundum quod est principium rerum et finis earum, et specialiter rationalis creaturae, ut ex dictis est manifestum; ad huius doctrinae expositionem intendentes, primo tractabimus de Deo; secundo, de motu rationalis creaturae in Deum; tertio, de Christo, qui, secundum quod homo, via est nobis tendendi in Deum. Consideratio autem de Deo tripartita erit. Primo namque considerabimus ea quae ad essentiam divinam pertinent; secundo, ea quae pertinent ad distinctionem personarum; tertio, ea quae pertinent ad processum creaturarum ab ipso. Circa essentiam vero divinam, primo considerandum est an Deus sit; secundo, quomodo sit, vel potius quomodo non sit; tertio considerandum erit de his quae ad operationem ipsius pertinent, scilicet de scientia et de voluntate et potentia. Circa primum quaeruntur tria. Primo, utrum Deum esse sit per se notum. Secundo, utrum sit demonstrabile. Tertio, an Deus sit.</p></div></div>
+<section class="articulus" id="q2-a1"><h2 class="articulus-title">제1항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>첫째 항으로 이렇게 나아간다. 하느님이 계심은 그 자체로 알려진 것이라고 보인다. 우리 안에 그 앎이 본성<a epub:type="noteref" href="#q2-fn3" id="q2-fn3-ref"><sup>3</sup></a>으로 들어 있는 것들이 우리에게 그 자체로 알려진 것이라 말해지기 때문이니, 첫째 원리들을 보면 분명하다. 그런데 다마스케누스<a epub:type="noteref" href="#q2-fn4" id="q2-fn4-ref"><sup>4</sup></a>가 자기 책 첫머리에서<a epub:type="noteref" href="#q2-fn5" id="q2-fn5-ref"><sup>5</sup></a> «하느님이 계심을 아는 앎은 모든 이에게 본성으로 심어져 있다»고 말한다. 그러므로 하느님이 계심은 그 자체로 알려진 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum sic proceditur. Videtur quod Deum esse sit per se notum. Illa enim nobis dicuntur per se nota, quorum cognitio nobis naturaliter inest, sicut patet de primis principiis. Sed, sicut dicit Damascenus in principio libri sui, &#171;omnibus cognitio existendi Deum naturaliter est inserta&#187;. Ergo Deum esse est per se notum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 낱말의 뜻을 알자마자 곧바로 알려지는 것들이 그 자체로 알려진 것이라 말해진다. 철학자<a epub:type="noteref" href="#q2-fn6" id="q2-fn6-ref"><sup>6</sup></a>는 『분석론 후서』 제1권에서 증명의 첫째 원리들이 그러하다고 말한다. 전체가 무엇이고 부분이 무엇인지 알기만 하면, 모든 전체가 제 부분보다 크다는 것을 곧바로 알기 때문이다. 그런데 하느님이라는 이 이름이 무엇을 가리키는지 알아듣기만 하면 하느님이 계심을 곧바로 지니게 된다. 이 이름으로 가리켜지는 것은 그보다 더 큰 것이 가리켜질 수 없는 그것<a epub:type="noteref" href="#q2-fn7" id="q2-fn7-ref"><sup>7</sup></a>인데, 지성(intellectus) 안에만 있는 것보다 사물 안에도 지성 안에도 있는 것이 더 크기 때문이다. 그러므로 하느님이라는 이 이름을 알아들으면 그것이 곧바로 지성 안에 있게 되고, 따라서 사물 안에도 있다는 결론이 나온다. 그러므로 하느님이 계심은 그 자체로 알려진 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, illa dicuntur esse per se nota, quae statim, cognitis terminis, cognoscuntur, quod philosophus attribuit primis demonstrationis principiis, in I Poster., scito enim quid est totum et quid pars, statim scitur quod omne totum maius est sua parte. Sed intellecto quid significet hoc nomen Deus, statim habetur quod Deus est. Significatur enim hoc nomine id quo maius significari non potest, maius autem est quod est in re et intellectu, quam quod est in intellectu tantum, unde cum, intellecto hoc nomine Deus, statim sit in intellectu, sequitur etiam quod sit in re. Ergo Deum esse est per se notum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 3</span>또한 진리가 있음은 그 자체로 알려진 것이다. 진리가 있음을 부인하는 이도 진리가 있음을 받아들이기 때문이다. 진리가 없다면 진리가 없다는 것이 참일 터인데, 무엇인가가 참이라면 진리가 있어야 하기 때문이다. 그런데 하느님은 진리 그 자체이시다. 요한복음 14장<a epub:type="noteref" href="#q2-fn8" id="q2-fn8-ref"><sup>8</sup></a>에서 «나는 길이요 진리요 생명이다»라고 한다. 그러므로 하느님이 계심은 그 자체로 알려진 것이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, veritatem esse est per se notum, quia qui negat veritatem esse, concedit veritatem esse, si enim veritas non est, verum est veritatem non esse. Si autem est aliquid verum, oportet quod veritas sit. Deus autem est ipsa veritas, Ioann. XIV, &#171;ego sum via, veritas et vita&#187;. Ergo Deum esse est per se notum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여, 철학자가 『형이상학』 제4권과 『분석론 후서』 제1권에서 증명의 첫째 원리들을 두고 밝히듯, 그 자체로 알려진 것에 맞선 것은 아무도 생각할 수 없다. 그런데 하느님이 계심에 맞선 것은 생각될 수 있다. 시편 52편<a epub:type="noteref" href="#q2-fn9" id="q2-fn9-ref"><sup>9</sup></a>에서 «어리석은 자는 제 속으로 하느님은 계시지 않는다고 말하였다»고 한 대로다. 그러므로 하느님이 계심은 그 자체로 알려진 것이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra, nullus potest cogitare oppositum eius quod est per se notum ut patet per philosophum, in IV Metaphys. et I Poster., circa prima demonstrationis principia. Cogitari autem potest oppositum eius quod est Deum esse, secundum illud Psalmi LII, &#171;dixit insipiens in corde suo, non est Deus&#187;. Ergo Deum esse non est per se notum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 무엇인가가 그 자체로 알려진 것일 수 있는 데에는 두 길이 있다. 하나는 그것 자체로 보아 그러하되 우리에게는 그렇지 않은 길이고, 다른 하나는 그것 자체로 보아도 우리에게도 그러한 길이다. 어떤 명제가 그 자체로 알려진 것이 되는 까닭은 술어가 주어의 개념<a epub:type="noteref" href="#q2-fn10" id="q2-fn10-ref"><sup>10</sup></a> 안에 담겨 있다는 데 있다. &#x27;사람은 동물이다&#x27;가 그러하니, 동물은 사람의 개념에 속하기 때문이다. 그러므로 술어와 주어가 무엇인지 모든 이에게 알려져 있다면 그 명제는 모든 이에게 그 자체로 알려진 것이 될 터이다. 증명의 첫째 원리들에서 보듯이 그러하니, 그 낱말들은 존재자(ens)와 존재자 아닌 것, 전체와 부분 따위 아무도 모르지 않는 공통된 것들이기 때문이다. 그러나 술어와 주어가 무엇인지 어떤 이들에게 알려져 있지 않다면, 그 명제는 그것 자체로 보아서는 그 자체로 알려진 것이겠으나 명제의 술어와 주어를 모르는 이들에게는 그렇지 않을 터이다. 그래서 보에티우스<a epub:type="noteref" href="#q2-fn11" id="q2-fn11-ref"><sup>11</sup></a>가 『주간론』<a epub:type="noteref" href="#q2-fn12" id="q2-fn12-ref"><sup>12</sup></a>에서 말하듯, 오직 지혜로운 이들에게만 누구나 지닌 생각의 공통된 관념이자 그 자체로 알려진 것이 되는 것들이 있게 된다. &#x27;물체 아닌 것은 장소 안에 있지 않다&#x27;가 그러하다. 그러므로 나는 이렇게 말한다. &#x27;하느님은 계시다&#x27;라는 이 명제는 그것 자체로 보아서는 그 자체로 알려진 것이다. 술어가 주어와 같은 것이기 때문이니, 아래에서 분명해지듯 하느님은 당신의 존재<a epub:type="noteref" href="#q2-fn13" id="q2-fn13-ref"><sup>13</sup></a>이시다. 그러나 우리는 하느님에 관하여 그분이 무엇이신지 알지 못하므로, 그것은 우리에게 그 자체로 알려진 것이 아니라 우리에게 더 알려지고 본성으로 보아서는 덜 알려진 것들, 곧 그 결과들을 통하여 증명되어야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod contingit aliquid esse per se notum dupliciter, uno modo, secundum se et non quoad nos; alio modo, secundum se et quoad nos. Ex hoc enim aliqua propositio est per se nota, quod praedicatum includitur in ratione subiecti, ut homo est animal, nam animal est de ratione hominis. Si igitur notum sit omnibus de praedicato et de subiecto quid sit, propositio illa erit omnibus per se nota, sicut patet in primis demonstrationum principiis, quorum termini sunt quaedam communia quae nullus ignorat, ut ens et non ens, totum et pars, et similia. Si autem apud aliquos notum non sit de praedicato et subiecto quid sit, propositio quidem quantum in se est, erit per se nota, non tamen apud illos qui praedicatum et subiectum propositionis ignorant. Et ideo contingit, ut dicit Boetius in libro de hebdomadibus, quod quaedam sunt communes animi conceptiones et per se notae, apud sapientes tantum, ut incorporalia in loco non esse. Dico ergo quod haec propositio, Deus est, quantum in se est, per se nota est, quia praedicatum est idem cum subiecto; Deus enim est suum esse, ut infra patebit. Sed quia nos non scimus de Deo quid est, non est nobis per se nota, sed indiget demonstrari per ea quae sunt magis nota quoad nos, et minus nota quoad naturam, scilicet per effectus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 하느님이 계심을 어떤 두루뭉술한 방식으로, 뒤섞인 채로 아는 일은 우리 안에 본성으로 심어져 있다. 곧 하느님이 사람의 지복(至福)이신 한에서 그러하다. 사람은 본성으로 지복(至福)을 바라고, 사람이 본성으로 바라는 것은 그 사람이 본성으로 알기 때문이다. 그러나 이것은 하느님이 계심을 단적으로 아는 일이 아니다. 오는 이를 아는 것이 베드로를 아는 것은 아님과 같으니, 오는 이가 베드로라 하더라도 그러하다. 많은 이가 사람의 온전한 좋음인 지복(至福)을 재물이라 여기고, 어떤 이는 쾌락이라 여기며, 어떤 이는 또 다른 무엇이라 여기기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod cognoscere Deum esse in aliquo communi, sub quadam confusione, est nobis naturaliter insertum, inquantum scilicet Deus est hominis beatitudo, homo enim naturaliter desiderat beatitudinem, et quod naturaliter desideratur ab homine, naturaliter cognoscitur ab eodem. Sed hoc non est simpliciter cognoscere Deum esse; sicut cognoscere venientem, non est cognoscere Petrum, quamvis sit Petrus veniens, multi enim perfectum hominis bonum, quod est beatitudo, existimant divitias; quidam vero voluptates; quidam autem aliquid aliud.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 하느님이라는 이 이름을 듣는 이가 그보다 더 큰 것이 생각될 수 없는 어떤 것이 가리켜진다고 알아듣지 못할 수도 있다. 어떤 이들은 하느님이 물체라고 믿었기 때문이다. 또한 누구나 하느님이라는 이 이름으로 말해진 그것, 곧 그보다 더 큰 것이 생각될 수 없는 그것이 가리켜진다고 알아듣는다 하더라도, 그렇다고 그가 그 이름으로 가리켜지는 것이 실제 사물 가운데 있다고 알아듣는다는 결론이 나오지는 않는다. 다만 지성이 붙잡은 것 안에 있다고 알아들을 뿐이다. 또한 그보다 더 큰 것이 생각될 수 없는 어떤 것이 사물 안에 있다고 인정되지 않는 한 그것이 사물 안에 있다고 논증할 수도 없는데, 하느님이 계시지 않는다고 놓는 이들은 그것을 인정하지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod forte ille qui audit hoc nomen Deus, non intelligit significari aliquid quo maius cogitari non possit, cum quidam crediderint Deum esse corpus. Dato etiam quod quilibet intelligat hoc nomine Deus significari hoc quod dicitur, scilicet illud quo maius cogitari non potest; non tamen propter hoc sequitur quod intelligat id quod significatur per nomen, esse in rerum natura; sed in apprehensione intellectus tantum. Nec potest argui quod sit in re, nisi daretur quod sit in re aliquid quo maius cogitari non potest, quod non est datum a ponentibus Deum non esse.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 3에 대한 답</span>셋째에 대하여는 이렇게 말해야 한다. 진리가 두루 있음은 그 자체로 알려진 것이지만, 첫째 진리가 있음은 우리에게 그 자체로 알려진 것이 아니다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium dicendum quod veritatem esse in communi, est per se notum, sed primam veritatem esse, hoc non est per se notum quoad nos.</p></div></div>
+</section>
+<section class="articulus" id="q2-a2"><h2 class="articulus-title">제2항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>둘째 항으로 이렇게 나아간다. 하느님이 계심은 증명될 수 없다고 보인다. 하느님이 계심은 신앙의 조항이기 때문이다. 그런데 신앙에 속한 것들은 증명될 수 없다. 증명은 알게 만들지만, 사도가 히브리서 11장<a epub:type="noteref" href="#q2-fn14" id="q2-fn14-ref"><sup>14</sup></a>에서 밝히듯 신앙은 드러나지 않는 것들에 관한 것이기 때문이다. 그러므로 하느님이 계심은 증명될 수 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum sic proceditur. Videtur quod Deum esse non sit demonstrabile. Deum enim esse est articulus fidei. Sed ea quae sunt fidei, non sunt demonstrabilia, quia demonstratio facit scire, fides autem de non apparentibus est, ut patet per apostolum, ad Hebr. XI. Ergo Deum esse non est demonstrabile.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 증명의 중간항은 그것이 무엇인가 하는 그것이다. 그런데 다마스케누스가 말하듯 우리는 하느님에 관하여 그분이 무엇이신지 알 수 없고 다만 무엇이 아니신지만 알 수 있다. 그러므로 우리는 하느님이 계심을 증명할 수 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, medium demonstrationis est quod quid est. Sed de Deo non possumus scire quid est, sed solum quid non est, ut dicit Damascenus. Ergo non possumus demonstrare Deum esse.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 3</span>또한 하느님이 계심이 증명된다면 그것은 오직 그분의 결과에서 증명될 것이다. 그런데 그분의 결과는 그분께 견주어질 만하지 않다. 그분은 무한(無限, infinitum)하시고 결과들은 유한하며, 유한한 것은 무한(無限)한 것에 견주어지지 않기 때문이다. 그러므로 원인은 자기에게 견주어질 만하지 않은 결과를 통하여 증명될 수 없으므로, 하느님이 계심은 증명될 수 없다고 보인다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, si demonstraretur Deum esse, hoc non esset nisi ex effectibus eius. Sed effectus eius non sunt proportionati ei, cum ipse sit infinitus, et effectus finiti; finiti autem ad infinitum non est proportio. Cum ergo causa non possit demonstrari per effectum sibi non proportionatum, videtur quod Deum esse non possit demonstrari.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 사도가 로마서 1장<a epub:type="noteref" href="#q2-fn15" id="q2-fn15-ref"><sup>15</sup></a>에서 «하느님의 보이지 않는 것들이 만들어진 것들을 통하여 알아들어져 환히 보인다»고 말한다. 그런데 만들어진 것들을 통하여 하느님이 계심을 증명할 수 없다면 이런 일은 없을 터이다. 어떤 것에 관하여 가장 먼저 알아들어야 할 것은 그것이 있는가 하는 것이기 때문이다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod apostolus dicit, ad Rom. I, &#171;invisibilia Dei per ea quae facta sunt, intellecta, conspiciuntur&#187;. Sed hoc non esset, nisi per ea quae facta sunt, posset demonstrari Deum esse, primum enim quod oportet intelligi de aliquo, est an sit.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 증명에는 두 가지가 있다. 하나는 원인을 통한 증명이며 &#x27;무엇 때문인지를 밝히는 증명&#x27;이라 불리는데, 이는 단적으로 앞선 것들을 통한 증명이다. 다른 하나는 결과를 통한 증명이며 &#x27;그러하다는 것을 밝히는 증명&#x27;이라 불리는데, 이는 우리에게 앞선 것들을 통한 증명이다. 어떤 결과가 그 원인보다 우리에게 더 뚜렷할 때 우리는 결과를 통하여 원인을 아는 데로 나아가기 때문이다. 그런데 어떤 결과에서든 그 고유한 원인이 있음을 증명할 수 있다. 다만 그 결과가 우리에게 더 알려져 있어야 한다. 결과는 원인에 매여 있으므로 결과가 놓이면 원인이 앞서 있어야 하기 때문이다. 그러므로 하느님이 계심은 우리에게 그 자체로 알려진 것이 아닌 한에서, 우리에게 알려진 결과들을 통하여 증명될 수 있다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod duplex est demonstratio. Una quae est per causam, et dicitur propter quid, et haec est per priora simpliciter. Alia est per effectum, et dicitur demonstratio quia, et haec est per ea quae sunt priora quoad nos, cum enim effectus aliquis nobis est manifestior quam sua causa, per effectum procedimus ad cognitionem causae. Ex quolibet autem effectu potest demonstrari propriam causam eius esse (si tamen eius effectus sint magis noti quoad nos), quia, cum effectus dependeant a causa, posito effectu necesse est causam praeexistere. Unde Deum esse, secundum quod non est per se notum quoad nos, demonstrabile est per effectus nobis notos.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째에 대하여는 이렇게 말해야 한다. 하느님이 계심과, 로마서 1장에서 말하듯 타고난 헤아림으로 하느님에 관하여 알려질 수 있는 이런 다른 것들은 신앙의 조항이 아니라 조항에 앞서는 것들이다. 은총이 본성을 앞서 놓고 완전성(perfectio)이 완전해질 수 있는 것을 앞서 놓듯이, 신앙은 이렇게 본성에 따른 앎을 앞서 놓기 때문이다. 그러나 그것 자체로 보아 증명될 수 있고 알려질 수 있는 것을, 증명을 붙잡지 못하는 어떤 이가 믿을 만한 것으로 받아들이는 데에는 아무런 걸림이 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod Deum esse, et alia huiusmodi quae per rationem naturalem nota possunt esse de Deo, ut dicitur Rom. I non sunt articuli fidei, sed praeambula ad articulos, sic enim fides praesupponit cognitionem naturalem, sicut gratia naturam, et ut perfectio perfectibile. Nihil tamen prohibet illud quod secundum se demonstrabile est et scibile, ab aliquo accipi ut credibile, qui demonstrationem non capit.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째에 대하여는 이렇게 말해야 한다. 원인이 결과를 통하여 증명될 때에는 원인이 있음을 증명하려고 결과를 원인의 정의(定義, diffinitio) 대신 써야 하며, 이런 일은 하느님에게서 무엇보다 그러하다. 무엇인가가 있음을 증명하려면 이름이 무엇을 가리키는지를 중간항으로 삼아야 하고, 그것이 무엇인가 하는 그것을 중간항으로 삼아서는 안 되기 때문이다. 무엇인가 하는 물음은 있는가 하는 물음 다음에 오기 때문이다. 그런데 뒤에 보이겠지만 하느님의 이름들은 결과에서 붙여진다. 그러므로 하느님이 계심을 결과를 통하여 증명하면서 우리는 하느님이라는 이 이름이 무엇을 가리키는지를 중간항으로 삼을 수 있다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod cum demonstratur causa per effectum, necesse est uti effectu loco definitionis causae, ad probandum causam esse, et hoc maxime contingit in Deo. Quia ad probandum aliquid esse, necesse est accipere pro medio quid significet nomen non autem quod quid est, quia quaestio quid est, sequitur ad quaestionem an est. Nomina autem Dei imponuntur ab effectibus, ut postea ostendetur, unde, demonstrando Deum esse per effectum, accipere possumus pro medio quid significet hoc nomen Deus.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 3에 대한 답</span>셋째에 대하여는 이렇게 말해야 한다. 원인에 견주어질 만하지 않은 결과를 통해서는 원인에 관한 온전한 앎을 지닐 수 없다. 그러나 앞서 말한 대로 어떤 결과에서든 원인이 있음은 우리에게 뚜렷이 증명될 수 있다. 그러므로 하느님의 결과들에서 하느님이 계심이 증명될 수 있으니, 그것들을 통하여 그분을 그 본질에 따라 온전히 알 수는 없다 하더라도 그러하다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium dicendum quod per effectus non proportionatos causae, non potest perfecta cognitio de causa haberi, sed tamen ex quocumque effectu potest manifeste nobis demonstrari causam esse, ut dictum est. Et sic ex effectibus Dei potest demonstrari Deum esse, licet per eos non perfecte possimus eum cognoscere secundum suam essentiam.</p></div></div>
+</section>
+<section class="articulus" id="q2-a3"><h2 class="articulus-title">제3항</h2>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 1</span>셋째 항으로 이렇게 나아간다. 하느님이 계시지 않는다고 보인다. 서로 맞선 둘 가운데 하나가 무한하다면 다른 하나는 온전히 무너지기 때문이다. 그런데 하느님이라는 이 이름에서 이해되는 바는 그분이 무한한 어떤 좋음이라는 것이다. 그러므로 하느님이 계신다면 어떤 나쁨도 발견되지 않을 터이다. 그런데 세상에 나쁨이 발견된다. 그러므로 하느님은 계시지 않는다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad tertium sic proceditur. Videtur quod Deus non sit. Quia si unum contrariorum fuerit infinitum, totaliter destruetur aliud. Sed hoc intelligitur in hoc nomine Deus, scilicet quod sit quoddam bonum infinitum. Si ergo Deus esset, nullum malum inveniretur. Invenitur autem malum in mundo. Ergo Deus non est.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa arg"><span class="role">반론 2</span>또한 더 적은 원리로 이룰 수 있는 것은 더 많은 원리로 이루어지지 않는다. 그런데 하느님이 계시지 않는다고 전제하더라도 세상에 나타나는 모든 것이 다른 원리로 이루어질 수 있다고 보인다. 자연에 속하는 것들은 자연이라는 원리로 돌려지고, 뜻을 세워 하는 것들은 사람의 헤아림이나 의지라는 원리로 돌려지기 때문이다. 그러므로 하느님이 계신다고 놓을 아무런 필연도 없다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Praeterea, quod potest compleri per pauciora principia, non fit per plura. Sed videtur quod omnia quae apparent in mundo, possunt compleri per alia principia, supposito quod Deus non sit, quia ea quae sunt naturalia, reducuntur in principium quod est natura; ea vero quae sunt a proposito, reducuntur in principium quod est ratio humana vel voluntas. Nulla igitur necessitas est ponere Deum esse.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa sc"><span class="role">반대</span>그러나 이에 반하여 탈출기 3장<a epub:type="noteref" href="#q2-fn16" id="q2-fn16-ref"><sup>16</sup></a>에서 하느님의 이름으로 이렇게 말해진다. «나는 있는 나다.»</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Sed contra est quod dicitur Exodi III, ex persona Dei, &#171;ego sum qui sum&#187;.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa co"><span class="role">본론</span>나는 이렇게 답해야 한다고 말한다. 하느님이 계심은 다섯 가지 길로 증명될 수 있다. 첫째이며 더 뚜렷한 길은 운동 쪽에서 취하는 길이다. 이 세상에서 어떤 것들이 움직인다는 것은 확실하고 감각으로도 분명하기 때문이다. 그런데 움직이는 모든 것은 다른 것에 의해 움직인다. 어떤 것도 자기가 그리로 움직여 가는 그것에 대하여 가능태에 있는 그만큼만 움직여지고, 어떤 것을 움직이게 하는 것은 자기가 현실태(actus)인 그만큼이기 때문이다. 움직이게 함이란 어떤 것을 가능태에서 현실태로 이끌어 내는 일에 다름 아니며, 가능태에 있는 것은 현실태로 있는 어떤 존재자를 통해서만 현실태로 이끌릴 수 있기 때문이다. 현실태로 뜨거운 것 곧 불이, 가능태로 뜨거운 나무를 현실태로 뜨겁게 만들며 이로써 그것을 움직이고 질적으로 변화(alteratio)시키는 것과 같다. 그런데 같은 것이 같은 측면에서 동시에 현실태와 가능태에 있기란 불가능하고 오직 서로 다른 측면에서만 그러하다. 현실태로 뜨거운 것은 동시에 가능태로 뜨거울 수 없고, 다만 동시에 가능태로 차가울 뿐이다. 그러므로 같은 측면에서 같은 방식으로 어떤 것이 움직이게 하는 것이면서 움직여지는 것이거나, 자기 자신을 움직이게 하기란 불가능하다. 그러므로 움직이는 모든 것은 다른 것에 의해 움직여야 한다. 그러므로 그것을 움직이게 하는 그것도 움직인다면, 그것 또한 다른 것에 의해 움직여야 하고 그것도 또 다른 것에 의해 그러해야 한다. 그런데 여기서 무한히 나아갈 수는 없다. 그렇다면 첫째로 움직이게 하는 것이 없을 터이고, 따라서 다른 어떤 움직이게 하는 것도 없을 터이기 때문이다. 둘째로 움직이게 하는 것들은 첫째로 움직이게 하는 것에 의해 움직여짐으로써만 움직이게 하니, 막대기가 손에 의해<a epub:type="noteref" href="#q2-fn17" id="q2-fn17-ref"><sup>17</sup></a> 움직여짐으로써만 움직이게 하는 것과 같다. 그러므로 어떤 것에도 움직여지지 않는 첫째로 움직이게 하는 어떤 것에 이르러야 하며, 이것을 모두가 하느님으로 이해한다. 둘째 길은 작용인(作用因)<a epub:type="noteref" href="#q2-fn18" id="q2-fn18-ref"><sup>18</sup></a>의 개념에서 온다. 우리는 이 감각되는 것들에서 작용인(作用因)들의 질서가 있음을 발견하기 때문이다. 그러나 어떤 것이 자기 자신의 작용인(作用因)이라는 일은 발견되지도 않고 가능하지도 않다. 그렇다면 자기 자신보다 앞설 터인데 이는 불가능하기 때문이다. 그런데 작용인(作用因)들에서 무한히 나아가기란 불가능하다. 질서 지어진 모든 작용인(作用因)에서 첫째 것은 중간 것의 원인이고 중간 것은 마지막 것의 원인이기 때문이니, 중간 것이 여럿이든 하나뿐이든 그러하다. 그런데 원인을 걷어 내면 결과도 걷힌다. 그러므로 작용인(作用因)들에서 첫째 것이 없다면 마지막 것도 중간 것도 없을 터이다. 그런데 작용인(作用因)들에서 무한히 나아간다면 첫째 작용인(作用因)이 없을 터이고, 그리하여 마지막 결과도 중간 작용인(作用因)들도 없을 터인데 이것이 거짓임은 뚜렷하다. 그러므로 어떤 첫째 작용인(作用因)을 놓아야 하며, 이를 모두가 하느님이라 부른다. 셋째 길은 가능한 것과 필연적인 것에서 취한 것이며 이러하다. 우리는 사물들에서 있을 수도 있고 없을 수도 있는 어떤 것들을 발견하기 때문이다. 어떤 것들은 생성<a epub:type="noteref" href="#q2-fn19" id="q2-fn19-ref"><sup>19</sup></a>되고 소멸(corruptio)하는 것으로 발견되며 따라서 있을 수도 없을 수도 있다. 그런데 있는 모든 것이 그러하기란 불가능하다. 없을 수 있는 것은 어느 때엔가 없기 때문이다. 그러므로 모든 것이 없을 수 있다면 어느 때엔가 사물들 가운데 아무것도 없었을 터이다. 그런데 이것이 참이라면 지금도 아무것도 없을 터이다. 없는 것은 있는 어떤 것을 통해서만 있기 시작하기 때문이다. 그러므로 아무것도 존재자가 아니었다면 어떤 것이 있기 시작하기란 불가능했을 터이고, 그리하여 지금도 아무것도 없을 터인데 이것이 거짓임은 뚜렷하다. 그러므로 모든 존재자가 가능한 것은 아니고, 사물들 가운데 어떤 필연적인 것이 있어야 한다. 그런데 필연적인 모든 것은 자기 필연성의 원인을 다른 데서 지니거나 지니지 않는다. 그런데 자기 필연성의 원인을 지닌 필연적인 것들에서 무한히 나아가기란 불가능하니, 증명된 대로 작용인(作用因)들에서 그러할 수 없는 것과 같다. 그러므로 그 자체로 필연적이며 필연성의 원인을 다른 데서 지니지 않고 오히려 다른 것들에게 필연성의 원인이 되는 어떤 것을 놓아야 하며, 이를 모두가 하느님이라 말한다. 넷째 길은 사물들에서 발견되는 등급에서 취한다. 사물들에서 더 좋고 덜 좋은 것, 더 참되고 덜 참된 것, 더 고귀하고 덜 고귀한 것이 발견되며 이런 다른 것들에서도 그러하기 때문이다. 그런데 더함과 덜함은 가장 그러한 어떤 것에 저마다 다르게 가까워지는 그만큼 여러 것에 대하여 말해진다. 가장 뜨거운 것에 더 가까운 것이 더 뜨거운 것과 같다. 그러므로 가장 참되고 가장 좋고 가장 고귀한 어떤 것이 있으며 따라서 가장 존재자다. 『형이상학』 제2권<a epub:type="noteref" href="#q2-fn20" id="q2-fn20-ref"><sup>20</sup></a>에서 말해지듯 가장 참된 것이 가장 존재자이기 때문이다. 그런데 어떤 유(類)<a epub:type="noteref" href="#q2-fn21" id="q2-fn21-ref"><sup>21</sup></a>에서 가장 그러하다고 말해지는 것은 그 유(類)에 속하는 모든 것의 원인이다. 같은 책에서 말해지듯 가장 뜨거운 불이 뜨거운 모든 것의 원인인 것과 같다. 그러므로 모든 존재자에게 존재와 좋음과 온갖 완전성의 원인이 되는 어떤 것이 있으며, 이를 우리는 하느님이라 말한다. 다섯째 길은 사물들의 다스림에서 취한다. 앎이 없는 어떤 것들 곧 자연적 물체들이 목적을 위하여 작용함을 우리가 보기 때문이다. 이는 그것들이 가장 좋은 것을 얻으려고 언제나 또는 대개 같은 방식으로 작용한다는 데서 드러난다. 그러므로 그것들이 우연이 아니라 지향<a epub:type="noteref" href="#q2-fn22" id="q2-fn22-ref"><sup>22</sup></a>에서 목적에 이름이 뚜렷하다. 그런데 앎을 지니지 않은 것들은 알고 이해하는 어떤 것에게 이끌리지 않고서는 목적을 향해 나아가지 않는다. 화살이 쏘는 이에게 이끌리는 것과 같다. 그러므로 모든 자연적 사물이 그것에 의해 목적으로 질서 지어지는 이해하는 어떤 것이 있으며, 이를 우리는 하느님이라 말한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Respondeo dicendum quod Deum esse quinque viis probari potest. Prima autem et manifestior via est, quae sumitur ex parte motus. Certum est enim, et sensu constat, aliqua moveri in hoc mundo. Omne autem quod movetur, ab alio movetur. Nihil enim movetur, nisi secundum quod est in potentia ad illud ad quod movetur, movet autem aliquid secundum quod est actu. Movere enim nihil aliud est quam educere aliquid de potentia in actum, de potentia autem non potest aliquid reduci in actum, nisi per aliquod ens in actu, sicut calidum in actu, ut ignis, facit lignum, quod est calidum in potentia, esse actu calidum, et per hoc movet et alterat ipsum. Non autem est possibile ut idem sit simul in actu et potentia secundum idem, sed solum secundum diversa, quod enim est calidum in actu, non potest simul esse calidum in potentia, sed est simul frigidum in potentia. Impossibile est ergo quod, secundum idem et eodem modo, aliquid sit movens et motum, vel quod moveat seipsum. Omne ergo quod movetur, oportet ab alio moveri. Si ergo id a quo movetur, moveatur, oportet et ipsum ab alio moveri et illud ab alio. Hic autem non est procedere in infinitum, quia sic non esset aliquod primum movens; et per consequens nec aliquod aliud movens, quia moventia secunda non movent nisi per hoc quod sunt mota a primo movente, sicut baculus non movet nisi per hoc quod est motus a manu. Ergo necesse est devenire ad aliquod primum movens, quod a nullo movetur, et hoc omnes intelligunt Deum. Secunda via est ex ratione causae efficientis. Invenimus enim in istis sensibilibus esse ordinem causarum efficientium, nec tamen invenitur, nec est possibile, quod aliquid sit causa efficiens sui ipsius; quia sic esset prius seipso, quod est impossibile. Non autem est possibile quod in causis efficientibus procedatur in infinitum. Quia in omnibus causis efficientibus ordinatis, primum est causa medii, et medium est causa ultimi, sive media sint plura sive unum tantum, remota autem causa, removetur effectus, ergo, si non fuerit primum in causis efficientibus, non erit ultimum nec medium. Sed si procedatur in infinitum in causis efficientibus, non erit prima causa efficiens, et sic non erit nec effectus ultimus, nec causae efficientes mediae, quod patet esse falsum. Ergo est necesse ponere aliquam causam efficientem primam, quam omnes Deum nominant. Tertia via est sumpta ex possibili et necessario, quae talis est. Invenimus enim in rebus quaedam quae sunt possibilia esse et non esse, cum quaedam inveniantur generari et corrumpi, et per consequens possibilia esse et non esse. Impossibile est autem omnia quae sunt, talia esse, quia quod possibile est non esse, quandoque non est. Si igitur omnia sunt possibilia non esse, aliquando nihil fuit in rebus. Sed si hoc est verum, etiam nunc nihil esset, quia quod non est, non incipit esse nisi per aliquid quod est; si igitur nihil fuit ens, impossibile fuit quod aliquid inciperet esse, et sic modo nihil esset, quod patet esse falsum. Non ergo omnia entia sunt possibilia, sed oportet aliquid esse necessarium in rebus. Omne autem necessarium vel habet causam suae necessitatis aliunde, vel non habet. Non est autem possibile quod procedatur in infinitum in necessariis quae habent causam suae necessitatis, sicut nec in causis efficientibus, ut probatum est. Ergo necesse est ponere aliquid quod sit per se necessarium, non habens causam necessitatis aliunde, sed quod est causa necessitatis aliis, quod omnes dicunt Deum. Quarta via sumitur ex gradibus qui in rebus inveniuntur. Invenitur enim in rebus aliquid magis et minus bonum, et verum, et nobile, et sic de aliis huiusmodi. Sed magis et minus dicuntur de diversis secundum quod appropinquant diversimode ad aliquid quod maxime est, sicut magis calidum est, quod magis appropinquat maxime calido. Est igitur aliquid quod est verissimum, et optimum, et nobilissimum, et per consequens maxime ens, nam quae sunt maxime vera, sunt maxime entia, ut dicitur II Metaphys. Quod autem dicitur maxime tale in aliquo genere, est causa omnium quae sunt illius generis, sicut ignis, qui est maxime calidus, est causa omnium calidorum, ut in eodem libro dicitur. Ergo est aliquid quod omnibus entibus est causa esse, et bonitatis, et cuiuslibet perfectionis, et hoc dicimus Deum. Quinta via sumitur ex gubernatione rerum. Videmus enim quod aliqua quae cognitione carent, scilicet corpora naturalia, operantur propter finem, quod apparet ex hoc quod semper aut frequentius eodem modo operantur, ut consequantur id quod est optimum; unde patet quod non a casu, sed ex intentione perveniunt ad finem. Ea autem quae non habent cognitionem, non tendunt in finem nisi directa ab aliquo cognoscente et intelligente, sicut sagitta a sagittante. Ergo est aliquid intelligens, a quo omnes res naturales ordinantur ad finem, et hoc dicimus Deum.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 1에 대한 답</span>그러므로 첫째 반론에는 이렇게 답해야 한다. 아우구스티누스<a epub:type="noteref" href="#q2-fn23" id="q2-fn23-ref"><sup>23</sup></a>가 『엥키리디온』<a epub:type="noteref" href="#q2-fn24" id="q2-fn24-ref"><sup>24</sup></a>에서 말하듯 «하느님은 지극히 좋으시므로, 나쁨에서도 좋음을 이루어 내실 만큼 전능하고 좋으신 분이 아니라면 자기 일에 어떤 나쁨도 있게 두지 않으셨을 것이다.» 그러므로 나쁨이 있도록 허락하시고 거기서 좋음을 이끌어 내심은 하느님의 무한한 좋음에 속한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad primum ergo dicendum quod, sicut dicit Augustinus in Enchiridio, &#171;Deus, cum sit summe bonus, nullo modo sineret aliquid mali esse in operibus suis, nisi esset adeo omnipotens et bonus, ut bene faceret etiam de malo&#187;. Hoc ergo ad infinitam Dei bonitatem pertinet, ut esse permittat mala, et ex eis eliciat bona.</p></div></div>
+<div class="parallel-pair"><div class="parallel-column parallel-korean" aria-label="한국어 번역"><p class="summa ad"><span class="role">반론 2에 대한 답</span>둘째 반론에는 이렇게 답해야 한다. 자연은 더 높은 어떤 작용자<a epub:type="noteref" href="#q2-fn25" id="q2-fn25-ref"><sup>25</sup></a>의 이끎을 받아 정해진 목적을 위하여 작용하므로, 자연에서 생겨나는 것들도 제일원인<a epub:type="noteref" href="#q2-fn26" id="q2-fn26-ref"><sup>26</sup></a>으로서 하느님께 돌려야 한다. 마찬가지로 뜻을 세워 하는 것들도 사람의 헤아림과 의지가 아닌 더 높은 어떤 원인으로 돌려야 한다. 이것들은 변하고 모자랄 수 있기 때문이다. 그런데 드러난 대로 움직일 수 있고 모자랄 수 있는 모든 것은 움직이지 않으며 그 자체로 필연적인 어떤 첫째 원리로 돌려야 한다.</p></div><div class="parallel-column parallel-latin" aria-label="라틴어 원문"><p lang="la">Ad secundum dicendum quod, cum natura propter determinatum finem operetur ex directione alicuius superioris agentis, necesse est ea quae a natura fiunt, etiam in Deum reducere, sicut in primam causam. Similiter etiam quae ex proposito fiunt, oportet reducere in aliquam altiorem causam, quae non sit ratio et voluntas humana, quia haec mutabilia sunt et defectibilia; oportet autem omnia mobilia et deficere possibilia reduci in aliquod primum principium immobile et per se necessarium, sicut ostensum est.</p></div></div>
+</section>
+<section class="notes" epub:type="footnotes">
+<h2>주</h2>
+<aside epub:type="footnote" id="q2-fn1"><p><a href="#q2-fn1-ref">1</a>. finis. 무엇을 위해 그것이 있는가, 곧 목적을 가리킨다. 같은 낱말이 시간이나 정도의 &#x27;끝&#x27;을 뜻할 때는 그대로 &#x27;끝&#x27;으로 옮긴다.</p></aside>
+<aside epub:type="footnote" id="q2-fn2"><p><a href="#q2-fn2-ref">2</a>. scientia. 원리에서 결론을 논증으로 이끌어 내는 앎. 근대의 &#x27;과학&#x27;이 아니라 아리스토텔레스가 말한 뜻의 학문이며, 신학대전 제1문제 전체가 이 낱말의 뜻을 두고 묻는다.</p></aside>
+<aside epub:type="footnote" id="q2-fn3"><p><a href="#q2-fn3-ref">3</a>. natura. 어떤 것이 본래 지닌 성질, 특히 그것이 제 일을 하도록 이끄는 쪽에서 본 본질을 가리킬 때는 &#x27;본성&#x27;으로 옮긴다. 사람이 손대지 않아도 스스로 이루어지는 영역 전체를 가리킬 때는 &#x27;자연&#x27;으로 옮긴다. 이 저작의 제목이 그 뒤쪽 뜻이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn4"><p><a href="#q2-fn4-ref">4</a>. 다마스쿠스의 요한(약 675–749). 그리스 교부의 가르침을 집대성한 신학자로, 그의 『정통 신앙론』이 서방에 널리 읽혔다.</p></aside>
+<aside epub:type="footnote" id="q2-fn5"><p><a href="#q2-fn5-ref">5</a>. 다마스케누스 『정통 신앙론』 제1권 제1장에서 제3장.</p></aside>
+<aside epub:type="footnote" id="q2-fn6"><p><a href="#q2-fn6-ref">6</a>. 아리스토텔레스. 아퀴나스는 그를 언제나 &#x27;철학자&#x27;라고만 부른다.</p></aside>
+<aside epub:type="footnote" id="q2-fn7"><p><a href="#q2-fn7-ref">7</a>. 안셀무스 『프로슬로기온』 제2장의 논증을 그대로 옮겨 온 반론이다. 아퀴나스는 이 항의 둘째 답에서 이를 물리친다.</p></aside>
+<aside epub:type="footnote" id="q2-fn8"><p><a href="#q2-fn8-ref">8</a>. 요한복음 14장 6절.</p></aside>
+<aside epub:type="footnote" id="q2-fn9"><p><a href="#q2-fn9-ref">9</a>. 불가타 시편 52편 1절. 오늘날 번역본에서는 시편 53편 2절이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn10"><p><a href="#q2-fn10-ref">10</a>. ratio. 어떤 것을 바로 그것이게 하는 내용, 곧 &#x27;무엇으로서 그러한가&#x27;를 규정하는 바를 가리킨다. 여기서는 &#x27;이성&#x27;이나 &#x27;근거&#x27;가 아니다.</p></aside>
+<aside epub:type="footnote" id="q2-fn11"><p><a href="#q2-fn11-ref">11</a>. 6세기 로마의 철학자. 그리스 철학 용어를 라틴어로 옮겨 중세에 전한 사람이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn12"><p><a href="#q2-fn12-ref">12</a>. 보에티우스 『주간론』(De hebdomadibus) 첫머리.</p></aside>
+<aside epub:type="footnote" id="q2-fn13"><p><a href="#q2-fn13-ref">13</a>. esse. &#x27;있다&#x27;는 사실 그 자체를 가리킨다. 무엇이 있느냐(본질)가 아니라, 그것이 있다는 것 자체를 뜻한다. 아래의 &#x27;존재자(ens)&#x27;와 한 글자 차이지만 다른 개념이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn14"><p><a href="#q2-fn14-ref">14</a>. 히브리서 11장 1절.</p></aside>
+<aside epub:type="footnote" id="q2-fn15"><p><a href="#q2-fn15-ref">15</a>. 로마서 1장 20절.</p></aside>
+<aside epub:type="footnote" id="q2-fn16"><p><a href="#q2-fn16-ref">16</a>. 탈출기 3장 14절. 불붙은 떨기나무에서 하느님이 모세에게 당신 이름을 밝히시는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn17"><p><a href="#q2-fn17-ref">17</a>. 아리스토텔레스 『자연학』 제8권 제5장. 도구가 스스로 움직이지 못하고 손에 의해서만 움직인다는 예다.</p></aside>
+<aside epub:type="footnote" id="q2-fn18"><p><a href="#q2-fn18-ref">18</a>. causa efficiens. 아리스토텔레스가 나눈 네 가지 원인 가운데 하나로, 무엇을 실제로 만들어 내거나 움직이게 하는 원인이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn19"><p><a href="#q2-fn19-ref">19</a>. generatio. 없던 것이 있게 되는 일. 아래의 &#x27;소멸(corruptio)&#x27;과 짝을 이루며, 자연 사물의 변화를 이 둘로 설명한다.</p></aside>
+<aside epub:type="footnote" id="q2-fn20"><p><a href="#q2-fn20-ref">20</a>. 아리스토텔레스 『형이상학』 제2권 제1장. 각 사물이 참인 정도만큼 존재한다는 논의와, 가장 뜨거운 불이 뜨거움의 원인이라는 예가 함께 나온다.</p></aside>
+<aside epub:type="footnote" id="q2-fn21"><p><a href="#q2-fn21-ref">21</a>. genus. 종(種)보다 넓은 갈래. &#x27;동물&#x27;은 &#x27;사람&#x27;의 유이다. 유·종·종차는 정의를 세우는 세 축이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn22"><p><a href="#q2-fn22-ref">22</a>. intentio. 지성이 사물을 향해 세우는 개념적 규정. &#x27;유&#x27;, &#x27;종&#x27; 같은 논리적 지향은 사물 자체가 아니라 지성이 사물에 대해 세우는 것이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn23"><p><a href="#q2-fn23-ref">23</a>. 히포의 아우구스티누스(354–430). 라틴 교부 가운데 가장 큰 영향을 끼친 신학자로, 아퀴나스가 신앙 문제에서 가장 자주 기대는 권위다.</p></aside>
+<aside epub:type="footnote" id="q2-fn24"><p><a href="#q2-fn24-ref">24</a>. 아우구스티누스 『엥키리디온』 제11장. 하느님이 악에서도 선을 이끌어 내신다는 대목이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn25"><p><a href="#q2-fn25-ref">25</a>. agens. 무엇을 실제로 일어나게 하는 쪽. 작용인이 하는 일을 그 주체 쪽에서 부르는 이름이다.</p></aside>
+<aside epub:type="footnote" id="q2-fn26"><p><a href="#q2-fn26-ref">26</a>. causa prima. 다른 무엇에도 원인을 두지 않으면서 모든 것의 원인이 되는 첫째 원인. 아퀴나스에게는 신을 가리킨다.</p></aside>
+</section></article>
+  </main>
+  <nav class="reader-pagination" aria-label="책장 넘기기">
+    <button class="page-button" id="page-previous" type="button">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg><span>이전</span>
+    </button>
+    <span class="page-status" aria-live="polite"><small id="page-counter-label">페이지</small><strong id="page-counter">1 / 1</strong></span>
+    <button class="page-button" id="page-next" type="button"><span>다음</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </nav>
+  
+<dialog class="footnote-dialog" id="footnote-dialog" aria-labelledby="footnote-dialog-title">
+  <div class="footnote-dialog-head">
+    <p class="footnote-dialog-title" id="footnote-dialog-title">각주</p>
+    <button class="footnote-close" id="footnote-close" type="button" aria-label="각주 닫기">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="footnote-dialog-content" id="footnote-dialog-content"></div>
+</dialog>
+
+
+<script>
+(() => {
+  const body = document.body;
+  const stage = document.getElementById('reader-stage');
+  const pages = document.getElementById('reader-pages');
+  const previous = document.getElementById('page-previous');
+  const next = document.getElementById('page-next');
+  const counter = document.getElementById('page-counter');
+  const counterLabel = document.getElementById('page-counter-label');
+  const layoutLabel = document.getElementById('reader-layout-label');
+  const latinButton = document.getElementById('latin-visibility');
+  const notesButton = document.getElementById('notes-visibility');
+  const dialog = document.getElementById('footnote-dialog');
+  const title = document.getElementById('footnote-dialog-title');
+  const content = document.getElementById('footnote-dialog-content');
+  const close = document.getElementById('footnote-close');
+  const reader = body.dataset;
+  const embedded = window.parent && window.parent !== window;
+  const preferenceKey = 'aquinasReaderPreferences';
+  const progressKey = `aquinasReaderPage:${reader.workId || 'work'}:${reader.variant || 'edition'}`;
+  let preferences = {};
+  let currentPage = 0;
+  let totalPages = 1;
+  let columnsPerSpread = 1;
+  let pageWidth = 0;
+  let pageGap = 32;
+  let firstLayout = true;
+  let layoutRevision = 0;
+  let resizeTimer = null;
+  let wheelLocked = false;
+  let touchStartX = null;
+  let sourceHtml = '';
+
+  try { preferences = JSON.parse(localStorage.getItem(preferenceKey)) || {}; } catch { preferences = {}; }
+  const defaultLatin = reader.defaultLatin === 'true';
+  body.classList.toggle('show-latin', preferences.latin == null ? defaultLatin : Boolean(preferences.latin));
+  body.classList.toggle('show-notes', Boolean(preferences.notes));
+  body.classList.toggle('embedded-reader', embedded);
+  if (embedded) {
+    const backLabel = document.getElementById('library-back-label');
+    if (backLabel) backLabel.textContent = '저작 선택';
+  }
+
+  function noteText(note) {
+    const paragraph = note && note.querySelector('p');
+    const clone = paragraph ? paragraph.cloneNode(true) : note?.cloneNode(true);
+    if (!clone) return '';
+    clone.querySelectorAll('a').forEach(anchor => anchor.remove());
+    return clone.textContent.replace(/^\s*\.\s*/, '').trim();
+  }
+
+  function buildInlineFootnotes() {
+    const byParagraph = new Map();
+    document.querySelectorAll('a[id$="-ref"][href^="#"]').forEach(reference => {
+      reference.classList.add('footnote-reference');
+      const paragraph = reference.closest('p');
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!paragraph || !note) return;
+      if (!byParagraph.has(paragraph)) byParagraph.set(paragraph, []);
+      byParagraph.get(paragraph).push({ number: reference.textContent.trim(), text: noteText(note) });
+    });
+    byParagraph.forEach((items, paragraph) => {
+      const box = document.createElement('span');
+      box.className = 'inline-footnotes';
+      box.setAttribute('role', 'note');
+      items.forEach(item => {
+        const line = document.createElement('span');
+        line.className = 'inline-footnote-item';
+        const number = document.createElement('strong');
+        number.textContent = `${item.number}. `;
+        line.append(number, document.createTextNode(item.text));
+        box.append(line);
+      });
+      paragraph.insertAdjacentElement('afterend', box);
+    });
+  }
+
+  function prepareSource() {
+    const notes = pages.querySelector('.notes');
+    if (notes) {
+      const source = document.createElement('div');
+      source.id = 'footnote-source';
+      source.hidden = true;
+      source.append(notes);
+      body.append(source);
+    }
+    sourceHtml = pages.innerHTML;
+  }
+
+  function wrapColumnFlow(column) {
+    const viewport = document.createElement('div');
+    viewport.className = 'column-viewport';
+    const flow = document.createElement('div');
+    flow.className = 'column-flow';
+    while (column.firstChild) flow.append(column.firstChild);
+    viewport.append(flow);
+    column.append(viewport);
+    return flow;
+  }
+
+  function createPairPage(pair, segment, sliceHeights, { measure = false } = {}) {
+    const page = document.createElement('section');
+    page.className = `book-page paired-page${measure ? ' pair-measure' : ''}`;
+    const clone = pair.cloneNode(true);
+    clone.classList.remove('stacked-long');
+    const flows = Array.from(clone.querySelectorAll('.parallel-column')).map(wrapColumnFlow);
+    if (!measure) {
+      clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+      flows.forEach((flow, index) => {
+        flow.style.transform = `translateY(${-segment * sliceHeights[index]}px)`;
+      });
+      page.dataset.segment = String(segment + 1);
+    }
+    page.append(clone);
+    return { page, flows };
+  }
+
+  function buildManualPages() {
+    const blocks = Array.from(pages.children);
+    pages.replaceChildren();
+    const maximumSlice = Math.max(120, pages.clientHeight - 46);
+
+    blocks.forEach(block => {
+      if (!block.classList.contains('parallel-pair')) {
+        const page = document.createElement('section');
+        page.className = `book-page${block.matches('h1.chapter') ? ' chapter-opening' : ''}`;
+        page.append(block);
+        pages.append(page);
+        return;
+      }
+
+      const measurement = createPairPage(block, 0, [], { measure: true });
+      pages.append(measurement.page);
+      const sliceHeights = measurement.flows.map(flow => {
+        const sample = flow.querySelector('p') || flow;
+        const lineHeight = Math.max(12, parseFloat(getComputedStyle(sample).lineHeight) || 24);
+        return Math.max(lineHeight * 4, Math.floor(maximumSlice / lineHeight) * lineHeight);
+      });
+      const segments = Math.max(1, ...measurement.flows.map((flow, index) => Math.ceil(flow.scrollHeight / sliceHeights[index])));
+      measurement.page.remove();
+      for (let segment = 0; segment < segments; segment += 1) {
+        pages.append(createPairPage(block, segment, sliceHeights).page);
+      }
+    });
+  }
+
+  function savePreferences() {
+    preferences = { latin: body.classList.contains('show-latin'), notes: body.classList.contains('show-notes') };
+    try { localStorage.setItem(preferenceKey, JSON.stringify(preferences)); } catch { /* 오프라인 파일 저장이 막혀도 독서는 계속한다. */ }
+  }
+
+  function updateToggleState() {
+    const latin = body.classList.contains('show-latin');
+    const notes = body.classList.contains('show-notes');
+    latinButton.setAttribute('aria-pressed', String(latin));
+    latinButton.setAttribute('aria-label', latin ? '라틴어 원문 숨기기' : '라틴어 원문 함께 보기');
+    notesButton.setAttribute('aria-pressed', String(notes));
+    notesButton.setAttribute('aria-label', notes ? '본문 각주 접기' : '본문 각주 함께 보기');
+  }
+
+  function updatePage() {
+    currentPage = Math.max(0, Math.min(totalPages - 1, currentPage));
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    pages.style.transform = `translate3d(${-currentPage * stride}px, 0, 0)`;
+    previous.disabled = currentPage === 0;
+    next.disabled = currentPage >= totalPages - 1;
+    counter.textContent = `${currentPage + 1} / ${totalPages}`;
+    counterLabel.textContent = columnsPerSpread === 2 ? '펼침' : '페이지';
+    try { localStorage.setItem(progressKey, String(currentPage)); } catch { /* 저장 실패는 무시 */ }
+  }
+
+  function layoutPages({ preserve = true } = {}) {
+    const revision = ++layoutRevision;
+    const oldRatio = preserve && totalPages > 1 ? currentPage / (totalPages - 1) : 0;
+    pages.style.transform = 'translate3d(0,0,0)';
+    pages.innerHTML = sourceHtml;
+
+    /* 무대의 실제 콘텐츠 폭. clientWidth는 정수로 반올림되므로 여기 쓰면 안 된다 —
+       0.4px쯤 어긋난 폭으로 이동량을 계산하면 페이지를 넘길수록 오차가 쌓여
+       옆 페이지가 조금씩 함께 보인다. 테두리·안쪽 여백을 소수점째로 빼고,
+       내림해서 무대보다 넓어지는 일이 없게 한다. */
+    const style = getComputedStyle(stage);
+    const padLeft = parseFloat(style.paddingLeft);
+    const padRight = parseFloat(style.paddingRight);
+    const available = Math.max(280, Math.floor(
+      stage.getBoundingClientRect().width - padLeft - padRight
+      - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth)
+    ));
+    /* 단 사이 간격은 무대의 안쪽 여백보다 좁아서는 안 된다. overflow:hidden은
+       안쪽 여백까지가 아니라 테두리 안쪽에서 잘라내므로, 간격이 여백보다 좁으면
+       그 여백이 옆 페이지를 들여다보는 창이 되어 글자 끝이 비쳐 보인다. */
+    const minGap = Math.ceil(Math.max(padLeft, padRight));
+    pageGap = Math.max(available >= 900 ? 44 : available >= 560 ? 30 : 20, minGap);
+    columnsPerSpread = !body.classList.contains('show-latin') && available >= 900 ? 2 : 1;
+    pageWidth = (available - pageGap * (columnsPerSpread - 1)) / columnsPerSpread;
+    pages.style.setProperty('--reader-page-width', `${pageWidth}px`);
+    pages.style.setProperty('--reader-page-gap', `${pageGap}px`);
+    pages.classList.toggle('manual-pages', body.classList.contains('show-latin'));
+    /* 단 조판이 이동량과 똑같은 수를 쓰도록 폭을 못 박는다. 대조 보기는
+       페이지를 직접 붙여 만들므로(width: max-content) 지정하지 않는다. */
+    pages.style.width = pages.classList.contains('manual-pages') ? '' : `${available}px`;
+    if (body.classList.contains('show-latin')) buildManualPages();
+    stage.classList.toggle('double', columnsPerSpread === 2);
+    layoutLabel.textContent = columnsPerSpread === 2
+      ? '양면 펼침'
+      : body.classList.contains('show-latin') ? '번역 · 원문 대조' : '한 면 읽기';
+
+    /* 숨겨진 Electron 창에서도 rAF 지연 없이 즉시 실제 조판 치수를 확정한다. */
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    void pages.offsetWidth;
+    if (revision !== layoutRevision) return;
+    const columns = pages.classList.contains('manual-pages')
+      ? Math.max(1, pages.children.length)
+      : Math.max(1, Math.ceil((pages.scrollWidth + pageGap - 1) / (pageWidth + pageGap)));
+    totalPages = Math.max(1, Math.ceil(columns / columnsPerSpread));
+    if (firstLayout) {
+      let saved = 0;
+      try { saved = Number(localStorage.getItem(progressKey)) || 0; } catch { saved = 0; }
+      currentPage = Math.min(totalPages - 1, Math.max(0, saved));
+      firstLayout = false;
+    } else if (preserve) {
+      currentPage = Math.round(oldRatio * Math.max(0, totalPages - 1));
+    } else {
+      currentPage = 0;
+    }
+    updatePage();
+  }
+
+  function turn(delta) {
+    const target = currentPage + delta;
+    if (target < 0 || target >= totalPages) return;
+    currentPage = target;
+    updatePage();
+  }
+
+  latinButton.addEventListener('click', () => {
+    body.classList.toggle('show-latin');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  notesButton.addEventListener('click', () => {
+    body.classList.toggle('show-notes');
+    savePreferences();
+    updateToggleState();
+    layoutPages();
+  });
+  previous.addEventListener('click', () => turn(-1));
+  next.addEventListener('click', () => turn(1));
+
+  document.addEventListener('click', event => {
+    const reference = event.target.closest('a.footnote-reference[href^="#"]');
+    if (reference) {
+      const note = document.getElementById(reference.getAttribute('href').slice(1));
+      if (!note) return;
+      event.preventDefault();
+      title.textContent = `각주 ${reference.textContent.trim()}`;
+      content.textContent = noteText(note);
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+      return;
+    }
+    const anchor = event.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const target = document.getElementById(anchor.getAttribute('href').slice(1));
+    if (!target) return;
+    event.preventDefault();
+    const left = target.getBoundingClientRect().left - pages.getBoundingClientRect().left;
+    const stride = columnsPerSpread * (pageWidth + pageGap);
+    currentPage = Math.max(0, Math.min(totalPages - 1, Math.floor(left / stride)));
+    updatePage();
+  });
+
+  close.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  document.addEventListener('keydown', event => {
+    const tag = document.activeElement?.tagName;
+    if (dialog.open || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+      event.preventDefault(); turn(1);
+    } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+      event.preventDefault(); turn(-1);
+    } else if (event.key === 'Home') {
+      event.preventDefault(); currentPage = 0; updatePage();
+    } else if (event.key === 'End') {
+      event.preventDefault(); currentPage = totalPages - 1; updatePage();
+    }
+  });
+
+  stage.addEventListener('wheel', event => {
+    const amount = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    if (Math.abs(amount) < 8) return;
+    event.preventDefault();
+    if (wheelLocked) return;
+    wheelLocked = true;
+    turn(amount > 0 ? 1 : -1);
+    setTimeout(() => { wheelLocked = false; }, 360);
+  }, { passive: false });
+  stage.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0]?.clientX ?? null; }, { passive: true });
+  stage.addEventListener('touchend', event => {
+    if (touchStartX == null) return;
+    const distance = (event.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+    touchStartX = null;
+    if (Math.abs(distance) >= 48) turn(distance < 0 ? 1 : -1);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => layoutPages(), 140);
+  });
+
+  buildInlineFootnotes();
+  prepareSource();
+  updateToggleState();
+  layoutPages({ preserve: false });
+
+  if (embedded) {
+    window.parent.postMessage({
+      type: 'aquinas:reader-ready',
+      workId: reader.workId || '',
+      title: reader.workTitle || document.title,
+      variant: reader.variant || '',
+    }, '*');
+  }
+})();
+</script>
+</body></html>

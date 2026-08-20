@@ -34,12 +34,29 @@
       "paragraphs": 21
     },
     {
+      "id": "de_substantiis_separatis",
+      "title": "분리된 실체에 관하여",
+      "title_la": "De substantiis separatis",
+      "korean_chars": 76825,
+      "total_pages": 110,
+      "paragraphs": 188
+    },
+    {
       "id": "de_mixtione_elementorum",
       "title": "원소의 혼합에 관하여",
       "title_la": "De mixtione elementorum",
       "korean_chars": 4058,
       "total_pages": 6,
       "paragraphs": 7
+    },
+    {
+      "id": "summa_i_v01",
+      "title": "신학대전 제1부 1권 — 거룩한 가르침과 하느님의 존재",
+      "title_la": "Summa Theologiae, Prima Pars, qq. 1-2",
+      "korean_chars": 25128,
+      "total_pages": 36,
+      "paragraphs": 89,
+      "category": "신학대전"
     }
   ]
 }
