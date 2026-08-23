@@ -80,9 +80,18 @@
       "id": "summa_i_v04",
       "title": "신학대전 제1부 4권 — 하느님의 앎과 관념",
       "title_la": "Summa Theologiae, Prima Pars, qq. 14-18",
-      "korean_chars": 69387,
+      "korean_chars": 69388,
       "total_pages": 100,
       "paragraphs": 286,
+      "category": "신학대전"
+    },
+    {
+      "id": "summa_i_v05",
+      "title": "신학대전 제1부 5권 — 하느님의 의지와 섭리",
+      "title_la": "Summa Theologiae, Prima Pars, qq. 19-26",
+      "korean_chars": 90997,
+      "total_pages": 130,
+      "paragraphs": 390,
       "category": "신학대전"
     }
   ]
