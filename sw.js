@@ -1,6 +1,6 @@
 // 배포할 때마다 올린다. 이 이름이 그대로면 activate가 옛 캐시를 지우지 않아
 // 휴대폰에서 앱을 두 번 열어야 새 화면이 나온다.
-const CACHE_NAME = 'bible-study-web-v4';
+const CACHE_NAME = 'bible-study-web-v5';
 const APP_SHELL = ['./', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', event => {
