@@ -5,7 +5,7 @@
       "id": "de_ente_et_essentia",
       "title": "존재자와 본질",
       "title_la": "De ente et essentia",
-      "korean_chars": 27538,
+      "korean_chars": 27822,
       "total_pages": 40,
       "paragraphs": 76
     },
@@ -13,7 +13,7 @@
       "id": "de_principiis_naturae",
       "title": "자연의 원리",
       "title_la": "De principiis naturae",
-      "korean_chars": 16933,
+      "korean_chars": 17217,
       "total_pages": 25,
       "paragraphs": 40
     },
@@ -21,15 +21,15 @@
       "id": "de_unitate_intellectus",
       "title": "지성의 단일성",
       "title_la": "De unitate intellectus contra Averroistas",
-      "korean_chars": 46751,
-      "total_pages": 67,
+      "korean_chars": 47035,
+      "total_pages": 68,
       "paragraphs": 104
     },
     {
       "id": "de_aeternitate_mundi",
       "title": "세계의 영원성에 관하여",
       "title_la": "De aeternitate mundi",
-      "korean_chars": 7405,
+      "korean_chars": 7689,
       "total_pages": 11,
       "paragraphs": 21
     },
@@ -37,24 +37,24 @@
       "id": "de_substantiis_separatis",
       "title": "분리된 실체에 관하여",
       "title_la": "De substantiis separatis",
-      "korean_chars": 76938,
-      "total_pages": 110,
+      "korean_chars": 77222,
+      "total_pages": 111,
       "paragraphs": 188
     },
     {
       "id": "de_mixtione_elementorum",
       "title": "원소의 혼합에 관하여",
       "title_la": "De mixtione elementorum",
-      "korean_chars": 4058,
-      "total_pages": 6,
+      "korean_chars": 4342,
+      "total_pages": 7,
       "paragraphs": 7
     },
     {
       "id": "summa_i_v01",
       "title": "신학대전 제1부 1권 — 거룩한 가르침과 하느님의 존재",
       "title_la": "Summa Theologiae, Prima Pars, qq. 1-2",
-      "korean_chars": 25128,
-      "total_pages": 36,
+      "korean_chars": 25412,
+      "total_pages": 37,
       "paragraphs": 89,
       "category": "신학대전"
     },
@@ -62,7 +62,7 @@
       "id": "summa_i_v02",
       "title": "신학대전 제1부 2권 — 하느님의 단순성과 완전성",
       "title_la": "Summa Theologiae, Prima Pars, qq. 3-11",
-      "korean_chars": 84709,
+      "korean_chars": 84993,
       "total_pages": 122,
       "paragraphs": 360,
       "category": "신학대전"
@@ -71,8 +71,8 @@
       "id": "summa_i_v03",
       "title": "신학대전 제1부 3권 — 하느님을 아는 길과 이름",
       "title_la": "Summa Theologiae, Prima Pars, qq. 12-13",
-      "korean_chars": 55221,
-      "total_pages": 79,
+      "korean_chars": 55505,
+      "total_pages": 80,
       "paragraphs": 212,
       "category": "신학대전"
     },
@@ -80,7 +80,7 @@
       "id": "summa_i_v04",
       "title": "신학대전 제1부 4권 — 하느님의 앎과 관념",
       "title_la": "Summa Theologiae, Prima Pars, qq. 14-18",
-      "korean_chars": 69388,
+      "korean_chars": 69672,
       "total_pages": 100,
       "paragraphs": 286,
       "category": "신학대전"
@@ -89,8 +89,8 @@
       "id": "summa_i_v05",
       "title": "신학대전 제1부 5권 — 하느님의 의지와 섭리",
       "title_la": "Summa Theologiae, Prima Pars, qq. 19-26",
-      "korean_chars": 90997,
-      "total_pages": 130,
+      "korean_chars": 91281,
+      "total_pages": 131,
       "paragraphs": 390,
       "category": "신학대전"
     },
@@ -98,7 +98,7 @@
       "id": "summa_i_v06",
       "title": "신학대전 제1부 6권 — 삼위일체 — 위격의 발출",
       "title_la": "Summa Theologiae, Prima Pars, qq. 27-35",
-      "korean_chars": 84736,
+      "korean_chars": 85020,
       "total_pages": 122,
       "paragraphs": 326,
       "category": "신학대전"
@@ -107,7 +107,7 @@
       "id": "summa_i_v07",
       "title": "신학대전 제1부 7권 — 삼위일체 — 위격의 관계와 파견",
       "title_la": "Summa Theologiae, Prima Pars, qq. 36-43",
-      "korean_chars": 100814,
+      "korean_chars": 101098,
       "total_pages": 145,
       "paragraphs": 387,
       "category": "신학대전"
@@ -116,7 +116,7 @@
       "id": "summa_i_v08",
       "title": "신학대전 제1부 8권 — 창조와 악",
       "title_la": "Summa Theologiae, Prima Pars, qq. 44-49",
-      "korean_chars": 62554,
+      "korean_chars": 62838,
       "total_pages": 90,
       "paragraphs": 269,
       "category": "신학대전"
@@ -125,8 +125,8 @@
       "id": "summa_i_v09",
       "title": "신학대전 제1부 9권 — 천사의 본성과 앎",
       "title_la": "Summa Theologiae, Prima Pars, qq. 50-58",
-      "korean_chars": 76196,
-      "total_pages": 109,
+      "korean_chars": 76480,
+      "total_pages": 110,
       "paragraphs": 308,
       "category": "신학대전"
     },
@@ -134,9 +134,18 @@
       "id": "summa_i_v10",
       "title": "신학대전 제1부 10권 — 천사의 의지와 타락",
       "title_la": "Summa Theologiae, Prima Pars, qq. 59-64",
-      "korean_chars": 62864,
-      "total_pages": 90,
+      "korean_chars": 63148,
+      "total_pages": 91,
       "paragraphs": 300,
+      "category": "신학대전"
+    },
+    {
+      "id": "summa_i_v11",
+      "title": "신학대전 제1부 11권 — 육일 창조",
+      "title_la": "Summa Theologiae, Prima Pars, qq. 65-74",
+      "korean_chars": 74645,
+      "total_pages": 107,
+      "paragraphs": 288,
       "category": "신학대전"
     }
   ]
