@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./rolldown-runtime-DAXXjFlN.js";var n=t({default:()=>r}),r,i=e((()=>{r=``+new URL(`pdf.worker.min-Cr_QfRGn.mjs`,import.meta.url).href}));export{r as n,n as r,i as t};
